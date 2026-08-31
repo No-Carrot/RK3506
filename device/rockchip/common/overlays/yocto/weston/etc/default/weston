@@ -1,0 +1,9 @@
+#!/bin/sh
+
+# HACK: Allow access
+export XDG_RUNTIME_DIR=/run/user/0
+mkdir -p $XDG_RUNTIME_DIR
+chmod a+w $XDG_RUNTIME_DIR
+
+# Load env settings
+source /etc/profile.d/weston.sh
