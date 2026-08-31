@@ -1,0 +1,1 @@
+cmd_/home/linux/rk3506/external/ethercat_igh/devices/ec_generic.o := /home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-ld -EL -z noexecstack   -r -o /home/linux/rk3506/external/ethercat_igh/devices/ec_generic.o @/home/linux/rk3506/external/ethercat_igh/devices/ec_generic.mod 

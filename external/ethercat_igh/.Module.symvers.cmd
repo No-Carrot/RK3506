@@ -1,0 +1,1 @@
+cmd_/home/linux/rk3506/external/ethercat_igh/Module.symvers :=  sed 's/ko$$/o/'  /home/linux/rk3506/external/ethercat_igh/modules.order | scripts/mod/modpost       -o /home/linux/rk3506/external/ethercat_igh/Module.symvers -e -i Module.symvers -T - 

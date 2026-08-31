@@ -1,0 +1,1 @@
+cmd_/home/linux/rk3506/external/ethercat_igh/devices/modules.order := {   echo /home/linux/rk3506/external/ethercat_igh/devices/ec_generic.ko;   cat /home/linux/rk3506/external/ethercat_igh/devices/stmmac/modules.order; :; } > /home/linux/rk3506/external/ethercat_igh/devices/modules.order

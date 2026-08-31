@@ -1,0 +1,1 @@
+cmd_/home/linux/rk3506/external/ethercat_igh/master/modules.order := {   echo /home/linux/rk3506/external/ethercat_igh/master/ec_master.ko; :; } > /home/linux/rk3506/external/ethercat_igh/master/modules.order

@@ -1,0 +1,1 @@
+cmd_/home/linux/rk3506/external/ethercat_igh/examples/mini/ec_mini.mod := printf '%s\n'   mini.o | awk '!x[$$0]++ { print("/home/linux/rk3506/external/ethercat_igh/examples/mini/"$$0) }' > /home/linux/rk3506/external/ethercat_igh/examples/mini/ec_mini.mod

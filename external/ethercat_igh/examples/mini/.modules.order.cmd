@@ -1,0 +1,1 @@
+cmd_/home/linux/rk3506/external/ethercat_igh/examples/mini/modules.order := {   echo /home/linux/rk3506/external/ethercat_igh/examples/mini/ec_mini.ko; :; } > /home/linux/rk3506/external/ethercat_igh/examples/mini/modules.order

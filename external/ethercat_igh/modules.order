@@ -1,0 +1,4 @@
+/home/linux/rk3506/external/ethercat_igh/examples/mini/ec_mini.ko
+/home/linux/rk3506/external/ethercat_igh/master/ec_master.ko
+/home/linux/rk3506/external/ethercat_igh/devices/ec_generic.ko
+/home/linux/rk3506/external/ethercat_igh/devices/stmmac/ec_stmmac.ko
