@@ -1,0 +1,912 @@
+#! /bin/sh
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+SERVO_IMAGE_MARKER=20260727-gmac-watchdog-v19
+PIDFILE=/run/servo_backend.pid
+LINK_GUARD_PIDFILE=/run/servo-ethercat-link-guard.pid
+SERVO_BACKEND_START_LOGFILE=${SERVO_BACKEND_START_LOGFILE:-/run/servo_backend-start.log}
+ETHERCAT_IFACE=
+SERVO_ETHERCAT_DEVICE_MODULE=${SERVO_ETHERCAT_DEVICE_MODULE:-stmmac}
+SERVO_ETHERCAT_MASTER_DEVICE=${SERVO_ETHERCAT_MASTER_DEVICE:-ff:ff:ff:ff:ff:ff}
+ETHERCAT_WAIT_SECONDS=${ETHERCAT_WAIT_SECONDS:-5}
+ETHERCAT_WAIT_INTERVAL_US=${ETHERCAT_WAIT_INTERVAL_US:-100000}
+ETHERCAT_LINK_WAIT_SECONDS=${ETHERCAT_LINK_WAIT_SECONDS:-8}
+SERVO_ETHERCAT_STABLE_LINK_SAMPLES=${SERVO_ETHERCAT_STABLE_LINK_SAMPLES:-20}
+SERVO_ETHERCAT_LINK_GUARD_SECONDS=${SERVO_ETHERCAT_LINK_GUARD_SECONDS:-30}
+SERVO_ETHERCAT_LINK_GUARD_MISSES=${SERVO_ETHERCAT_LINK_GUARD_MISSES:-2}
+SERVO_ETHERCAT_ALLOW_LATE_LINK=${SERVO_ETHERCAT_ALLOW_LATE_LINK:-0}
+SERVO_ETHERCAT_ALLOW_UNKNOWN_LINK=${SERVO_ETHERCAT_ALLOW_UNKNOWN_LINK:-0}
+ETHERCAT_CONSOLE_QUIET_SECONDS=${ETHERCAT_CONSOLE_QUIET_SECONDS:-8}
+ETHERCAT_CONSOLE_LOGLEVEL=${ETHERCAT_CONSOLE_LOGLEVEL:-3}
+SERVO_REALTIME_CPU=${SERVO_REALTIME_CPU:-2}
+SERVO_ETHERCAT_THREAD_CPU=${SERVO_ETHERCAT_THREAD_CPU:-2}
+SERVO_BACKEND_CPU=${SERVO_BACKEND_CPU:-0}
+SERVO_ETHERCAT_IRQ_CPU=${SERVO_ETHERCAT_IRQ_CPU:-2}
+SERVO_ETHERCAT_IDLE_RT_PRIO=${SERVO_ETHERCAT_IDLE_RT_PRIO:-15}
+SERVO_ETHERCAT_OP_RT_PRIO=${SERVO_ETHERCAT_OP_RT_PRIO:-42}
+SERVO_ETHERCAT_IRQ_RT_PRIO=${SERVO_ETHERCAT_IRQ_RT_PRIO:-60}
+SERVO_KSOFTIRQD_RT_PRIO=${SERVO_KSOFTIRQD_RT_PRIO:-55}
+SERVO_HOUSEKEEPING_CPUS=${SERVO_HOUSEKEEPING_CPUS:-0-1}
+SERVO_PM_QOS_LATENCY_US=${SERVO_PM_QOS_LATENCY_US:-50}
+case "${SERVO_ETHERCAT_DEVICE_MODULE}" in
+stmmac|ec_stmmac)
+	SERVO_ETHERCAT_DEVICE_MODULE=stmmac
+	;;
+generic|ec_generic|'')
+	SERVO_ETHERCAT_DEVICE_MODULE=generic
+	;;
+esac
+case "${SERVO_REALTIME_CPU}" in
+''|*[!0-9]*)
+	SERVO_REALTIME_CPU=2
+	;;
+esac
+case "${SERVO_ETHERCAT_THREAD_CPU}" in
+''|*[!0-9]*)
+	SERVO_ETHERCAT_THREAD_CPU=${SERVO_REALTIME_CPU}
+	;;
+esac
+case "${SERVO_BACKEND_CPU}" in
+''|*[!0-9]*)
+	SERVO_BACKEND_CPU=0
+	;;
+esac
+case "${SERVO_ETHERCAT_IRQ_CPU}" in
+''|*[!0-9]*)
+	SERVO_ETHERCAT_IRQ_CPU=${SERVO_ETHERCAT_THREAD_CPU}
+	;;
+esac
+SERVO_REALTIME_XPS_MASK=${SERVO_REALTIME_XPS_MASK:-$((1 << SERVO_ETHERCAT_THREAD_CPU))}
+SERVO_ETHERCAT_IRQ_MASK=${SERVO_ETHERCAT_IRQ_MASK:-$((1 << SERVO_ETHERCAT_IRQ_CPU))}
+SERVO_WORKQUEUE_CPUMASK=${SERVO_WORKQUEUE_CPUMASK:-3}
+SERVO_BACKEND_LOG_LEVEL=${SERVO_BACKEND_LOG_LEVEL:-2}
+SERVO_BACKEND_DIAG_CYCLES=${SERVO_BACKEND_DIAG_CYCLES:-100}
+# The known-good Rockchip_MADHT1505BA1 bottom driver owns CSP EtherCAT
+# exchange internally. Keep these exported values for boot diagnostics and
+# field overrides, but the backend now uses the MADHT driver architecture.
+SERVO_BACKEND_MODE=${SERVO_BACKEND_MODE:-csp}
+SERVO_BACKEND_LOGFILE=${SERVO_BACKEND_LOGFILE:-/run/servo_backend.log}
+# 3000 rpm with 10000 command pulses/rev equals 500000 pulses/s.
+SERVO_BACKEND_MOTION_VELOCITY=${SERVO_BACKEND_MOTION_VELOCITY:-500000}
+# Continuous forward/reverse jog speed.
+SERVO_BACKEND_DEMO_RPM=${SERVO_BACKEND_DEMO_RPM:-6}
+SERVO_BACKEND_CSV_VELOCITY=${SERVO_BACKEND_CSV_VELOCITY:-${SERVO_BACKEND_MOTION_VELOCITY}}
+SERVO_BACKEND_SYNC=${SERVO_BACKEND_SYNC:-dc}
+SERVO_BACKEND_CYCLE_PROFILE=${SERVO_BACKEND_CYCLE_PROFILE:-${SERVO_BACKEND_RATE:-2k}}
+case "${SERVO_BACKEND_CYCLE_HZ:-}" in
+4k|4K|4000)
+	SERVO_BACKEND_CYCLE_HZ=4000
+	;;
+2k|2K|2000)
+	SERVO_BACKEND_CYCLE_HZ=2000
+	;;
+'')
+	case "${SERVO_BACKEND_CYCLE_PROFILE}" in
+	4k|4K|4000)
+		SERVO_BACKEND_CYCLE_HZ=4000
+		;;
+	*)
+		SERVO_BACKEND_CYCLE_HZ=2000
+		;;
+	esac
+	;;
+*)
+	SERVO_BACKEND_CYCLE_HZ=2000
+	;;
+esac
+case "${SERVO_BACKEND_CYCLE_HZ}" in
+4000)
+	SERVO_BACKEND_CYCLE_PROFILE=4k
+	servo_cycle_default_shift_ns=125000
+	servo_cycle_default_spin_us=220
+	;;
+*)
+	SERVO_BACKEND_CYCLE_HZ=2000
+	SERVO_BACKEND_CYCLE_PROFILE=2k
+	servo_cycle_default_shift_ns=250000
+	servo_cycle_default_spin_us=480
+	;;
+esac
+SERVO_BACKEND_CSP_ALLOW_SM_FALLBACK=${SERVO_BACKEND_CSP_ALLOW_SM_FALLBACK:-0}
+SERVO_BACKEND_DC_SYNC0_SHIFT_NS=${SERVO_BACKEND_DC_SYNC0_SHIFT_NS:-${servo_cycle_default_shift_ns}}
+SERVO_BACKEND_WAKEUP_SPIN_US=${SERVO_BACKEND_WAKEUP_SPIN_US:-${servo_cycle_default_spin_us}}
+SERVO_BACKEND_TX_QUEUE_LEN=${SERVO_BACKEND_TX_QUEUE_LEN:-16}
+SERVO_BACKEND_CSP_AUTO_CSV=${SERVO_BACKEND_CSP_AUTO_CSV:-1}
+SERVO_BACKEND_CSP_60C2=${SERVO_BACKEND_CSP_60C2:-0}
+SERVO_BACKEND_CSP_60FF=${SERVO_BACKEND_CSP_60FF:-0}
+SERVO_BACKEND_CSP_MAX_PROFILE_VELOCITY=${SERVO_BACKEND_CSP_MAX_PROFILE_VELOCITY:-${SERVO_BACKEND_MOTION_VELOCITY}}
+SERVO_BACKEND_CSP_PROFILE_VELOCITY=${SERVO_BACKEND_CSP_PROFILE_VELOCITY:-${SERVO_BACKEND_MOTION_VELOCITY}}
+SERVO_BACKEND_CSP_ACCELERATION=${SERVO_BACKEND_CSP_ACCELERATION:-1200000}
+SERVO_BACKEND_CSP_DECELERATION=${SERVO_BACKEND_CSP_DECELERATION:-1200000}
+SERVO_BACKEND_CSP_FOLLOWING_ERROR_WINDOW=${SERVO_BACKEND_CSP_FOLLOWING_ERROR_WINDOW:-131072}
+SERVO_BACKEND_CSP_FOLLOWING_ERROR_TIMEOUT_MS=${SERVO_BACKEND_CSP_FOLLOWING_ERROR_TIMEOUT_MS:-1000}
+SERVO_BACKEND_CSP_POSITION_WINDOW=${SERVO_BACKEND_CSP_POSITION_WINDOW:-10}
+SERVO_BACKEND_CSP_POSITION_WINDOW_TIME_MS=${SERVO_BACKEND_CSP_POSITION_WINDOW_TIME_MS:-100}
+SERVO_BACKEND_CSP_MAX_TORQUE=${SERVO_BACKEND_CSP_MAX_TORQUE:-3000}
+SERVO_BACKEND_CSP_EXTENDED_TUNING=${SERVO_BACKEND_CSP_EXTENDED_TUNING:-0}
+SERVO_BACKEND_CSP_POSITION_OFFSET=${SERVO_BACKEND_CSP_POSITION_OFFSET:-0}
+SERVO_BACKEND_CSP_VELOCITY_OFFSET=${SERVO_BACKEND_CSP_VELOCITY_OFFSET:-0}
+SERVO_BACKEND_CSP_POSITIVE_TORQUE_LIMIT=${SERVO_BACKEND_CSP_POSITIVE_TORQUE_LIMIT:-3000}
+SERVO_BACKEND_CSP_NEGATIVE_TORQUE_LIMIT=${SERVO_BACKEND_CSP_NEGATIVE_TORQUE_LIMIT:-3000}
+SERVO_BACKEND_CSP_POSITION_GAIN=${SERVO_BACKEND_CSP_POSITION_GAIN:-400}
+PM_QOS_PIDFILE=/run/servo-pm-qos.pid
+PM_QOS_HELPER=/usr/bin/cpu_dma_latency_keeper
+ETHERCAT_MASTER_OPTIONS="thread_cpu=${SERVO_ETHERCAT_THREAD_CPU} idle_thread_rt_prio=${SERVO_ETHERCAT_IDLE_RT_PRIO} op_thread_rt_prio=${SERVO_ETHERCAT_OP_RT_PRIO}"
+INSMOD=${INSMOD:-/sbin/insmod}
+RMMOD=${RMMOD:-/sbin/rmmod}
+MODPROBE=${MODPROBE:-modprobe}
+if [ -z "${SERVO_BACKEND_PDO_LAYOUT+x}" ]; then
+	case "${SERVO_BACKEND_MODE}" in
+	csp|CSP|8)
+		SERVO_BACKEND_PDO_LAYOUT=madht-1600+1601
+		;;
+	*)
+		SERVO_BACKEND_PDO_LAYOUT=madht-1600+1601
+		;;
+	esac
+fi
+export SERVO_BACKEND_MODE SERVO_BACKEND_MOTION_VELOCITY SERVO_BACKEND_DEMO_RPM
+export SERVO_BACKEND_CSV_VELOCITY
+export SERVO_BACKEND_SYNC SERVO_BACKEND_CSP_AUTO_CSV SERVO_BACKEND_CSP_60C2
+export SERVO_BACKEND_CYCLE_HZ SERVO_BACKEND_CYCLE_PROFILE
+export SERVO_BACKEND_CSP_ALLOW_SM_FALLBACK SERVO_BACKEND_DC_SYNC0_SHIFT_NS
+export SERVO_BACKEND_WAKEUP_SPIN_US
+export SERVO_BACKEND_TX_QUEUE_LEN
+export SERVO_BACKEND_CSP_60FF
+export SERVO_BACKEND_PDO_LAYOUT
+export SERVO_BACKEND_CSP_MAX_PROFILE_VELOCITY SERVO_BACKEND_CSP_PROFILE_VELOCITY
+export SERVO_BACKEND_CSP_ACCELERATION SERVO_BACKEND_CSP_DECELERATION
+export SERVO_BACKEND_CSP_FOLLOWING_ERROR_WINDOW
+export SERVO_BACKEND_CSP_FOLLOWING_ERROR_TIMEOUT_MS
+export SERVO_BACKEND_CSP_POSITION_WINDOW SERVO_BACKEND_CSP_POSITION_WINDOW_TIME_MS
+export SERVO_BACKEND_CSP_MAX_TORQUE
+export SERVO_BACKEND_CSP_EXTENDED_TUNING SERVO_BACKEND_CSP_POSITION_OFFSET
+export SERVO_BACKEND_CSP_VELOCITY_OFFSET
+export SERVO_BACKEND_CSP_POSITIVE_TORQUE_LIMIT
+export SERVO_BACKEND_CSP_NEGATIVE_TORQUE_LIMIT SERVO_BACKEND_CSP_POSITION_GAIN
+export SERVO_BACKEND_LOG_LEVEL SERVO_BACKEND_DIAG_CYCLES
+export SERVO_REALTIME_CPU SERVO_ETHERCAT_THREAD_CPU SERVO_REALTIME_XPS_MASK SERVO_BACKEND_CPU
+export SERVO_ETHERCAT_IRQ_CPU SERVO_ETHERCAT_IRQ_MASK SERVO_WORKQUEUE_CPUMASK
+export SERVO_ETHERCAT_DEVICE_MODULE SERVO_ETHERCAT_MASTER_DEVICE
+
+console_note() {
+	msg="servo_backend: $*"
+	echo "${msg}"
+	[ -n "${SERVO_BACKEND_START_LOGFILE}" ] && printf '%s\n' "${msg}" >>"${SERVO_BACKEND_START_LOGFILE}" 2>/dev/null || true
+}
+
+start_pm_qos() {
+	[ "${SERVO_PM_QOS_LATENCY_US}" = "0" ] && return 0
+
+	if [ -r "${PM_QOS_PIDFILE}" ] && kill -0 "$(cat "${PM_QOS_PIDFILE}" 2>/dev/null)" 2>/dev/null; then
+		return 0
+	fi
+	rm -f "${PM_QOS_PIDFILE}"
+
+	hk_cpu=$(printf '%s\n' "${SERVO_HOUSEKEEPING_CPUS}" | sed 's/,.*//;s/-.*//')
+	if [ -z "${hk_cpu}" ]; then
+		hk_cpu=0
+	fi
+
+	if [ -x "${PM_QOS_HELPER}" ]; then
+		if command -v taskset >/dev/null 2>&1; then
+			taskset -c "${hk_cpu}" "${PM_QOS_HELPER}" &
+		else
+			"${PM_QOS_HELPER}" &
+		fi
+	else
+		if command -v taskset >/dev/null 2>&1; then
+			taskset -c "${hk_cpu}" sh -c 'while :; do exec 9>/dev/cpu_dma_latency && { printf "\000\000\000\000" >&9; while :; do sleep 3600; done; }; sleep 1; done' &
+		else
+			sh -c 'while :; do exec 9>/dev/cpu_dma_latency && { printf "\000\000\000\000" >&9; while :; do sleep 3600; done; }; sleep 1; done' &
+		fi
+	fi
+
+	pm_qos_pid=$!
+	echo "${pm_qos_pid}" >"${PM_QOS_PIDFILE}"
+	backend_log "cpu_dma_latency hold pid=${pm_qos_pid} cpu=${hk_cpu}"
+}
+
+prepare_backend_log() {
+	[ -n "${SERVO_BACKEND_LOGFILE}" ] || return 0
+	mkdir -p "$(dirname "${SERVO_BACKEND_LOGFILE}")"
+	: >>"${SERVO_BACKEND_LOGFILE}"
+}
+
+backend_log() {
+	[ -n "${SERVO_BACKEND_LOGFILE}" ] || return 0
+	prepare_backend_log
+	printf 'servo_backend: %s\n' "$*" >>"${SERVO_BACKEND_LOGFILE}"
+}
+
+set_task_rt_fifo() {
+	tid=$1
+	prio=$2
+
+	case "${prio}" in
+	''|0|*[!0-9]*)
+		return 0
+		;;
+	esac
+
+	if command -v chrt >/dev/null 2>&1; then
+		chrt -f -p "${prio}" "${tid}" >/dev/null 2>&1 || true
+	fi
+}
+
+set_task_cpu() {
+	tid=$1
+	cpu=$2
+
+	if command -v taskset >/dev/null 2>&1; then
+		taskset -pc "${cpu}" "${tid}" >/dev/null 2>&1 || true
+	fi
+}
+
+retune_irq_threads() {
+	[ -n "${ETHERCAT_IFACE}" ] || return 0
+
+	for commfile in /proc/[0-9]*/task/[0-9]*/comm; do
+		[ -r "${commfile}" ] || continue
+		comm=$(cat "${commfile}" 2>/dev/null)
+		tid=${commfile%/comm}
+		tid=${tid##*/}
+		case "${comm}" in
+		irq/*"${ETHERCAT_IFACE}"*)
+			set_task_cpu "${tid}" "${SERVO_ETHERCAT_IRQ_CPU}"
+			set_task_rt_fifo "${tid}" "${SERVO_ETHERCAT_IRQ_RT_PRIO}"
+			;;
+		ksoftirqd/${SERVO_ETHERCAT_IRQ_CPU})
+			set_task_cpu "${tid}" "${SERVO_ETHERCAT_IRQ_CPU}"
+			set_task_rt_fifo "${tid}" "${SERVO_KSOFTIRQD_RT_PRIO}"
+			;;
+		esac
+	done
+}
+
+retune_gmac_irq_threads() {
+	for commfile in /proc/[0-9]*/task/[0-9]*/comm; do
+		[ -r "${commfile}" ] || continue
+		comm=$(cat "${commfile}" 2>/dev/null)
+		tid=${commfile%/comm}
+		tid=${tid##*/}
+		case "${comm}" in
+		irq/*eth*|irq/*ff4c8000*|irq/*ethernet*|irq/*gmac*|irq/*stmmac*)
+			set_task_cpu "${tid}" "${SERVO_ETHERCAT_IRQ_CPU}"
+			set_task_rt_fifo "${tid}" "${SERVO_ETHERCAT_IRQ_RT_PRIO}"
+			;;
+		ksoftirqd/${SERVO_ETHERCAT_IRQ_CPU})
+			set_task_cpu "${tid}" "${SERVO_ETHERCAT_IRQ_CPU}"
+			set_task_rt_fifo "${tid}" "${SERVO_KSOFTIRQD_RT_PRIO}"
+			;;
+		esac
+	done
+}
+
+run_logged() {
+	if [ -n "${SERVO_BACKEND_LOGFILE}" ]; then
+		prepare_backend_log
+		"$@" >>"${SERVO_BACKEND_LOGFILE}" 2>&1
+	else
+		"$@" >/dev/null 2>&1
+	fi
+}
+
+configure_workqueue_affinity() {
+	for cpumask in /sys/devices/virtual/workqueue/cpumask \
+		/sys/devices/virtual/workqueue/*/cpumask; do
+		[ -w "${cpumask}" ] || continue
+		old_mask=$(cat "${cpumask}" 2>/dev/null || true)
+		if echo "${SERVO_WORKQUEUE_CPUMASK}" >"${cpumask}" 2>/dev/null; then
+			backend_log "workqueue ${cpumask#/sys/devices/virtual/workqueue/} cpumask ${old_mask:-?}->${SERVO_WORKQUEUE_CPUMASK}"
+		fi
+	done
+}
+
+start_console_quiet_window() {
+	[ "${ETHERCAT_CONSOLE_QUIET_SECONDS}" -gt 0 ] 2>/dev/null || return 0
+	[ -r /proc/sys/kernel/printk ] && [ -w /proc/sys/kernel/printk ] || return 0
+
+	set -- $(cat /proc/sys/kernel/printk 2>/dev/null)
+	saved_loglevel=$1
+	[ -n "${saved_loglevel}" ] || return 0
+
+	echo "${ETHERCAT_CONSOLE_LOGLEVEL}" >/proc/sys/kernel/printk 2>/dev/null || return 0
+	backend_log "console loglevel ${saved_loglevel}->${ETHERCAT_CONSOLE_LOGLEVEL} for ${ETHERCAT_CONSOLE_QUIET_SECONDS}s"
+	(
+		sleep "${ETHERCAT_CONSOLE_QUIET_SECONDS}"
+		set -- $(cat /proc/sys/kernel/printk 2>/dev/null)
+		if [ "$1" = "${ETHERCAT_CONSOLE_LOGLEVEL}" ]; then
+			echo "${saved_loglevel}" >/proc/sys/kernel/printk 2>/dev/null || true
+		fi
+	) &
+}
+
+find_ethercat_interface() {
+	for interface_path in /sys/class/net/*; do
+		[ -e "${interface_path}" ] || continue
+		device_path=$(readlink -f "${interface_path}/device" 2>/dev/null || true)
+		case "${device_path}" in
+			*/ff4c8000.ethernet)
+				basename "${interface_path}"
+				return 0
+				;;
+		esac
+	done
+
+	[ -d /sys/class/net/eth0 ] && printf '%s\n' eth0
+}
+
+available_interfaces() {
+	for interface_path in /sys/class/net/*; do
+		[ -e "${interface_path}" ] || continue
+		basename "${interface_path}"
+	done | tr '\n' ' '
+}
+
+wait_for_ethercat_interface() {
+	attempt=0
+	wait_limit=$((ETHERCAT_WAIT_SECONDS * 1000000 / ETHERCAT_WAIT_INTERVAL_US))
+	[ "$wait_limit" -gt 0 ] || wait_limit=1
+	while [ "$attempt" -lt "$wait_limit" ]; do
+		ETHERCAT_IFACE=$(find_ethercat_interface)
+		[ -n "${ETHERCAT_IFACE}" ] && return 0
+		attempt=$((attempt + 1))
+		usleep "$ETHERCAT_WAIT_INTERVAL_US" 2>/dev/null || sleep 1
+	done
+
+	return 1
+}
+
+ethercat_link_is_up() {
+	carrier="/sys/class/net/${ETHERCAT_IFACE}/carrier"
+	operstate="/sys/class/net/${ETHERCAT_IFACE}/operstate"
+	carrier_value=not-readable
+	operstate_value=not-readable
+
+	if [ -r "${carrier}" ]; then
+		carrier_value=$(cat "${carrier}" 2>/dev/null || printf 'read-error')
+		case "${carrier_value}" in
+		1)
+			return 0
+			;;
+		0)
+			return 1
+			;;
+		esac
+	fi
+
+	if [ -r "${operstate}" ]; then
+		operstate_value=$(cat "${operstate}" 2>/dev/null || printf 'read-error')
+	fi
+
+	[ "${operstate_value}" = "up" ] && return 0
+	[ "${SERVO_ETHERCAT_ALLOW_UNKNOWN_LINK}" = "1" ] && [ "${operstate_value}" = "unknown" ] && return 0
+	return 1
+}
+
+ethercat_link_summary() {
+	carrier="/sys/class/net/${ETHERCAT_IFACE}/carrier"
+	operstate="/sys/class/net/${ETHERCAT_IFACE}/operstate"
+	flags="/sys/class/net/${ETHERCAT_IFACE}/flags"
+
+	carrier_value=not-readable
+	operstate_value=not-readable
+	flags_value=not-readable
+	[ -r "${carrier}" ] && carrier_value=$(cat "${carrier}" 2>/dev/null || printf 'read-error')
+	[ -r "${operstate}" ] && operstate_value=$(cat "${operstate}" 2>/dev/null || printf 'read-error')
+	[ -r "${flags}" ] && flags_value=$(cat "${flags}" 2>/dev/null || printf 'read-error')
+	printf 'iface=%s carrier=%s operstate=%s flags=%s allow_unknown=%s allow_late=%s' \
+		"${ETHERCAT_IFACE:-?}" "${carrier_value}" "${operstate_value}" "${flags_value}" \
+		"${SERVO_ETHERCAT_ALLOW_UNKNOWN_LINK}" "${SERVO_ETHERCAT_ALLOW_LATE_LINK}"
+}
+
+set_ethercat_interface_up() {
+	[ -n "${ETHERCAT_IFACE}" ] || return 1
+
+	result=1
+	if command -v ip >/dev/null 2>&1; then
+		ip link set dev "${ETHERCAT_IFACE}" up >/dev/null 2>&1 && result=0
+	fi
+	if command -v ifconfig >/dev/null 2>&1; then
+		ifconfig "${ETHERCAT_IFACE}" up >/dev/null 2>&1 && result=0
+	fi
+	return "${result}"
+}
+
+wait_for_ethercat_link() {
+	attempt=0
+	stable=0
+	wait_limit=$((ETHERCAT_LINK_WAIT_SECONDS * 1000000 / ETHERCAT_WAIT_INTERVAL_US))
+	[ "$wait_limit" -gt 0 ] || wait_limit=1
+	case "${SERVO_ETHERCAT_STABLE_LINK_SAMPLES}" in
+	''|*[!0-9]*)
+		SERVO_ETHERCAT_STABLE_LINK_SAMPLES=1
+		;;
+	esac
+	[ "${SERVO_ETHERCAT_STABLE_LINK_SAMPLES}" -gt 0 ] || SERVO_ETHERCAT_STABLE_LINK_SAMPLES=1
+	while [ "$attempt" -lt "$wait_limit" ]; do
+		set_ethercat_interface_up >/dev/null 2>&1 || true
+		if ethercat_link_is_up; then
+			stable=$((stable + 1))
+			[ "${stable}" -ge "${SERVO_ETHERCAT_STABLE_LINK_SAMPLES}" ] && return 0
+		else
+			stable=0
+		fi
+		attempt=$((attempt + 1))
+		usleep "$ETHERCAT_WAIT_INTERVAL_US" 2>/dev/null || sleep 1
+	done
+
+	return 1
+}
+
+configure_ethercat_interface() {
+	case "${SERVO_ETHERCAT_DEVICE_MODULE}" in
+	stmmac)
+		master_device="${SERVO_ETHERCAT_MASTER_DEVICE}"
+		device_modules=stmmac
+		updown_interfaces=
+		;;
+	generic)
+		master_device="${ETHERCAT_IFACE}"
+		device_modules=generic
+		updown_interfaces="${ETHERCAT_IFACE}"
+		;;
+	*)
+		master_device="${SERVO_ETHERCAT_MASTER_DEVICE}"
+		device_modules="${SERVO_ETHERCAT_DEVICE_MODULE}"
+		updown_interfaces=
+		;;
+	esac
+
+	for config in /etc/ethercat.conf /etc/sysconfig/ethercat; do
+		[ -f "${config}" ] || continue
+		sed -i \
+			-e "s/^MASTER0_DEVICE=.*/MASTER0_DEVICE=\"${master_device}\"/" \
+			-e "s/^DEVICE_MODULES=.*/DEVICE_MODULES=\"${device_modules}\"/" \
+			-e "s/^UPDOWN_INTERFACES=.*/UPDOWN_INTERFACES=\"${updown_interfaces}\"/" \
+			-e "s/^MASTER_MODULE_OPTIONS=.*/MASTER_MODULE_OPTIONS=\"${ETHERCAT_MASTER_OPTIONS}\"/" \
+			"${config}"
+		grep -q '^MASTER0_DEVICE=' "${config}" || \
+			printf '\nMASTER0_DEVICE="%s"\n' "${master_device}" >> "${config}"
+		grep -q '^DEVICE_MODULES=' "${config}" || \
+			printf '\nDEVICE_MODULES="%s"\n' "${device_modules}" >> "${config}"
+		grep -q '^UPDOWN_INTERFACES=' "${config}" || \
+			printf '\nUPDOWN_INTERFACES="%s"\n' "${updown_interfaces}" >> "${config}"
+		grep -q '^MASTER_MODULE_OPTIONS=' "${config}" || \
+			printf '\nMASTER_MODULE_OPTIONS="%s"\n' "${ETHERCAT_MASTER_OPTIONS}" >> "${config}"
+	done
+}
+
+configure_ethercat_realtime() {
+	queue_len="/sys/class/net/${ETHERCAT_IFACE}/tx_queue_len"
+	if [ -w "${queue_len}" ]; then
+		echo "${SERVO_BACKEND_TX_QUEUE_LEN}" >"${queue_len}" 2>/dev/null || true
+	fi
+
+	for rps in /sys/class/net/"${ETHERCAT_IFACE}"/queues/rx-*/rps_cpus; do
+		[ -w "${rps}" ] && echo 0 >"${rps}" 2>/dev/null || true
+	done
+	for xps in /sys/class/net/"${ETHERCAT_IFACE}"/queues/tx-*/xps_cpus; do
+		[ -w "${xps}" ] && echo "${SERVO_REALTIME_XPS_MASK}" >"${xps}" 2>/dev/null || true
+	done
+
+	if command -v ethtool >/dev/null 2>&1; then
+		ethtool -C "${ETHERCAT_IFACE}" rx-usecs 0 tx-usecs 0 >/dev/null 2>&1 || true
+		ethtool -K "${ETHERCAT_IFACE}" gro off gso off tso off lro off >/dev/null 2>&1 || true
+		ethtool --set-eee "${ETHERCAT_IFACE}" eee off >/dev/null 2>&1 || true
+	fi
+}
+
+configure_ethercat_irq_affinity() {
+	[ -r /proc/interrupts ] || return 0
+	irq_list=$(awk -v iface="${ETHERCAT_IFACE}" '
+		$0 ~ iface {
+			gsub(":", "", $1)
+			print $1
+		}
+	' /proc/interrupts 2>/dev/null)
+
+	for irq in ${irq_list}; do
+		if [ -w "/proc/irq/${irq}/smp_affinity_list" ]; then
+			echo "${SERVO_ETHERCAT_IRQ_CPU}" >"/proc/irq/${irq}/smp_affinity_list" 2>/dev/null || true
+		elif [ -w "/proc/irq/${irq}/smp_affinity" ]; then
+			echo "${SERVO_ETHERCAT_IRQ_MASK}" >"/proc/irq/${irq}/smp_affinity" 2>/dev/null || true
+		fi
+		backend_log "irq ${irq} (${ETHERCAT_IFACE}) affinity cpu=${SERVO_ETHERCAT_IRQ_CPU} mask=${SERVO_ETHERCAT_IRQ_MASK}"
+	done
+}
+
+configure_gmac_platform_irq_affinity() {
+	[ -r /proc/interrupts ] || return 0
+	irq_list=$(awk '
+		/ff4c8000|ethernet|gmac|stmmac|eth0/ {
+			gsub(":", "", $1)
+			print $1
+		}
+	' /proc/interrupts 2>/dev/null)
+
+	for irq in ${irq_list}; do
+		if [ -w "/proc/irq/${irq}/smp_affinity_list" ]; then
+			echo "${SERVO_ETHERCAT_IRQ_CPU}" >"/proc/irq/${irq}/smp_affinity_list" 2>/dev/null || true
+		elif [ -w "/proc/irq/${irq}/smp_affinity" ]; then
+			echo "${SERVO_ETHERCAT_IRQ_MASK}" >"/proc/irq/${irq}/smp_affinity" 2>/dev/null || true
+		fi
+		backend_log "irq ${irq} (GMAC0) affinity cpu=${SERVO_ETHERCAT_IRQ_CPU} mask=${SERVO_ETHERCAT_IRQ_MASK}"
+	done
+}
+
+is_mac_address() {
+	printf '%s\n' "$1" | grep -Eq '^([0-9A-Fa-f]{2}:){5}[0-9A-Fa-f]{2}$'
+}
+
+ethercat_mac_address() {
+	[ -r "/sys/class/net/${ETHERCAT_IFACE}/address" ] || return 1
+	mac_address=$(cat "/sys/class/net/${ETHERCAT_IFACE}/address")
+	is_mac_address "$mac_address" || return 1
+	printf '%s\n' "$mac_address"
+}
+
+ethercat_master_device() {
+	case "${SERVO_ETHERCAT_DEVICE_MODULE}" in
+	stmmac)
+		is_mac_address "${SERVO_ETHERCAT_MASTER_DEVICE}" || return 1
+		printf '%s\n' "${SERVO_ETHERCAT_MASTER_DEVICE}"
+		;;
+	generic)
+		ethercat_mac_address
+		;;
+	*)
+		return 1
+		;;
+	esac
+}
+
+ethercat_master_device_label() {
+	case "${SERVO_ETHERCAT_DEVICE_MODULE}" in
+	stmmac)
+		case "${SERVO_ETHERCAT_MASTER_DEVICE}" in
+		ff:ff:ff:ff:ff:ff|FF:FF:FF:FF:FF:FF)
+			printf '%s' "auto-bind GMAC0 via ec_stmmac"
+			;;
+		*)
+			printf 'main_device=%s' "${SERVO_ETHERCAT_MASTER_DEVICE}"
+			;;
+		esac
+		;;
+	generic)
+		printf '%s/ec_generic' "${ETHERCAT_IFACE:-unknown}"
+		;;
+	*)
+		printf '%s' "${SERVO_ETHERCAT_DEVICE_MODULE:-unknown}"
+		;;
+	esac
+}
+
+unload_standard_stmmac_modules() {
+	[ -x "${RMMOD}" ] || return 0
+
+	for module in dwmac_rockchip dwmac-rockchip stmmac_platform stmmac-platform stmmac; do
+		"${RMMOD}" "${module}" >/dev/null 2>&1 || true
+	done
+}
+
+modprobe_available() {
+	command -v "${MODPROBE}" >/dev/null 2>&1
+}
+
+load_stmmac_dependencies_by_insmod() {
+	kernel_release=$1
+	dep_base="/lib/modules/${kernel_release}/kernel"
+
+	for dep in \
+		drivers/net/phy/libphy.ko \
+		drivers/net/phy/fixed_phy.ko \
+		drivers/net/mdio/fwnode_mdio.ko \
+		drivers/net/mdio/of_mdio.ko \
+		drivers/net/phy/motorcomm.ko \
+		drivers/net/phy/realtek.ko \
+		drivers/net/phy/phylink.ko \
+		drivers/net/pcs/pcs_xpcs.ko; do
+		[ -r "${dep_base}/${dep}" ] || continue
+		run_logged "${INSMOD}" "${dep_base}/${dep}" || true
+	done
+}
+
+load_ethercat_master_module() {
+	if modprobe_available; then
+		run_logged "${MODPROBE}" ec_master \
+			main_devices="${master_device}" backup_devices="" \
+			thread_cpu="${SERVO_ETHERCAT_THREAD_CPU}" \
+			idle_thread_rt_prio="${SERVO_ETHERCAT_IDLE_RT_PRIO}" \
+			op_thread_rt_prio="${SERVO_ETHERCAT_OP_RT_PRIO}"
+	else
+		run_logged "${INSMOD}" "${master_module}" \
+			main_devices="${master_device}" backup_devices="" \
+			thread_cpu="${SERVO_ETHERCAT_THREAD_CPU}" \
+			idle_thread_rt_prio="${SERVO_ETHERCAT_IDLE_RT_PRIO}" \
+			op_thread_rt_prio="${SERVO_ETHERCAT_OP_RT_PRIO}"
+	fi
+}
+
+load_ethercat_driver_module() {
+	if modprobe_available; then
+		run_logged "${MODPROBE}" "${driver_sysfs}"
+	else
+		if [ "${SERVO_ETHERCAT_DEVICE_MODULE}" = "stmmac" ]; then
+			load_stmmac_dependencies_by_insmod "${kernel_release}"
+		fi
+		run_logged "${INSMOD}" "${driver_module}"
+	fi
+}
+
+start_ethercat_master_fast() {
+	kernel_release=$(uname -r)
+	module_dir="/lib/modules/${kernel_release}/kernel/drivers/ethercat"
+	master_module="${module_dir}/ec_master.ko"
+	case "${SERVO_ETHERCAT_DEVICE_MODULE}" in
+	stmmac)
+		driver_module="${module_dir}/ec_stmmac.ko"
+		driver_sysfs=ec_stmmac
+		;;
+	generic)
+		driver_module="${module_dir}/ec_generic.ko"
+		driver_sysfs=ec_generic
+		;;
+	*)
+		backend_log "unsupported EtherCAT device module ${SERVO_ETHERCAT_DEVICE_MODULE}"
+		return 1
+		;;
+	esac
+
+	master_device=$(ethercat_master_device) || return 1
+
+	if [ -d /sys/module/ec_master ]; then
+		current_master_device=$(cat /sys/module/ec_master/parameters/main_devices 2>/dev/null || true)
+		reload_master=0
+		[ "${current_master_device}" = "${master_device}" ] || reload_master=1
+		[ "${SERVO_ETHERCAT_DEVICE_MODULE}" = "stmmac" ] && [ -d /sys/module/ec_generic ] && reload_master=1
+		[ "${SERVO_ETHERCAT_DEVICE_MODULE}" = "generic" ] && [ -d /sys/module/ec_stmmac ] && reload_master=1
+		if [ "${reload_master}" = "1" ]; then
+			backend_log "reloading stale EtherCAT modules current_main=${current_master_device:-?} want_main=${master_device} want_driver=${driver_sysfs}"
+			stop_ethercat_master_fast
+		else
+			if [ ! -d "/sys/module/${driver_sysfs}" ]; then
+				[ -r "${driver_module}" ] || return 1
+				[ "${SERVO_ETHERCAT_DEVICE_MODULE}" = "stmmac" ] && unload_standard_stmmac_modules
+				load_ethercat_driver_module || return 1
+			fi
+			retune_irq_threads
+			configure_gmac_platform_irq_affinity
+			retune_gmac_irq_threads
+			return 0
+		fi
+	fi
+
+	if [ -d /sys/module/ec_master ]; then
+		if [ ! -d "/sys/module/${driver_sysfs}" ]; then
+			[ -r "${driver_module}" ] || return 1
+			[ "${SERVO_ETHERCAT_DEVICE_MODULE}" = "stmmac" ] && unload_standard_stmmac_modules
+			load_ethercat_driver_module || return 1
+		fi
+		retune_irq_threads
+		configure_gmac_platform_irq_affinity
+		retune_gmac_irq_threads
+		return 0
+	fi
+
+	[ -r "${master_module}" ] && [ -r "${driver_module}" ] || return 1
+	[ -x "${INSMOD}" ] || return 1
+
+	[ "${SERVO_ETHERCAT_DEVICE_MODULE}" = "stmmac" ] && unload_standard_stmmac_modules
+	backend_log "loading EtherCAT master 1.6.0-rc1 device_module=${SERVO_ETHERCAT_DEVICE_MODULE} main_device=${master_device} ${ETHERCAT_MASTER_OPTIONS}"
+	if ! load_ethercat_master_module; then
+		backend_log "failed to load ec_master"
+		return 1
+	fi
+	if ! load_ethercat_driver_module; then
+		"${RMMOD}" ec_master 2>/dev/null || true
+		backend_log "failed to load ${driver_sysfs}"
+		return 1
+	fi
+	retune_irq_threads
+	configure_gmac_platform_irq_affinity
+	retune_gmac_irq_threads
+	backend_log "EtherCAT master modules loaded (${driver_sysfs})"
+	return 0
+}
+
+stop_ethercat_master_fast() {
+	run_logged /etc/init.d/ethercat stop || true
+	[ -x "${RMMOD}" ] || return 0
+	"${RMMOD}" ec_stmmac >/dev/null 2>&1 || true
+	"${RMMOD}" ec_generic >/dev/null 2>&1 || true
+	"${RMMOD}" ec_master >/dev/null 2>&1 || true
+}
+
+stop_backend_processes() {
+	if [ -r "${PIDFILE}" ]; then
+		kill -TERM "$(cat "${PIDFILE}" 2>/dev/null)" 2>/dev/null || true
+	fi
+	if command -v pidof >/dev/null 2>&1; then
+		for pid in $(pidof servo_backend 2>/dev/null); do
+			kill -TERM "$pid" 2>/dev/null || true
+		done
+	fi
+	usleep 200000 2>/dev/null || sleep 1
+	if [ -r "${PIDFILE}" ]; then
+		backend_pid=$(cat "${PIDFILE}" 2>/dev/null)
+		[ -n "${backend_pid}" ] && kill -0 "${backend_pid}" 2>/dev/null && \
+			kill -KILL "${backend_pid}" 2>/dev/null || true
+	fi
+	if command -v pidof >/dev/null 2>&1; then
+		for pid in $(pidof servo_backend 2>/dev/null); do
+			kill -KILL "$pid" 2>/dev/null || true
+		done
+	fi
+	rm -f "${PIDFILE}"
+}
+
+stop_link_guard() {
+	if [ -r "${LINK_GUARD_PIDFILE}" ]; then
+		kill -TERM "$(cat "${LINK_GUARD_PIDFILE}" 2>/dev/null)" 2>/dev/null || true
+		rm -f "${LINK_GUARD_PIDFILE}"
+	fi
+}
+
+start_link_guard() {
+	case "${SERVO_ETHERCAT_LINK_GUARD_SECONDS}" in
+	''|0|*[!0-9]*)
+		return 0
+		;;
+	esac
+	case "${SERVO_ETHERCAT_LINK_GUARD_MISSES}" in
+	''|0|*[!0-9]*)
+		SERVO_ETHERCAT_LINK_GUARD_MISSES=1
+		;;
+	esac
+
+	stop_link_guard
+	(
+		count=0
+		misses=0
+		limit=$((SERVO_ETHERCAT_LINK_GUARD_SECONDS * 1000000 / ETHERCAT_WAIT_INTERVAL_US))
+		[ "${limit}" -gt 0 ] || limit=1
+		while [ "${count}" -lt "${limit}" ]; do
+			if ethercat_link_is_up; then
+				misses=0
+			else
+				misses=$((misses + 1))
+				if [ "${misses}" -ge "${SERVO_ETHERCAT_LINK_GUARD_MISSES}" ]; then
+					console_note "GMAC0 link guard stopping EtherCAT/backend ($(ethercat_link_summary))"
+					stop_backend_processes
+					stop_ethercat_master_fast
+					exit 0
+				fi
+			fi
+			count=$((count + 1))
+			usleep "$ETHERCAT_WAIT_INTERVAL_US" 2>/dev/null || sleep 1
+		done
+	) &
+	echo $! >"${LINK_GUARD_PIDFILE}"
+	console_note "link guard started pid=$(cat "${LINK_GUARD_PIDFILE}") seconds=${SERVO_ETHERCAT_LINK_GUARD_SECONDS} misses=${SERVO_ETHERCAT_LINK_GUARD_MISSES}"
+}
+
+start() {
+	if [ -r "${PIDFILE}" ] && kill -0 "$(cat "${PIDFILE}")" 2>/dev/null; then
+		return 0
+	fi
+	rm -f "${PIDFILE}"
+	rm -f "${SERVO_BACKEND_START_LOGFILE}" 2>/dev/null || true
+	console_note "image marker ${SERVO_IMAGE_MARKER}"
+	if [ ! -x /usr/bin/servo_backend ]; then
+		console_note "backend binary is missing from rootfs"
+		return 1
+	fi
+
+	prepare_backend_log
+	start_pm_qos
+	configure_workqueue_affinity
+	case "${SERVO_ETHERCAT_DEVICE_MODULE}" in
+	generic)
+		console_note "waiting for GMAC0 interface"
+		if ! wait_for_ethercat_interface; then
+			console_note "GMAC0 interface did not appear (available: $(available_interfaces))"
+			return 1
+		fi
+
+		configure_ethercat_interface
+		if ! set_ethercat_interface_up; then
+			console_note "failed to bring ${ETHERCAT_IFACE} administratively up"
+		fi
+		configure_ethercat_realtime
+		configure_ethercat_irq_affinity
+		retune_irq_threads
+		console_note "using ${ETHERCAT_IFACE}/ec_generic, waiting for link ($(ethercat_link_summary))"
+		if ! wait_for_ethercat_link; then
+			if [ "${SERVO_ETHERCAT_ALLOW_LATE_LINK}" = "1" ]; then
+				console_note "GMAC0 link is still down ($(ethercat_link_summary)); starting EtherCAT for late link recovery"
+			else
+				console_note "GMAC0 link is still down ($(ethercat_link_summary)); not starting EtherCAT"
+				stop_backend_processes
+				stop_ethercat_master_fast
+				return 1
+			fi
+		fi
+		console_note "GMAC0 link accepted after ${SERVO_ETHERCAT_STABLE_LINK_SAMPLES} stable samples ($(ethercat_link_summary))"
+		;;
+	stmmac)
+		configure_ethercat_interface
+		console_note "using ec_stmmac native EtherCAT driver ($(ethercat_master_device_label)); eth0 netdev link state is ignored"
+		;;
+	*)
+		console_note "unsupported EtherCAT device module ${SERVO_ETHERCAT_DEVICE_MODULE}"
+		return 1
+		;;
+	esac
+	start_console_quiet_window
+	if ! start_ethercat_master_fast; then
+		console_note "fast EtherCAT start failed, falling back to init script"
+		if [ ! -x /etc/init.d/ethercat ]; then
+			console_note "EtherCAT runtime is missing from rootfs"
+			return 1
+		fi
+		if ! run_logged /etc/init.d/ethercat start; then
+			console_note "EtherCAT master start failed"
+			return 1
+		fi
+	fi
+	if [ "${SERVO_ETHERCAT_DEVICE_MODULE}" = "stmmac" ]; then
+		configure_gmac_platform_irq_affinity
+		retune_gmac_irq_threads
+	fi
+	if [ "${SERVO_ETHERCAT_DEVICE_MODULE}" = "generic" ]; then
+		if ! ethercat_link_is_up; then
+			console_note "GMAC0 link dropped after EtherCAT start ($(ethercat_link_summary)); stopping EtherCAT"
+			stop_backend_processes
+			stop_ethercat_master_fast
+			return 1
+		fi
+		start_link_guard
+		retune_irq_threads
+	fi
+
+	ethercat_runtime="${ETHERCAT_IFACE:-${SERVO_ETHERCAT_DEVICE_MODULE}}"
+	if [ -n "${SERVO_BACKEND_LOGFILE}" ]; then
+		console_note "starting ${SERVO_BACKEND_MODE}/${SERVO_BACKEND_SYNC} on ${ethercat_runtime}; cycle_hz=${SERVO_BACKEND_CYCLE_HZ} backend_cpu=${SERVO_BACKEND_CPU} rt_cpu=${SERVO_REALTIME_CPU} ec_cpu=${SERVO_ETHERCAT_THREAD_CPU} irq_cpu=${SERVO_ETHERCAT_IRQ_CPU} ec_prio=${SERVO_ETHERCAT_OP_RT_PRIO}/${SERVO_ETHERCAT_IDLE_RT_PRIO} irq_prio=${SERVO_ETHERCAT_IRQ_RT_PRIO}/${SERVO_KSOFTIRQD_RT_PRIO} spin_us=${SERVO_BACKEND_WAKEUP_SPIN_US} log=${SERVO_BACKEND_LOGFILE}"
+	else
+		console_note "starting ${SERVO_BACKEND_MODE}/${SERVO_BACKEND_SYNC} on ${ethercat_runtime}; cycle_hz=${SERVO_BACKEND_CYCLE_HZ} backend_cpu=${SERVO_BACKEND_CPU} rt_cpu=${SERVO_REALTIME_CPU} ec_cpu=${SERVO_ETHERCAT_THREAD_CPU} irq_cpu=${SERVO_ETHERCAT_IRQ_CPU} ec_prio=${SERVO_ETHERCAT_OP_RT_PRIO}/${SERVO_ETHERCAT_IDLE_RT_PRIO} irq_prio=${SERVO_ETHERCAT_IRQ_RT_PRIO}/${SERVO_KSOFTIRQD_RT_PRIO} spin_us=${SERVO_BACKEND_WAKEUP_SPIN_US} log=disabled"
+	fi
+	backend_log "starting mode=${SERVO_BACKEND_MODE} sync=${SERVO_BACKEND_SYNC} cycle_hz=${SERVO_BACKEND_CYCLE_HZ} motion_velocity=${SERVO_BACKEND_MOTION_VELOCITY} demo_rpm=${SERVO_BACKEND_DEMO_RPM} encoder=magnetic-17bit gear=131072/10000 layout=${SERVO_BACKEND_PDO_LAYOUT} driver=Rockchip_MADHT1505BA1"
+	if [ -n "${SERVO_BACKEND_LOGFILE}" ]; then
+		if command -v taskset >/dev/null 2>&1; then
+			taskset -c "${SERVO_BACKEND_CPU}" /usr/bin/servo_backend >>"${SERVO_BACKEND_LOGFILE}" 2>&1 &
+		else
+			/usr/bin/servo_backend >>"${SERVO_BACKEND_LOGFILE}" 2>&1 &
+		fi
+	else
+		if command -v taskset >/dev/null 2>&1; then
+			taskset -c "${SERVO_BACKEND_CPU}" /usr/bin/servo_backend >/dev/null 2>&1 &
+		else
+			/usr/bin/servo_backend >/dev/null 2>&1 &
+		fi
+	fi
+	echo $! >"${PIDFILE}"
+	console_note "backend started pid=$(cat "${PIDFILE}")"
+}
+
+stop() {
+	stop_link_guard
+	stop_backend_processes
+	stop_ethercat_master_fast
+	if [ -r "${PM_QOS_PIDFILE}" ]; then
+		kill -TERM "$(cat "${PM_QOS_PIDFILE}" 2>/dev/null)" 2>/dev/null || true
+		rm -f "${PM_QOS_PIDFILE}"
+	fi
+}
+
+case "$1" in
+	start) start ;;
+	stop) stop ;;
+	*) echo "Usage: $0 {start|stop}"; exit 1 ;;
+esac

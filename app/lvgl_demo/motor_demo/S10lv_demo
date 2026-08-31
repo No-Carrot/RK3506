@@ -1,0 +1,104 @@
+#! /bin/sh
+
+PIDFILE=/run/motor_demo.pid
+LOGFILE=${SERVO_UI_LOGFILE:-/run/motor_demo-start.log}
+DRM_CARD=${SERVO_UI_DRM_CARD:-/dev/dri/card0}
+DRM_WAIT_MS=${SERVO_UI_DRM_WAIT_MS:-1500}
+DRM_WAIT_INTERVAL_US=${SERVO_UI_DRM_WAIT_INTERVAL_US:-20000}
+
+log_note() {
+	printf 'motor_demo: %s\n' "$*" >>"$LOGFILE" 2>/dev/null || true
+}
+
+pidfile_running() {
+	[ -r "$PIDFILE" ] || return 1
+	pid=$(cat "$PIDFILE" 2>/dev/null)
+	[ -n "$pid" ] || return 1
+	kill -0 "$pid" 2>/dev/null
+}
+
+motor_demo_running() {
+	if command -v pidof >/dev/null 2>&1; then
+		pidof motor_demo >/dev/null 2>&1
+		return $?
+	fi
+
+	pidfile_running
+}
+
+wait_for_drm_card() {
+	attempt=0
+	limit=$((DRM_WAIT_MS * 1000 / DRM_WAIT_INTERVAL_US))
+	[ "$limit" -gt 0 ] || limit=1
+	while [ "$attempt" -lt "$limit" ]; do
+		[ -e "$DRM_CARD" ] && return 0
+		attempt=$((attempt + 1))
+		usleep "$DRM_WAIT_INTERVAL_US" 2>/dev/null || sleep 1
+	done
+	return 1
+}
+
+launch_motor_demo() {
+	if motor_demo_running; then
+		return 0
+	fi
+	rm -f "$PIDFILE"
+
+	set -a
+	export LV_DRIVERS_SET_PLANE=PRIMARY
+	export SERVO_UI_CPU=${SERVO_UI_CPU:-1}
+	ulimit -n 1024
+	set +a
+	if command -v taskset >/dev/null 2>&1; then
+		taskset -c "${SERVO_UI_CPU}" motor_demo &
+	else
+		motor_demo &
+	fi
+	echo $! >"$PIDFILE"
+	log_note "started pid=$(cat "$PIDFILE" 2>/dev/null) cpu=${SERVO_UI_CPU} drm=${DRM_CARD}"
+}
+
+start() {
+	if motor_demo_running; then
+		return 0
+	fi
+	rm -f "$PIDFILE"
+	: >"$LOGFILE" 2>/dev/null || true
+	if [ -e "$DRM_CARD" ]; then
+		launch_motor_demo
+		return $?
+	fi
+
+	log_note "waiting for ${DRM_CARD}"
+	(
+		if wait_for_drm_card; then
+			launch_motor_demo
+		else
+			log_note "timeout waiting for ${DRM_CARD}; starting anyway"
+			launch_motor_demo
+		fi
+	) &
+}
+
+stop() {
+	if pidfile_running; then
+		kill -TERM "$(cat "$PIDFILE" 2>/dev/null)" 2>/dev/null || true
+	fi
+	killall -TERM motor_demo 2>/dev/null || true
+	rm -f "$PIDFILE"
+}
+
+case "$1" in
+	start)
+		start
+		;;
+	stop)
+		stop
+		;;
+	*)
+		echo "Usage: $0 {start|stop}"
+		exit 1
+		;;
+esac
+
+exit $?
