@@ -1,0 +1,1195 @@
+# 2026-08-30 01:56:04
+# run hook: build all
+
+[36m==========================================[0m
+[36m          Start building all images[0m
+[36m==========================================[0m
+[35mGenerated blank misc image[0m
+[35mDone packing /home/linux/rk3506/output/firmware/misc.img[0m
+[35mRunning mk-misc.sh - build_misc succeeded.[0m
+[36mToolchain for loader (U-Boot):[0m
+[36m/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-[0m
+
+[36m==========================================[0m
+[36m          Start building U-Boot[0m
+[36m==========================================[0m
+[35m+ cd u-boot[0m
+[35m+ ./make.sh CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- rk3506 rk3506b rk3506_tb --spl-new[0m
+## make rk3506_defconfig -j32
+#
+# configuration written to .config
+#
+## make  rk3506_defconfig rk3506b.config -j32
+#
+# configuration written to .config
+#
+Using .config as base
+Merging ./arch/../configs/rk3506b.config
+Value of CONFIG_BASE_DEFCONFIG is redefined by fragment ./arch/../configs/rk3506b.config:
+Previous value: CONFIG_BASE_DEFCONFIG=""
+New value: CONFIG_BASE_DEFCONFIG="rk3506_defconfig"
+
+Value of CONFIG_LOADER_INI is redefined by fragment ./arch/../configs/rk3506b.config:
+Previous value: CONFIG_LOADER_INI=""
+New value: CONFIG_LOADER_INI="RK3506BMINIALL.ini"
+
+#
+# merged configuration written to .config (needs make)
+#
+scripts/kconfig/conf  --oldconfig Kconfig
+#
+# configuration written to .config
+#
+yes: 标准输出: 断开的管道
+sed: read error on configs/: Is a directory
+## make   rk3506_tb.config -j32
+Using .config as base
+Merging ./arch/../configs/rk3506_tb.config
+Value of CONFIG_DEBUG_UART_SKIP_INIT is redefined by fragment ./arch/../configs/rk3506_tb.config:
+Previous value: # CONFIG_DEBUG_UART_SKIP_INIT is not set
+New value: CONFIG_DEBUG_UART_SKIP_INIT=y
+
+Value of CONFIG_DEFAULT_DEVICE_TREE is redefined by fragment ./arch/../configs/rk3506_tb.config:
+Previous value: CONFIG_DEFAULT_DEVICE_TREE="rk3506-evb"
+New value: CONFIG_DEFAULT_DEVICE_TREE="rk3506-evb-tb"
+
+Value of CONFIG_OF_LIST is redefined by fragment ./arch/../configs/rk3506_tb.config:
+Previous value: CONFIG_OF_LIST="rk3506-evb"
+New value: CONFIG_OF_LIST="rk3506-evb-tb"
+
+Value of CONFIG_SPL_AB is redefined by fragment ./arch/../configs/rk3506_tb.config:
+Previous value: CONFIG_SPL_AB=y
+New value: # CONFIG_SPL_AB is not set
+
+Value of CONFIG_SPL_ADC_SUPPORT is redefined by fragment ./arch/../configs/rk3506_tb.config:
+Previous value: # CONFIG_SPL_ADC_SUPPORT is not set
+New value: CONFIG_SPL_ADC_SUPPORT=y
+
+Value of CONFIG_SPL_INPUT is redefined by fragment ./arch/../configs/rk3506_tb.config:
+Previous value: # CONFIG_SPL_INPUT is not set
+New value: CONFIG_SPL_INPUT=y
+
+Value of CONFIG_SPL_KERNEL_BOOT is redefined by fragment ./arch/../configs/rk3506_tb.config:
+Previous value: # CONFIG_SPL_KERNEL_BOOT is not set
+New value: CONFIG_SPL_KERNEL_BOOT=y
+
+Value of CONFIG_TPL is redefined by fragment ./arch/../configs/rk3506_tb.config:
+Previous value: CONFIG_TPL=y
+New value: # CONFIG_TPL is not set
+
+#
+# merged configuration written to .config (needs make)
+#
+scripts/kconfig/conf  --oldconfig Kconfig
+*
+* Restart config...
+*
+*
+* ARM architecture
+*
+Support for ARM SMC Calling Convention (SMCCC) (ARM_SMCCC) [Y/?] y
+Support for ARM cpu suspend and resume (ARM_CPU_SUSPEND) [N/y/?] n
+support boot from semihosting (SEMIHOSTING) [N/y/?] n
+Build U-Boot using the Thumb instruction set (SYS_THUMB_BUILD) [Y/?] y
+Build SPL using the Thumb instruction set (SPL_SYS_THUMB_BUILD) [Y/n/?] y
+L2cache off (SYS_L2CACHE_OFF) [N/y/?] n
+prepare BOOT0 header (ENABLE_ARM_SOC_BOOT0_HOOK) [Y/?] y
+Use an assembly optimized implementation of memcpy (USE_ARCH_MEMCPY) [Y/n/?] y
+Use an assembly optimized implementation of memcpy for SPL (SPL_USE_ARCH_MEMCPY) [Y/n/?] y
+Use an assembly optimized implementation of memcpy for TPL (TPL_USE_ARCH_MEMCPY) [Y/n/?] y
+Use an assembly optimized implementation of memset (USE_ARCH_MEMSET) [Y/n/?] y
+Use an assembly optimized implementation of memset for SPL (SPL_USE_ARCH_MEMSET) [Y/n/?] y
+Use an assembly optimized implementation of memset for TPL (TPL_USE_ARCH_MEMSET) [Y/n/?] y
+ARM64 system support AArch32 execution state (ARM64_SUPPORT_AARCH32) [N/y/?] n
+Enable ARM Symmetric Multiprocessing (ARM_SMP) [N/y] n
+Target select
+  1. Atmel AT91 (ARCH_AT91)
+  2. Support edb93xx (TARGET_EDB93XX)
+  3. Support aspenite (TARGET_ASPENITE)
+  4. Support gplugd (TARGET_GPLUGD)
+  5. TI DaVinci (ARCH_DAVINCI)
+  6. Marvell Kirkwood (KIRKWOOD)
+  7. Marvell MVEBU family (Armada XP/375/38x/3700/7K/8K) (ARCH_MVEBU)
+  8. Support devkit3250 (TARGET_DEVKIT3250)
+  9. Support work_92105 (TARGET_WORK_92105)
+  10. Support mx25pdk (TARGET_MX25PDK)
+  11. Support zmx25 (TARGET_ZMX25)
+  12. Support apf27 (TARGET_APF27)
+  13. Support apx4devkit (TARGET_APX4DEVKIT)
+  14. Support xfi3 (TARGET_XFI3)
+  15. Support m28evk (TARGET_M28EVK)
+  16. Support mx23evk (TARGET_MX23EVK)
+  17. Support mx28evk (TARGET_MX28EVK)
+  18. Support mx23_olinuxino (TARGET_MX23_OLINUXINO)
+  19. Support bg0900 (TARGET_BG0900)
+  20. Support sansa_fuze_plus (TARGET_SANSA_FUZE_PLUS)
+  21. Support sc_sps_1 (TARGET_SC_SPS_1)
+  22. Marvell Orion (ORION5X)
+  23. Support spear300 (TARGET_SPEAR300)
+  24. Support spear310 (TARGET_SPEAR310)
+  25. Support spear320 (TARGET_SPEAR320)
+  26. Support spear600 (TARGET_SPEAR600)
+  27. Support stv0991 (TARGET_STV0991)
+  28. Support x600 (TARGET_X600)
+  29. Support imx31_phycore_eet (TARGET_IMX31_PHYCORE)
+  30. Support imx31_phycore_eet (TARGET_IMX31_PHYCORE_EET)
+  31. Support mx31ads (TARGET_MX31ADS)
+  32. Support mx31pdk (TARGET_MX31PDK)
+  33. Support woodburn (TARGET_WOODBURN)
+  34. Support woodburn_sd (TARGET_WOODBURN_SD)
+  35. Support flea3 (TARGET_FLEA3)
+  36. Support mx35pdk (TARGET_MX35PDK)
+  37. Broadcom BCM283X family (ARCH_BCM283X)
+  38. Support vexpress_ca15_tc2 (TARGET_VEXPRESS_CA15_TC2)
+  39. Broadcom BCM7XXX family (ARCH_BCMSTB)
+  40. Support vexpress_ca5x2 (TARGET_VEXPRESS_CA5X2)
+  41. Support vexpress_ca9x4 (TARGET_VEXPRESS_CA9X4)
+  42. Support bcm23550_w1d (TARGET_BCM23550_W1D)
+  43. Support bcm28155_ap (TARGET_BCM28155_AP)
+  44. Support bcmcygnus (TARGET_BCMCYGNUS)
+  45. Support bcmnsp (TARGET_BCMNSP)
+  46. Support Broadcom Northstar2 (TARGET_BCMNS2)
+  47. Samsung EXYNOS (ARCH_EXYNOS)
+  48. Samsung S5PC1XX (ARCH_S5PC1XX)
+  49. Calxeda Highbank (ARCH_HIGHBANK)
+  50. ARM Ltd. Integrator family (ARCH_INTEGRATOR)
+  51. TI Keystone (ARCH_KEYSTONE)
+  52. TI OMAP2+ (ARCH_OMAP2PLUS)
+  53. Amlogic Meson (ARCH_MESON)
+  54. NXP MX7ULP (ARCH_MX7ULP)
+  55. Freescale MX7 (ARCH_MX7)
+  56. Freescale MX6 (ARCH_MX6)
+  57. Freescale MX5 (ARCH_MX5)
+  58. Renesas ARM SoCs (ARCH_RMOBILE)
+  59. Support s32v234evb (TARGET_S32V234EVB)
+  60. Qualcomm Snapdragon SoCs (ARCH_SNAPDRAGON)
+  61. Altera SOCFPGA family (ARCH_SOCFPGA)
+  62. Support sunxi (Allwinner) SoCs (ARCH_SUNXI)
+  63. Support TS4600 (TARGET_TS4600)
+  64. Freescale Vybrid (ARCH_VF610)
+  65. Xilinx Zynq Platform (ARCH_ZYNQ)
+  66. Support Xilinx ZynqMP Platform (ARCH_ZYNQMP)
+  67. NVIDIA Tegra (TEGRA)
+  68. Support vexpress_aemv8a (TARGET_VEXPRESS64_AEMV8A)
+  69. Support Versatile Express ARMv8a FVP BASE model (TARGET_VEXPRESS64_BASE_FVP)
+  70. Support Versatile Express ARMv8a FVP BASE model booting from DRAM (TARGET_VEXPRESS64_BASE_FVP_DRAM)
+  71. Support Versatile Express Juno Development Platform (TARGET_VEXPRESS64_JUNO)
+  72. Support ls2080a_emu (TARGET_LS2080A_EMU)
+  73. Support ls2080a_simu (TARGET_LS2080A_SIMU)
+  74. Support ls2080aqds (TARGET_LS2080AQDS)
+  75. Support ls2080ardb (TARGET_LS2080ARDB)
+  76. Support ls2081ardb (TARGET_LS2081ARDB)
+  77. Support HiKey 96boards Consumer Edition Platform (TARGET_HIKEY)
+  78. Support Poplar 96boards Enterprise Edition Platform (TARGET_POPLAR)
+  79. Support ls1012aqds (TARGET_LS1012AQDS)
+  80. Support ls1012ardb (TARGET_LS1012ARDB)
+  81. Support ls1012afrdm (TARGET_LS1012AFRDM)
+  82. Support ls1021aqds (TARGET_LS1021AQDS)
+  83. Support ls1021atwr (TARGET_LS1021ATWR)
+  84. Support ls1021aiot (TARGET_LS1021AIOT)
+  85. Support ls1043aqds (TARGET_LS1043AQDS)
+  86. Support ls1043ardb (TARGET_LS1043ARDB)
+  87. Support ls1046aqds (TARGET_LS1046AQDS)
+  88. Support ls1046ardb (TARGET_LS1046ARDB)
+  89. Support h2200 (TARGET_H2200)
+  90. Support zipitz2 (TARGET_ZIPITZ2)
+  91. Support colibri_pxa270 (TARGET_COLIBRI_PXA270)
+  92. Socionext UniPhier SoCs (ARCH_UNIPHIER)
+  93. Support STM32 (STM32)
+  94. Support STMicrolectronics SoCs (ARCH_STI)
+> 95. Support Rockchip SoCs (ARCH_ROCKCHIP)
+  96. Support ThunderX 88xx (TARGET_THUNDERX_88XX)
+  97. Support Aspeed SoCs (ARCH_ASPEED)
+choice[1-97]: 95
+Support Rockchip PX30 (ROCKCHIP_PX30) [N/y/?] n
+Support Rockchip RK3036 (ROCKCHIP_RK3036) [N/y/?] n
+Support Rockchip RK3128 (ROCKCHIP_RK3128) [N/y/?] n
+Support Rockchip RK3066 (ROCKCHIP_RK3066) [N/y/?] n
+Support Rockchip RK3188 (ROCKCHIP_RK3188) [N/y/?] n
+Support Rockchip RK3228/RK3229 (ROCKCHIP_RK322X) [N/y/?] n
+Support Rockchip RK3288 (ROCKCHIP_RK3288) [N/y/?] n
+Support Rockchip RK3308 (ROCKCHIP_RK3308) [N/y/?] n
+Support Rockchip RK3328 (ROCKCHIP_RK3328) [N/y/?] n
+Support Rockchip RK3368 (ROCKCHIP_RK3368) [N/y/?] n
+Support Rockchip RK3399 (ROCKCHIP_RK3399) [N/y/?] n
+Support Rockchip RK3506 (ROCKCHIP_RK3506) [Y/n/?] y
+Support Rockchip RK3528 (ROCKCHIP_RK3528) [N/y/?] n
+Support Rockchip RK3562 (ROCKCHIP_RK3562) [N/y/?] n
+Support Rockchip RK3568 (ROCKCHIP_RK3568) [N/y/?] n
+Support Rockchip RK3576 (ROCKCHIP_RK3576) [N/y/?] n
+Support Rockchip RK3588 (ROCKCHIP_RK3588) [N/y/?] n
+Support Rockchip RK1808 (ROCKCHIP_RK1808) [N/y/?] n
+Support Rockchip RV1103B (ROCKCHIP_RV1103B) [N/y/?] n
+Support Rockchip RV1106 (ROCKCHIP_RV1106) [N/y/?] n
+Support Rockchip RV1108 (ROCKCHIP_RV1108) [N/y/?] n
+Support Rockchip RV1126 (ROCKCHIP_RV1126) [N/y/?] n
+SPL returns to bootrom (SPL_ROCKCHIP_BACK_TO_BROM) [N/y/?] n
+Support Boot an ARM64 on AArch32 execution state, ie. U-Boot is in AArch32 (ARM64_BOOT_AARCH32) [N/y/?] n
+Support AArch64 U-Boot boot AArch32 kernel (ARM64_SWITCH_TO_AARCH32) [N/y/?] n
+Rockchip boot mode flag register address (ROCKCHIP_BOOT_MODE_REG) [0xff910200] 0xff910200
+Rockchip Secure timer base address (ROCKCHIP_STIMER_BASE) [0xff980000] 0xff980000
+Rockchip Secure timer base address (ROCKCHIP_IRAM_START_ADDR) [0xfff80000] 0xfff80000
+Size of IRAM reserved in SPL (ROCKCHIP_SPL_RESERVE_IRAM) [0x0] 0x0
+SPL requires early-return (for RK3188-style BROM) to BROM (SPL_ROCKCHIP_EARLYRETURN_TO_BROM) [N/y/?] n
+Support for Rockchip platform features (RKIMG_BOOTLOADER) [Y/n/?] y
+  Support set androidboot.mode with legacy rule (RKIMG_ANDROID_BOOTMODE_LEGACY) [N/y/?] n
+Set the boot device for multiple storage board (ROCKCHIP_BOOTDEV) [] 
+Enable support for rockchip resource image (ROCKCHIP_RESOURCE_IMAGE) [Y/n/?] y
+  Enable hash verify for DTB in the resource file (ROCKCHIP_DTB_VERIFY) [Y/n/?] y
+Enable support for rockchip U-disk boot (ROCKCHIP_USB_BOOT) [N/y/?] n
+Enable support for FIT image (ROCKCHIP_FIT_IMAGE) [Y/n/?] y
+Enable support for legacy uImage (ROCKCHIP_UIMAGE) [N/y/?] n
+Enable support for distro dtb early (ROCKCHIP_EARLY_DISTRO_DTB) [N/y/?] n
+Enable support for selecting DTB by hardware id (ROCKCHIP_HWID_DTB) [N/y/?] n
+Enable support for selecting DTB by hardware id in SPL (SPL_ROCKCHIP_HWID_DTB) [N/y/?] (NEW) 
+Rockchip vendor storage partition support (ROCKCHIP_VENDOR_PARTITION) [Y/n/?] y
+Using dtb from Kernel/resource for U-Boot (USING_KERNEL_DTB) [Y/n/?] y
+  Version 2 of kernel dtb mechanism (USING_KERNEL_DTB_V2) [Y/n/?] y
+Enable embedded dtb support (EMBED_KERNEL_DTB) [N/y/?] n
+Rockchip CRC verify images (ROCKCHIP_CRC) [N/y/?] n
+Rockchip SMCCC (ROCKCHIP_SMCCC) [Y/n/?] y
+Rockchip debugger (ROCKCHIP_DEBUGGER) [N/y/?] n
+Rockchip crash dump registers (ROCKCHIP_CRASH_DUMP) [N/y/?] n
+Rockchip pre-loader atags (ROCKCHIP_PRELOADER_ATAGS) [Y/n/?] y
+Rockchip Meta (ROCKCHIP_META) [N/y/?] n
+Rockchip pre-loader serial (ROCKCHIP_PRELOADER_SERIAL) [Y/n/?] y
+Rockchip tiny Image generation (ROCKCHIP_IMAGE_TINY) [N/y/?] n
+Rockchip fit image pack of U-Boot and TEE (ROCKCHIP_FIT_IMAGE_PACK) [Y/n/?] y
+Rockchip reboot stress test before kernel (ROCKCHIP_REBOOT_TEST) [N/y/?] n
+Rockchip new IDB header (ROCKCHIP_NEW_IDB) [Y/n/?] y
+Rockchip hotkey (ROCKCHIP_HOTKEY) [Y/n/?] y
+Rockchip specific command (ROCKCHIP_CMD) [] 
+ARM GICv2 (GICV2) [Y] y
+ARM GICv3 (GICV3) [N/y] n
+ROCKCHIP EMMC IOMUX (ROCKCHIP_EMMC_IOMUX) [N/y/?] n
+ROCKCHIP NAND IOMUX (ROCKCHIP_NAND_IOMUX) [N/y/?] n
+ROCKCHIP SFC IOMUX (ROCKCHIP_SFC_IOMUX) [N/y/?] n
+Rockchip set serial number (ROCKCHIP_SET_SN) [Y/n] y
+Rockchip set eth address (ROCKCHIP_SET_ETHADDR) [Y/n] y
+Base defconfig of config fragment (BASE_DEFCONFIG) [rk3506_defconfig] rk3506_defconfig
+Chip label name (CHIP_NAME) [] 
+Name of Loader ini file in rkbin repository (LOADER_INI) [RK3506BMINIALL.ini] RK3506BMINIALL.ini
+Name of Trust ini file in rkbin repository (TRUST_INI) [] 
+Print log to linux pstore buffer (PSTORE) [N/y/?] n
+Linux pstore buffer size (PERSISTENT_RAM_SIZE) [0x0] 0x0
+Minidump Save Linux Debug Data To Ram Elf (ROCKCHIP_MINIDUMP) [N/y/?] n
+Sanity cpu swap (SANITY_CPU_SWAP) [N/y/?] n
+EVB_RK3506 (TARGET_EVB_RK3506) [Y/n/?] y
+Use LPAE page table format (ARMV7_LPAE) [N/y/?] n
+Support the 'dek_blob' command (CMD_DEKBLOB) [N/y/?] n
+Support the 'hdmidet' command (CMD_HDMIDETECT) [N/y/?] n
+*
+* ARM debug
+*
+Low-level debugging functions (DEBUG_LL) [N/y/?] n
+#
+# configuration written to .config
+#
+yes: 标准输出: 断开的管道
+scripts/kconfig/conf  --silentoldconfig Kconfig
+  CHK     include/config.h
+  CFG     u-boot.cfg
+  GEN     include/autoconf.mk.dep
+  CFG     spl/u-boot.cfg
+  GEN     include/autoconf.mk
+  GEN     spl/include/autoconf.mk
+  CHK     include/config/uboot.release
+  CHK     include/generated/timestamp_autogenerated.h
+  UPD     include/generated/timestamp_autogenerated.h
+  CHK     include/generated/version_autogenerated.h
+  CHK     include/generated/generic-asm-offsets.h
+  CHK     include/generated/asm-offsets.h
+  HOSTCC  tools/mkenvimage.o
+  HOSTCC  tools/fit_image.o
+  HOSTCC  tools/image-host.o
+  HOSTCC  tools/dumpimage.o
+  HOSTCC  tools/mkimage.o
+  HOSTLD  tools/mkenvimage
+  CHK     include/config.h
+  CFG     u-boot.cfg
+  HOSTLD  tools/dumpimage
+  HOSTLD  tools/mkimage
+  CC      arch/arm/mach-rockchip/board.o
+  CC      common/main.o
+  CC      cmd/version.o
+  LD      common/built-in.o
+  LD      cmd/built-in.o
+  LD      arch/arm/mach-rockchip/built-in.o
+  CC      lib/display_options.o
+  LD      lib/built-in.o
+  LD      u-boot
+  OBJCOPY u-boot.srec
+  OBJCOPY u-boot-nodtb.bin
+  SYM     u-boot.sym
+make[2]: “arch/arm/dts/rk3506-evb-tb.dtb”已是最新。
+  CAT     u-boot-dtb.bin
+  MKIMAGE u-boot.img
+  COPY    u-boot.dtb
+  MKIMAGE u-boot-dtb.img
+  COPY    u-boot.bin
+  ALIGN   u-boot.bin
+  COPY    spl/u-boot-spl.dtb
+  CC      spl/common/spl/spl.o
+  CC      spl/arch/arm/mach-rockchip/spl.o
+  CC      spl/lib/display_options.o
+  LD      spl/common/spl/built-in.o
+  LD      spl/arch/arm/mach-rockchip/built-in.o
+  LD      spl/lib/built-in.o
+  LD      spl/u-boot-spl
+  OBJCOPY spl/u-boot-spl-nodtb.bin
+  CAT     spl/u-boot-spl-dtb.bin
+  COPY    spl/u-boot-spl.bin
+  CFGCHK  u-boot.cfg
+pack u-boot.itb okay! Input: /home/linux/rk3506/rkbin/RKTRUST/RK3506TOS.ini
+
+FIT description: FIT Image with ATF/OP-TEE/U-Boot/MCU
+Created:         Sun Aug 30 01:56:19 2026
+ Image 0 (uboot)
+  Description:  U-Boot
+  Created:      Sun Aug 30 01:56:19 2026
+  Type:         Standalone Program
+  Compression:  uncompressed
+  Data Size:    679880 Bytes = 663.95 KiB = 0.65 MiB
+  Architecture: ARM
+  Load Address: 0x00200000
+  Entry Point:  unavailable
+  Hash algo:    sha256
+  Hash value:   9c1f0b65ff3b064da8aebffd25fd821e726096bbb12bfef0e0d9f3a3ba233741
+ Image 1 (optee)
+  Description:  OP-TEE
+  Created:      Sun Aug 30 01:56:19 2026
+  Type:         Firmware
+  Compression:  uncompressed
+  Data Size:    124360 Bytes = 121.45 KiB = 0.12 MiB
+  Architecture: ARM
+  Load Address: 0x00001000
+  Hash algo:    sha256
+  Hash value:   e2a712a5330df72daa4e5c8900e98aa85e0880d0cc0e551f1fb18eb27488da2d
+ Image 2 (fdt)
+  Description:  U-Boot dtb
+  Created:      Sun Aug 30 01:56:19 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    6385 Bytes = 6.24 KiB = 0.01 MiB
+  Architecture: ARM
+  Hash algo:    sha256
+  Hash value:   959172d4d90b22346788fa35c2d66e909013413709074806c726d567bcf14954
+ Default Configuration: 'conf'
+ Configuration 0 (conf)
+  Description:  rk3506-evb-tb
+  Kernel:       unavailable
+  Firmware:     optee
+  FDT:          fdt
+  Loadables:    uboot
+********boot_merger ver 1.35********
+Info:Pack loader ok.
+creating new idblock from loader...
+idblock binary saving at rk3506_idblock_v1.06.111.img
+pack loader(SPL) okay! Input: /home/linux/rk3506/rkbin/RKBOOT/RK3506BMINIALL.ini
+
+/home/linux/rk3506/u-boot
+pack loader with new: spl/u-boot-spl.bin
+
+Image(no-signed, version=0): uboot.img (FIT with uboot, trust...) is ready
+Image(no-signed): rk3506_idblock_v1.06.111.img (with spl, ddr...) is ready
+pack uboot.img okay! Input: /home/linux/rk3506/rkbin/RKTRUST/RK3506TOS.ini
+
+Platform RK3506 is build OK, with new .config(make   rk3506_tb.config -j32)
+/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-
+Sun Aug 30 01:56:20 CST 2026
+[35m+ cd ..[0m
+[35mRunning mk-loader.sh - build_uboot succeeded.[0m
+[35mUsing kernel version(6.1) from environment[0m
+[36mToolchain for kernel:[0m
+[36m/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-[0m
+
+[36m==========================================[0m
+[36m          Start building kernel[0m
+[36m==========================================[0m
+[35m+ make -C /home/linux/rk3506/kernel/ -j17 CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- ARCH=arm rk3506_defconfig rk3506-display.config[0m
+make: Entering directory '/home/linux/rk3506/kernel-6.1'
+arch/arm/configs/rk3506_defconfig:349:warning: override: reassigning to symbol VT
+arch/arm/configs/rk3506_defconfig:382:warning: override: reassigning to symbol FTRACE
+arch/arm/configs/rk3506_defconfig:389:warning: override: reassigning to symbol SCHED_DEBUG
+arch/arm/configs/rk3506_defconfig:391:warning: override: reassigning to symbol SWAP
+arch/arm/configs/rk3506_defconfig:397:warning: override: reassigning to symbol HARDEN_BRANCH_PREDICTOR
+arch/arm/configs/rk3506_defconfig:398:warning: override: reassigning to symbol HARDEN_BRANCH_HISTORY
+arch/arm/configs/rk3506_defconfig:401:warning: override: reassigning to symbol LD_DEAD_CODE_DATA_ELIMINATION
+arch/arm/configs/rk3506_defconfig:402:warning: override: reassigning to symbol CPU_FREQ_DEFAULT_GOV_PERFORMANCE
+arch/arm/configs/rk3506_defconfig:402:warning: override: CPU_FREQ_DEFAULT_GOV_PERFORMANCE changes choice state
+arch/arm/configs/rk3506_defconfig:404:warning: override: HZ_1000 changes choice state
+arch/arm/configs/rk3506_defconfig:405:warning: override: PREEMPT_RT changes choice state
+arch/arm/configs/rk3506_defconfig:406:warning: override: reassigning to symbol VDSO
+#
+# configuration written to .config
+#
+Using .config as base
+Merging ./arch/arm/configs/rk3506-display.config
+Value of CONFIG_BACKLIGHT_CLASS_DEVICE is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+Previous value: # CONFIG_BACKLIGHT_CLASS_DEVICE is not set
+New value: CONFIG_BACKLIGHT_CLASS_DEVICE=y
+
+Value of CONFIG_DRM is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+Previous value: # CONFIG_DRM is not set
+New value: CONFIG_DRM=y
+
+Value of CONFIG_I2C_MUX is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+Previous value: # CONFIG_I2C_MUX is not set
+New value: CONFIG_I2C_MUX=y
+
+Value of CONFIG_INPUT_TOUCHSCREEN is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+Previous value: # CONFIG_INPUT_TOUCHSCREEN is not set
+New value: CONFIG_INPUT_TOUCHSCREEN=y
+
+#
+# merged configuration written to .config (needs make)
+#
+#
+# configuration written to .config
+#
+make: Leaving directory '/home/linux/rk3506/kernel-6.1'
+[35m+ make -C /home/linux/rk3506/kernel/ -j17 CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- ARCH=arm ido-evb3506-v1a-flash-mipi-720x720.img[0m
+make: Entering directory '/home/linux/rk3506/kernel-6.1'
+  SYNC    include/config/auto.conf.cmd
+  CALL    scripts/checksyscalls.sh
+  Kernel: arch/arm/boot/Image is ready
+  Kernel: arch/arm/boot/Image.gz is ready
+  Kernel: arch/arm/boot/zImage is ready
+  Image:  resource.img (with ido-evb3506-v1a-flash-mipi-720x720.dtb logo.bmp logo_kernel.bmp) is ready
+  Image:  boot.img (with Image  resource.img) is ready
+  Image:  zboot.img (with zImage  resource.img) is ready
+make: Leaving directory '/home/linux/rk3506/kernel-6.1'
+[35m+ /home/linux/rk3506/device/rockchip/common/scripts/mk-fitimage.sh kernel/zboot.img /home/linux/rk3506/device/rockchip/.chip/thunderboot.its kernel/arch/arm/boot/zImage kernel/arch/arm/boot/dts/ido-evb3506-v1a-flash-mipi-720x720.dtb kernel/resource.img[0m
+FIT description: U-Boot FIT source file for arm
+Created:         Sun Aug 30 01:56:40 2026
+ Image 0 (fdt)
+  Description:  unavailable
+  Created:      Sun Aug 30 01:56:40 2026
+  Type:         Flat Device Tree
+  Compression:  uncompressed
+  Data Size:    40938 Bytes = 39.98 KiB = 0.04 MiB
+  Architecture: ARM
+  Load Address: 0x00063000
+  Hash algo:    sha256
+  Hash value:   a3e7cfffd21916fc7d445a6d994b257cdf53f3da667a16c5cbebb3d5199ad5a7
+ Image 1 (kernel)
+  Description:  unavailable
+  Created:      Sun Aug 30 01:56:40 2026
+  Type:         Kernel Image
+  Compression:  uncompressed
+  Data Size:    3984784 Bytes = 3891.39 KiB = 3.80 MiB
+  Architecture: ARM
+  OS:           Linux
+  Load Address: 0x01100000
+  Entry Point:  0x01100000
+  Hash algo:    sha256
+  Hash value:   daf5b782f2282f4ad01f2330524b6f0e1b1b2ef98e9023ca651abe777c4167c3
+ Default Configuration: 'conf'
+ Configuration 0 (conf)
+  Description:  Boot Linux kernel with FDT blob and no ramdisk
+  Kernel:       kernel
+  FDT:          fdt
+[35m+ ln -rsf kernel/zboot.img /home/linux/rk3506/output/firmware/boot.img[0m
+Not Found io-domains in kernel/arch/arm/boot/dts/ido-evb3506-v1a-flash-mipi-720x720.dts
+[35mRunning mk-kernel.sh - build_kernel succeeded.[0m
+[36m==========================================[0m
+[36m          Start building rootfs(buildroot)[0m
+[36m==========================================[0m
+[36m==========================================[0m
+[36m          Start building buildroot(2024.02)[0m
+[36m==========================================[0m
+[35m
+Your network is not able to access sources.buildroot.net!
+Please retry later (it could be down for a while) or setup a VPN to bypass the GFW.
+[0m[35mWill continue in 5 seconds ...
+5 ...
+4 ...
+3 ...
+2 ...
+1 ...
+[0m
+make: Entering directory '/home/linux/rk3506/buildroot'
+  GEN     /home/linux/rk3506/buildroot/output/rockchip_rk3506/Makefile
+Parsing defconfig: /home/linux/rk3506/buildroot/configs/rockchip_rk3506_defconfig
+Using configs/rockchip/base/kernel.config as base
+Merging configs/rockchip/fs/e2fs.config
+Merging configs/rockchip/base/common.config
+Merging configs/rockchip/base/base.config
+Merging configs/rockchip/chips/rk3506.config
+Value of BR2_ROOTFS_OVERLAY is redefined by configs/rockchip/chips/rk3506.config:
+Previous value:	BR2_ROOTFS_OVERLAY="board/rockchip/common/base"
+Modify value:	BR2_ROOTFS_OVERLAY+="board/rockchip/rk3506/fs-overlay/"
+New value:	BR2_ROOTFS_OVERLAY="board/rockchip/common/base board/rockchip/rk3506/fs-overlay/"
+
+Merging configs/rockchip/chips/rk3506_arm.config
+Merging configs/rockchip/gui/lvgl/v8/base.config
+Merging configs/rockchip/gui/lvgl/lvgl_drm.config
+Merging configs/rockchip/gui/lvgl/motor_demo.config
+Value of BR2_LV_FONT_MONTSERRAT_12 is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_FONT_MONTSERRAT_12=y
+New value:	# BR2_LV_FONT_MONTSERRAT_12 is not set
+
+Value of BR2_LV_FONT_MONTSERRAT_16 is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_FONT_MONTSERRAT_16=y
+New value:	# BR2_LV_FONT_MONTSERRAT_16 is not set
+
+Value of BR2_LV_FONT_MONTSERRAT_20 is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_FONT_MONTSERRAT_20=y
+New value:	# BR2_LV_FONT_MONTSERRAT_20 is not set
+
+Value of BR2_LV_USE_LOG is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_LOG=y
+New value:	# BR2_LV_USE_LOG is not set
+
+Value of BR2_LV_USE_ASSERT_NULL is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_ASSERT_NULL=y
+New value:	# BR2_LV_USE_ASSERT_NULL is not set
+
+Value of BR2_LV_USE_ASSERT_MALLOC is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_ASSERT_MALLOC=y
+New value:	# BR2_LV_USE_ASSERT_MALLOC is not set
+
+Value of BR2_LV_LABEL_TEXT_SELECTION is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_LABEL_TEXT_SELECTION=y
+New value:	# BR2_LV_LABEL_TEXT_SELECTION is not set
+
+Value of BR2_LV_LABEL_LONG_TXT_HINT is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_LABEL_LONG_TXT_HINT=y
+New value:	# BR2_LV_LABEL_LONG_TXT_HINT is not set
+
+Value of BR2_LV_USE_BAR is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_BAR=y
+New value:	# BR2_LV_USE_BAR is not set
+
+Value of BR2_LV_USE_BTNMATRIX is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_BTNMATRIX=y
+New value:	# BR2_LV_USE_BTNMATRIX is not set
+
+Value of BR2_LV_USE_CANVAS is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_CANVAS=y
+New value:	# BR2_LV_USE_CANVAS is not set
+
+Value of BR2_LV_USE_CHECKBOX is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_CHECKBOX=y
+New value:	# BR2_LV_USE_CHECKBOX is not set
+
+Value of BR2_LV_USE_DROPDOWN is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_DROPDOWN=y
+New value:	# BR2_LV_USE_DROPDOWN is not set
+
+Value of BR2_LV_USE_ROLLER is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_ROLLER=y
+New value:	# BR2_LV_USE_ROLLER is not set
+
+Value of BR2_LV_USE_SLIDER is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_SLIDER=y
+New value:	# BR2_LV_USE_SLIDER is not set
+
+Value of BR2_LV_USE_SWITCH is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_SWITCH=y
+New value:	# BR2_LV_USE_SWITCH is not set
+
+Value of BR2_LV_USE_TEXTAREA is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_TEXTAREA=y
+New value:	# BR2_LV_USE_TEXTAREA is not set
+
+Value of BR2_LV_USE_TABLE is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_TABLE=y
+New value:	# BR2_LV_USE_TABLE is not set
+
+Value of BR2_LV_USE_ANIMIMG is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_ANIMIMG=y
+New value:	# BR2_LV_USE_ANIMIMG is not set
+
+Value of BR2_LV_USE_CALENDAR is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_CALENDAR=y
+New value:	# BR2_LV_USE_CALENDAR is not set
+
+Value of BR2_LV_USE_CHART is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_CHART=y
+New value:	# BR2_LV_USE_CHART is not set
+
+Value of BR2_LV_USE_COLORWHEEL is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_COLORWHEEL=y
+New value:	# BR2_LV_USE_COLORWHEEL is not set
+
+Value of BR2_LV_USE_IMGBTN is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_IMGBTN=y
+New value:	# BR2_LV_USE_IMGBTN is not set
+
+Value of BR2_LV_USE_KEYBOARD is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_KEYBOARD=y
+New value:	# BR2_LV_USE_KEYBOARD is not set
+
+Value of BR2_LV_USE_LED is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_LED=y
+New value:	# BR2_LV_USE_LED is not set
+
+Value of BR2_LV_USE_LIST is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_LIST=y
+New value:	# BR2_LV_USE_LIST is not set
+
+Value of BR2_LV_USE_MENU is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_MENU=y
+New value:	# BR2_LV_USE_MENU is not set
+
+Value of BR2_LV_USE_METER is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_METER=y
+New value:	# BR2_LV_USE_METER is not set
+
+Value of BR2_LV_USE_MSGBOX is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_MSGBOX=y
+New value:	# BR2_LV_USE_MSGBOX is not set
+
+Value of BR2_LV_USE_SPAN is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_SPAN=y
+New value:	# BR2_LV_USE_SPAN is not set
+
+Value of BR2_LV_USE_SPINBOX is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_SPINBOX=y
+New value:	# BR2_LV_USE_SPINBOX is not set
+
+Value of BR2_LV_USE_SPINNER is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_SPINNER=y
+New value:	# BR2_LV_USE_SPINNER is not set
+
+Value of BR2_LV_USE_TABVIEW is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_TABVIEW=y
+New value:	# BR2_LV_USE_TABVIEW is not set
+
+Value of BR2_LV_USE_TILEVIEW is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_TILEVIEW=y
+New value:	# BR2_LV_USE_TILEVIEW is not set
+
+Value of BR2_LV_USE_WIN is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_WIN=y
+New value:	# BR2_LV_USE_WIN is not set
+
+Value of BR2_LV_USE_FLEX is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_FLEX=y
+New value:	# BR2_LV_USE_FLEX is not set
+
+Value of BR2_LV_USE_GRID is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_GRID=y
+New value:	# BR2_LV_USE_GRID is not set
+
+Value of BR2_LV_USE_BMP is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_BMP=y
+New value:	# BR2_LV_USE_BMP is not set
+
+Value of BR2_LV_USE_SJPG is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_SJPG=y
+New value:	# BR2_LV_USE_SJPG is not set
+
+Value of BR2_LV_USE_GIF is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_GIF=y
+New value:	# BR2_LV_USE_GIF is not set
+
+Value of BR2_LV_USE_SNAPSHOT is redefined by configs/rockchip/gui/lvgl/motor_demo.config:
+Previous value:	BR2_LV_USE_SNAPSHOT=y
+New value:	# BR2_LV_USE_SNAPSHOT is not set
+
+Merging /home/linux/rk3506/buildroot/configs/rockchip_rk3506_defconfig
+Value of BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_EUDEV is redefined by /home/linux/rk3506/buildroot/configs/rockchip_rk3506_defconfig:
+Previous value:	BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_EUDEV=y
+New value:	# BR2_ROOTFS_DEVICE_CREATION_DYNAMIC_EUDEV is not set
+
+Value of BR2_PACKAGE_USBMOUNT is redefined by /home/linux/rk3506/buildroot/configs/rockchip_rk3506_defconfig:
+Previous value:	BR2_PACKAGE_USBMOUNT=y
+New value:	# BR2_PACKAGE_USBMOUNT is not set
+
+Value of BR2_PACKAGE_E2FSPROGS is redefined by /home/linux/rk3506/buildroot/configs/rockchip_rk3506_defconfig:
+Previous value:	BR2_PACKAGE_E2FSPROGS=y
+New value:	# BR2_PACKAGE_E2FSPROGS is not set
+
+Value of BR2_PACKAGE_E2FSPROGS_FSCK is redefined by /home/linux/rk3506/buildroot/configs/rockchip_rk3506_defconfig:
+Previous value:	BR2_PACKAGE_E2FSPROGS_FSCK=y
+New value:	# BR2_PACKAGE_E2FSPROGS_FSCK is not set
+
+Value of BR2_PACKAGE_E2FSPROGS_RESIZE2FS is redefined by /home/linux/rk3506/buildroot/configs/rockchip_rk3506_defconfig:
+Previous value:	BR2_PACKAGE_E2FSPROGS_RESIZE2FS=y
+New value:	# BR2_PACKAGE_E2FSPROGS_RESIZE2FS is not set
+
+Value of BR2_ROOTFS_OVERLAY is redefined by /home/linux/rk3506/buildroot/configs/rockchip_rk3506_defconfig:
+Previous value:	BR2_ROOTFS_OVERLAY="board/rockchip/common/base board/rockchip/rk3506/fs-overlay/"
+Modify value:	BR2_ROOTFS_OVERLAY+="board/rockchip/rk3506/fast-display-overlay/"
+New value:	BR2_ROOTFS_OVERLAY="board/rockchip/common/base board/rockchip/rk3506/fs-overlay/ board/rockchip/rk3506/fast-display-overlay/"
+
+Value of BR2_ROOTFS_POST_BUILD_SCRIPT is redefined by /home/linux/rk3506/buildroot/configs/rockchip_rk3506_defconfig:
+Previous value:	BR2_ROOTFS_POST_BUILD_SCRIPT="board/rockchip/common/post-build.sh"
+Modify value:	BR2_ROOTFS_POST_BUILD_SCRIPT+="board/rockchip/rk3506/post-build-fast-display.sh"
+New value:	BR2_ROOTFS_POST_BUILD_SCRIPT="board/rockchip/common/post-build.sh board/rockchip/rk3506/post-build-fast-display.sh"
+
+#
+# merged configuration written to /home/linux/rk3506/buildroot/output/rockchip_rk3506/.config.in (needs make)
+#
+#
+# configuration written to /home/linux/rk3506/buildroot/output/rockchip_rk3506/.config
+#
+make: Leaving directory '/home/linux/rk3506/buildroot'
+1079c1079
+< BR2_PACKAGE_BZIP2=y
+---
+> # BR2_PACKAGE_BZIP2 is not set
+[34mBuildroot config changed![0m
+[34mYou might need to clean it before building:[0m
+[34mrm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506
+[0m
+2026-08-30T01:57:02 [7m>>>   Finalizing host directory[27m
+2026-08-30T01:57:02 [7m>>>   Finalizing target directory[27m
+2026-08-30T01:57:03 [7m>>>   Sanitizing RPATH in target tree[27m
+2026-08-30T01:57:03 [7m>>>   Sanity check in overlay board/rockchip/common/base[27m
+2026-08-30T01:57:03 [7m>>>   Sanity check in overlay board/rockchip/rk3506/fs-overlay/[27m
+2026-08-30T01:57:03 [7m>>>   Sanity check in overlay board/rockchip/rk3506/fast-display-overlay/[27m
+2026-08-30T01:57:03 [7m>>>   Copying overlay board/rockchip/common/base[27m
+2026-08-30T01:57:03 [7m>>>   Copying overlay board/rockchip/rk3506/fs-overlay/[27m
+2026-08-30T01:57:03 [7m>>>   Copying overlay board/rockchip/rk3506/fast-display-overlay/[27m
+2026-08-30T01:57:03 [7m>>>   Executing post-build script board/rockchip/common/post-build.sh[27m
+2026-08-30T01:57:03 >>> Ignored board/rockchip/common/overlays/10-weston
+2026-08-30T01:57:03 >>> Ignored board/rockchip/common/overlays/11-weston-chromium
+2026-08-30T01:57:03 >>> Ignored board/rockchip/common/overlays/20-wlan0
+2026-08-30T01:57:03 >>> Copying board/rockchip/common/overlays/default
+2026-08-30T01:57:05 >>> [35mRunning 00-wifibt.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:05 >>> [36mBuilding Wifi/BT module and firmwares...[0m
+2026-08-30T01:57:05 >>> [35mRunning 01-hostname.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:05 >>> [35mRunning 05-udev.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:05 >>> [35mRunning 06-async-commit.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:05 >>> [36mInstalling async-commit service...[0m
+2026-08-30T01:57:05 >>> [35mRunning 07-log-guardian.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:05 >>> [35mRunning 09-disk.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:05 >>> [36mInstalling mount service...[0m
+2026-08-30T01:57:05 >>> [35mRunning 10-os-release.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:06 >>> [35mRunning 20-info.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:06 >>> [35mRunning 30-fstab.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:06 >>> [35mRunning 40-busybox-reboot.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:06 >>> [35mRunning 50-locale.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:06 >>> [35mRunning 60-mount-dirs.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:06 >>> [35mRunning 90-overlay.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:06 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/bootanim)...[0m
+2026-08-30T01:57:06 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/chromium)...[0m
+2026-08-30T01:57:07 >>> [35mInstalling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/default to /home/linux/rk3506/buildroot/output/rockchip_rk3506/target...[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/fonts)...[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/frecon)...[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/fstrim)...[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/generate-logs)...[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/input-event-daemon)...[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/irqbalance)...[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/tools)...[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/usb-gadget)...[0m
+2026-08-30T01:57:07 >>> [35mInstalling overlay: /home/linux/rk3506/device/rockchip/common/overlays/buildroot to /home/linux/rk3506/buildroot/output/rockchip_rk3506/target...[0m
+2026-08-30T01:57:07 >>> [35mRunning 91-modules.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:07 >>> [36mInstalling kernel modules...[0m
+2026-08-30T01:57:07 >>> [36m          Start building modules[0m
+2026-08-30T01:57:26 >>> [35mRunning mk-kernel.sh - build_modules succeeded.[0m
+2026-08-30T01:57:26 >>> [35mRunning 95-extra-parts.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:27 >>> [35mRunning 97-ldcache.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:27 >>> [35mRunning 99-owner.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:27 >>> [35mRunning build.sh - post-rootfs succeeded.[0m
+2026-08-30T01:57:27 [7m>>>   Executing post-build script board/rockchip/rk3506/post-build-fast-display.sh[27m
+2026-08-30T01:59:15 [7m>>>   Generating root filesystems common tables[27m
+2026-08-30T01:59:15 [7m>>>   Generating filesystem image rootfs.cpio[27m
+2026-08-30T01:59:20 [7m>>>   Generating filesystem image rootfs.ext2[27m
+2026-08-30T01:59:21 [7m>>>   Generating filesystem image rootfs.squashfs[27m
+2026-08-30T01:59:23 [7m>>>   Generating filesystem image rootfs.tar[27m
+2026-08-30T01:59:24 [7m>>>   Generating filesystem image rootfs.ubifs[27m
+2026-08-30T01:59:27 [7m>>>   Generating filesystem image rootfs.ubi[27m
+Done in 2min 39s
+[35mLog saved on /home/linux/rk3506/output/sessions/2026-08-30_01-56-03/br-rockchip_rk3506_2026-08-30_01-56-49.log[0m
+[35mGenerated images:[0m
+/home/linux/rk3506/output/buildroot/images/rootfs.cpio
+/home/linux/rk3506/output/buildroot/images/rootfs.cpio.gz
+/home/linux/rk3506/output/buildroot/images/rootfs.ext2
+/home/linux/rk3506/output/buildroot/images/rootfs.ext4
+/home/linux/rk3506/output/buildroot/images/rootfs.squashfs
+/home/linux/rk3506/output/buildroot/images/rootfs.tar
+/home/linux/rk3506/output/buildroot/images/rootfs.ubi
+/home/linux/rk3506/output/buildroot/images/rootfs.ubifs
+# 2026-08-30 01:57:05
+# run hook: /home/linux/rk3506/buildroot/output/rockchip_rk3506/target
+
+[35mRunning 00-wifibt.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[36mBuilding Wifi/BT module and firmwares...[0m
+[35mRunning 01-hostname.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[36mSetting hostname: rk3506-buildroot[0m
+[35mRunning 05-udev.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[35mRunning 06-async-commit.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[36mInstalling async-commit service...[0m
+'/home/linux/rk3506/device/rockchip/common/tools/armhf/modetest' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/bin/modetest'
+[35mRunning 07-log-guardian.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[35mRunning 09-disk.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[36mInstalling mount service...[0m
+[35mRunning 10-os-release.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[36mAdding information to /etc/os-release...[0m
+[35mRunning 20-info.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[35mRunning 30-fstab.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[36mFixing up /etc/fstab...[0m
+[36mFixing up rootfs type: auto[0m
+[36mFixup basic partitions for non-systemd init...[0m
+[36mFixing up basic partition: proc /proc[0m
+[36mFixing up basic partition: devtmpfs /dev[0m
+[36mFixing up basic partition: devpts /dev/pts mode=0620,ptmxmode=0000,gid=5[0m
+[36mFixing up basic partition: tmpfs /dev/shm nosuid,nodev,noexec[0m
+[36mFixing up basic partition: sysfs /sys nosuid,nodev,noexec[0m
+[36mFixing up basic partition: configfs /sys/kernel/config[0m
+[36mFixing up basic partition: debugfs /sys/kernel/debug[0m
+[36mFixing up basic partition: pstore /sys/fs/pstore nosuid,nodev,noexec[0m
+[36mFixing up device partition: PARTLABEL=oem /oem ubifs defaults[0m
+[36mFixing up device partition: PARTLABEL=userdata /userdata ubifs defaults[0m
+[35mRunning 40-busybox-reboot.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[35mRunning 50-locale.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[36mSetting LANG environment to en_US.UTF-8...[0m
+[35mRunning 60-mount-dirs.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[36mAdding dirs and links...[0m
+[35mRunning 90-overlay.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/bootanim)...[0m
+[35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/chromium)...[0m
+[35mInstalling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/default to /home/linux/rk3506/buildroot/output/rockchip_rk3506/target...[0m
+sending incremental file list
+./
+
+sent 53 bytes  received 19 bytes  144.00 bytes/sec
+total size is 0  speedup is 0.00
+[35mHandling overlay: /home/linux/rk3506/device/rockchip/common/fonts)...[0m
+[35mNo extra fonts for buildroot by default[0m
+[35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/frecon)...[0m
+[35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/fstrim)...[0m
+[35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/generate-logs)...[0m
+[35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/input-event-daemon)...[0m
+[35mDisabling input-event-daemon...[0m
+[35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/irqbalance)...[0m
+[35mHandling overlay: /home/linux/rk3506/device/rockchip/common/tools)...[0m
+[35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/usb-gadget)...[0m
+[35mUSB gadget disabled...[0m
+[35mInstalling overlay: /home/linux/rk3506/device/rockchip/common/overlays/buildroot to /home/linux/rk3506/buildroot/output/rockchip_rk3506/target...[0m
+sending incremental file list
+
+sent 50 bytes  received 12 bytes  124.00 bytes/sec
+total size is 0  speedup is 0.00
+[35mRunning 91-modules.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[36mInstalling kernel modules...[0m
+[35mUsing kernel version(6.1) from environment[0m
+[36mToolchain for kernel:[0m
+[36m/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-[0m
+
+[36m==========================================[0m
+[36m          Start building modules[0m
+[36m==========================================[0m
+[35m+ make -C /home/linux/rk3506/kernel/ -j17 CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- ARCH=arm rk3506_defconfig rk3506-display.config[0m
+arch/arm/configs/rk3506_defconfig:349:warning: override: reassigning to symbol VT
+arch/arm/configs/rk3506_defconfig:382:warning: override: reassigning to symbol FTRACE
+arch/arm/configs/rk3506_defconfig:389:warning: override: reassigning to symbol SCHED_DEBUG
+arch/arm/configs/rk3506_defconfig:391:warning: override: reassigning to symbol SWAP
+arch/arm/configs/rk3506_defconfig:397:warning: override: reassigning to symbol HARDEN_BRANCH_PREDICTOR
+arch/arm/configs/rk3506_defconfig:398:warning: override: reassigning to symbol HARDEN_BRANCH_HISTORY
+arch/arm/configs/rk3506_defconfig:401:warning: override: reassigning to symbol LD_DEAD_CODE_DATA_ELIMINATION
+arch/arm/configs/rk3506_defconfig:402:warning: override: reassigning to symbol CPU_FREQ_DEFAULT_GOV_PERFORMANCE
+arch/arm/configs/rk3506_defconfig:402:warning: override: CPU_FREQ_DEFAULT_GOV_PERFORMANCE changes choice state
+arch/arm/configs/rk3506_defconfig:404:warning: override: HZ_1000 changes choice state
+arch/arm/configs/rk3506_defconfig:405:warning: override: PREEMPT_RT changes choice state
+arch/arm/configs/rk3506_defconfig:406:warning: override: reassigning to symbol VDSO
+#
+# configuration written to .config
+#
+Using .config as base
+Merging ./arch/arm/configs/rk3506-display.config
+Value of CONFIG_BACKLIGHT_CLASS_DEVICE is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+Previous value: # CONFIG_BACKLIGHT_CLASS_DEVICE is not set
+New value: CONFIG_BACKLIGHT_CLASS_DEVICE=y
+
+Value of CONFIG_DRM is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+Previous value: # CONFIG_DRM is not set
+New value: CONFIG_DRM=y
+
+Value of CONFIG_I2C_MUX is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+Previous value: # CONFIG_I2C_MUX is not set
+New value: CONFIG_I2C_MUX=y
+
+Value of CONFIG_INPUT_TOUCHSCREEN is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+Previous value: # CONFIG_INPUT_TOUCHSCREEN is not set
+New value: CONFIG_INPUT_TOUCHSCREEN=y
+
+#
+# merged configuration written to .config (needs make)
+#
+#
+# configuration written to .config
+#
+[35m+ make -C /home/linux/rk3506/kernel/ -j17 CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- ARCH=arm modules[0m
+  SYNC    include/config/auto.conf.cmd
+  CALL    scripts/checksyscalls.sh
+[35m+ make -C /home/linux/rk3506/kernel/ -j17 CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- ARCH=arm modules_install INSTALL_MOD_PATH=/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/[0m
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/dwmac-rockchip.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac-platform.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/fwnode_mdio.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/of_mdio.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/mii.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/pcs/pcs_xpcs.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/fixed_phy.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/libphy.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/mdio_devres.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/motorcomm.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/phylink.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/realtek.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/net/core/selftests.ko
+  DEPMOD  /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36
+[35m+ find /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/ -type l -delete[0m
+[35mRunning mk-kernel.sh - build_modules succeeded.[0m
+[36mStrip kernel modules...[0m
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/phylink.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/st3ekQwD' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/libphy.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stNd5cFl' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/realtek.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stfV4IIh' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/mdio_devres.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stiVbGdz' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/fixed_phy.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stJoSRE3' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/motorcomm.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stz1lza0' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stHYJxqo' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/dwmac-rockchip.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stwgT4xO' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac-platform.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stNXzEUv' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/fwnode_mdio.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/st6GRKi4' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/of_mdio.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/stwql4ST' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/pcs/pcs_xpcs.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/pcs/stSkf6Ek' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mii.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/stRpm1nw' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/net/core/selftests.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/net/core/stL2Twlm' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/ble_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/stBojpFM' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/sle_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/stNRI5FT' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/wifi_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/stGk4hIz' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/bp_test.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/stzzOZqO' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/plat_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/stLBqPC4' [elf32-littlearm]
+[35mRunning 95-extra-parts.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[36mPreparing extra partitions...[0m
+[35mRunning 97-ldcache.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[35mKeep original /etc/ld.so.cache[0m
+[35mRunning 99-owner.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+[35mRunning mk-rootfs.sh - build_buildroot /home/linux/rk3506/output/buildroot/images succeeded.[0m
+[35mRunning mk-rootfs.sh - build_rootfs succeeded.[0m
+[36m==========================================[0m
+[36m          Start building recovery(buildroot)[0m
+[36m==========================================[0m
+[35m
+Your network is not able to access sources.buildroot.net!
+Please retry later (it could be down for a while) or setup a VPN to bypass the GFW.
+[0m[35mWill continue in 5 seconds ...
+5 ...
+4 ...
+3 ...
+2 ...
+1 ...
+[0m
+make: Entering directory '/home/linux/rk3506/buildroot'
+  GEN     /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/Makefile
+Parsing defconfig: /home/linux/rk3506/buildroot/configs/rockchip_rk3506_recovery_defconfig
+Using configs/rockchip/base/kernel.config as base
+Merging configs/rockchip/fs/e2fs.config
+Merging configs/rockchip/base/common.config
+Merging configs/rockchip/base/base.config
+Merging configs/rockchip/base/kernel.config
+Merging configs/rockchip/fs/e2fs.config
+Merging configs/rockchip/base/common.config
+Merging configs/rockchip/fs/vfat.config
+Merging configs/rockchip/base/recovery.config
+Merging configs/rockchip/chips/rk3506.config
+Value of BR2_ROOTFS_OVERLAY is redefined by configs/rockchip/chips/rk3506.config:
+Previous value:	BR2_ROOTFS_OVERLAY="board/rockchip/common/base"
+Modify value:	BR2_ROOTFS_OVERLAY+="board/rockchip/rk3506/fs-overlay/"
+New value:	BR2_ROOTFS_OVERLAY="board/rockchip/common/base board/rockchip/rk3506/fs-overlay/"
+
+Merging configs/rockchip/chips/rk3506_arm.config
+Merging /home/linux/rk3506/buildroot/configs/rockchip_rk3506_recovery_defconfig
+#
+# merged configuration written to /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/.config.in (needs make)
+#
+#
+# configuration written to /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/.config
+#
+make: Leaving directory '/home/linux/rk3506/buildroot'
+464c464
+< BR2_JLEVEL=1
+---
+> BR2_JLEVEL=0
+[34mBuildroot config changed![0m
+[34mYou might need to clean it before building:[0m
+[34mrm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery
+[0m
+2026-08-30T01:59:48 [7m>>> libcurl 8.6.0 Installing to staging directory[27m
+2026-08-30T01:59:50 [7m>>> libcurl 8.6.0 Fixing package configuration files[27m
+2026-08-30T01:59:50 [7m>>> libcurl 8.6.0 Fixing libtool files[27m
+2026-08-30T01:59:50 [7m>>> libcurl 8.6.0 Installing to target[27m
+2026-08-30T01:59:53 [7m>>> libpthread-stubs 0.5 Extracting[27m
+2026-08-30T01:59:53 [7m>>> libpthread-stubs 0.5 Patching[27m
+2026-08-30T01:59:53 [7m>>> libpthread-stubs 0.5 Updating config.sub and config.guess[27m
+2026-08-30T01:59:53 [7m>>> libpthread-stubs 0.5 Patching libtool[27m
+2026-08-30T01:59:53 [7m>>> libpthread-stubs 0.5 Configuring[27m
+2026-08-30T01:59:57 [7m>>> libpthread-stubs 0.5 Building[27m
+2026-08-30T01:59:57 [7m>>> libpthread-stubs 0.5 Installing to staging directory[27m
+2026-08-30T01:59:57 [7m>>> libpthread-stubs 0.5 Fixing libtool files[27m
+2026-08-30T01:59:58 [7m>>> libpthread-stubs 0.5 Installing to target[27m
+2026-08-30T01:59:58 [7m>>> host-ntfs-3g 2022.10.3 Extracting[27m
+2026-08-30T01:59:58 [7m>>> host-ntfs-3g 2022.10.3 Patching[27m
+2026-08-30T01:59:59 [7m>>> host-ntfs-3g 2022.10.3 Updating config.sub and config.guess[27m
+2026-08-30T01:59:59 [7m>>> host-ntfs-3g 2022.10.3 Patching libtool[27m
+2026-08-30T01:59:59 [7m>>> host-ntfs-3g 2022.10.3 Configuring[27m
+2026-08-30T02:00:15 [7m>>> host-ntfs-3g 2022.10.3 Building[27m
+2026-08-30T02:00:46 [7m>>> host-ntfs-3g 2022.10.3 Installing to host directory[27m
+2026-08-30T02:00:51 [7m>>> host-patchelf 0.13 Extracting[27m
+2026-08-30T02:00:52 [7m>>> host-patchelf 0.13 Patching[27m
+2026-08-30T02:00:52 [7m>>> host-patchelf 0.13 Updating config.sub and config.guess[27m
+2026-08-30T02:00:52 [7m>>> host-patchelf 0.13 Patching libtool[27m
+2026-08-30T02:00:52 [7m>>> host-patchelf 0.13 Configuring[27m
+2026-08-30T02:00:54 [7m>>> host-patchelf 0.13 Building[27m
+2026-08-30T02:01:01 [7m>>> host-patchelf 0.13 Installing to host directory[27m
+2026-08-30T02:01:05 [7m>>> pm-utils 1.4.1 Extracting[27m
+2026-08-30T02:01:05 [7m>>> pm-utils 1.4.1 Patching[27m
+2026-08-30T02:01:05 [7m>>> pm-utils 1.4.1 Updating config.sub and config.guess[27m
+2026-08-30T02:01:05 [7m>>> pm-utils 1.4.1 Patching libtool[27m
+2026-08-30T02:01:05 [7m>>> pm-utils 1.4.1 Configuring[27m
+2026-08-30T02:01:08 [7m>>> pm-utils 1.4.1 Building[27m
+2026-08-30T02:01:09 [7m>>> pm-utils 1.4.1 Installing to target[27m
+2026-08-30T02:01:10 [7m>>> recovery develop Syncing from source dir /home/linux/rk3506/buildroot/../external/recovery[27m
+2026-08-30T02:01:11 [7m>>> recovery develop Configuring[27m
+2026-08-30T02:01:11 [7m>>> recovery develop Building[27m
+2026-08-30T02:01:17 [7m>>> recovery develop Installing to target[27m
+2026-08-30T02:01:18 [7m>>> rkscript  Syncing from source dir /home/linux/rk3506/buildroot/../external/rkscript[27m
+2026-08-30T02:01:18 [7m>>> rkscript  Configuring[27m
+2026-08-30T02:01:18 [7m>>> rkscript  Building[27m
+2026-08-30T02:01:18 [7m>>> rkscript  Installing to target[27m
+2026-08-30T02:01:19 [7m>>> rktoolkit master Syncing from source dir /home/linux/rk3506/buildroot/../external/rktoolkit[27m
+2026-08-30T02:01:19 [7m>>> rktoolkit master Configuring[27m
+2026-08-30T02:01:20 [7m>>> rktoolkit master Building[27m
+2026-08-30T02:01:21 [7m>>> rktoolkit master Installing to target[27m
+2026-08-30T02:01:21 [7m>>> rkupdate develop Syncing from source dir /home/linux/rk3506/buildroot/../external/rkupdate[27m
+2026-08-30T02:01:22 [7m>>> rkupdate develop Configuring[27m
+2026-08-30T02:01:22 [7m>>> rkupdate develop Building[27m
+2026-08-30T02:01:34 [7m>>> rkupdate develop Installing to target[27m
+2026-08-30T02:01:35 [7m>>> urandom-scripts  Extracting[27m
+2026-08-30T02:01:35 [7m>>> urandom-scripts  Patching[27m
+2026-08-30T02:01:35 [7m>>> urandom-scripts  Configuring[27m
+2026-08-30T02:01:35 [7m>>> urandom-scripts  Building[27m
+2026-08-30T02:01:35 [7m>>> urandom-scripts  Installing to target[27m
+2026-08-30T02:01:36 [7m>>> usbmount 0.0.22 Downloading[27m
+Done in 2min 01s  (error code: 2)
+[91mFailed to build rockchip_rk3506_recovery:[0m
+2026-08-30T02:01:16 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -c update_engine/rkimage.c -o update_engine/rkimage.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -I. -fPIC -lpthread -lcurl -lbz2 -DUSE_UPDATEENGINE=ON -DSUCCESSFUL_BOOT=ON
+2026-08-30T02:01:16 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -c update_engine/rktools.c -o update_engine/rktools.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -I. -fPIC -lpthread -lcurl -lbz2 -DUSE_UPDATEENGINE=ON -DSUCCESSFUL_BOOT=ON
+2026-08-30T02:01:16 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -c update_engine/rkboot.c -o update_engine/rkboot.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -I. -fPIC -lpthread -lcurl -lbz2 -DUSE_UPDATEENGINE=ON -DSUCCESSFUL_BOOT=ON
+2026-08-30T02:01:16 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -c update_engine/crc.c -o update_engine/crc.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -I. -fPIC -lpthread -lcurl -lbz2 -DUSE_UPDATEENGINE=ON -DSUCCESSFUL_BOOT=ON
+2026-08-30T02:01:17 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -c update_engine/update.c -o update_engine/update.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -I. -fPIC -lpthread -lcurl -lbz2 -DUSE_UPDATEENGINE=ON -DSUCCESSFUL_BOOT=ON
+2026-08-30T02:01:17 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -c update_engine/do_patch.c -o update_engine/do_patch.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -I. -fPIC -lpthread -lcurl -lbz2 -DUSE_UPDATEENGINE=ON -DSUCCESSFUL_BOOT=ON
+2026-08-30T02:01:17 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -o updateEngine mtdutils/mounts.o mtdutils/mtdutils.o mtdutils/rk29.o update_engine/rkbootloader.o update_engine/download.o update_engine/flash_image.o update_engine/log.o update_engine/main.o update_engine/md5.o update_engine/md5sum.o update_engine/rkimage.o update_engine/rktools.o update_engine/rkboot.o update_engine/crc.o update_engine/update.o update_engine/do_patch.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -I. -fPIC -lpthread -lcurl -lbz2 -DUSE_UPDATEENGINE=ON -DSUCCESSFUL_BOOT=ON
+2026-08-30T02:01:17 [7m>>> recovery develop Installing to target[27m
+2026-08-30T02:01:17 /usr/bin/install -D -m 755 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/recovery-develop/recovery /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/
+2026-08-30T02:01:17 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/res/images
+2026-08-30T02:01:17 cp /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/recovery-develop/res/images/* /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/res/images/
+2026-08-30T02:01:17 /usr/bin/install -D -m 755 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/recovery-develop/updateEngine /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/
+2026-08-30T02:01:17 /usr/bin/install -D -m 755 package/rockchip/recovery//S40recovery /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d/S40recovery
+2026-08-30T02:01:18 [7m>>> rkscript  Syncing from source dir /home/linux/rk3506/buildroot/../external/rkscript[27m
+2026-08-30T02:01:18 rsync -au --chmod=u=rwX,go=rX  --exclude .svn --exclude .git --exclude .hg --exclude .bzr --exclude CVS /home/linux/rk3506/buildroot/../external/rkscript/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rkscript
+2026-08-30T02:01:18 [7m>>> rkscript  Configuring[27m
+2026-08-30T02:01:18 [7m>>> rkscript  Building[27m
+2026-08-30T02:01:18 [7m>>> rkscript  Installing to target[27m
+2026-08-30T02:01:19 /usr/bin/install -m 0755 -d /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d/
+2026-08-30T02:01:19 /usr/bin/install -m 0755 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rkscript/S*usbdevice.sh /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d/
+2026-08-30T02:01:19 /usr/bin/install -m 0755 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rkscript/S*mountall.sh /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d/
+2026-08-30T02:01:19 /usr/bin/install -m 0755 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rkscript/S*async-commit.sh /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d/
+2026-08-30T02:01:19 /usr/bin/install -D -m 0644 package/rockchip/rkscript//usbdevice.sh /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/profile.d/usbdevice.sh
+2026-08-30T02:01:19 /usr/bin/sed -i -e "s#\(USB_FUNCS=\).*#\1\"adb\"#" /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/profile.d/usbdevice.sh
+2026-08-30T02:01:19 /usr/bin/install -m 0755 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rkscript/usbdevice /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/
+2026-08-30T02:01:19 /usr/bin/install -m 0755 -d /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/lib/udev/rules.d/
+2026-08-30T02:01:19 /usr/bin/install -m 0644 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rkscript/61-usbdevice.rules /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/lib/udev/rules.d/
+2026-08-30T02:01:19 /usr/bin/install -m 0755 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rkscript/disk-helper /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/
+2026-08-30T02:01:19 /usr/bin/install -m 0755 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rkscript/mount-helper /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/
+2026-08-30T02:01:19 /usr/bin/install -m 0755 -d /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/lib/udev/rules.d/
+2026-08-30T02:01:19 /usr/bin/install -m 0644 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rkscript/*.rules /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/lib/udev/rules.d/
+2026-08-30T02:01:19 /usr/bin/install -m 0755 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rkscript/async-commit /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/
+2026-08-30T02:01:19 [7m>>> rktoolkit master Syncing from source dir /home/linux/rk3506/buildroot/../external/rktoolkit[27m
+2026-08-30T02:01:19 rsync -au --chmod=u=rwX,go=rX  --exclude .svn --exclude .git --exclude .hg --exclude .bzr --exclude CVS /home/linux/rk3506/buildroot/../external/rktoolkit/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master
+2026-08-30T02:01:19 [7m>>> rktoolkit master Configuring[27m
+2026-08-30T02:01:20 [7m>>> rktoolkit master Building[27m
+2026-08-30T02:01:20 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1  /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/io.c -o /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/io
+2026-08-30T02:01:20 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1  /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/update.c /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/update_recv/update_recv.c -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/update_recv/ -o /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/update
+2026-08-30T02:01:20 [01m[K/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/update_recv/update_recv.c:[m[K In function '[01m[KWriteFwData[m[K':
+2026-08-30T02:01:20 [01m[K/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/update_recv/update_recv.c:237:54:[m[K [01;35m[Kwarning: [m[Kcast to pointer from integer of different size [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wint-to-pointer-cast-Wint-to-pointer-cast]8;;[m[K]
+2026-08-30T02:01:20 237 |                                 EntryStartOffset = *([01;35m[K([m[KDWORD *)(rkImageHead.item[idx].file[51]));
+2026-08-30T02:01:20 |                                                      [01;35m[K^[m[K
+2026-08-30T02:01:20 [01m[K/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/update_recv/update_recv.c:[m[K In function '[01m[KCheckFwData[m[K':
+2026-08-30T02:01:20 [01m[K/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/update_recv/update_recv.c:399:54:[m[K [01;35m[Kwarning: [m[Kcast to pointer from integer of different size [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wint-to-pointer-cast-Wint-to-pointer-cast]8;;[m[K]
+2026-08-30T02:01:20 399 |                                 EntryStartOffset = *([01;35m[K([m[KDWORD *)(rkImageHead.item[idx].file[51]));
+2026-08-30T02:01:20 |                                                      [01;35m[K^[m[K
+2026-08-30T02:01:20 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1  /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/vendor_storage.c -o /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/vendor_storage
+2026-08-30T02:01:20 [01m[K/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/vendor_storage.c:[m[K In function '[01m[Kmain[m[K':
+2026-08-30T02:01:20 [01m[K/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/vendor_storage.c:436:25:[m[K [01;35m[Kwarning: [m[Kignoring return value of '[01m[Kfread[m[K' declared with attribute '[01m[Kwarn_unused_result[m[K' [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wunused-result-Wunused-result]8;;[m[K]
+2026-08-30T02:01:20 436 |                         [01;35m[Kfread(vendor_hex, 1, size, finput)[m[K;
+2026-08-30T02:01:20 |                         [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+2026-08-30T02:01:21 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1  /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/vendor_storage.c -DBUILD_LIB_VENDOR_STORAGE -shared -fPIC -o /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/libvendor_storage.so
+2026-08-30T02:01:21 [7m>>> rktoolkit master Installing to target[27m
+2026-08-30T02:01:21 /usr/bin/install -D -m 755 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/io /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/io
+2026-08-30T02:01:21 /usr/bin/install -D -m 755 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/update /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/update
+2026-08-30T02:01:21 /usr/bin/install -D -m 755 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/vendor_storage /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/vendor_storage
+2026-08-30T02:01:21 /usr/bin/install -D -m 755 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/libvendor_storage.so /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib || true
+2026-08-30T02:01:21 /usr/bin/install -D -m 755 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/vendor_storage.h /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include || true
+2026-08-30T02:01:21 /usr/bin/install -D -m 755 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rktoolkit-master/libvendor_storage.so /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/ || true
+2026-08-30T02:01:21 [7m>>> rkupdate develop Syncing from source dir /home/linux/rk3506/buildroot/../external/rkupdate[27m
+2026-08-30T02:01:21 rsync -au --chmod=u=rwX,go=rX  --exclude .svn --exclude .git --exclude .hg --exclude .bzr --exclude CVS /home/linux/rk3506/buildroot/../external/rkupdate/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rkupdate-develop
+2026-08-30T02:01:22 [7m>>> rkupdate develop Configuring[27m
+2026-08-30T02:01:22 [7m>>> rkupdate develop Building[27m
+2026-08-30T02:01:22 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1 /usr/bin/make -j1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rkupdate-develop CXX="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++" CFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -fPIC -lpthread -luuid"
+2026-08-30T02:01:22 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ -c CRC.cpp -o CRC.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -fPIC -lpthread -luuid
+2026-08-30T02:01:23 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ -c MD5Checksum.cpp -o MD5Checksum.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -fPIC -lpthread -luuid
+2026-08-30T02:01:24 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ -c RKAndroidDevice.cpp -o RKAndroidDevice.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -fPIC -lpthread -luuid
+2026-08-30T02:01:27 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ -c RKBoot.cpp -o RKBoot.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -fPIC -lpthread -luuid
+2026-08-30T02:01:28 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ -c RKComm.cpp -o RKComm.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -fPIC -lpthread -luuid
+2026-08-30T02:01:29 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ -c RKDevice.cpp -o RKDevice.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -fPIC -lpthread -luuid
+2026-08-30T02:01:30 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ -c RKImage.cpp -o RKImage.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -fPIC -lpthread -luuid
+2026-08-30T02:01:31 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ -c RKLog.cpp -o RKLog.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -fPIC -lpthread -luuid
+2026-08-30T02:01:32 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ -c Upgrade.cpp -o Upgrade.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -fPIC -lpthread -luuid
+2026-08-30T02:01:34 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ -c main.cpp -o main.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -fPIC -lpthread -luuid
+2026-08-30T02:01:34 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ -o rkupdate CRC.o MD5Checksum.o RKAndroidDevice.o RKBoot.o RKComm.o RKDevice.o RKImage.o RKLog.o Upgrade.o main.o -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -fPIC -lpthread -luuid
+2026-08-30T02:01:34 [7m>>> rkupdate develop Installing to target[27m
+2026-08-30T02:01:34 /usr/bin/install -D -m 755 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/rkupdate-develop/rkupdate /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/
+2026-08-30T02:01:35 [7m>>> urandom-scripts  Extracting[27m
+2026-08-30T02:01:35 [7m>>> urandom-scripts  Patching[27m
+2026-08-30T02:01:35 [7m>>> urandom-scripts  Configuring[27m
+2026-08-30T02:01:35 [7m>>> urandom-scripts  Building[27m
+2026-08-30T02:01:35 [7m>>> urandom-scripts  Installing to target[27m
+2026-08-30T02:01:35 /usr/bin/install -D -m 0755 package/urandom-scripts//S01seedrng /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d/S01seedrng
+2026-08-30T02:01:36 [7m>>> usbmount 0.0.22 Downloading[27m
+2026-08-30T02:01:36 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.usbmount_0.0.22.tar.gz.fRghmy/output' 'https://sources.buildroot.net/usbmount/usbmount_0.0.22.tar.gz'
+2026-08-30T02:01:36 --2026-08-30 02:01:36--  https://sources.buildroot.net/usbmount/usbmount_0.0.22.tar.gz
+2026-08-30T02:01:36 Resolving sources.buildroot.net (sources.buildroot.net)... failed: Temporary failure in name resolution.
+2026-08-30T02:01:36 wget: unable to resolve host address 'sources.buildroot.net'
+2026-08-30T02:01:36 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.usbmount_0.0.22.tar.gz.eoG9s9/output' 'https://sources.buildroot.net/usbmount_0.0.22.tar.gz'
+2026-08-30T02:01:36 --2026-08-30 02:01:36--  https://sources.buildroot.net/usbmount_0.0.22.tar.gz
+2026-08-30T02:01:36 Resolving sources.buildroot.net (sources.buildroot.net)... failed: Temporary failure in name resolution.
+2026-08-30T02:01:36 wget: unable to resolve host address 'sources.buildroot.net'
+2026-08-30T02:01:36 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.usbmount_0.0.22.tar.gz.QPZrlY/output' 'http://snapshot.debian.org/archive/debian/20141023T043132Z/pool/main/u/usbmount/usbmount_0.0.22.tar.gz'
+2026-08-30T02:01:36 URL transformed to HTTPS due to an HSTS policy
+2026-08-30T02:01:36 --2026-08-30 02:01:36--  https://snapshot.debian.org/archive/debian/20141023T043132Z/pool/main/u/usbmount/usbmount_0.0.22.tar.gz
+2026-08-30T02:01:36 Resolving snapshot.debian.org (snapshot.debian.org)... failed: Temporary failure in name resolution.
+2026-08-30T02:01:36 wget: unable to resolve host address 'snapshot.debian.org'
+2026-08-30T02:01:36 make[1]: *** [package/pkg-generic.mk:196: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/usbmount-0.0.22/.stamp_downloaded] Error 1
+2026-08-30T02:01:36 make: *** [Makefile:112: _all] Error 2
+2026-08-30T02:01:36 make: Leaving directory '/home/linux/rk3506/buildroot'
+[91mPlease check details in /home/linux/rk3506/output/sessions/2026-08-30_01-56-03/br-rockchip_rk3506_recovery_2026-08-30_01-59-35.log[0m
+[31mERROR: Running /home/linux/rk3506/device/rockchip/common/scripts/mk-recovery.sh - build_hook failed![0m
+[31mERROR: exit code 1 from line 29:[0m
+[31m    "$RK_SCRIPTS_DIR/mk-buildroot.sh" $RK_RECOVERY_CFG "$IMAGE_DIR"[0m
+[31mERROR: call stack:[0m
+[31m    mk-recovery.sh: build_hook(29)[0m
+[31m    mk-recovery.sh: main(51)[0m
+[31mERROR: Running /home/linux/rk3506/device/rockchip/common/build-hooks/99-all.sh - build_all failed![0m
+[31mERROR: exit code 1 from line 24:[0m
+[31m    "$RK_SCRIPTS_DIR/mk-recovery.sh"[0m
+[31mERROR: call stack:[0m
+[31m    99-all.sh: build_all(24)[0m
+[31m    99-all.sh: build_hook(136)[0m
+[31m    build-helper: try_func(63)[0m
+[31m    build-helper: try_hook(96)[0m
+[31m    build-helper: source(165)[0m
+[31m    99-all.sh: main(147)[0m
+[31mERROR: Running /home/linux/rk3506/device/rockchip/common/build-hooks/99-all.sh - try_func build_hook all failed![0m
+[31mERROR: exit code 1 from line 67:[0m
+[31m    build_hook[0m
+[31mERROR: call stack:[0m
+[31m    build-helper: try_func(67)[0m
+[31m    build-helper: try_hook(96)[0m
+[31m    build-helper: source(165)[0m
+[31m    99-all.sh: main(147)[0m

@@ -1,0 +1,1109 @@
+# 2026-08-30 01:42:07
+2026-08-30T01:42:07 make: Entering directory '/home/linux/rk3506/buildroot'
+2026-08-30T01:42:18 /usr/bin/make -j1  O=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery HOSTCC="/usr/bin/gcc" HOSTCXX="/usr/bin/g++" syncconfig
+2026-08-30T01:42:19 GEN     /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/Makefile
+2026-08-30T01:42:20 parted-3.6.tar.xz: OK (sha256: 3b43dbe33cca0f9a18601ebab56b7852b128ec1a3df3a9b30ccde5e73359e612)
+2026-08-30T01:42:20 [7m>>> parted 3.6 Extracting[27m
+2026-08-30T01:42:20 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/xzcat /home/linux/rk3506/buildroot/dl/parted/parted-3.6.tar.xz | /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/tar --strip-components=1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/parted-3.6   -xf -
+2026-08-30T01:42:20 [7m>>> parted 3.6 Patching[27m
+2026-08-30T01:42:20 [7m>>> parted 3.6 Updating config.sub and config.guess[27m
+2026-08-30T01:42:20 for file in config.guess config.sub; do for i in $(find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/parted-3.6 -name $file); do cp support/gnuconfig/$file $i; done; done
+2026-08-30T01:42:20 [7m>>> parted 3.6 Patching libtool[27m
+2026-08-30T01:42:20 patching file /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/parted-3.6/build-aux/ltmain.sh
+2026-08-30T01:42:20 Hunk #1 succeeded at 2940 (offset 253 lines).
+2026-08-30T01:42:20 Hunk #2 succeeded at 4533 (offset 256 lines).
+2026-08-30T01:42:20 Hunk #3 succeeded at 6829 (offset 275 lines).
+2026-08-30T01:42:20 Hunk #4 succeeded at 6839 (offset 275 lines).
+2026-08-30T01:42:20 Hunk #5 succeeded at 7139 (offset 282 lines).
+2026-08-30T01:42:20 Hunk #6 succeeded at 7443 (offset 294 lines).
+2026-08-30T01:42:20 Hunk #7 succeeded at 8419 (offset 307 lines).
+2026-08-30T01:42:20 Hunk #8 succeeded at 11051 (offset 341 lines).
+2026-08-30T01:42:20 [7m>>> parted 3.6 Configuring[27m
+2026-08-30T01:42:20 (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/parted-3.6/ && rm -rf config.cache && GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1 AR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ar" AS="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-as" LD="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld" NM="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-nm" CC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc" GCC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc" CPP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-cpp" CXX="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++" FC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gfortran" F77="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gfortran" RANLIB="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ranlib" READELF="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-readelf" STRIP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip" OBJCOPY="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-objcopy" OBJDUMP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-objdump" AR_FOR_BUILD="/usr/bin/ar" AS_FOR_BUILD="/usr/bin/as" CC_FOR_BUILD="/usr/bin/gcc" GCC_FOR_BUILD="/usr/bin/gcc" CXX_FOR_BUILD="/usr/bin/g++" LD_FOR_BUILD="/usr/bin/ld" CPPFLAGS_FOR_BUILD="-I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CFLAGS_FOR_BUILD="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CXXFLAGS_FOR_BUILD="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" LDFLAGS_FOR_BUILD="-L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib" FCFLAGS_FOR_BUILD="" DEFAULT_ASSEMBLER="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-as" DEFAULT_LINKER="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld" CPPFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64" CFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1" CXXFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1" LDFLAGS="" FCFLAGS=" -O2 -g0" FFLAGS=" -O2 -g0" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" STAGING_DIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot" INTLTOOL_PERL=/usr/bin/perl ac_cv_lbl_unaligned_fail=yes ac_cv_func_mmap_fixed_mapped=yes ac_cv_func_memcmp_working=yes ac_cv_have_decl_malloc=yes gl_cv_func_malloc_0_nonnull=yes ac_cv_func_malloc_0_nonnull=yes ac_cv_func_calloc_0_nonnull=yes ac_cv_func_realloc_0_nonnull=yes lt_cv_sys_lib_search_path_spec="" ac_cv_c_bigendian=no   CONFIG_SITE=/dev/null ./configure --target=arm-buildroot-linux-gnueabihf --host=arm-buildroot-linux-gnueabihf --build=x86_64-pc-linux-gnu --prefix=/usr --exec-prefix=/usr --sysconfdir=/etc --localstatedir=/var --program-prefix="" --disable-gtk-doc --disable-gtk-doc-html --disable-doc --disable-docs --disable-documentation --with-xmlto=no --with-fop=no --disable-dependency-tracking --enable-ipv6 --disable-nls --disable-static --enable-shared  --disable-gcc-warnings --with-readline --disable-device-mapper )
+2026-08-30T01:42:21 configure: WARNING: unrecognized options: --disable-gtk-doc, --disable-gtk-doc-html, --disable-doc, --disable-docs, --disable-documentation, --with-xmlto, --with-fop, --enable-ipv6
+2026-08-30T01:42:21 checking for a BSD-compatible install... /usr/bin/install -c
+2026-08-30T01:42:21 checking whether build environment is sane... yes
+2026-08-30T01:42:21 checking for arm-buildroot-linux-gnueabihf-strip... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip
+2026-08-30T01:42:21 checking for a race-free mkdir -p... /usr/bin/mkdir -p
+2026-08-30T01:42:21 checking for gawk... gawk
+2026-08-30T01:42:21 checking whether make sets $(MAKE)... yes
+2026-08-30T01:42:21 checking whether make supports nested variables... yes
+2026-08-30T01:42:21 checking whether make supports nested variables... (cached) yes
+2026-08-30T01:42:21 checking build system type... x86_64-pc-linux-gnu
+2026-08-30T01:42:21 checking host system type... arm-buildroot-linux-gnueabihf
+2026-08-30T01:42:21 checking whether make supports the include directive... yes (GNU style)
+2026-08-30T01:42:21 checking for arm-buildroot-linux-gnueabihf-gcc... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc
+2026-08-30T01:42:21 checking whether the C compiler works... yes
+2026-08-30T01:42:21 checking for C compiler default output file name... a.out
+2026-08-30T01:42:22 checking for suffix of executables...
+2026-08-30T01:42:22 checking whether we are cross compiling... yes
+2026-08-30T01:42:22 checking for suffix of object files... o
+2026-08-30T01:42:22 checking whether the compiler supports GNU C... yes
+2026-08-30T01:42:22 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc accepts -g... yes
+2026-08-30T01:42:22 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc option to enable C11 features... none needed
+2026-08-30T01:42:22 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc understands -c and -o together... yes
+2026-08-30T01:42:22 checking whether the compiler is clang... no
+2026-08-30T01:42:22 checking for compiler option needed when checking for declarations... none
+2026-08-30T01:42:22 checking dependency style of /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc... none
+2026-08-30T01:42:22 checking for library containing strerror... none required
+2026-08-30T01:42:22 checking for arm-buildroot-linux-gnueabihf-gcc... (cached) /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc
+2026-08-30T01:42:22 checking whether the compiler supports GNU C... (cached) yes
+2026-08-30T01:42:22 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc accepts -g... (cached) yes
+2026-08-30T01:42:22 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc option to enable C11 features... (cached) none needed
+2026-08-30T01:42:22 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc understands -c and -o together... (cached) yes
+2026-08-30T01:42:22 checking whether the compiler is clang... (cached) no
+2026-08-30T01:42:22 checking for compiler option needed when checking for declarations... (cached) none
+2026-08-30T01:42:22 checking dependency style of /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc... (cached) none
+2026-08-30T01:42:22 checking how to run the C preprocessor... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-cpp
+2026-08-30T01:42:22 checking for grep that handles long lines and -e... /usr/bin/grep
+2026-08-30T01:42:22 checking for egrep... /usr/bin/grep -E
+2026-08-30T01:42:22 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc needs -traditional... no
+2026-08-30T01:42:22 checking for stdio.h... yes
+2026-08-30T01:42:22 checking for stdlib.h... yes
+2026-08-30T01:42:23 checking for string.h... yes
+2026-08-30T01:42:23 checking for inttypes.h... yes
+2026-08-30T01:42:23 checking for stdint.h... yes
+2026-08-30T01:42:23 checking for strings.h... yes
+2026-08-30T01:42:23 checking for sys/stat.h... yes
+2026-08-30T01:42:23 checking for sys/types.h... yes
+2026-08-30T01:42:23 checking for unistd.h... yes
+2026-08-30T01:42:23 checking for wchar.h... yes
+2026-08-30T01:42:23 checking for minix/config.h... no
+2026-08-30T01:42:23 checking for sys/param.h... yes
+2026-08-30T01:42:24 checking for sys/socket.h... yes
+2026-08-30T01:42:24 checking for error.h... yes
+2026-08-30T01:42:24 checking for stdio_ext.h... yes
+2026-08-30T01:42:24 checking for getopt.h... yes
+2026-08-30T01:42:24 checking for sys/cdefs.h... yes
+2026-08-30T01:42:24 checking for threads.h... yes
+2026-08-30T01:42:24 checking for limits.h... yes
+2026-08-30T01:42:24 checking for langinfo.h... yes
+2026-08-30T01:42:24 checking for xlocale.h... no
+2026-08-30T01:42:25 checking for malloc.h... yes
+2026-08-30T01:42:25 checking for sys/time.h... yes
+2026-08-30T01:42:25 checking for stdbool.h... yes
+2026-08-30T01:42:25 checking for stdckdint.h... no
+2026-08-30T01:42:25 checking for sys/random.h... yes
+2026-08-30T01:42:25 checking for features.h... yes
+2026-08-30T01:42:25 checking for crtdefs.h... no
+2026-08-30T01:42:25 checking for wctype.h... yes
+2026-08-30T01:42:25 checking for arpa/inet.h... yes
+2026-08-30T01:42:25 checking for netdb.h... yes
+2026-08-30T01:42:26 checking for netinet/in.h... yes
+2026-08-30T01:42:26 checking for semaphore.h... yes
+2026-08-30T01:42:26 checking for sys/mman.h... yes
+2026-08-30T01:42:26 checking for priv.h... no
+2026-08-30T01:42:26 checking for sys/select.h... yes
+2026-08-30T01:42:26 checking for sys/wait.h... yes
+2026-08-30T01:42:26 checking for pthread.h... yes
+2026-08-30T01:42:26 checking for sys/ioctl.h... yes
+2026-08-30T01:42:26 checking for sys/uio.h... yes
+2026-08-30T01:42:26 checking for blkid/blkid.h... yes
+2026-08-30T01:42:27 checking whether it is safe to define __EXTENSIONS__... yes
+2026-08-30T01:42:27 checking whether _XOPEN_SOURCE should be defined... no
+2026-08-30T01:42:27 checking for Minix Amsterdam compiler... no
+2026-08-30T01:42:27 checking for arm-buildroot-linux-gnueabihf-ar... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ar
+2026-08-30T01:42:27 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc option to enable large file support... none needed
+2026-08-30T01:42:27 checking for a usable (O_DIRECT-supporting) temporary dir... .
+2026-08-30T01:42:27 checking for size_t... yes
+2026-08-30T01:42:27 checking for working alloca.h... yes
+2026-08-30T01:42:27 checking for alloca... yes
+2026-08-30T01:42:27 checking whether the preprocessor supports include_next... yes
+2026-08-30T01:42:27 checking whether source code line length is unlimited... yes
+2026-08-30T01:42:27 checking whether <wchar.h> uses 'inline' correctly... yes
+2026-08-30T01:42:28 checking for btowc... yes
+2026-08-30T01:42:28 checking for canonicalize_file_name... yes
+2026-08-30T01:42:28 checking for realpath... yes
+2026-08-30T01:42:28 checking for lstat... yes
+2026-08-30T01:42:28 checking for _set_invalid_parameter_handler... no
+2026-08-30T01:42:28 checking for fcntl... yes
+2026-08-30T01:42:28 checking for symlink... yes
+2026-08-30T01:42:28 checking for fsync... yes
+2026-08-30T01:42:29 checking for getdtablesize... yes
+2026-08-30T01:42:29 checking for getexecname... no
+2026-08-30T01:42:29 checking for mbsinit... yes
+2026-08-30T01:42:29 checking for mbrtowc... yes
+2026-08-30T01:42:29 checking for mkstemp... yes
+2026-08-30T01:42:29 checking for readlink... yes
+2026-08-30T01:42:29 checking for isblank... yes
+2026-08-30T01:42:29 checking for iswctype... yes
+2026-08-30T01:42:29 checking for sleep... yes
+2026-08-30T01:42:30 checking for __xpg_strerror_r... yes
+2026-08-30T01:42:30 checking for usleep... yes
+2026-08-30T01:42:30 checking for wcrtomb... yes
+2026-08-30T01:42:30 checking for iswcntrl... yes
+2026-08-30T01:42:30 checking for gettimeofday... yes
+2026-08-30T01:42:30 checking for mprotect... yes
+2026-08-30T01:42:30 checking for pipe... yes
+2026-08-30T01:42:30 checking for pselect... yes
+2026-08-30T01:42:30 checking for pthread_sigmask... yes
+2026-08-30T01:42:31 checking for setenv... yes
+2026-08-30T01:42:31 checking for snprintf... yes
+2026-08-30T01:42:31 checking for shutdown... yes
+2026-08-30T01:42:31 checking for wctob... yes
+2026-08-30T01:42:31 checking for nl_langinfo and CODESET... yes
+2026-08-30T01:42:31 checking for a traditional french locale... none
+2026-08-30T01:42:31 checking whether malloc is ptrdiff_t safe... yes
+2026-08-30T01:42:31 checking whether malloc, realloc, calloc set errno on failure... yes
+2026-08-30T01:42:31 checking whether lstat correctly handles trailing slash... guessing yes
+2026-08-30T01:42:31 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc options needed to detect all undeclared functions... none needed
+2026-08-30T01:42:31 checking whether // is distinct from /... unknown, assuming no
+2026-08-30T01:42:31 checking whether realpath works... guessing yes
+2026-08-30T01:42:32 checking for faccessat... yes
+2026-08-30T01:42:32 checking for getcwd... yes
+2026-08-30T01:42:32 checking for complete errno.h... yes
+2026-08-30T01:42:32 checking for error... yes
+2026-08-30T01:42:32 checking whether error_at_line is declared... yes
+2026-08-30T01:42:32 checking for error_at_line... yes
+2026-08-30T01:42:32 checking for working error function... guessing yes
+2026-08-30T01:42:32 checking whether strerror_r is declared... yes
+2026-08-30T01:42:32 checking whether strerror_r returns char *... yes
+2026-08-30T01:42:32 checking whether ctype.h defines __header_inline... no
+2026-08-30T01:42:32 checking for working fcntl.h... cross-compiling
+2026-08-30T01:42:33 checking for pid_t... yes
+2026-08-30T01:42:33 checking for mode_t... yes
+2026-08-30T01:42:33 checking whether stat file-mode macros are broken... no
+2026-08-30T01:42:33 checking for C/C++ restrict keyword... __restrict__
+2026-08-30T01:42:33 checking for nlink_t... yes
+2026-08-30T01:42:33 checking whether getdtablesize is declared... yes
+2026-08-30T01:42:33 checking for getopt.h... (cached) yes
+2026-08-30T01:42:33 checking for getopt_long_only... yes
+2026-08-30T01:42:33 checking whether getopt is POSIX compatible... guessing yes
+2026-08-30T01:42:33 checking for working GNU getopt function... guessing no
+2026-08-30T01:42:33 checking for pthread.h... (cached) yes
+2026-08-30T01:42:34 checking for pthread_kill in -lpthread... yes
+2026-08-30T01:42:34 checking whether POSIX threads API is available... yes
+2026-08-30T01:42:34 checking whether setlocale (LC_ALL, NULL) is multithread-safe... yes
+2026-08-30T01:42:34 checking whether setlocale (category, NULL) is multithread-safe... yes
+2026-08-30T01:42:34 checking whether limits.h has WORD_BIT, BOOL_WIDTH etc.... yes
+2026-08-30T01:42:34 checking for wint_t... yes
+2026-08-30T01:42:34 checking whether wint_t is large enough... yes
+2026-08-30T01:42:34 checking whether the compiler produces multi-arch binaries... no
+2026-08-30T01:42:34 checking whether stdint.h conforms to C99... guessing yes
+2026-08-30T01:42:34 checking whether stdint.h works without ISO C predefines... yes
+2026-08-30T01:42:34 checking whether stdint.h has UINTMAX_WIDTH etc.... yes
+2026-08-30T01:42:34 checking whether INT32_MAX < INTMAX_MAX... yes
+2026-08-30T01:42:35 checking whether INT64_MAX == LONG_MAX... no
+2026-08-30T01:42:35 checking whether UINT32_MAX < UINTMAX_MAX... yes
+2026-08-30T01:42:35 checking whether UINT64_MAX == ULONG_MAX... no
+2026-08-30T01:42:35 checking whether langinfo.h defines CODESET... yes
+2026-08-30T01:42:35 checking whether langinfo.h defines T_FMT_AMPM... yes
+2026-08-30T01:42:35 checking whether langinfo.h defines ALTMON_1... yes
+2026-08-30T01:42:35 checking whether langinfo.h defines ERA... yes
+2026-08-30T01:42:35 checking whether langinfo.h defines YESEXPR... yes
+2026-08-30T01:42:35 checking for wchar_t... yes
+2026-08-30T01:42:35 checking for good max_align_t... yes
+2026-08-30T01:42:35 checking whether NULL can be used in arbitrary expressions... yes
+2026-08-30T01:42:35 checking for unreachable... no
+2026-08-30T01:42:35 checking whether locale.h defines locale_t... yes
+2026-08-30T01:42:35 checking whether locale.h conforms to POSIX:2001... yes
+2026-08-30T01:42:35 checking whether struct lconv is properly defined... yes
+2026-08-30T01:42:36 checking whether imported symbols can be declared weak... guessing yes
+2026-08-30T01:42:36 checking for multithread API to use... posix
+2026-08-30T01:42:36 checking for a sed that does not truncate output... /usr/bin/sed
+2026-08-30T01:42:36 checking whether malloc (0) returns nonnull... (cached) yes
+2026-08-30T01:42:36 checking for mbstate_t... yes
+2026-08-30T01:42:36 checking for a traditional japanese locale... none
+2026-08-30T01:42:36 checking for a french Unicode locale... none
+2026-08-30T01:42:36 checking for a transitional chinese locale... none
+2026-08-30T01:42:36 checking for inline... inline
+2026-08-30T01:42:36 checking whether <limits.h> defines MIN and MAX... no
+2026-08-30T01:42:36 checking whether <sys/param.h> defines MIN and MAX... yes
+2026-08-30T01:42:37 checking for O_CLOEXEC... yes
+2026-08-30T01:42:37 checking for promoted mode_t type... mode_t
+2026-08-30T01:42:37 checking whether alarm is declared... yes
+2026-08-30T01:42:37 checking for ssize_t... yes
+2026-08-30T01:42:37 checking whether fcloseall is declared... yes
+2026-08-30T01:42:37 checking whether getw is declared... yes
+2026-08-30T01:42:37 checking whether putw is declared... yes
+2026-08-30T01:42:37 checking which flavor of printf attribute matches inttypes macros... system
+2026-08-30T01:42:37 checking whether ecvt is declared... yes
+2026-08-30T01:42:38 checking whether fcvt is declared... yes
+2026-08-30T01:42:38 checking whether gcvt is declared... yes
+2026-08-30T01:42:38 checking whether strdup is declared... yes
+2026-08-30T01:42:38 checking whether strerror(0) succeeds... guessing yes
+2026-08-30T01:42:38 checking for strerror_r... yes
+2026-08-30T01:42:38 checking for strerror_r with POSIX signature... no
+2026-08-30T01:42:38 checking whether __xpg_strerror_r works... guessing no
+2026-08-30T01:42:38 checking for struct timespec in <time.h>... yes
+2026-08-30T01:42:38 checking for TIME_UTC in <time.h>... yes
+2026-08-30T01:42:38 checking whether execvpe is declared... yes
+2026-08-30T01:42:38 checking whether wcsdup is declared... yes
+2026-08-30T01:42:38 checking whether iswcntrl works... guessing yes
+2026-08-30T01:42:39 checking for towlower... yes
+2026-08-30T01:42:39 checking for wctype_t... yes
+2026-08-30T01:42:39 checking for wctrans_t... yes
+2026-08-30T01:42:39 checking for C compiler option to allow warnings... -Wno-error
+2026-08-30T01:42:39 checking for C++ compiler option to allow warnings... -Wno-error
+2026-08-30T01:42:39 checking whether <sys/socket.h> is self-contained... yes
+2026-08-30T01:42:39 checking for shutdown... (cached) yes
+2026-08-30T01:42:39 checking whether <sys/socket.h> defines the SHUT_* macros... yes
+2026-08-30T01:42:39 checking for struct sockaddr_storage... yes
+2026-08-30T01:42:39 checking for sa_family_t... yes
+2026-08-30T01:42:39 checking for struct sockaddr_storage.ss_family... yes
+2026-08-30T01:42:40 checking if environ is properly declared... yes
+2026-08-30T01:42:40 checking whether getcwd (NULL, 0) allocates memory for result... guessing yes
+2026-08-30T01:42:40 checking for getcwd with POSIX signature... yes
+2026-08-30T01:42:40 checking for struct timeval... yes
+2026-08-30T01:42:40 checking for wide-enough struct timeval.tv_sec member... yes
+2026-08-30T01:42:40 checking for IPv4 sockets... yes
+2026-08-30T01:42:40 checking for IPv6 sockets... yes
+2026-08-30T01:42:40 checking for LC_MESSAGES... yes
+2026-08-30T01:42:40 checking for uselocale... yes
+2026-08-30T01:42:40 checking whether uselocale works... guessing yes
+2026-08-30T01:42:40 checking for fake locale system (OpenBSD)... guessing no
+2026-08-30T01:42:40 checking for Solaris 11.4 locale system... no
+2026-08-30T01:42:40 checking for getlocalename_l... no
+2026-08-30T01:42:40 checking for CFPreferencesCopyAppValue... no
+2026-08-30T01:42:40 checking for CFLocaleCopyPreferredLanguages... no
+2026-08-30T01:42:41 checking for library needed for semaphore functions... none
+2026-08-30T01:42:41 checking for mmap... yes
+2026-08-30T01:42:41 checking for MAP_ANONYMOUS... yes
+2026-08-30T01:42:41 checking whether memchr works... guessing no
+2026-08-30T01:42:41 checking whether <sys/select.h> is self-contained... yes
+2026-08-30T01:42:41 checking for pthread_t... yes
+2026-08-30T01:42:41 checking for pthread_spinlock_t... yes
+2026-08-30T01:42:42 checking for PTHREAD_CREATE_DETACHED... yes
+2026-08-30T01:42:42 checking for PTHREAD_MUTEX_RECURSIVE... yes
+2026-08-30T01:42:42 checking for PTHREAD_MUTEX_ROBUST... yes
+2026-08-30T01:42:42 checking for PTHREAD_PROCESS_SHARED... yes
+2026-08-30T01:42:42 checking for sigset_t... yes
+2026-08-30T01:42:42 checking for sched.h... yes
+2026-08-30T01:42:42 checking for struct sched_param... yes
+2026-08-30T01:42:42 checking for library containing setsockopt... none needed
+2026-08-30T01:42:42 checking whether setenv is declared... yes
+2026-08-30T01:42:42 checking for search.h... yes
+2026-08-30T01:42:43 checking for tsearch... yes
+2026-08-30T01:42:43 checking for uid_t in sys/types.h... yes
+2026-08-30T01:42:43 checking for volatile sig_atomic_t... yes
+2026-08-30T01:42:43 checking for sighandler_t... yes
+2026-08-30T01:42:43 checking whether <sys/ioctl.h> declares ioctl... yes
+2026-08-30T01:42:43 checking whether unsetenv is declared... yes
+2026-08-30T01:42:43 checking for alignas and alignof... yes, <stdalign.h> macros
+2026-08-30T01:42:43 checking for alloca as a compiler built-in... yes
+2026-08-30T01:42:43 checking whether to enable assertions... yes
+2026-08-30T01:42:43 checking for static_assert... yes, an <assert.h> macro
+2026-08-30T01:42:43 checking whether btowc(0) is correct... guessing yes
+2026-08-30T01:42:43 checking whether btowc(EOF) is correct... guessing yes
+2026-08-30T01:42:44 checking for __builtin_expect... yes
+2026-08-30T01:42:44 checking whether calloc (0, n) and calloc (n, 0) return nonnull... (cached) yes
+2026-08-30T01:42:44 checking for library containing clock_gettime... none required
+2026-08-30T01:42:44 checking for clock_getres... yes
+2026-08-30T01:42:44 checking for clock_gettime... yes
+2026-08-30T01:42:44 checking for clock_settime... yes
+2026-08-30T01:42:44 checking whether // is distinct from /... (cached) unknown, assuming no
+2026-08-30T01:42:44 checking whether dup2 works... guessing yes
+2026-08-30T01:42:44 checking whether fcntl handles F_DUPFD correctly... guessing yes
+2026-08-30T01:42:44 checking whether fcntl understands F_DUPFD_CLOEXEC... guessing no
+2026-08-30T01:42:45 checking for __fpending... yes
+2026-08-30T01:42:45 checking whether __fpending is declared... yes
+2026-08-30T01:42:45 checking whether free is known to preserve errno... yes
+2026-08-30T01:42:45 checking whether getdtablesize works... guessing yes
+2026-08-30T01:42:45 checking for getprogname... no
+2026-08-30T01:42:45 checking whether program_invocation_name is declared... yes
+2026-08-30T01:42:45 checking whether program_invocation_short_name is declared... yes
+2026-08-30T01:42:45 checking whether __argv is declared... no
+2026-08-30T01:42:45 checking for getrandom... yes
+2026-08-30T01:42:45 checking whether getrandom is compatible with its GNU+BSD signature... yes
+2026-08-30T01:42:45 checking for C compiler flag to ignore unused libraries... -Wl,--as-needed
+2026-08-30T01:42:46 checking whether the compiler supports the __inline keyword... yes
+2026-08-30T01:42:46 checking for pthread_rwlock_t... yes
+2026-08-30T01:42:46 checking whether pthread_rwlock_rdlock prefers a writer to a reader... guessing no
+2026-08-30T01:42:46 checking whether lseek detects pipes... yes
+2026-08-30T01:42:46 checking whether SEEK_DATA works but is incompatible with GNU... no
+2026-08-30T01:42:46 checking whether malloc (0) returns nonnull... (cached) yes
+2026-08-30T01:42:46 checking whether mbrtowc handles incomplete characters... guessing yes
+2026-08-30T01:42:46 checking whether mbrtowc works as well as mbtowc... guessing yes
+2026-08-30T01:42:46 checking whether mbrtowc handles a NULL pwc argument... guessing yes
+2026-08-30T01:42:46 checking whether mbrtowc handles a NULL string argument... guessing yes
+2026-08-30T01:42:46 checking whether mbrtowc has a correct return value... guessing yes
+2026-08-30T01:42:46 checking whether mbrtowc returns 0 when parsing a NUL character... guessing yes
+2026-08-30T01:42:46 checking whether mbrtowc stores incomplete characters... guessing no
+2026-08-30T01:42:46 checking whether mbrtowc works on empty input... guessing no
+2026-08-30T01:42:46 checking whether the C locale is free of encoding errors... guessing no
+2026-08-30T01:42:46 checking whether mbrtowc handles incomplete characters... (cached) guessing yes
+2026-08-30T01:42:46 checking whether mbrtowc works as well as mbtowc... (cached) guessing yes
+2026-08-30T01:42:46 checking for mbtowc... yes
+2026-08-30T01:42:46 checking for mempcpy... yes
+2026-08-30T01:42:46 checking whether mkdir handles trailing slash... guessing yes
+2026-08-30T01:42:46 checking whether mkdir handles trailing dot... guessing yes
+2026-08-30T01:42:46 checking for working mkstemp... guessing yes
+2026-08-30T01:42:46 checking for nl_langinfo... yes
+2026-08-30T01:42:46 checking whether YESEXPR works... guessing yes
+2026-08-30T01:42:46 checking whether open recognizes a trailing slash... guessing yes
+2026-08-30T01:42:46 checking whether program_invocation_name is declared... (cached) yes
+2026-08-30T01:42:46 checking whether program_invocation_short_name is declared... (cached) yes
+2026-08-30T01:42:46 checking for rawmemchr... yes
+2026-08-30T01:42:46 checking whether readlink signature is correct... yes
+2026-08-30T01:42:46 checking whether readlink handles trailing slash correctly... guessing yes
+2026-08-30T01:42:46 checking whether readlink truncates results correctly... guessing yes
+2026-08-30T01:42:46 checking whether realloc (0, 0) returns nonnull... (cached) yes
+2026-08-30T01:42:47 checking for reallocarray... yes
+2026-08-30T01:42:47 checking for working re_compile_pattern... guessing no
+2026-08-30T01:42:47 checking for libintl.h... yes
+2026-08-30T01:42:47 checking whether isblank is declared... yes
+2026-08-30T01:42:47 checking for rpmatch... yes
+2026-08-30T01:42:47 checking whether setlocale (LC_ALL, NULL) is multithread-safe... (cached) yes
+2026-08-30T01:42:47 checking whether setlocale (category, NULL) is multithread-safe... (cached) yes
+2026-08-30T01:42:47 checking whether sleep is declared... yes
+2026-08-30T01:42:47 checking for working sleep... guessing yes
+2026-08-30T01:42:47 checking for ssize_t... (cached) yes
+2026-08-30T01:42:47 checking whether stat handles trailing slashes on files... guessing yes
+2026-08-30T01:42:47 checking for struct stat.st_atim.tv_nsec... yes
+2026-08-30T01:42:47 checking whether struct stat.st_atim is of type struct timespec... yes
+2026-08-30T01:42:47 checking for struct stat.st_birthtimespec.tv_nsec... no
+2026-08-30T01:42:47 checking for struct stat.st_birthtimensec... no
+2026-08-30T01:42:48 checking for struct stat.st_birthtim.tv_nsec... no
+2026-08-30T01:42:48 checking for va_copy... yes
+2026-08-30T01:42:48 checking for bool, true, false... no
+2026-08-30T01:42:48 checking for working strerror function... guessing yes
+2026-08-30T01:42:48 checking for strtoll... yes
+2026-08-30T01:42:48 checking whether strtoll works... guessing no
+2026-08-30T01:42:48 checking for strtoull... yes
+2026-08-30T01:42:48 checking whether strtoull works... guessing no
+2026-08-30T01:42:48 checking whether unlink honors trailing slashes... guessing yes
+2026-08-30T01:42:48 checking whether unlink of a parent directory fails as it should... guessing yes
+2026-08-30T01:42:48 checking for useconds_t... yes
+2026-08-30T01:42:48 checking whether usleep allows large arguments... guessing yes
+2026-08-30T01:42:48 checking for variable-length arrays... yes
+2026-08-30T01:42:48 checking whether mbrtowc handles incomplete characters... (cached) guessing yes
+2026-08-30T01:42:48 checking whether mbrtowc works as well as mbtowc... (cached) guessing yes
+2026-08-30T01:42:48 checking whether wcrtomb works in the C locale... guessing yes
+2026-08-30T01:42:48 checking whether wcrtomb return value is correct... guessing yes
+2026-08-30T01:42:48 checking for a traditional french locale... (cached) none
+2026-08-30T01:42:48 checking for a french Unicode locale... (cached) none
+2026-08-30T01:42:48 checking for a traditional french locale... (cached) none
+2026-08-30T01:42:49 checking for a turkish Unicode locale... none
+2026-08-30T01:42:49 checking whether fdopen sets errno... guessing yes
+2026-08-30T01:42:49 checking for flexible array member... yes
+2026-08-30T01:42:49 checking for ftruncate... yes
+2026-08-30T01:42:49 checking for getpagesize... yes
+2026-08-30T01:42:49 checking whether getpagesize is declared... yes
+2026-08-30T01:42:49 checking for gettimeofday with POSIX signature... yes
+2026-08-30T01:42:49 checking for duplocale... yes
+2026-08-30T01:42:49 checking for library containing inet_pton... none required
+2026-08-30T01:42:49 checking whether inet_pton is declared... yes
+2026-08-30T01:42:49 checking whether byte ordering is bigendian... (cached) no
+2026-08-30T01:42:49 checking for ioctl... yes
+2026-08-30T01:42:50 checking for ioctl with POSIX signature... no
+2026-08-30T01:42:50 checking for newlocale... yes
+2026-08-30T01:42:50 checking for newlocale... (cached) yes
+2026-08-30T01:42:50 checking for duplocale... (cached) yes
+2026-08-30T01:42:50 checking for freelocale... yes
+2026-08-30T01:42:50 checking for newlocale... (cached) yes
+2026-08-30T01:42:50 checking for a traditional french locale... (cached) none
+2026-08-30T01:42:50 checking for a french Unicode locale... (cached) none
+2026-08-30T01:42:50 checking for a traditional japanese locale... (cached) none
+2026-08-30T01:42:50 checking for a transitional chinese locale... (cached) none
+2026-08-30T01:42:50 checking for a french Unicode locale... (cached) none
+2026-08-30T01:42:50 checking for bp-sym.h... no
+2026-08-30T01:42:50 checking for library containing nanosleep... none required
+2026-08-30T01:42:50 checking for working nanosleep... guessing no (mishandles large arguments)
+2026-08-30T01:42:50 checking whether <netinet/in.h> is self-contained... yes
+2026-08-30T01:42:50 checking for a traditional french locale... (cached) none
+2026-08-30T01:42:50 checking for a french Unicode locale... (cached) none
+2026-08-30T01:42:50 checking for uselocale... (cached) yes
+2026-08-30T01:42:50 checking whether uselocale works... (cached) guessing yes
+2026-08-30T01:42:50 checking for getppriv... no
+2026-08-30T01:42:50 checking whether signature of pselect conforms to POSIX... yes
+2026-08-30T01:42:50 checking whether pselect detects invalid fds... guessing yes
+2026-08-30T01:42:50 checking whether pthread_create exists as a global function... yes
+2026-08-30T01:42:51 checking whether pthread_sigmask is a macro... no
+2026-08-30T01:42:51 checking whether pthread_sigmask works without -lpthread... guessing yes
+2026-08-30T01:42:51 checking whether pthread_sigmask returns error numbers... guessing yes
+2026-08-30T01:42:51 checking whether pthread_sigmask unblocks signals correctly... guessing yes
+2026-08-30T01:42:51 checking for putenv compatible with GNU and SVID... guessing yes
+2026-08-30T01:42:51 checking for raise... yes
+2026-08-30T01:42:51 checking for sigprocmask... yes
+2026-08-30T01:42:51 checking whether sched_yield is declared... yes
+2026-08-30T01:42:51 checking whether select supports a 0 argument... guessing yes
+2026-08-30T01:42:51 checking whether select detects invalid fds... guessing yes
+2026-08-30T01:42:51 checking whether setenv validates arguments... guessing yes
+2026-08-30T01:42:51 checking whether setlocale supports the C locale... guessing yes
+2026-08-30T01:42:51 checking for a traditional french locale... (cached) none
+2026-08-30T01:42:51 checking for a french Unicode locale... (cached) none
+2026-08-30T01:42:51 checking for a traditional japanese locale... (cached) none
+2026-08-30T01:42:51 checking for a transitional chinese locale... (cached) none
+2026-08-30T01:42:51 checking for sigprocmask... (cached) yes
+2026-08-30T01:42:51 checking for socklen_t... yes
+2026-08-30T01:42:51 checking for catgets... yes
+2026-08-30T01:42:51 checking whether symlink handles trailing slash correctly... guessing yes
+2026-08-30T01:42:51 checking for pthread_atfork... yes
+2026-08-30T01:42:51 checking for sys/single_threaded.h... yes
+2026-08-30T01:42:51 checking whether time() works... guessing no
+2026-08-30T01:42:52 checking for unsetenv... yes
+2026-08-30T01:42:52 checking for unsetenv() return type... int
+2026-08-30T01:42:52 checking whether unsetenv obeys POSIX... guessing yes
+2026-08-30T01:42:52 checking for a traditional french locale... (cached) none
+2026-08-30T01:42:52 checking for a french Unicode locale... (cached) none
+2026-08-30T01:42:52 checking for a traditional japanese locale... (cached) none
+2026-08-30T01:42:52 checking for a transitional chinese locale... (cached) none
+2026-08-30T01:42:52 checking whether wctob works... guessing yes
+2026-08-30T01:42:52 checking whether wctob is declared... yes
+2026-08-30T01:42:53 checking size of off_t... 8
+2026-08-30T01:42:53 checking how to print strings... printf
+2026-08-30T01:42:53 checking for a sed that does not truncate output... (cached) /usr/bin/sed
+2026-08-30T01:42:53 checking for fgrep... /usr/bin/grep -F
+2026-08-30T01:42:53 checking for ld used by /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld
+2026-08-30T01:42:53 checking if the linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld) is GNU ld... yes
+2026-08-30T01:42:53 checking for BSD- or MS-compatible name lister (nm)... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-nm
+2026-08-30T01:42:53 checking the name lister (/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-nm) interface... BSD nm
+2026-08-30T01:42:53 checking whether ln -s works... yes
+2026-08-30T01:42:53 checking the maximum length of command line arguments... 1572864
+2026-08-30T01:42:53 checking how to convert x86_64-pc-linux-gnu file names to arm-buildroot-linux-gnueabihf format... func_convert_file_noop
+2026-08-30T01:42:53 checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+2026-08-30T01:42:53 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld option to reload object files... -r
+2026-08-30T01:42:53 checking for arm-buildroot-linux-gnueabihf-file... no
+2026-08-30T01:42:53 checking for file... file
+2026-08-30T01:42:53 configure: WARNING: using cross tools not prefixed with host triplet
+2026-08-30T01:42:53 checking for arm-buildroot-linux-gnueabihf-objdump... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-objdump
+2026-08-30T01:42:53 checking how to recognize dependent libraries... pass_all
+2026-08-30T01:42:53 checking for arm-buildroot-linux-gnueabihf-dlltool... no
+2026-08-30T01:42:53 checking for dlltool... no
+2026-08-30T01:42:53 checking how to associate runtime and link libraries... printf %s\n
+2026-08-30T01:42:53 checking for arm-buildroot-linux-gnueabihf-ar... (cached) /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ar
+2026-08-30T01:42:53 checking for archiver @FILE support... @
+2026-08-30T01:42:53 checking for arm-buildroot-linux-gnueabihf-strip... (cached) /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip
+2026-08-30T01:42:53 checking for arm-buildroot-linux-gnueabihf-ranlib... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ranlib
+2026-08-30T01:42:53 checking command to parse /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-nm output from /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc object... ok
+2026-08-30T01:42:53 checking for sysroot... no
+2026-08-30T01:42:53 checking for a working dd... /usr/bin/dd
+2026-08-30T01:42:53 checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+2026-08-30T01:42:53 checking for arm-buildroot-linux-gnueabihf-mt... no
+2026-08-30T01:42:53 checking for mt... mt
+2026-08-30T01:42:53 checking if mt is a manifest tool... no
+2026-08-30T01:42:53 checking for dlfcn.h... yes
+2026-08-30T01:42:53 checking for objdir... .libs
+2026-08-30T01:42:54 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc supports -fno-rtti -fno-exceptions... no
+2026-08-30T01:42:54 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc option to produce PIC... -fPIC -DPIC
+2026-08-30T01:42:54 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc PIC flag -fPIC -DPIC works... yes
+2026-08-30T01:42:54 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc static flag -static works... yes
+2026-08-30T01:42:54 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc supports -c -o file.o... yes
+2026-08-30T01:42:54 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc supports -c -o file.o... (cached) yes
+2026-08-30T01:42:54 checking whether the /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld) supports shared libraries... yes
+2026-08-30T01:42:54 checking whether -lc should be explicitly linked in... no
+2026-08-30T01:42:54 checking dynamic linker characteristics... GNU/Linux ld.so
+2026-08-30T01:42:54 checking how to hardcode library paths into programs... immediate
+2026-08-30T01:42:54 checking whether stripping libraries is possible... yes
+2026-08-30T01:42:54 checking if libtool supports shared libraries... yes
+2026-08-30T01:42:54 checking whether to build shared libraries... yes
+2026-08-30T01:42:54 checking whether to build static libraries... no
+2026-08-30T01:42:54 checking for ld used by GCC... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld
+2026-08-30T01:42:54 checking if the linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld) is GNU ld... yes
+2026-08-30T01:42:54 checking for shared library run path origin... done
+2026-08-30T01:42:55 checking for iconv... yes
+2026-08-30T01:42:55 checking for working iconv... guessing yes
+2026-08-30T01:42:55 checking for iconv declaration...
+2026-08-30T01:42:55 extern size_t iconv (iconv_t cd, char * *inbuf, size_t *inbytesleft, char * *outbuf, size_t *outbytesleft);
+2026-08-30T01:42:55 checking whether NLS is requested... no
+2026-08-30T01:42:55 checking for msgfmt... /usr/bin/msgfmt
+2026-08-30T01:42:55 checking for gmsgfmt... /usr/bin/msgfmt
+2026-08-30T01:42:55 checking for xgettext... /usr/bin/xgettext
+2026-08-30T01:42:55 checking for msgmerge... /usr/bin/msgmerge
+2026-08-30T01:42:55 checking for CFPreferencesCopyAppValue... (cached) no
+2026-08-30T01:42:55 checking for CFLocaleCopyPreferredLanguages... (cached) no
+2026-08-30T01:42:55 checking whether to use NLS... no
+2026-08-30T01:42:55 checking for uuid_generate in -luuid... yes
+2026-08-30T01:42:55 checking for library containing tgetent... -lncurses
+2026-08-30T01:42:55 checking for readline in -lreadline... yes
+2026-08-30T01:42:55 checking for rl_variable_value in -lreadline... yes
+2026-08-30T01:42:56 checking for uuid/uuid.h... yes
+2026-08-30T01:42:56 checking for getopt.h... (cached) yes
+2026-08-30T01:42:56 checking for linux/ext2_fs.h... no
+2026-08-30T01:42:56 checking for linux/unistd.h... yes
+2026-08-30T01:42:56 checking for readline/readline.h... yes
+2026-08-30T01:42:56 checking for readline/history.h... yes
+2026-08-30T01:42:56 checking for termcap.h... yes
+2026-08-30T01:42:56 checking for execinfo.h... yes
+2026-08-30T01:42:56 checking for backtrace in -lc... yes
+2026-08-30T01:42:56 checking pkg-config is at least version 0.9.0... yes
+2026-08-30T01:42:56 checking for CHECK... no
+2026-08-30T01:42:56 Unable to locate check version 0.9.3 or higher: not building
+2026-08-30T01:42:57 checking for ld used by /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc... (cached) /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld
+2026-08-30T01:42:57 checking if the linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld) is GNU ld... (cached) yes
+2026-08-30T01:42:57 checking whether byte ordering is bigendian... (cached) no
+2026-08-30T01:42:57 checking for inline... (cached) inline
+2026-08-30T01:42:57 checking for an ANSI C-conforming const... yes
+2026-08-30T01:42:57 checking for C/C++ restrict keyword... (cached) __restrict__
+2026-08-30T01:42:57 checking for sigaction... yes
+2026-08-30T01:42:57 checking for getuid... yes
+2026-08-30T01:42:57 checking for rl_completion_matches... yes
+2026-08-30T01:42:57 checking for canonicalize_file_name... (cached) yes
+2026-08-30T01:42:57 checking for library containing blkid_probe_get_topology... -lblkid
+2026-08-30T01:42:57 checking for blkid_probe_get_topology... yes
+2026-08-30T01:42:57 checking that generated files are newer than configure... done
+2026-08-30T01:42:57 configure: creating ./config.status
+2026-08-30T01:42:59 config.status: creating Makefile
+2026-08-30T01:42:59 config.status: creating lib/Makefile
+2026-08-30T01:42:59 config.status: creating include/Makefile
+2026-08-30T01:42:59 config.status: creating include/parted/Makefile
+2026-08-30T01:42:59 config.status: creating libparted/Makefile
+2026-08-30T01:43:00 config.status: creating libparted/labels/Makefile
+2026-08-30T01:43:00 config.status: creating libparted/fs/Makefile
+2026-08-30T01:43:00 config.status: creating libparted/tests/Makefile
+2026-08-30T01:43:00 config.status: creating libparted.pc
+2026-08-30T01:43:00 config.status: creating libparted-fs-resize.pc
+2026-08-30T01:43:00 config.status: creating parted/Makefile
+2026-08-30T01:43:00 config.status: creating partprobe/Makefile
+2026-08-30T01:43:00 config.status: creating doc/Makefile
+2026-08-30T01:43:00 config.status: creating doc/C/Makefile
+2026-08-30T01:43:00 config.status: creating doc/pt_BR/Makefile
+2026-08-30T01:43:00 config.status: creating debug/Makefile
+2026-08-30T01:43:00 config.status: creating debug/test/Makefile
+2026-08-30T01:43:00 config.status: creating tests/Makefile
+2026-08-30T01:43:00 config.status: creating po/Makefile.in
+2026-08-30T01:43:00 config.status: creating lib/config.h
+2026-08-30T01:43:00 config.status: executing depfiles commands
+2026-08-30T01:43:00 config.status: executing libtool commands
+2026-08-30T01:43:00 config.status: executing po-directories commands
+2026-08-30T01:43:00 config.status: creating po/POTFILES
+2026-08-30T01:43:00 config.status: creating po/Makefile
+2026-08-30T01:43:00 configure: WARNING: unrecognized options: --disable-gtk-doc, --disable-gtk-doc-html, --disable-doc, --disable-docs, --disable-documentation, --with-xmlto, --with-fop, --enable-ipv6
+2026-08-30T01:43:00 
+2026-08-30T01:43:00 Type 'make' to compile parted.
+2026-08-30T01:43:01 [7m>>> parted 3.6 Building[27m
+2026-08-30T01:43:01 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1  /usr/bin/make -j1  -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/parted-3.6/
+2026-08-30T01:43:01 /usr/bin/make  all-recursive
+2026-08-30T01:43:01 Making all in po
+2026-08-30T01:43:01 Making all in lib
+2026-08-30T01:43:01 GEN      alloca.h
+2026-08-30T01:43:01 GEN      configmake.h
+2026-08-30T01:43:01 GEN      fcntl.h
+2026-08-30T01:43:01 GEN      getopt.h
+2026-08-30T01:43:01 GEN      getopt-cdefs.h
+2026-08-30T01:43:01 GEN      malloc/dynarray.gl.h
+2026-08-30T01:43:01 GEN      malloc/dynarray-skeleton.gl.h
+2026-08-30T01:43:01 GEN      malloc/scratch_buffer.gl.h
+2026-08-30T01:43:01 GEN      inttypes.h
+2026-08-30T01:43:01 GEN      langinfo.h
+2026-08-30T01:43:01 GEN      limits.h
+2026-08-30T01:43:01 GEN      locale.h
+2026-08-30T01:43:01 GEN      stdckdint.h
+2026-08-30T01:43:01 GEN      stddef.h
+2026-08-30T01:43:01 GEN      stdio.h
+2026-08-30T01:43:01 GEN      stdlib.h
+2026-08-30T01:43:01 GEN      string.h
+2026-08-30T01:43:01 GEN      sys/random.h
+2026-08-30T01:43:01 GEN      sys/stat.h
+2026-08-30T01:43:01 GEN      sys/types.h
+2026-08-30T01:43:01 GEN      time.h
+2026-08-30T01:43:01 GEN      unistd.h
+2026-08-30T01:43:02 GEN      wchar.h
+2026-08-30T01:43:02 GEN      wctype.h
+2026-08-30T01:43:02 /usr/bin/make  all-am
+2026-08-30T01:43:02 CC       libgnulib_la-argmatch.lo
+2026-08-30T01:43:02 CC       libgnulib_la-basename-lgpl.lo
+2026-08-30T01:43:02 CC       libgnulib_la-c-ctype.lo
+2026-08-30T01:43:02 CC       libgnulib_la-c-strcasecmp.lo
+2026-08-30T01:43:02 CC       libgnulib_la-c-strncasecmp.lo
+2026-08-30T01:43:03 CC       libgnulib_la-cloexec.lo
+2026-08-30T01:43:03 CC       libgnulib_la-close-stream.lo
+2026-08-30T01:43:03 CC       libgnulib_la-closeout.lo
+2026-08-30T01:43:03 CC       libgnulib_la-dirname.lo
+2026-08-30T01:43:03 CC       libgnulib_la-basename.lo
+2026-08-30T01:43:04 CC       libgnulib_la-dirname-lgpl.lo
+2026-08-30T01:43:04 CC       libgnulib_la-stripslash.lo
+2026-08-30T01:43:04 CC       libgnulib_la-exitfail.lo
+2026-08-30T01:43:04 CC       libgnulib_la-fcntl.lo
+2026-08-30T01:43:04 CC       libgnulib_la-fd-hook.lo
+2026-08-30T01:43:04 CC       libgnulib_la-getopt.lo
+2026-08-30T01:43:05 CC       libgnulib_la-getopt1.lo
+2026-08-30T01:43:05 CC       libgnulib_la-getprogname.lo
+2026-08-30T01:43:05 CC       malloc/libgnulib_la-dynarray_at_failure.lo
+2026-08-30T01:43:05 CC       malloc/libgnulib_la-dynarray_emplace_enlarge.lo
+2026-08-30T01:43:06 CC       malloc/libgnulib_la-dynarray_finalize.lo
+2026-08-30T01:43:06 CC       malloc/libgnulib_la-dynarray_resize.lo
+2026-08-30T01:43:06 CC       malloc/libgnulib_la-dynarray_resize_clear.lo
+2026-08-30T01:43:06 CC       malloc/libgnulib_la-scratch_buffer_grow.lo
+2026-08-30T01:43:06 CC       malloc/libgnulib_la-scratch_buffer_grow_preserve.lo
+2026-08-30T01:43:07 CC       malloc/libgnulib_la-scratch_buffer_set_array_size.lo
+2026-08-30T01:43:07 CC       libgnulib_la-hard-locale.lo
+2026-08-30T01:43:07 CC       libgnulib_la-ialloc.lo
+2026-08-30T01:43:07 CC       libgnulib_la-localcharset.lo
+2026-08-30T01:43:07 CC       glthread/libgnulib_la-lock.lo
+2026-08-30T01:43:08 CC       libgnulib_la-long-options.lo
+2026-08-30T01:43:08 CC       libgnulib_la-malloca.lo
+2026-08-30T01:43:08 CC       libgnulib_la-mbrtowc.lo
+2026-08-30T01:43:08 CC       libgnulib_la-progname.lo
+2026-08-30T01:43:08 CC       libgnulib_la-quotearg.lo
+2026-08-30T01:43:09 CC       libgnulib_la-regex.lo
+2026-08-30T01:43:13 CC       libgnulib_la-safe-read.lo
+2026-08-30T01:43:13 CC       libgnulib_la-setlocale_null.lo
+2026-08-30T01:43:13 CC       libgnulib_la-stat-time.lo
+2026-08-30T01:43:13 CC       libgnulib_la-strerror.lo
+2026-08-30T01:43:13 CC       libgnulib_la-strtoll.lo
+2026-08-30T01:43:14 CC       libgnulib_la-strtoull.lo
+2026-08-30T01:43:14 CC       libgnulib_la-tempname.lo
+2026-08-30T01:43:14 CC       glthread/libgnulib_la-threadlib.lo
+2026-08-30T01:43:14 CC       libgnulib_la-unistd.lo
+2026-08-30T01:43:15 CC       libgnulib_la-version-etc.lo
+2026-08-30T01:43:15 CC       libgnulib_la-version-etc-fsf.lo
+2026-08-30T01:43:15 CC       libgnulib_la-wctype-h.lo
+2026-08-30T01:43:15 CC       libgnulib_la-xmalloc.lo
+2026-08-30T01:43:15 CC       libgnulib_la-xalloc-die.lo
+2026-08-30T01:43:16 CC       libgnulib_la-xstrtol.lo
+2026-08-30T01:43:16 CC       libgnulib_la-xstrtoul.lo
+2026-08-30T01:43:16 CC       libgnulib_la-xstrtoll.lo
+2026-08-30T01:43:16 CC       libgnulib_la-xstrtoull.lo
+2026-08-30T01:43:17 CCLD     libgnulib.la
+2026-08-30T01:43:17 Making all in include
+2026-08-30T01:43:17 Making all in parted
+2026-08-30T01:43:17 /usr/bin/make  all-am
+2026-08-30T01:43:17 make[6]: Nothing to be done for 'all-am'.
+2026-08-30T01:43:17 make[5]: Nothing to be done for 'all-am'.
+2026-08-30T01:43:17 Making all in libparted
+2026-08-30T01:43:17 Makefile:1905: target 'arch/.deps/linux.Plo' given more than once in the same rule
+2026-08-30T01:43:17 Making all in labels
+2026-08-30T01:43:17 /usr/bin/make  all-am
+2026-08-30T01:43:17 CC       aix.lo
+2026-08-30T01:43:17 CC       atari.lo
+2026-08-30T01:43:18 CC       bsd.lo
+2026-08-30T01:43:19 CC       dos.lo
+2026-08-30T01:43:20 CC       dvh.lo
+2026-08-30T01:43:20 CC       efi_crc32.lo
+2026-08-30T01:43:20 CC       gpt.lo
+2026-08-30T01:43:21 CC       loop.lo
+2026-08-30T01:43:21 CC       mac.lo
+2026-08-30T01:43:22 CC       pc98.lo
+2026-08-30T01:43:22 CC       pt-tools.lo
+2026-08-30T01:43:23 CC       rdb.lo
+2026-08-30T01:43:23 CC       sun.lo
+2026-08-30T01:43:24 CCLD     liblabels.la
+2026-08-30T01:43:24 Making all in fs
+2026-08-30T01:43:24 CC       r/filesys.lo
+2026-08-30T01:43:24 CC       r/fat/bootsector.lo
+2026-08-30T01:43:25 CC       r/fat/calc.lo
+2026-08-30T01:43:25 CC       r/fat/clstdup.lo
+2026-08-30T01:43:25 CC       r/fat/context.lo
+2026-08-30T01:43:26 CC       r/fat/count.lo
+2026-08-30T01:43:26 CC       r/fat/fat.lo
+2026-08-30T01:43:26 CC       r/fat/fatio.lo
+2026-08-30T01:43:27 CC       r/fat/resize.lo
+2026-08-30T01:43:27 CC       r/fat/table.lo
+2026-08-30T01:43:28 CC       r/fat/traverse.lo
+2026-08-30T01:43:28 CC       r/hfs/advfs.lo
+2026-08-30T01:43:28 CC       r/hfs/advfs_plus.lo
+2026-08-30T01:43:29 CC       r/hfs/cache.lo
+2026-08-30T01:43:29 CC       r/hfs/file.lo
+2026-08-30T01:43:29 CC       r/hfs/file_plus.lo
+2026-08-30T01:43:29 CC       r/hfs/hfs.lo
+2026-08-30T01:43:30 CC       r/hfs/journal.lo
+2026-08-30T01:43:30 CC       r/hfs/probe.lo
+2026-08-30T01:43:30 CC       r/hfs/reloc.lo
+2026-08-30T01:43:31 CC       r/hfs/reloc_plus.lo
+2026-08-30T01:43:31 CCLD     libparted-fs-resize.la
+2026-08-30T01:43:32 CC       amiga/affs.lo
+2026-08-30T01:43:32 CC       amiga/amiga.lo
+2026-08-30T01:43:32 CC       amiga/apfs.lo
+2026-08-30T01:43:33 CC       amiga/asfs.lo
+2026-08-30T01:43:33 CC       amiga/a-interface.lo
+2026-08-30T01:43:33 CC       btrfs/btrfs.lo
+2026-08-30T01:43:33 CC       ext2/interface.lo
+2026-08-30T01:43:34 CC       fat/bootsector.lo
+2026-08-30T01:43:34 CC       fat/fat.lo
+2026-08-30T01:43:34 CC       f2fs/f2fs.lo
+2026-08-30T01:43:34 CC       hfs/hfs.lo
+2026-08-30T01:43:35 CC       hfs/probe.lo
+2026-08-30T01:43:35 CC       jfs/jfs.lo
+2026-08-30T01:43:35 CC       linux_swap/linux_swap.lo
+2026-08-30T01:43:35 CC       nilfs2/nilfs2.lo
+2026-08-30T01:43:36 CC       ntfs/ntfs.lo
+2026-08-30T01:43:36 CC       reiserfs/reiserfs.lo
+2026-08-30T01:43:36 CC       udf/udf.lo
+2026-08-30T01:43:37 CC       ufs/ufs.lo
+2026-08-30T01:43:37 CC       xfs/xfs.lo
+2026-08-30T01:43:37 CCLD     libfs.la
+2026-08-30T01:43:37 Making all in .
+2026-08-30T01:43:37 Makefile:1905: target 'arch/.deps/linux.Plo' given more than once in the same rule
+2026-08-30T01:43:37 CC       debug.lo
+2026-08-30T01:43:38 CC       architecture.lo
+2026-08-30T01:43:38 CC       device.lo
+2026-08-30T01:43:38 CC       exception.lo
+2026-08-30T01:43:38 CC       filesys.lo
+2026-08-30T01:43:39 CC       libparted.lo
+2026-08-30T01:43:39 CC       timer.lo
+2026-08-30T01:43:39 CC       unit.lo
+2026-08-30T01:43:40 CC       disk.lo
+2026-08-30T01:43:41 CC       cs/geom.lo
+2026-08-30T01:43:41 CC       cs/constraint.lo
+2026-08-30T01:43:41 CC       cs/natmath.lo
+2026-08-30T01:43:42 CC       arch/linux.lo
+2026-08-30T01:43:43 CCLD     libparted.la
+2026-08-30T01:43:43 Making all in parted
+2026-08-30T01:43:43 GEN      version.c
+2026-08-30T01:43:43 GEN      version.h
+2026-08-30T01:43:43 /usr/bin/make  all-am
+2026-08-30T01:43:43 CC       command.o
+2026-08-30T01:43:43 CC       parted.o
+2026-08-30T01:43:44 CC       strlist.o
+2026-08-30T01:43:44 CC       ui.o
+2026-08-30T01:43:45 CC       jsonwrt.o
+2026-08-30T01:43:45 CC       table.o
+2026-08-30T01:43:45 CC       version.o
+2026-08-30T01:43:45 AR       libver.a
+2026-08-30T01:43:46 CCLD     parted
+2026-08-30T01:43:46 Making all in partprobe
+2026-08-30T01:43:46 CC       partprobe.o
+2026-08-30T01:43:46 CCLD     partprobe
+2026-08-30T01:43:46 Making all in doc
+2026-08-30T01:43:46 Making all in C
+2026-08-30T01:43:46 make[5]: Nothing to be done for 'all'.
+2026-08-30T01:43:46 Making all in pt_BR
+2026-08-30T01:43:46 GEN      all-local
+2026-08-30T01:43:46 make[5]: Nothing to be done for 'all-am'.
+2026-08-30T01:43:46 Making all in debug
+2026-08-30T01:43:46 Making all in test
+2026-08-30T01:43:46 make[5]: Nothing to be done for 'all'.
+2026-08-30T01:43:46 make[5]: Nothing to be done for 'all-am'.
+2026-08-30T01:43:46 Making all in tests
+2026-08-30T01:43:46 make[4]: Nothing to be done for 'all'.
+2026-08-30T01:43:46 make[4]: Nothing to be done for 'all-am'.
+2026-08-30T01:43:46 [7m>>> parted 3.6 Installing to staging directory[27m
+2026-08-30T01:43:46 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1  /usr/bin/make -j1 DESTDIR=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot install -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/parted-3.6/
+2026-08-30T01:43:47 /usr/bin/make  install-recursive
+2026-08-30T01:43:47 Making install in po
+2026-08-30T01:43:47 if test "parted" = "gettext-tools"; then \
+2026-08-30T01:43:47 /usr/bin/mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/share/gettext/po; \
+2026-08-30T01:43:47 for file in Makefile.in.in remove-potcdate.sin quot.sed boldquot.sed en@quot.header en@boldquot.header insert-header.sin Rules-quot   Makevars.template; do \
+2026-08-30T01:43:47 /usr/bin/install -c -m 644 ./$file \
+2026-08-30T01:43:47 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/share/gettext/po/$file; \
+2026-08-30T01:43:47 done; \
+2026-08-30T01:43:47 for file in Makevars; do \
+2026-08-30T01:43:47 rm -f /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/share/gettext/po/$file; \
+2026-08-30T01:43:47 done; \
+2026-08-30T01:43:47 else \
+2026-08-30T01:43:47 : ; \
+2026-08-30T01:43:47 fi
+2026-08-30T01:43:47 Making install in lib
+2026-08-30T01:43:47 /usr/bin/make  install-am
+2026-08-30T01:43:47 make[6]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:47 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:47 Making install in include
+2026-08-30T01:43:47 Making install in parted
+2026-08-30T01:43:47 /usr/bin/make  install-am
+2026-08-30T01:43:47 make[7]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:47 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include/parted'
+2026-08-30T01:43:47 /usr/bin/install -c -m 644 constraint.h debug.h device.h disk.h exception.h filesys.h geom.h natmath.h timer.h unit.h parted.h '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include/parted'
+2026-08-30T01:43:47 make[6]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:47 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:47 Making install in libparted
+2026-08-30T01:43:47 Makefile:1905: target 'arch/.deps/linux.Plo' given more than once in the same rule
+2026-08-30T01:43:47 Making install in labels
+2026-08-30T01:43:47 /usr/bin/make  install-am
+2026-08-30T01:43:47 make[7]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:47 make[7]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:47 Making install in fs
+2026-08-30T01:43:47 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib'
+2026-08-30T01:43:47 /bin/bash ../../libtool   --mode=install /usr/bin/install -c   libparted-fs-resize.la '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib'
+2026-08-30T01:43:47 libtool: install: /usr/bin/install -c .libs/libparted-fs-resize.so.0.0.5 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/libparted-fs-resize.so.0.0.5
+2026-08-30T01:43:47 libtool: install: (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib && { ln -s -f libparted-fs-resize.so.0.0.5 libparted-fs-resize.so.0 || { rm -f libparted-fs-resize.so.0 && ln -s libparted-fs-resize.so.0.0.5 libparted-fs-resize.so.0; }; })
+2026-08-30T01:43:47 libtool: install: (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib && { ln -s -f libparted-fs-resize.so.0.0.5 libparted-fs-resize.so || { rm -f libparted-fs-resize.so && ln -s libparted-fs-resize.so.0.0.5 libparted-fs-resize.so; }; })
+2026-08-30T01:43:47 libtool: install: /usr/bin/install -c .libs/libparted-fs-resize.lai /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/libparted-fs-resize.la
+2026-08-30T01:43:47 libtool: [31mwarning[0m: [1mremember to run 'libtool --finish /usr/lib'[0m
+2026-08-30T01:43:47 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:47 Making install in .
+2026-08-30T01:43:47 Makefile:1905: target 'arch/.deps/linux.Plo' given more than once in the same rule
+2026-08-30T01:43:47 Makefile:1905: target 'arch/.deps/linux.Plo' given more than once in the same rule
+2026-08-30T01:43:47 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib'
+2026-08-30T01:43:47 /bin/bash ../libtool   --mode=install /usr/bin/install -c   libparted.la '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib'
+2026-08-30T01:43:47 libtool: install: /usr/bin/install -c .libs/libparted.so.2.0.5 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/libparted.so.2.0.5
+2026-08-30T01:43:47 libtool: install: (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib && { ln -s -f libparted.so.2.0.5 libparted.so.2 || { rm -f libparted.so.2 && ln -s libparted.so.2.0.5 libparted.so.2; }; })
+2026-08-30T01:43:47 libtool: install: (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib && { ln -s -f libparted.so.2.0.5 libparted.so || { rm -f libparted.so && ln -s libparted.so.2.0.5 libparted.so; }; })
+2026-08-30T01:43:47 libtool: install: /usr/bin/install -c .libs/libparted.lai /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/libparted.la
+2026-08-30T01:43:47 libtool: [31mwarning[0m: [1mremember to run 'libtool --finish /usr/lib'[0m
+2026-08-30T01:43:47 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:47 Making install in parted
+2026-08-30T01:43:47 /usr/bin/make  install-am
+2026-08-30T01:43:47 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/sbin'
+2026-08-30T01:43:47 /bin/bash ../libtool   --mode=install /usr/bin/install -c parted '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/sbin'
+2026-08-30T01:43:48 libtool: install: /usr/bin/install -c parted /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/sbin/parted
+2026-08-30T01:43:48 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:48 Making install in partprobe
+2026-08-30T01:43:48 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/sbin'
+2026-08-30T01:43:48 /bin/bash ../libtool   --mode=install /usr/bin/install -c partprobe '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/sbin'
+2026-08-30T01:43:48 libtool: install: /usr/bin/install -c partprobe /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/sbin/partprobe
+2026-08-30T01:43:48 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:48 Making install in doc
+2026-08-30T01:43:48 Making install in C
+2026-08-30T01:43:48 make[6]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:48 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/share/man/man8'
+2026-08-30T01:43:48 /usr/bin/install -c -m 644 parted.8 partprobe.8 '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/share/man/man8'
+2026-08-30T01:43:48 Making install in pt_BR
+2026-08-30T01:43:48 GEN      all-local
+2026-08-30T01:43:48 make[6]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:48 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:48 make[6]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:48 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/share/info'
+2026-08-30T01:43:48 /usr/bin/install -c -m 644 ./parted.info '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/share/info'
+2026-08-30T01:43:48 install-info --info-dir='/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/share/info' '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/share/info/parted.info'
+2026-08-30T01:43:48 Making install in debug
+2026-08-30T01:43:48 Making install in test
+2026-08-30T01:43:48 make[6]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:48 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:48 make[6]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:48 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:48 Making install in tests
+2026-08-30T01:43:48 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:48 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:48 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:48 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/pkgconfig'
+2026-08-30T01:43:48 /usr/bin/install -c -m 644 libparted.pc libparted-fs-resize.pc '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/pkgconfig'
+2026-08-30T01:43:48 [7m>>> parted 3.6 Fixing libtool files[27m
+2026-08-30T01:43:48 for la in $(find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib* -name "*.la"); do cp -a "${la}" "${la}.fixed" && /usr/bin/sed -i -e "s:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery:@BASE_DIR@:g" -e "s:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot:@STAGING_DIR@:g"  -e "s:\(['= ]\)/usr:\\1@STAGING_DIR@/usr:g" -e "s:\(['= ]\)/lib:\\1@STAGING_DIR@/lib:g"  -e "s:@STAGING_DIR@:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot:g" -e "s:@BASE_DIR@:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery:g" "${la}.fixed" && if cmp -s "${la}" "${la}.fixed"; then rm -f "${la}.fixed"; else mv "${la}.fixed" "${la}"; fi || exit 1; done
+2026-08-30T01:43:48 [7m>>> parted 3.6 Installing to target[27m
+2026-08-30T01:43:48 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1  /usr/bin/make -j1 DESTDIR=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target install -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/parted-3.6/
+2026-08-30T01:43:48 /usr/bin/make  install-recursive
+2026-08-30T01:43:48 Making install in po
+2026-08-30T01:43:49 if test "parted" = "gettext-tools"; then \
+2026-08-30T01:43:49 /usr/bin/mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/gettext/po; \
+2026-08-30T01:43:49 for file in Makefile.in.in remove-potcdate.sin quot.sed boldquot.sed en@quot.header en@boldquot.header insert-header.sin Rules-quot   Makevars.template; do \
+2026-08-30T01:43:49 /usr/bin/install -c -m 644 ./$file \
+2026-08-30T01:43:49 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/gettext/po/$file; \
+2026-08-30T01:43:49 done; \
+2026-08-30T01:43:49 for file in Makevars; do \
+2026-08-30T01:43:49 rm -f /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/gettext/po/$file; \
+2026-08-30T01:43:49 done; \
+2026-08-30T01:43:49 else \
+2026-08-30T01:43:49 : ; \
+2026-08-30T01:43:49 fi
+2026-08-30T01:43:49 Making install in lib
+2026-08-30T01:43:49 /usr/bin/make  install-am
+2026-08-30T01:43:49 make[6]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:49 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:49 Making install in include
+2026-08-30T01:43:49 Making install in parted
+2026-08-30T01:43:49 /usr/bin/make  install-am
+2026-08-30T01:43:49 make[7]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:49 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/include/parted'
+2026-08-30T01:43:49 /usr/bin/install -c -m 644 constraint.h debug.h device.h disk.h exception.h filesys.h geom.h natmath.h timer.h unit.h parted.h '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/include/parted'
+2026-08-30T01:43:49 make[6]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:49 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:49 Making install in libparted
+2026-08-30T01:43:49 Makefile:1905: target 'arch/.deps/linux.Plo' given more than once in the same rule
+2026-08-30T01:43:49 Making install in labels
+2026-08-30T01:43:49 /usr/bin/make  install-am
+2026-08-30T01:43:49 make[7]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:49 make[7]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:49 Making install in fs
+2026-08-30T01:43:49 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib'
+2026-08-30T01:43:49 /bin/bash ../../libtool   --mode=install /usr/bin/install -c   libparted-fs-resize.la '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib'
+2026-08-30T01:43:49 libtool: install: /usr/bin/install -c .libs/libparted-fs-resize.so.0.0.5 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/libparted-fs-resize.so.0.0.5
+2026-08-30T01:43:49 libtool: install: (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib && { ln -s -f libparted-fs-resize.so.0.0.5 libparted-fs-resize.so.0 || { rm -f libparted-fs-resize.so.0 && ln -s libparted-fs-resize.so.0.0.5 libparted-fs-resize.so.0; }; })
+2026-08-30T01:43:49 libtool: install: (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib && { ln -s -f libparted-fs-resize.so.0.0.5 libparted-fs-resize.so || { rm -f libparted-fs-resize.so && ln -s libparted-fs-resize.so.0.0.5 libparted-fs-resize.so; }; })
+2026-08-30T01:43:49 libtool: install: /usr/bin/install -c .libs/libparted-fs-resize.lai /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/libparted-fs-resize.la
+2026-08-30T01:43:49 libtool: [31mwarning[0m: [1mremember to run 'libtool --finish /usr/lib'[0m
+2026-08-30T01:43:49 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:49 Making install in .
+2026-08-30T01:43:49 Makefile:1905: target 'arch/.deps/linux.Plo' given more than once in the same rule
+2026-08-30T01:43:49 Makefile:1905: target 'arch/.deps/linux.Plo' given more than once in the same rule
+2026-08-30T01:43:49 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib'
+2026-08-30T01:43:49 /bin/bash ../libtool   --mode=install /usr/bin/install -c   libparted.la '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib'
+2026-08-30T01:43:49 libtool: install: /usr/bin/install -c .libs/libparted.so.2.0.5 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/libparted.so.2.0.5
+2026-08-30T01:43:49 libtool: install: (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib && { ln -s -f libparted.so.2.0.5 libparted.so.2 || { rm -f libparted.so.2 && ln -s libparted.so.2.0.5 libparted.so.2; }; })
+2026-08-30T01:43:49 libtool: install: (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib && { ln -s -f libparted.so.2.0.5 libparted.so || { rm -f libparted.so && ln -s libparted.so.2.0.5 libparted.so; }; })
+2026-08-30T01:43:49 libtool: install: /usr/bin/install -c .libs/libparted.lai /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/libparted.la
+2026-08-30T01:43:49 libtool: [31mwarning[0m: [1mremember to run 'libtool --finish /usr/lib'[0m
+2026-08-30T01:43:49 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:49 Making install in parted
+2026-08-30T01:43:49 /usr/bin/make  install-am
+2026-08-30T01:43:49 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/sbin'
+2026-08-30T01:43:49 /bin/bash ../libtool   --mode=install /usr/bin/install -c parted '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/sbin'
+2026-08-30T01:43:49 libtool: install: /usr/bin/install -c parted /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/sbin/parted
+2026-08-30T01:43:49 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:49 Making install in partprobe
+2026-08-30T01:43:49 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/sbin'
+2026-08-30T01:43:49 /bin/bash ../libtool   --mode=install /usr/bin/install -c partprobe '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/sbin'
+2026-08-30T01:43:50 libtool: install: /usr/bin/install -c partprobe /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/sbin/partprobe
+2026-08-30T01:43:50 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:50 Making install in doc
+2026-08-30T01:43:50 Making install in C
+2026-08-30T01:43:50 make[6]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:50 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/man/man8'
+2026-08-30T01:43:50 /usr/bin/install -c -m 644 parted.8 partprobe.8 '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/man/man8'
+2026-08-30T01:43:50 Making install in pt_BR
+2026-08-30T01:43:50 GEN      all-local
+2026-08-30T01:43:50 make[6]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:50 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:50 make[6]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:50 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/info'
+2026-08-30T01:43:50 /usr/bin/install -c -m 644 ./parted.info '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/info'
+2026-08-30T01:43:50 install-info --info-dir='/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/info' '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/info/parted.info'
+2026-08-30T01:43:50 Making install in debug
+2026-08-30T01:43:50 Making install in test
+2026-08-30T01:43:50 make[6]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:50 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:50 make[6]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:50 make[6]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:50 Making install in tests
+2026-08-30T01:43:50 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:50 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:43:50 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:43:50 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/pkgconfig'
+2026-08-30T01:43:50 /usr/bin/install -c -m 644 libparted.pc libparted-fs-resize.pc '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/pkgconfig'
+2026-08-30T01:43:51 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Downloading[27m
+2026-08-30T01:43:51 fatresize-321973ba156bbf2489e82c47c94b2bca74b16316.tar.gz: OK (sha256: e3437b39437f2e24aa2be95bdf14ba3fabbaef03358cdb0c5326e13098add496)
+2026-08-30T01:43:51 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Extracting[27m
+2026-08-30T01:43:51 gzip -d -c /home/linux/rk3506/buildroot/dl/fatresize/fatresize-321973ba156bbf2489e82c47c94b2bca74b16316.tar.gz | /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/tar --strip-components=1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/fatresize-321973ba156bbf2489e82c47c94b2bca74b16316   -xf -
+2026-08-30T01:43:51 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Patching[27m
+2026-08-30T01:43:51 
+2026-08-30T01:43:51 Applying 0001-Fix-compile-error.patch using patch:
+2026-08-30T01:43:51 patching file configure.ac
+2026-08-30T01:43:51 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Updating config.sub and config.guess[27m
+2026-08-30T01:43:51 for file in config.guess config.sub; do for i in $(find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/fatresize-321973ba156bbf2489e82c47c94b2bca74b16316 -name $file); do cp support/gnuconfig/$file $i; done; done
+2026-08-30T01:43:51 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Configuring[27m
+2026-08-30T01:43:51 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Autoreconfiguring[27m
+2026-08-30T01:43:53 configure.ac:5: warning: 'AM_CONFIG_HEADER': this macro is obsolete.
+2026-08-30T01:43:53 configure.ac:5: You should use the 'AC_CONFIG_HEADERS' macro instead.
+2026-08-30T01:43:53 ./lib/autoconf/general.m4:2434: AC_DIAGNOSE is expanded from...
+2026-08-30T01:43:53 aclocal.m4:1125: AM_CONFIG_HEADER is expanded from...
+2026-08-30T01:43:53 configure.ac:5: the top level
+2026-08-30T01:43:53 configure.ac:18: warning: The macro 'AC_LANG_C' is obsolete.
+2026-08-30T01:43:53 configure.ac:18: You should run autoupdate.
+2026-08-30T01:43:53 ./lib/autoconf/c.m4:72: AC_LANG_C is expanded from...
+2026-08-30T01:43:53 configure.ac:18: the top level
+2026-08-30T01:43:54 configure.ac:19: installing './compile'
+2026-08-30T01:43:54 Makefile.am:5: warning: 'INCLUDES' is the old name for 'AM_CPPFLAGS' (or '*_CPPFLAGS')
+2026-08-30T01:43:54 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Patching libtool[27m
+2026-08-30T01:43:54 (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/fatresize-321973ba156bbf2489e82c47c94b2bca74b16316/ && rm -rf config.cache && GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1 AR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ar" AS="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-as" LD="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld" NM="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-nm" CC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc" GCC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc" CPP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-cpp" CXX="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++" FC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gfortran" F77="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gfortran" RANLIB="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ranlib" READELF="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-readelf" STRIP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip" OBJCOPY="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-objcopy" OBJDUMP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-objdump" AR_FOR_BUILD="/usr/bin/ar" AS_FOR_BUILD="/usr/bin/as" CC_FOR_BUILD="/usr/bin/gcc" GCC_FOR_BUILD="/usr/bin/gcc" CXX_FOR_BUILD="/usr/bin/g++" LD_FOR_BUILD="/usr/bin/ld" CPPFLAGS_FOR_BUILD="-I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CFLAGS_FOR_BUILD="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CXXFLAGS_FOR_BUILD="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" LDFLAGS_FOR_BUILD="-L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib" FCFLAGS_FOR_BUILD="" DEFAULT_ASSEMBLER="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-as" DEFAULT_LINKER="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld" CPPFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64" CFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1" CXXFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1" LDFLAGS="" FCFLAGS=" -O2 -g0" FFLAGS=" -O2 -g0" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" STAGING_DIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot" INTLTOOL_PERL=/usr/bin/perl ac_cv_lbl_unaligned_fail=yes ac_cv_func_mmap_fixed_mapped=yes ac_cv_func_memcmp_working=yes ac_cv_have_decl_malloc=yes gl_cv_func_malloc_0_nonnull=yes ac_cv_func_malloc_0_nonnull=yes ac_cv_func_calloc_0_nonnull=yes ac_cv_func_realloc_0_nonnull=yes lt_cv_sys_lib_search_path_spec="" ac_cv_c_bigendian=no   CONFIG_SITE=/dev/null ./configure --target=arm-buildroot-linux-gnueabihf --host=arm-buildroot-linux-gnueabihf --build=x86_64-pc-linux-gnu --prefix=/usr --exec-prefix=/usr --sysconfdir=/etc --localstatedir=/var --program-prefix="" --disable-gtk-doc --disable-gtk-doc-html --disable-doc --disable-docs --disable-documentation --with-xmlto=no --with-fop=no --disable-dependency-tracking --enable-ipv6 --disable-nls --disable-static --enable-shared   )
+2026-08-30T01:43:55 configure: WARNING: unrecognized options: --disable-gtk-doc, --disable-gtk-doc-html, --disable-doc, --disable-docs, --disable-documentation, --with-xmlto, --with-fop, --enable-ipv6, --disable-nls, --disable-static, --enable-shared
+2026-08-30T01:43:55 checking for a BSD-compatible install... /usr/bin/install -c
+2026-08-30T01:43:55 checking whether build environment is sane... yes
+2026-08-30T01:43:55 checking for arm-buildroot-linux-gnueabihf-strip... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip
+2026-08-30T01:43:55 checking for a race-free mkdir -p... /usr/bin/mkdir -p
+2026-08-30T01:43:55 checking for gawk... gawk
+2026-08-30T01:43:55 checking whether make sets $(MAKE)... yes
+2026-08-30T01:43:55 checking whether make supports nested variables... yes
+2026-08-30T01:43:55 checking whether to enable maintainer-specific portions of Makefiles... no
+2026-08-30T01:43:55 checking for arm-buildroot-linux-gnueabihf-gcc... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc
+2026-08-30T01:43:55 checking whether the C compiler works... yes
+2026-08-30T01:43:55 checking for C compiler default output file name... a.out
+2026-08-30T01:43:55 checking for suffix of executables...
+2026-08-30T01:43:55 checking whether we are cross compiling... yes
+2026-08-30T01:43:55 checking for suffix of object files... o
+2026-08-30T01:43:55 checking whether the compiler supports GNU C... yes
+2026-08-30T01:43:55 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc accepts -g... yes
+2026-08-30T01:43:55 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc option to enable C11 features... none needed
+2026-08-30T01:43:56 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc understands -c and -o together... yes
+2026-08-30T01:43:56 checking whether make supports the include directive... yes (GNU style)
+2026-08-30T01:43:56 checking dependency style of /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc... none
+2026-08-30T01:43:56 checking for stdio.h... yes
+2026-08-30T01:43:56 checking for stdlib.h... yes
+2026-08-30T01:43:56 checking for string.h... yes
+2026-08-30T01:43:56 checking for inttypes.h... yes
+2026-08-30T01:43:56 checking for stdint.h... yes
+2026-08-30T01:43:56 checking for strings.h... yes
+2026-08-30T01:43:56 checking for sys/stat.h... yes
+2026-08-30T01:43:56 checking for sys/types.h... yes
+2026-08-30T01:43:56 checking for unistd.h... yes
+2026-08-30T01:43:56 checking for ctype.h... yes
+2026-08-30T01:43:57 checking for errno.h... yes
+2026-08-30T01:43:57 checking for stdio.h... (cached) yes
+2026-08-30T01:43:57 checking for getopt.h... yes
+2026-08-30T01:43:57 checking for stdarg.h... yes
+2026-08-30T01:43:57 checking for string.h... (cached) yes
+2026-08-30T01:43:57 checking for stdlib.h... (cached) yes
+2026-08-30T01:43:57 checking for unistd.h... (cached) yes
+2026-08-30T01:43:57 checking for parted/parted.h... yes
+2026-08-30T01:43:57 checking for memset... yes
+2026-08-30T01:43:57 checking for strtoll... yes
+2026-08-30T01:43:57 checking pkg-config is at least version 0.9.0... yes
+2026-08-30T01:43:57 checking for PARTED... yes
+2026-08-30T01:43:57 checking that generated files are newer than configure... done
+2026-08-30T01:43:57 configure: creating ./config.status
+2026-08-30T01:43:57 config.status: creating Makefile
+2026-08-30T01:43:57 config.status: creating config.h
+2026-08-30T01:43:58 config.status: executing depfiles commands
+2026-08-30T01:43:58 configure: WARNING: unrecognized options: --disable-gtk-doc, --disable-gtk-doc-html, --disable-doc, --disable-docs, --disable-documentation, --with-xmlto, --with-fop, --enable-ipv6, --disable-nls, --disable-static, --enable-shared
+2026-08-30T01:43:58 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Building[27m
+2026-08-30T01:43:58 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1  /usr/bin/make -j1  -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/fatresize-321973ba156bbf2489e82c47c94b2bca74b16316/
+2026-08-30T01:43:58 /usr/bin/make  all-am
+2026-08-30T01:43:58 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -DHAVE_CONFIG_H -I.   -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -c -o fatresize.o fatresize.c
+2026-08-30T01:43:58 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc  -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1   -o fatresize fatresize.o -lparted-fs-resize -L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/../arm-buildroot-linux-gnueabihf/sysroot/usr/lib -lparted  -ldl
+2026-08-30T01:43:58 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Installing to target[27m
+2026-08-30T01:43:58 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1  /usr/bin/make -j1 DESTDIR=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target install -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/fatresize-321973ba156bbf2489e82c47c94b2bca74b16316/
+2026-08-30T01:43:58 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/sbin'
+2026-08-30T01:43:58 /usr/bin/install -c fatresize '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/sbin'
+2026-08-30T01:43:58 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/man/man1'
+2026-08-30T01:43:58 /usr/bin/install -c -m 644 fatresize.1 '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/man/man1'
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Extracting[27m
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Patching[27m
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Configuring[27m
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Building[27m
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Installing to target[27m
+2026-08-30T01:43:59 /usr/bin/install -m 0755 -D package/ifupdown-scripts//nfs_check /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/network/nfs_check
+2026-08-30T01:43:59 rsync -a --ignore-times --exclude .svn --exclude .git --exclude .hg --exclude .bzr --exclude CVS --chmod=u=rwX,go=rX --exclude .empty --exclude '*~' package/ifupdown-scripts//network/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/network/
+2026-08-30T01:43:59 /usr/bin/install -D -m 0755 package/ifupdown-scripts//S40network /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d/S40network
+2026-08-30T01:43:59 echo "# interface file auto-generated by buildroot" > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/network/interfaces
+2026-08-30T01:43:59 ( echo ; echo "auto lo"; echo "iface lo inet loopback"; ) >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/network/interfaces
+2026-08-30T01:44:00 [7m>>> initscripts  Extracting[27m
+2026-08-30T01:44:00 [7m>>> initscripts  Patching[27m
+2026-08-30T01:44:00 [7m>>> initscripts  Configuring[27m
+2026-08-30T01:44:00 [7m>>> initscripts  Building[27m
+2026-08-30T01:44:00 [7m>>> initscripts  Installing to target[27m
+2026-08-30T01:44:00 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d
+2026-08-30T01:44:00 /usr/bin/install -D -m 0755 package/initscripts/init.d/* /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d/
+2026-08-30T01:44:01 input-event-daemon-0.1.3.tar.gz: OK (sha256: 1d9a44160aead88080093f74be9d709fbbc2637f982958e2673d80aedacd0a65)
+2026-08-30T01:44:01 [7m>>> input-event-daemon 0.1.3 Extracting[27m
+2026-08-30T01:44:01 gzip -d -c /home/linux/rk3506/buildroot/dl/input-event-daemon/input-event-daemon-0.1.3.tar.gz | /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/tar --strip-components=1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/input-event-daemon-0.1.3   -xf -
+2026-08-30T01:44:01 [7m>>> input-event-daemon 0.1.3 Patching[27m
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0001-Support-specifing-devices-in-command-args.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0002-Support-parsing-configfile-.d-.conf.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0003-Support-dynamic-remove-devices-when-not-available.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0004-Support-key-press-and-release-events.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 patching file input-event-daemon.h
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0005-Support-sync-events.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 patching file input-event-daemon.h
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0006-Listen-all-devices-by-default.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0007-Support-hotplug-when-listening-all-devices.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 patching file input-event-daemon.h
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0008-Support-initial-command.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 patching file input-event-daemon.h
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0009-HACK-Ignore-BTN_TOUCH.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 [7m>>> input-event-daemon 0.1.3 Configuring[27m
+2026-08-30T01:44:02 [7m>>> input-event-daemon 0.1.3 Building[27m
+2026-08-30T01:44:02 touch /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/input-event-daemon-0.1.3/input-event-table.h
+2026-08-30T01:44:02 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1 /usr/bin/make -j1 CC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc" CFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1" LDFLAGS="" -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/input-event-daemon-0.1.3
+2026-08-30T01:44:02 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 input-event-daemon.c  -o input-event-daemon
+2026-08-30T01:44:02 [7m>>> input-event-daemon 0.1.3 Installing to target[27m
+2026-08-30T01:44:02 /usr/bin/install -m 755 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/input-event-daemon-0.1.3/input-event-daemon /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/input-event-daemon
+2026-08-30T01:44:02 /usr/bin/install -m 644 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/input-event-daemon-0.1.3/docs/sample.conf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/input-event-daemon.conf
+2026-08-30T01:44:02 /usr/bin/install -m 0755 -d /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/input-event-daemon.conf.d/
+2026-08-30T01:44:02 # Listen all devices by default.
+2026-08-30T01:44:02 /usr/bin/sed -i -e '/^listen = /d' /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/input-event-daemon.conf
+2026-08-30T01:44:02 /usr/bin/install -m 0755 -D package/input-event-daemon/S99input-event-daemon /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d/S99input-event-daemon
+2026-08-30T01:44:02 /usr/bin/install -m 0755 -D package/input-event-daemon//power-key.sh /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/
+2026-08-30T01:44:02 /usr/bin/install -m 0755 -D package/input-event-daemon//power-key.conf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/input-event-daemon.conf.d/
+2026-08-30T01:44:03 [7m>>> libcurl 8.6.0 Downloading[27m
+2026-08-30T01:44:03 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.curl-8.6.0.tar.xz.al5Sr1/output' 'https://sources.buildroot.net/libcurl/curl-8.6.0.tar.xz'
+2026-08-30T01:44:03 --2026-08-30 01:44:03--  https://sources.buildroot.net/libcurl/curl-8.6.0.tar.xz
+2026-08-30T01:44:03 Resolving sources.buildroot.net (sources.buildroot.net)... failed: Temporary failure in name resolution.
+2026-08-30T01:44:03 wget: unable to resolve host address 'sources.buildroot.net'
+2026-08-30T01:44:03 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.curl-8.6.0.tar.xz.3A9X8Y/output' 'https://sources.buildroot.net/curl-8.6.0.tar.xz'
+2026-08-30T01:44:03 --2026-08-30 01:44:03--  https://sources.buildroot.net/curl-8.6.0.tar.xz
+2026-08-30T01:44:03 Resolving sources.buildroot.net (sources.buildroot.net)... failed: Temporary failure in name resolution.
+2026-08-30T01:44:03 wget: unable to resolve host address 'sources.buildroot.net'
+2026-08-30T01:44:03 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.curl-8.6.0.tar.xz.16gjcv/output' 'https://curl.se/download/curl-8.6.0.tar.xz'
+2026-08-30T01:44:03 --2026-08-30 01:44:03--  https://curl.se/download/curl-8.6.0.tar.xz
+2026-08-30T01:44:03 Resolving curl.se (curl.se)... failed: Temporary failure in name resolution.
+2026-08-30T01:44:03 wget: unable to resolve host address 'curl.se'
+2026-08-30T01:44:03 make[1]: *** [package/pkg-generic.mk:196: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/libcurl-8.6.0/.stamp_downloaded] Error 1
+2026-08-30T01:44:03 make: *** [Makefile:112: _all] Error 2
+2026-08-30T01:44:03 make: Leaving directory '/home/linux/rk3506/buildroot'

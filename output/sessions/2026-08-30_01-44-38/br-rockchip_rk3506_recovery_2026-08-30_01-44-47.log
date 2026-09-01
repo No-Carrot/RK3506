@@ -1,0 +1,750 @@
+# 2026-08-30 01:44:47
+2026-08-30T01:44:47 make: Entering directory '/home/linux/rk3506/buildroot'
+2026-08-30T01:44:58 /usr/bin/make -j1  O=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery HOSTCC="/usr/bin/gcc" HOSTCXX="/usr/bin/g++" syncconfig
+2026-08-30T01:44:58 GEN     /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/Makefile
+2026-08-30T01:44:59 curl-8.6.0.tar.xz: OK (sha256: 3ccd55d91af9516539df80625f818c734dc6f2ecf9bada33c76765e99121db15)
+2026-08-30T01:44:59 [7m>>> libcurl 8.6.0 Extracting[27m
+2026-08-30T01:44:59 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/xzcat /home/linux/rk3506/buildroot/dl/libcurl/curl-8.6.0.tar.xz | /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/tar --strip-components=1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/libcurl-8.6.0   -xf -
+2026-08-30T01:45:00 [7m>>> libcurl 8.6.0 Patching[27m
+2026-08-30T01:45:00 
+2026-08-30T01:45:00 Applying 0001-configure.ac-find-libpsl-with-pkg-config.patch using patch:
+2026-08-30T01:45:00 patching file configure.ac
+2026-08-30T01:45:00 Hunk #1 succeeded at 2052 (offset -23 lines).
+2026-08-30T01:45:00 printf 'Requires: openssl\n' >>/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/libcurl-8.6.0/libcurl.pc.in
+2026-08-30T01:45:00 [7m>>> libcurl 8.6.0 Updating config.sub and config.guess[27m
+2026-08-30T01:45:00 for file in config.guess config.sub; do for i in $(find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/libcurl-8.6.0 -name $file); do cp support/gnuconfig/$file $i; done; done
+2026-08-30T01:45:00 [7m>>> libcurl 8.6.0 Configuring[27m
+2026-08-30T01:45:00 [7m>>> libcurl 8.6.0 Autoreconfiguring[27m
+2026-08-30T01:45:07 libtoolize: putting auxiliary files in '.'.
+2026-08-30T01:45:07 libtoolize: copying file './ltmain.sh'
+2026-08-30T01:45:07 libtoolize: putting macros in AC_CONFIG_MACRO_DIRS, 'm4'.
+2026-08-30T01:45:07 libtoolize: copying file 'm4/libtool.m4'
+2026-08-30T01:45:07 libtoolize: copying file 'm4/ltoptions.m4'
+2026-08-30T01:45:07 libtoolize: copying file 'm4/ltsugar.m4'
+2026-08-30T01:45:07 libtoolize: copying file 'm4/ltversion.m4'
+2026-08-30T01:45:07 libtoolize: copying file 'm4/lt~obsolete.m4'
+2026-08-30T01:45:07 libtoolize: Remember to add 'LT_INIT' to configure.ac.
+2026-08-30T01:45:14 configure.ac:123: installing './compile'
+2026-08-30T01:45:14 configure.ac:129: installing './missing'
+2026-08-30T01:45:15 docs/examples/Makefile.am: installing './depcomp'
+2026-08-30T01:45:17 [7m>>> libcurl 8.6.0 Patching libtool[27m
+2026-08-30T01:45:17 patching file /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/libcurl-8.6.0/ltmain.sh
+2026-08-30T01:45:17 Hunk #1 succeeded at 2694 (offset 7 lines).
+2026-08-30T01:45:17 Hunk #2 succeeded at 4284 (offset 7 lines).
+2026-08-30T01:45:17 Hunk #3 succeeded at 6579 (offset 25 lines).
+2026-08-30T01:45:17 Hunk #4 succeeded at 6589 (offset 25 lines).
+2026-08-30T01:45:17 Hunk #5 succeeded at 6882 (offset 25 lines).
+2026-08-30T01:45:17 Hunk #6 succeeded at 7174 (offset 25 lines).
+2026-08-30T01:45:17 Hunk #7 succeeded at 8140 (offset 28 lines).
+2026-08-30T01:45:17 Hunk #8 succeeded at 10769 (offset 59 lines).
+2026-08-30T01:45:17 (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/libcurl-8.6.0/ && rm -rf config.cache && GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1 AR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ar" AS="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-as" LD="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld" NM="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-nm" CC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc" GCC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc" CPP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-cpp" CXX="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++" FC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gfortran" F77="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gfortran" RANLIB="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ranlib" READELF="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-readelf" STRIP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip" OBJCOPY="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-objcopy" OBJDUMP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-objdump" AR_FOR_BUILD="/usr/bin/ar" AS_FOR_BUILD="/usr/bin/as" CC_FOR_BUILD="/usr/bin/gcc" GCC_FOR_BUILD="/usr/bin/gcc" CXX_FOR_BUILD="/usr/bin/g++" LD_FOR_BUILD="/usr/bin/ld" CPPFLAGS_FOR_BUILD="-I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CFLAGS_FOR_BUILD="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CXXFLAGS_FOR_BUILD="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" LDFLAGS_FOR_BUILD="-L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib" FCFLAGS_FOR_BUILD="" DEFAULT_ASSEMBLER="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-as" DEFAULT_LINKER="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld" CPPFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64" CFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1" CXXFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1" LDFLAGS="" FCFLAGS=" -O2 -g0" FFLAGS=" -O2 -g0" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" STAGING_DIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot" INTLTOOL_PERL=/usr/bin/perl ac_cv_lbl_unaligned_fail=yes ac_cv_func_mmap_fixed_mapped=yes ac_cv_func_memcmp_working=yes ac_cv_have_decl_malloc=yes gl_cv_func_malloc_0_nonnull=yes ac_cv_func_malloc_0_nonnull=yes ac_cv_func_calloc_0_nonnull=yes ac_cv_func_realloc_0_nonnull=yes lt_cv_sys_lib_search_path_spec="" ac_cv_c_bigendian=no   CONFIG_SITE=/dev/null ./configure --target=arm-buildroot-linux-gnueabihf --host=arm-buildroot-linux-gnueabihf --build=x86_64-pc-linux-gnu --prefix=/usr --exec-prefix=/usr --sysconfdir=/etc --localstatedir=/var --program-prefix="" --disable-gtk-doc --disable-gtk-doc-html --disable-doc --disable-docs --disable-documentation --with-xmlto=no --with-fop=no --disable-dependency-tracking --enable-ipv6 --disable-nls --disable-static --enable-shared  --disable-manual --disable-ntlm --disable-ntlm-wb --with-random=/dev/urandom --disable-curldebug --disable-libcurl-option --disable-ldap --disable-ldaps --enable-threaded-resolver LIBS=-latomic --disable-verbose --with-openssl=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr --with-ca-path=/etc/ssl/certs --without-bearssl --without-gnutls --without-mbedtls --without-wolfssl --disable-ares --without-libidn2 --without-libpsl --without-libssh2 --without-brotli --without-nghttp2 --without-libgsasl --enable-cookies --enable-proxy --disable-websockets --enable-dict --enable-gopher --enable-imap --enable-pop3 --enable-rtsp --enable-smb --enable-smtp --enable-telnet --enable-tftp )
+2026-08-30T01:45:18 configure: WARNING: unrecognized options: --disable-gtk-doc, --disable-gtk-doc-html, --disable-doc, --disable-docs, --disable-documentation, --with-xmlto, --with-fop, --disable-nls
+2026-08-30T01:45:18 checking whether to enable maintainer-specific portions of Makefiles... no
+2026-08-30T01:45:18 checking whether make supports nested variables... yes
+2026-08-30T01:45:18 checking whether to enable debug build options... no
+2026-08-30T01:45:18 checking whether to enable compiler optimizer... (assumed) yes
+2026-08-30T01:45:18 checking whether to enable strict compiler warnings... no
+2026-08-30T01:45:18 checking whether to enable compiler warnings as errors... no
+2026-08-30T01:45:18 checking whether to enable curl debug memory tracking... no
+2026-08-30T01:45:18 checking whether to enable hiding of library internal symbols... yes
+2026-08-30T01:45:18 checking whether to enable c-ares for DNS lookups... no
+2026-08-30T01:45:18 checking whether to disable dependency on -lrt... (assumed no)
+2026-08-30T01:45:18 checking whether to enable ECH support... no
+2026-08-30T01:45:18 checking for path separator... :
+2026-08-30T01:45:18 checking for sed... /usr/bin/sed
+2026-08-30T01:45:18 checking for grep... /usr/bin/grep
+2026-08-30T01:45:18 checking that grep -E works... yes
+2026-08-30T01:45:18 configure: using CFLAGS: -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1
+2026-08-30T01:45:18 configure: CFLAGS note: CFLAGS should only be used to specify C compiler flags, not macro definitions. Use CPPFLAGS for: -D_LARGEFILE_SOURCE
+2026-08-30T01:45:18 configure: CFLAGS note: CFLAGS should only be used to specify C compiler flags, not macro definitions. Use CPPFLAGS for: -D_LARGEFILE64_SOURCE
+2026-08-30T01:45:18 configure: CFLAGS note: CFLAGS should only be used to specify C compiler flags, not macro definitions. Use CPPFLAGS for: -D_FILE_OFFSET_BITS=64
+2026-08-30T01:45:18 configure: CFLAGS note: CFLAGS should only be used to specify C compiler flags, not macro definitions. Use CPPFLAGS for: -D_FORTIFY_SOURCE=1
+2026-08-30T01:45:18 configure: WARNING: Continuing even with errors mentioned immediately above this line.
+2026-08-30T01:45:18 checking for a BSD-compatible install... /usr/bin/install -c
+2026-08-30T01:45:18 checking for arm-buildroot-linux-gnueabihf-gcc... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc
+2026-08-30T01:45:19 checking whether the C compiler works... yes
+2026-08-30T01:45:19 checking for C compiler default output file name... a.out
+2026-08-30T01:45:19 checking for suffix of executables...
+2026-08-30T01:45:19 checking whether we are cross compiling... yes
+2026-08-30T01:45:19 checking for suffix of object files... o
+2026-08-30T01:45:19 checking whether the compiler supports GNU C... yes
+2026-08-30T01:45:19 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc accepts -g... yes
+2026-08-30T01:45:19 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc option to enable C11 features... none needed
+2026-08-30T01:45:19 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc understands -c and -o together... yes
+2026-08-30T01:45:19 checking how to run the C preprocessor... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-cpp
+2026-08-30T01:45:19 checking for stdio.h... yes
+2026-08-30T01:45:19 checking for stdlib.h... yes
+2026-08-30T01:45:19 checking for string.h... yes
+2026-08-30T01:45:20 checking for inttypes.h... yes
+2026-08-30T01:45:20 checking for stdint.h... yes
+2026-08-30T01:45:20 checking for strings.h... yes
+2026-08-30T01:45:20 checking for sys/stat.h... yes
+2026-08-30T01:45:20 checking for sys/types.h... yes
+2026-08-30T01:45:20 checking for unistd.h... yes
+2026-08-30T01:45:20 checking for stdatomic.h... yes
+2026-08-30T01:45:20 checking if _Atomic is available... yes
+2026-08-30T01:45:20 checking for a sed that does not truncate output... (cached) /usr/bin/sed
+2026-08-30T01:45:20 checking for code coverage support... no
+2026-08-30T01:45:20 checking whether build environment is sane... yes
+2026-08-30T01:45:20 checking for arm-buildroot-linux-gnueabihf-strip... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip
+2026-08-30T01:45:20 checking for a race-free mkdir -p... /usr/bin/mkdir -p
+2026-08-30T01:45:20 checking for gawk... gawk
+2026-08-30T01:45:20 checking whether make sets $(MAKE)... yes
+2026-08-30T01:45:20 checking whether make supports the include directive... yes (GNU style)
+2026-08-30T01:45:20 checking dependency style of /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc... none
+2026-08-30T01:45:20 checking curl version... 8.6.0
+2026-08-30T01:45:20 checking for httpd... no
+2026-08-30T01:45:20 checking for apache2... no
+2026-08-30T01:45:20 checking for apachectl... no
+2026-08-30T01:45:20 checking for apxs... no
+2026-08-30T01:45:20 configure: httpd/apache2 not in PATH, http tests disabled
+2026-08-30T01:45:20 configure: apxs not in PATH, http tests disabled
+2026-08-30T01:45:20 checking for nghttpx... no
+2026-08-30T01:45:20 checking for caddy... no
+2026-08-30T01:45:20 checking build system type... x86_64-pc-linux-gnu
+2026-08-30T01:45:20 checking host system type... arm-buildroot-linux-gnueabihf
+2026-08-30T01:45:20 checking for egrep -e... /usr/bin/grep -E
+2026-08-30T01:45:20 checking if OS is AIX (to define _ALL_SOURCE)... no
+2026-08-30T01:45:20 checking if _THREAD_SAFE is already defined... no
+2026-08-30T01:45:20 checking if _THREAD_SAFE is actually needed... no
+2026-08-30T01:45:20 checking if _THREAD_SAFE is onwards defined... no
+2026-08-30T01:45:21 checking if _REENTRANT is already defined... no
+2026-08-30T01:45:22 checking if _REENTRANT is actually needed... no
+2026-08-30T01:45:22 checking if _REENTRANT is onwards defined... no
+2026-08-30T01:45:22 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc option to enable large file support... none needed
+2026-08-30T01:45:22 checking how to print strings... printf
+2026-08-30T01:45:22 checking for a sed that does not truncate output... (cached) /usr/bin/sed
+2026-08-30T01:45:22 checking for grep that handles long lines and -e... (cached) /usr/bin/grep
+2026-08-30T01:45:22 checking for egrep... /usr/bin/grep -E
+2026-08-30T01:45:22 checking for fgrep... /usr/bin/grep -F
+2026-08-30T01:45:22 checking for ld used by /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld
+2026-08-30T01:45:22 checking if the linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld) is GNU ld... yes
+2026-08-30T01:45:22 checking for BSD- or MS-compatible name lister (nm)... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-nm
+2026-08-30T01:45:22 checking the name lister (/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-nm) interface... BSD nm
+2026-08-30T01:45:22 checking whether ln -s works... yes
+2026-08-30T01:45:22 checking the maximum length of command line arguments... 1572864
+2026-08-30T01:45:22 checking how to convert x86_64-pc-linux-gnu file names to arm-buildroot-linux-gnueabihf format... func_convert_file_noop
+2026-08-30T01:45:22 checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+2026-08-30T01:45:22 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld option to reload object files... -r
+2026-08-30T01:45:22 checking for arm-buildroot-linux-gnueabihf-objdump... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-objdump
+2026-08-30T01:45:22 checking how to recognize dependent libraries... pass_all
+2026-08-30T01:45:22 checking for arm-buildroot-linux-gnueabihf-dlltool... no
+2026-08-30T01:45:22 checking for dlltool... no
+2026-08-30T01:45:22 checking how to associate runtime and link libraries... printf %s\n
+2026-08-30T01:45:22 checking for arm-buildroot-linux-gnueabihf-ar... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ar
+2026-08-30T01:45:22 checking for archiver @FILE support... @
+2026-08-30T01:45:22 checking for arm-buildroot-linux-gnueabihf-strip... (cached) /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip
+2026-08-30T01:45:22 checking for arm-buildroot-linux-gnueabihf-ranlib... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ranlib
+2026-08-30T01:45:22 checking command to parse /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-nm output from /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc object... ok
+2026-08-30T01:45:22 checking for sysroot... no
+2026-08-30T01:45:22 checking for a working dd... /usr/bin/dd
+2026-08-30T01:45:22 checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+2026-08-30T01:45:22 checking for arm-buildroot-linux-gnueabihf-mt... no
+2026-08-30T01:45:22 checking for mt... mt
+2026-08-30T01:45:22 configure: WARNING: using cross tools not prefixed with host triplet
+2026-08-30T01:45:22 checking if mt is a manifest tool... no
+2026-08-30T01:45:22 checking for dlfcn.h... yes
+2026-08-30T01:45:23 checking for objdir... .libs
+2026-08-30T01:45:23 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc supports -fno-rtti -fno-exceptions... no
+2026-08-30T01:45:23 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc option to produce PIC... -fPIC -DPIC
+2026-08-30T01:45:23 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc PIC flag -fPIC -DPIC works... yes
+2026-08-30T01:45:23 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc static flag -static works... yes
+2026-08-30T01:45:23 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc supports -c -o file.o... yes
+2026-08-30T01:45:23 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc supports -c -o file.o... (cached) yes
+2026-08-30T01:45:23 checking whether the /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld) supports shared libraries... yes
+2026-08-30T01:45:23 checking whether -lc should be explicitly linked in... no
+2026-08-30T01:45:23 checking dynamic linker characteristics... GNU/Linux ld.so
+2026-08-30T01:45:23 checking how to hardcode library paths into programs... immediate
+2026-08-30T01:45:23 checking whether stripping libraries is possible... yes
+2026-08-30T01:45:23 checking if libtool supports shared libraries... yes
+2026-08-30T01:45:23 checking whether to build shared libraries... yes
+2026-08-30T01:45:23 checking whether to build static libraries... no
+2026-08-30T01:45:23 checking whether to build shared libraries with -version-info... yes
+2026-08-30T01:45:23 checking whether to build shared libraries with -no-undefined... no
+2026-08-30T01:45:23 checking whether to build shared libraries with -mimpure-text... no
+2026-08-30T01:45:23 checking whether to build shared libraries with PIC... yes
+2026-08-30T01:45:23 checking whether to build static libraries with PIC... no
+2026-08-30T01:45:23 checking whether to build shared libraries only... yes
+2026-08-30T01:45:23 checking whether to build static libraries only... no
+2026-08-30T01:45:23 checking for arm-buildroot-linux-gnueabihf-windres... no
+2026-08-30T01:45:23 checking for windres... no
+2026-08-30T01:45:23 checking for inline... inline
+2026-08-30T01:45:24 checking if cpp -P is needed... yes
+2026-08-30T01:45:24 checking if cpp -P works... yes
+2026-08-30T01:45:24 checking if compiler is DEC/Compaq/HP C... no
+2026-08-30T01:45:24 checking if compiler is HP-UX C... no
+2026-08-30T01:45:24 checking if compiler is IBM C... no
+2026-08-30T01:45:24 checking if compiler is Intel C... no
+2026-08-30T01:45:24 checking if compiler is clang... no
+2026-08-30T01:45:24 checking if compiler is GNU C... yes
+2026-08-30T01:45:24 checking compiler version... gcc '1204' (raw: '12.4.0')
+2026-08-30T01:45:24 checking if compiler is SGI MIPSpro C... no
+2026-08-30T01:45:24 checking if compiler is SGI MIPS C... no
+2026-08-30T01:45:24 checking if compiler is SunPro C... no
+2026-08-30T01:45:24 checking if compiler is Tiny C... no
+2026-08-30T01:45:25 checking whether build target is a native Windows one... no
+2026-08-30T01:45:25 checking if compiler accepts some basic options... yes
+2026-08-30T01:45:25 configure: compiler options added: -Werror-implicit-function-declaration
+2026-08-30T01:45:25 checking if compiler optimizer assumed setting might be used... no
+2026-08-30T01:45:25 checking if compiler accepts strict warning options... yes
+2026-08-30T01:45:25 configure: compiler options added: -Wno-system-headers
+2026-08-30T01:45:25 checking if compiler halts on compilation errors... yes
+2026-08-30T01:45:25 checking if compiler halts on negative sized arrays... yes
+2026-08-30T01:45:25 checking if compiler halts on function prototype mismatch... yes
+2026-08-30T01:45:25 checking if compiler supports hiding library internal symbols... no
+2026-08-30T01:45:25 checking whether build target supports WIN32 file API... no
+2026-08-30T01:45:25 checking whether build target supports WIN32 crypto API... no
+2026-08-30T01:45:25 checking for good-to-use Darwin CFLAGS... no
+2026-08-30T01:45:25 checking whether to link macOS CoreFoundation, CoreServices, and SystemConfiguration frameworks... no
+2026-08-30T01:45:25 checking to see if the compiler supports __builtin_available()... no
+2026-08-30T01:45:25 checking whether to support http... yes
+2026-08-30T01:45:25 checking whether to support ftp... yes
+2026-08-30T01:45:25 checking whether to support file... yes
+2026-08-30T01:45:25 checking whether to support ldap... no
+2026-08-30T01:45:25 checking whether to support ldaps... no
+2026-08-30T01:45:25 checking whether to support rtsp... yes
+2026-08-30T01:45:25 checking whether to support proxies... yes
+2026-08-30T01:45:25 checking whether to support dict... yes
+2026-08-30T01:45:25 checking whether to support telnet... yes
+2026-08-30T01:45:25 checking whether to support tftp... yes
+2026-08-30T01:45:25 checking whether to support pop3... yes
+2026-08-30T01:45:25 checking whether to support imap... yes
+2026-08-30T01:45:25 checking whether to support smb... yes
+2026-08-30T01:45:25 checking whether to support smtp... yes
+2026-08-30T01:45:25 checking whether to support gopher... yes
+2026-08-30T01:45:25 checking whether to support mqtt... no
+2026-08-30T01:45:25 checking whether to provide built-in manual... no
+2026-08-30T01:45:25 checking whether to enable generation of C code... no
+2026-08-30T01:45:25 checking whether to use libgcc... no
+2026-08-30T01:45:25 checking if X/Open network library is required... no
+2026-08-30T01:45:25 checking for gethostbyname... yes
+2026-08-30T01:45:25 checking whether build target is a native Windows one... (cached) no
+2026-08-30T01:45:25 checking for proto/bsdsocket.h... no
+2026-08-30T01:45:26 checking for connect in libraries... yes
+2026-08-30T01:45:26 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:26 checking for sys/time.h... yes
+2026-08-30T01:45:26 checking for monotonic clock_gettime... yes
+2026-08-30T01:45:26 checking for clock_gettime in libraries... no additional lib required
+2026-08-30T01:45:26 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:26 checking for sys/time.h... (cached) yes
+2026-08-30T01:45:26 checking for raw monotonic clock_gettime... yes
+2026-08-30T01:45:26 checking for zlib options with pkg-config... found
+2026-08-30T01:45:26 checking for zlib.h... yes
+2026-08-30T01:45:26 configure: found both libz and libz.h header
+2026-08-30T01:45:26 checking for ZSTD_createDStream in -lzstd... no
+2026-08-30T01:45:26 checking for zstd.h... no
+2026-08-30T01:45:26 checking whether to enable IPv6... yes
+2026-08-30T01:45:26 checking if struct sockaddr_in6 has sin6_scope_id member... yes
+2026-08-30T01:45:26 checking if argv can be written to... no
+2026-08-30T01:45:26 configure: WARNING: the previous check could not be made default was used
+2026-08-30T01:45:26 checking if GSS-API support is requested... no
+2026-08-30T01:45:26 checking whether to enable Windows native SSL/TLS... no
+2026-08-30T01:45:26 checking whether to enable Secure Transport... no
+2026-08-30T01:45:26 checking whether to enable Amiga native SSL/TLS (AmiSSL v5)... no
+2026-08-30T01:45:26 configure: PKG_CONFIG_LIBDIR will be set to "/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/pkgconfig"
+2026-08-30T01:45:26 checking for openssl options with pkg-config... found
+2026-08-30T01:45:26 configure: pkg-config: SSL_LIBS: "-lssl -lcrypto "
+2026-08-30T01:45:26 configure: pkg-config: SSL_LDFLAGS: "-L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/../arm-buildroot-linux-gnueabihf/sysroot/usr/lib "
+2026-08-30T01:45:26 configure: pkg-config: SSL_CPPFLAGS: ""
+2026-08-30T01:45:27 checking for HMAC_Update in -lcrypto... yes
+2026-08-30T01:45:27 checking for SSL_connect in -lssl... yes
+2026-08-30T01:45:27 checking for openssl/x509.h... yes
+2026-08-30T01:45:27 checking for openssl/rsa.h... yes
+2026-08-30T01:45:27 checking for openssl/crypto.h... yes
+2026-08-30T01:45:28 checking for openssl/pem.h... yes
+2026-08-30T01:45:28 checking for openssl/ssl.h... yes
+2026-08-30T01:45:28 checking for openssl/err.h... yes
+2026-08-30T01:45:28 checking for BoringSSL... no
+2026-08-30T01:45:28 checking for AWS-LC... no
+2026-08-30T01:45:28 checking for libressl... no
+2026-08-30T01:45:28 checking for OpenSSL >= v3... yes
+2026-08-30T01:45:28 checking for SSL_set_quic_use_legacy_codepoint... no
+2026-08-30T01:45:28 configure: OpenSSL version does not speak QUIC API
+2026-08-30T01:45:29 checking for SRP support in OpenSSL... yes
+2026-08-30T01:45:29 checking for QUIC support in OpenSSL... yes
+2026-08-30T01:45:29 configure: built with one SSL backend
+2026-08-30T01:45:29 checking default CA cert bundle/path... /etc/ssl/certs (capath)
+2026-08-30T01:45:29 checking whether to use builtin CA store of SSL library... no
+2026-08-30T01:45:29 checking for RTMP_Init in -lrtmp... no
+2026-08-30T01:45:29 checking whether versioned symbols are wanted... no
+2026-08-30T01:45:29 checking whether to enable Windows native IDN (Windows native builds only)... no
+2026-08-30T01:45:29 checking whether to build with libidn2... no
+2026-08-30T01:45:29 checking for libnghttp3 options with pkg-config... no
+2026-08-30T01:45:29 checking for fish options with pkg-config... no
+2026-08-30T01:45:29 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:29 checking for sys/time.h... (cached) yes
+2026-08-30T01:45:29 checking for sys/select.h... yes
+2026-08-30T01:45:30 checking for sys/socket.h... yes
+2026-08-30T01:45:30 checking for sys/ioctl.h... yes
+2026-08-30T01:45:30 checking for unistd.h... (cached) yes
+2026-08-30T01:45:30 checking for stdlib.h... (cached) yes
+2026-08-30T01:45:30 checking for arpa/inet.h... yes
+2026-08-30T01:45:30 checking for net/if.h... yes
+2026-08-30T01:45:30 checking for netinet/in.h... yes
+2026-08-30T01:45:30 checking for netinet/in6.h... no
+2026-08-30T01:45:30 checking for sys/un.h... yes
+2026-08-30T01:45:30 checking for linux/tcp.h... yes
+2026-08-30T01:45:30 checking for netinet/tcp.h... yes
+2026-08-30T01:45:30 checking for netinet/udp.h... yes
+2026-08-30T01:45:30 checking for netdb.h... yes
+2026-08-30T01:45:30 checking for sys/sockio.h... no
+2026-08-30T01:45:30 checking for sys/stat.h... (cached) yes
+2026-08-30T01:45:31 checking for sys/param.h... yes
+2026-08-30T01:45:31 checking for termios.h... yes
+2026-08-30T01:45:31 checking for termio.h... yes
+2026-08-30T01:45:31 checking for fcntl.h... yes
+2026-08-30T01:45:31 checking for io.h... no
+2026-08-30T01:45:31 checking for pwd.h... yes
+2026-08-30T01:45:31 checking for utime.h... yes
+2026-08-30T01:45:31 checking for sys/utime.h... no
+2026-08-30T01:45:31 checking for sys/poll.h... yes
+2026-08-30T01:45:31 checking for poll.h... yes
+2026-08-30T01:45:31 checking for socket.h... no
+2026-08-30T01:45:31 checking for sys/resource.h... yes
+2026-08-30T01:45:32 checking for libgen.h... yes
+2026-08-30T01:45:32 checking for locale.h... yes
+2026-08-30T01:45:32 checking for stdbool.h... yes
+2026-08-30T01:45:32 checking for sys/filio.h... no
+2026-08-30T01:45:32 checking for sys/wait.h... yes
+2026-08-30T01:45:32 checking for setjmp.h... yes
+2026-08-30T01:45:32 checking for an ANSI C-conforming const... yes
+2026-08-30T01:45:32 checking for size_t... yes
+2026-08-30T01:45:32 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:32 checking for sys/time.h... (cached) yes
+2026-08-30T01:45:32 checking for sys/socket.h... (cached) yes
+2026-08-30T01:45:32 checking for struct timeval... yes
+2026-08-30T01:45:32 checking size of size_t... 4
+2026-08-30T01:45:33 checking size of long... 4
+2026-08-30T01:45:33 checking size of int... 4
+2026-08-30T01:45:33 checking size of time_t... 4
+2026-08-30T01:45:33 checking size of off_t... 8
+2026-08-30T01:45:33 checking size of curl_off_t... 8
+2026-08-30T01:45:33 checking size of curl_socket_t... 4
+2026-08-30T01:45:34 checking for long long... yes
+2026-08-30T01:45:34 checking for ssize_t... yes
+2026-08-30T01:45:34 checking for bool... yes
+2026-08-30T01:45:34 checking for sa_family_t... yes
+2026-08-30T01:45:34 checking for suseconds_t... yes
+2026-08-30T01:45:34 checking if time_t is unsigned... no
+2026-08-30T01:45:34 checking for in_addr_t... yes
+2026-08-30T01:45:35 checking for struct sockaddr_storage... yes
+2026-08-30T01:45:35 checking for sys/select.h... (cached) yes
+2026-08-30T01:45:35 checking for sys/socket.h... (cached) yes
+2026-08-30T01:45:35 checking for select... yes
+2026-08-30T01:45:35 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:35 checking for sys/socket.h... (cached) yes
+2026-08-30T01:45:35 checking for recv... yes
+2026-08-30T01:45:35 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:35 checking for sys/socket.h... (cached) yes
+2026-08-30T01:45:35 checking for send... yes
+2026-08-30T01:45:35 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:35 checking for sys/socket.h... (cached) yes
+2026-08-30T01:45:35 checking for MSG_NOSIGNAL... yes
+2026-08-30T01:45:35 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:35 checking for unistd.h... (cached) yes
+2026-08-30T01:45:35 checking if alarm can be linked... yes
+2026-08-30T01:45:35 checking if alarm is prototyped... yes
+2026-08-30T01:45:36 checking if alarm is compilable... yes
+2026-08-30T01:45:36 checking if alarm usage allowed... yes
+2026-08-30T01:45:36 checking if alarm might be used... yes
+2026-08-30T01:45:36 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:36 checking for strings.h... (cached) yes
+2026-08-30T01:45:36 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:36 checking for libgen.h... (cached) yes
+2026-08-30T01:45:36 checking if basename can be linked... yes
+2026-08-30T01:45:36 checking if basename is prototyped... yes
+2026-08-30T01:45:36 checking if basename is compilable... yes
+2026-08-30T01:45:36 checking if basename usage allowed... yes
+2026-08-30T01:45:36 checking if basename might be used... yes
+2026-08-30T01:45:36 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:36 checking for socket.h... (cached) no
+2026-08-30T01:45:36 checking if closesocket can be linked... no
+2026-08-30T01:45:36 checking if closesocket might be used... no
+2026-08-30T01:45:36 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:36 checking for sys/socket.h... (cached) yes
+2026-08-30T01:45:36 checking if CloseSocket can be linked... no
+2026-08-30T01:45:36 checking if CloseSocket might be used... no
+2026-08-30T01:45:36 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:36 checking for unistd.h... (cached) yes
+2026-08-30T01:45:36 checking for fcntl.h... (cached) yes
+2026-08-30T01:45:36 checking if fcntl can be linked... yes
+2026-08-30T01:45:36 checking if fcntl is prototyped... yes
+2026-08-30T01:45:36 checking if fcntl is compilable... yes
+2026-08-30T01:45:36 checking if fcntl usage allowed... yes
+2026-08-30T01:45:36 checking if fcntl might be used... yes
+2026-08-30T01:45:36 checking if fcntl O_NONBLOCK is compilable... yes
+2026-08-30T01:45:36 checking if fcntl O_NONBLOCK usage allowed... yes
+2026-08-30T01:45:36 checking if fcntl O_NONBLOCK might be used... yes
+2026-08-30T01:45:36 checking whether build target is a native Windows one... (cached) no
+2026-08-30T01:45:36 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:36 checking for netdb.h... (cached) yes
+2026-08-30T01:45:37 checking if freeaddrinfo can be linked... yes
+2026-08-30T01:45:37 checking if freeaddrinfo is prototyped... yes
+2026-08-30T01:45:37 checking if freeaddrinfo is compilable... yes
+2026-08-30T01:45:37 checking if freeaddrinfo usage allowed... yes
+2026-08-30T01:45:37 checking if freeaddrinfo might be used... yes
+2026-08-30T01:45:37 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:37 checking for sys/xattr.h... yes
+2026-08-30T01:45:37 checking if fsetxattr can be linked... yes
+2026-08-30T01:45:37 checking if fsetxattr is prototyped... yes
+2026-08-30T01:45:37 checking if fsetxattr takes 5 args.... yes
+2026-08-30T01:45:37 checking if fsetxattr is compilable... yes
+2026-08-30T01:45:37 checking if fsetxattr usage allowed... yes
+2026-08-30T01:45:37 checking if fsetxattr might be used... yes
+2026-08-30T01:45:37 checking if ftruncate can be linked... yes
+2026-08-30T01:45:37 checking if ftruncate is prototyped... yes
+2026-08-30T01:45:37 checking if ftruncate is compilable... yes
+2026-08-30T01:45:37 checking if ftruncate usage allowed... yes
+2026-08-30T01:45:37 checking if ftruncate might be used... yes
+2026-08-30T01:45:37 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:38 checking if getaddrinfo can be linked... yes
+2026-08-30T01:45:38 checking if getaddrinfo is prototyped... yes
+2026-08-30T01:45:38 checking if getaddrinfo is compilable... yes
+2026-08-30T01:45:38 checking if getaddrinfo usage allowed... yes
+2026-08-30T01:45:38 checking if getaddrinfo might be used... yes
+2026-08-30T01:45:38 checking if getaddrinfo is threadsafe... yes
+2026-08-30T01:45:38 checking if gethostbyname can be linked... yes
+2026-08-30T01:45:38 checking if gethostbyname is prototyped... yes
+2026-08-30T01:45:38 checking if gethostbyname is compilable... yes
+2026-08-30T01:45:38 checking if gethostbyname usage allowed... yes
+2026-08-30T01:45:38 checking if gethostbyname might be used... yes
+2026-08-30T01:45:38 checking if gethostbyname_r can be linked... yes
+2026-08-30T01:45:39 checking if gethostbyname_r is prototyped... yes
+2026-08-30T01:45:39 checking if gethostbyname_r takes 3 args.... no
+2026-08-30T01:45:39 checking if gethostbyname_r takes 5 args.... no
+2026-08-30T01:45:39 checking if gethostbyname_r takes 6 args.... yes
+2026-08-30T01:45:39 checking if gethostbyname_r is compilable... yes
+2026-08-30T01:45:39 checking if gethostbyname_r usage allowed... yes
+2026-08-30T01:45:39 checking if gethostbyname_r might be used... yes
+2026-08-30T01:45:39 checking if gethostname can be linked... yes
+2026-08-30T01:45:39 checking if gethostname is prototyped... yes
+2026-08-30T01:45:39 checking if gethostname is compilable... yes
+2026-08-30T01:45:39 checking for gethostname arg 2 data type... unsigned int
+2026-08-30T01:45:39 checking if gethostname usage allowed... yes
+2026-08-30T01:45:39 checking if gethostname might be used... yes
+2026-08-30T01:45:39 checking if getpeername can be linked... yes
+2026-08-30T01:45:40 checking if getpeername is prototyped... yes
+2026-08-30T01:45:40 checking if getpeername is compilable... yes
+2026-08-30T01:45:40 checking if getpeername usage allowed... yes
+2026-08-30T01:45:40 checking if getpeername might be used... yes
+2026-08-30T01:45:40 checking if getsockname can be linked... yes
+2026-08-30T01:45:40 checking if getsockname is prototyped... yes
+2026-08-30T01:45:40 checking if getsockname is compilable... yes
+2026-08-30T01:45:40 checking if getsockname usage allowed... yes
+2026-08-30T01:45:40 checking if getsockname might be used... yes
+2026-08-30T01:45:40 checking for net/if.h... (cached) yes
+2026-08-30T01:45:40 checking if if_nametoindex can be linked... yes
+2026-08-30T01:45:40 checking if if_nametoindex is prototyped... yes
+2026-08-30T01:45:40 checking if if_nametoindex is compilable... yes
+2026-08-30T01:45:40 checking if if_nametoindex usage allowed... yes
+2026-08-30T01:45:40 checking if if_nametoindex might be used... yes
+2026-08-30T01:45:40 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:40 checking for sys/socket.h... (cached) yes
+2026-08-30T01:45:40 checking for netinet/in.h... (cached) yes
+2026-08-30T01:45:40 checking for ifaddrs.h... yes
+2026-08-30T01:45:41 checking if getifaddrs can be linked... yes
+2026-08-30T01:45:41 checking if getifaddrs is prototyped... yes
+2026-08-30T01:45:41 checking if getifaddrs is compilable... yes
+2026-08-30T01:45:41 checking if getifaddrs usage allowed... yes
+2026-08-30T01:45:41 checking if getifaddrs might be used... yes
+2026-08-30T01:45:41 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:41 checking for sys/time.h... (cached) yes
+2026-08-30T01:45:41 checking if gmtime_r can be linked... yes
+2026-08-30T01:45:41 checking if gmtime_r is prototyped... yes
+2026-08-30T01:45:41 checking if gmtime_r is compilable... yes
+2026-08-30T01:45:41 checking if gmtime_r usage allowed... yes
+2026-08-30T01:45:41 checking if gmtime_r might be used... yes
+2026-08-30T01:45:41 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:41 checking for sys/socket.h... (cached) yes
+2026-08-30T01:45:41 checking for netinet/in.h... (cached) yes
+2026-08-30T01:45:41 checking for arpa/inet.h... (cached) yes
+2026-08-30T01:45:41 checking if inet_ntop can be linked... yes
+2026-08-30T01:45:41 checking if inet_ntop is prototyped... yes
+2026-08-30T01:45:41 checking if inet_ntop is compilable... yes
+2026-08-30T01:45:41 checking if inet_ntop usage allowed... yes
+2026-08-30T01:45:41 checking if inet_ntop might be used... yes
+2026-08-30T01:45:41 checking if inet_pton can be linked... yes
+2026-08-30T01:45:41 checking if inet_pton is prototyped... yes
+2026-08-30T01:45:42 checking if inet_pton is compilable... yes
+2026-08-30T01:45:42 checking if inet_pton usage allowed... yes
+2026-08-30T01:45:42 checking if inet_pton might be used... yes
+2026-08-30T01:45:42 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:42 checking for unistd.h... (cached) yes
+2026-08-30T01:45:42 checking for sys/socket.h... (cached) yes
+2026-08-30T01:45:42 checking for sys/ioctl.h... (cached) yes
+2026-08-30T01:45:42 checking for stropts.h... no
+2026-08-30T01:45:42 checking if ioctl can be linked... yes
+2026-08-30T01:45:42 checking if ioctl is prototyped... yes
+2026-08-30T01:45:42 checking if ioctl is compilable... yes
+2026-08-30T01:45:42 checking if ioctl usage allowed... yes
+2026-08-30T01:45:42 checking if ioctl might be used... yes
+2026-08-30T01:45:42 checking if ioctl FIONBIO is compilable... yes
+2026-08-30T01:45:42 checking if ioctl FIONBIO usage allowed... yes
+2026-08-30T01:45:42 checking if ioctl FIONBIO might be used... yes
+2026-08-30T01:45:42 checking if ioctl SIOCGIFADDR is compilable... yes
+2026-08-30T01:45:42 checking if ioctl SIOCGIFADDR usage allowed... yes
+2026-08-30T01:45:42 checking if ioctl SIOCGIFADDR might be used... yes
+2026-08-30T01:45:42 checking if ioctlsocket can be linked... no
+2026-08-30T01:45:42 checking if ioctlsocket might be used... no
+2026-08-30T01:45:42 checking if IoctlSocket can be linked... no
+2026-08-30T01:45:42 checking if IoctlSocket might be used... no
+2026-08-30T01:45:42 checking if memrchr can be linked... yes
+2026-08-30T01:45:43 checking if memrchr is prototyped... no
+2026-08-30T01:45:43 checking if memrchr might be used... no
+2026-08-30T01:45:43 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:43 checking for poll.h... (cached) yes
+2026-08-30T01:45:43 checking for sys/poll.h... (cached) yes
+2026-08-30T01:45:43 checking if poll can be linked... yes
+2026-08-30T01:45:43 checking if poll is prototyped... yes
+2026-08-30T01:45:43 checking if poll is compilable... yes
+2026-08-30T01:45:43 checking if poll usage allowed... yes
+2026-08-30T01:45:43 checking if poll might be used... yes
+2026-08-30T01:45:43 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:43 checking if sigaction can be linked... yes
+2026-08-30T01:45:43 checking if sigaction is prototyped... yes
+2026-08-30T01:45:43 checking if sigaction is compilable... yes
+2026-08-30T01:45:43 checking if sigaction usage allowed... yes
+2026-08-30T01:45:43 checking if sigaction might be used... yes
+2026-08-30T01:45:43 checking if siginterrupt can be linked... yes
+2026-08-30T01:45:43 checking if siginterrupt is prototyped... yes
+2026-08-30T01:45:43 checking if siginterrupt is compilable... yes
+2026-08-30T01:45:43 checking if siginterrupt usage allowed... yes
+2026-08-30T01:45:43 checking if siginterrupt might be used... yes
+2026-08-30T01:45:44 checking if signal can be linked... yes
+2026-08-30T01:45:44 checking if signal is prototyped... yes
+2026-08-30T01:45:44 checking if signal is compilable... yes
+2026-08-30T01:45:44 checking if signal usage allowed... yes
+2026-08-30T01:45:44 checking if signal might be used... yes
+2026-08-30T01:45:44 checking for sys/types.h... (cached) yes
+2026-08-30T01:45:44 checking if sigsetjmp can be linked... no
+2026-08-30T01:45:44 checking if sigsetjmp seems a macro... yes
+2026-08-30T01:45:44 checking if sigsetjmp is compilable... yes
+2026-08-30T01:45:44 checking if sigsetjmp usage allowed... yes
+2026-08-30T01:45:44 checking if sigsetjmp might be used... yes
+2026-08-30T01:45:44 checking if socket can be linked... yes
+2026-08-30T01:45:44 checking if socket is prototyped... yes
+2026-08-30T01:45:44 checking if socket is compilable... yes
+2026-08-30T01:45:44 checking if socket usage allowed... yes
+2026-08-30T01:45:44 checking if socket might be used... yes
+2026-08-30T01:45:45 checking if socketpair can be linked... yes
+2026-08-30T01:45:45 checking if socketpair is prototyped... yes
+2026-08-30T01:45:45 checking if socketpair is compilable... yes
+2026-08-30T01:45:45 checking if socketpair usage allowed... yes
+2026-08-30T01:45:45 checking if socketpair might be used... yes
+2026-08-30T01:45:45 checking if strcasecmp can be linked... yes
+2026-08-30T01:45:45 checking if strcasecmp is prototyped... yes
+2026-08-30T01:45:45 checking if strcasecmp is compilable... yes
+2026-08-30T01:45:45 checking if strcasecmp usage allowed... yes
+2026-08-30T01:45:45 checking if strcasecmp might be used... yes
+2026-08-30T01:45:45 checking if strcmpi can be linked... no
+2026-08-30T01:45:45 checking if strcmpi might be used... no
+2026-08-30T01:45:45 checking if strdup can be linked... yes
+2026-08-30T01:45:46 checking if strdup is prototyped... yes
+2026-08-30T01:45:46 checking if strdup is compilable... yes
+2026-08-30T01:45:46 checking if strdup usage allowed... yes
+2026-08-30T01:45:46 checking if strdup might be used... yes
+2026-08-30T01:45:46 checking if strerror_r can be linked... yes
+2026-08-30T01:45:46 checking if strerror_r is prototyped... yes
+2026-08-30T01:45:46 checking if strerror_r is compilable... yes
+2026-08-30T01:45:46 checking if strerror_r is glibc like... no
+2026-08-30T01:45:46 checking if strerror_r is POSIX like... yes
+2026-08-30T01:45:46 checking if strerror_r usage allowed... yes
+2026-08-30T01:45:46 checking if strerror_r might be used... yes
+2026-08-30T01:45:46 checking if stricmp can be linked... no
+2026-08-30T01:45:46 checking if stricmp might be used... no
+2026-08-30T01:45:47 checking if strtok_r can be linked... yes
+2026-08-30T01:45:47 checking if strtok_r is prototyped... yes
+2026-08-30T01:45:47 checking if strtok_r is compilable... yes
+2026-08-30T01:45:47 checking if strtok_r usage allowed... yes
+2026-08-30T01:45:47 checking if strtok_r might be used... yes
+2026-08-30T01:45:47 checking if strtoll can be linked... yes
+2026-08-30T01:45:47 checking if strtoll is prototyped... yes
+2026-08-30T01:45:47 checking if strtoll is compilable... yes
+2026-08-30T01:45:47 checking if strtoll usage allowed... yes
+2026-08-30T01:45:47 checking if strtoll might be used... yes
+2026-08-30T01:45:47 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc options needed to detect all undeclared functions... none needed
+2026-08-30T01:45:47 checking whether getpwuid_r is declared... yes
+2026-08-30T01:45:47 checking for _fseeki64... no
+2026-08-30T01:45:48 checking deeper for _fseeki64... but still no
+2026-08-30T01:45:48 checking for arc4random... yes
+2026-08-30T01:45:48 checking for fnmatch... yes
+2026-08-30T01:45:48 checking for fseeko... yes
+2026-08-30T01:45:48 checking for geteuid... yes
+2026-08-30T01:45:49 checking for getpass_r... no
+2026-08-30T01:45:49 checking deeper for getpass_r... but still no
+2026-08-30T01:45:49 checking for getppid... yes
+2026-08-30T01:45:49 checking for getpwuid... yes
+2026-08-30T01:45:49 checking for getpwuid_r... yes
+2026-08-30T01:45:49 checking for getrlimit... yes
+2026-08-30T01:45:50 checking for gettimeofday... yes
+2026-08-30T01:45:50 checking for if_nametoindex... yes
+2026-08-30T01:45:50 checking for mach_absolute_time... no
+2026-08-30T01:45:50 checking deeper for mach_absolute_time... but still no
+2026-08-30T01:45:50 checking for pipe... yes
+2026-08-30T01:45:50 checking for sched_yield... yes
+2026-08-30T01:45:51 checking for sendmsg... yes
+2026-08-30T01:45:51 checking for setlocale... yes
+2026-08-30T01:45:51 checking for setmode... no
+2026-08-30T01:45:51 checking deeper for setmode... but still no
+2026-08-30T01:45:51 checking for setrlimit... yes
+2026-08-30T01:45:52 checking for snprintf... yes
+2026-08-30T01:45:52 checking for utime... yes
+2026-08-30T01:45:52 checking for utimes... yes
+2026-08-30T01:45:52 checking whether fseeko is declared... yes
+2026-08-30T01:45:52 checking how to set a socket into non-blocking mode... fcntl O_NONBLOCK
+2026-08-30T01:45:52 checking for perl... /usr/bin/perl
+2026-08-30T01:45:52 checking for gnroff... no
+2026-08-30T01:45:52 checking for nroff... /usr/bin/nroff
+2026-08-30T01:45:52 checking how to use *nroff to get plain text from man pages... -man
+2026-08-30T01:45:52 checking whether to enable the threaded resolver... yes
+2026-08-30T01:45:52 checking whether to use POSIX threads for threaded resolver... auto
+2026-08-30T01:45:52 checking for pthread.h... yes
+2026-08-30T01:45:52 checking for pthread_create... yes
+2026-08-30T01:45:52 checking convert -I options to -isystem... yes
+2026-08-30T01:45:52 checking whether to enable verbose strings... no
+2026-08-30T01:45:52 checking whether to enable SSPI support (Windows native builds only)... no
+2026-08-30T01:45:52 checking whether to enable basic authentication method... yes
+2026-08-30T01:45:52 checking whether to enable bearer authentication method... yes
+2026-08-30T01:45:52 checking whether to enable digest authentication method... yes
+2026-08-30T01:45:52 checking whether to enable kerberos authentication method... yes
+2026-08-30T01:45:52 checking whether to enable negotiate authentication method... yes
+2026-08-30T01:45:52 checking whether to enable aws sig methods... yes
+2026-08-30T01:45:52 checking whether to support NTLM... no
+2026-08-30T01:45:52 checking whether to enable NTLM delegation to winbind's helper... no
+2026-08-30T01:45:52 checking whether to enable TLS-SRP authentication... yes
+2026-08-30T01:45:52 checking whether to enable Unix domain sockets... auto
+2026-08-30T01:45:52 checking for struct sockaddr_un.sun_path... yes
+2026-08-30T01:45:52 checking whether to support cookies... yes
+2026-08-30T01:45:52 checking whether to support socketpair... yes
+2026-08-30T01:45:52 checking whether to support HTTP authentication... yes
+2026-08-30T01:45:52 checking whether to support DoH... yes
+2026-08-30T01:45:52 checking whether to support the MIME API... yes
+2026-08-30T01:45:52 checking whether to support binding connections locally... yes
+2026-08-30T01:45:52 checking whether to support the form API... yes
+2026-08-30T01:45:52 checking whether to support date parsing... yes
+2026-08-30T01:45:52 checking whether to support netrc parsing... yes
+2026-08-30T01:45:52 checking whether to support progress-meter... yes
+2026-08-30T01:45:52 checking whether to support DNS shuffling... yes
+2026-08-30T01:45:52 checking whether to support curl_easy_option*... yes
+2026-08-30T01:45:52 checking whether to support alt-svc... yes
+2026-08-30T01:45:52 checking whether to support headers-api... yes
+2026-08-30T01:45:52 checking whether to support HSTS... yes
+2026-08-30T01:45:53 checking for SSL_set0_wbio... yes
+2026-08-30T01:45:53 checking whether to support WebSockets... no
+2026-08-30T01:45:53 checking whether hiding of library internal symbols will actually happen... no
+2026-08-30T01:45:53 checking if this build supports HTTPS-proxy... yes
+2026-08-30T01:45:53 configure: using CFLAGS: -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -O2 -g0 -D_FORTIFY_SOURCE=1 -Werror-implicit-function-declaration -Wno-system-headers
+2026-08-30T01:45:53 configure: CFLAGS note: CFLAGS should only be used to specify C compiler flags, not macro definitions. Use CPPFLAGS for: -D_LARGEFILE_SOURCE
+2026-08-30T01:45:53 configure: CFLAGS note: CFLAGS should only be used to specify C compiler flags, not macro definitions. Use CPPFLAGS for: -D_LARGEFILE64_SOURCE
+2026-08-30T01:45:53 configure: CFLAGS note: CFLAGS should only be used to specify C compiler flags, not macro definitions. Use CPPFLAGS for: -D_FILE_OFFSET_BITS=64
+2026-08-30T01:45:53 configure: CFLAGS note: CFLAGS should only be used to specify C compiler flags, not macro definitions. Use CPPFLAGS for: -D_FORTIFY_SOURCE=1
+2026-08-30T01:45:53 configure: WARNING: Continuing even with errors mentioned immediately above this line.
+2026-08-30T01:45:53 checking that generated files are newer than configure... done
+2026-08-30T01:45:53 configure: creating ./config.status
+2026-08-30T01:45:55 config.status: creating Makefile
+2026-08-30T01:45:55 config.status: creating docs/Makefile
+2026-08-30T01:45:55 config.status: creating docs/examples/Makefile
+2026-08-30T01:45:55 config.status: creating docs/libcurl/Makefile
+2026-08-30T01:45:55 config.status: creating docs/libcurl/opts/Makefile
+2026-08-30T01:45:55 config.status: creating docs/cmdline-opts/Makefile
+2026-08-30T01:45:55 config.status: creating include/Makefile
+2026-08-30T01:45:55 config.status: creating include/curl/Makefile
+2026-08-30T01:45:55 config.status: creating src/Makefile
+2026-08-30T01:45:55 config.status: creating lib/Makefile
+2026-08-30T01:45:55 config.status: creating scripts/Makefile
+2026-08-30T01:45:55 config.status: creating lib/libcurl.vers
+2026-08-30T01:45:55 config.status: creating lib/libcurl.plist
+2026-08-30T01:45:55 config.status: creating tests/Makefile
+2026-08-30T01:45:56 config.status: creating tests/config
+2026-08-30T01:45:56 config.status: creating tests/certs/Makefile
+2026-08-30T01:45:56 config.status: creating tests/certs/scripts/Makefile
+2026-08-30T01:45:56 config.status: creating tests/data/Makefile
+2026-08-30T01:45:56 config.status: creating tests/server/Makefile
+2026-08-30T01:45:56 config.status: creating tests/libtest/Makefile
+2026-08-30T01:45:56 config.status: creating tests/unit/Makefile
+2026-08-30T01:45:56 config.status: creating tests/http/config.ini
+2026-08-30T01:45:56 config.status: creating tests/http/Makefile
+2026-08-30T01:45:56 config.status: creating tests/http/clients/Makefile
+2026-08-30T01:45:56 config.status: creating packages/Makefile
+2026-08-30T01:45:56 config.status: creating packages/vms/Makefile
+2026-08-30T01:45:56 config.status: creating curl-config
+2026-08-30T01:45:56 config.status: creating libcurl.pc
+2026-08-30T01:45:56 config.status: creating lib/curl_config.h
+2026-08-30T01:45:56 config.status: executing depfiles commands
+2026-08-30T01:45:56 config.status: executing libtool commands
+2026-08-30T01:45:56 configure: WARNING: unrecognized options: --disable-gtk-doc, --disable-gtk-doc-html, --disable-doc, --disable-docs, --disable-documentation, --with-xmlto, --with-fop, --disable-nls
+2026-08-30T01:45:56 configure: Configured to build curl/libcurl:
+2026-08-30T01:45:56 
+2026-08-30T01:45:56 Host setup:       arm-buildroot-linux-gnueabihf
+2026-08-30T01:45:56 Install prefix:   /usr
+2026-08-30T01:45:56 Compiler:         /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc
+2026-08-30T01:45:56 CFLAGS:          -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -O2 -g0 -D_FORTIFY_SOURCE=1 -Werror-implicit-function-declaration -Wno-system-headers
+2026-08-30T01:45:56 CPPFLAGS:        -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64
+2026-08-30T01:45:56 LDFLAGS:         -L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/../arm-buildroot-linux-gnueabihf/sysroot/usr/lib -L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/../arm-buildroot-linux-gnueabihf/sysroot/usr/lib
+2026-08-30T01:45:56 LIBS:            -lssl -lcrypto -lssl -lcrypto -lz -latomic
+2026-08-30T01:45:56 
+2026-08-30T01:45:56 curl version:     8.6.0
+2026-08-30T01:45:56 SSL:              enabled (OpenSSL v3+)
+2026-08-30T01:45:56 SSH:              no      (--with-{libssh,libssh2})
+2026-08-30T01:45:56 zlib:             enabled
+2026-08-30T01:45:56 brotli:           no      (--with-brotli)
+2026-08-30T01:45:56 zstd:             no      (--with-zstd)
+2026-08-30T01:45:56 GSS-API:          no      (--with-gssapi)
+2026-08-30T01:45:56 GSASL:            no      (--with-gsasl)
+2026-08-30T01:45:56 TLS-SRP:          enabled
+2026-08-30T01:45:56 resolver:         POSIX threaded
+2026-08-30T01:45:56 IPv6:             enabled
+2026-08-30T01:45:56 Unix sockets:     enabled
+2026-08-30T01:45:56 IDN:              no      (--with-{libidn2,winidn})
+2026-08-30T01:45:56 Build libcurl:    Shared=yes, Static=no
+2026-08-30T01:45:56 Built-in manual:  no      (--enable-manual)
+2026-08-30T01:45:56 --libcurl option: no
+2026-08-30T01:45:56 Verbose errors:   no
+2026-08-30T01:45:56 Code coverage:    disabled
+2026-08-30T01:45:56 SSPI:             no      (--enable-sspi)
+2026-08-30T01:45:56 ca cert bundle:   no
+2026-08-30T01:45:56 ca cert path:     /etc/ssl/certs
+2026-08-30T01:45:56 ca fallback:      no
+2026-08-30T01:45:56 LDAP:             no      (--enable-ldap / --with-ldap-lib / --with-lber-lib)
+2026-08-30T01:45:56 LDAPS:            no      (--enable-ldaps)
+2026-08-30T01:45:56 RTSP:             enabled
+2026-08-30T01:45:56 RTMP:             no      (--with-librtmp)
+2026-08-30T01:45:56 PSL:              no      (--with-libpsl)
+2026-08-30T01:45:56 Alt-svc:          enabled (--disable-alt-svc)
+2026-08-30T01:45:56 Headers API:      enabled (--disable-headers-api)
+2026-08-30T01:45:56 HSTS:             enabled (--disable-hsts)
+2026-08-30T01:45:56 HTTP1:            enabled (internal)
+2026-08-30T01:45:56 HTTP2:            no      (--with-nghttp2)
+2026-08-30T01:45:56 HTTP3:            no      (--with-ngtcp2 --with-nghttp3, --with-quiche, --with-openssl-quic, --with-msh3)
+2026-08-30T01:45:56 ECH:              no      (--enable-ech)
+2026-08-30T01:45:56 WebSockets:       no      (--enable-websockets)
+2026-08-30T01:45:56 Protocols:        DICT FILE FTP FTPS GOPHER GOPHERS HTTP HTTPS IMAP IMAPS IPFS IPNS MQTT POP3 POP3S RTSP SMTP SMTPS TELNET TFTP
+2026-08-30T01:45:56 Features:         AsynchDNS HSTS HTTPS-proxy IPv6 Largefile SSL TLS-SRP UnixSockets alt-svc libz threadsafe
+2026-08-30T01:45:56 
+2026-08-30T01:45:57 [7m>>> libcurl 8.6.0 Building[27m
+2026-08-30T01:45:57 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1  /usr/bin/make -j1  -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/libcurl-8.6.0/
+2026-08-30T01:45:57 Making all in lib
+2026-08-30T01:45:57 /usr/bin/make  all-am
+2026-08-30T01:45:57 CC       libcurl_la-altsvc.lo
+2026-08-30T01:45:57 CC       libcurl_la-amigaos.lo
+2026-08-30T01:45:57 CC       libcurl_la-asyn-ares.lo
+2026-08-30T01:45:57 CC       libcurl_la-asyn-thread.lo
+2026-08-30T01:45:58 CC       libcurl_la-base64.lo
+2026-08-30T01:45:58 CC       libcurl_la-bufq.lo
+2026-08-30T01:45:59 CC       libcurl_la-bufref.lo
+2026-08-30T01:45:59 CC       libcurl_la-c-hyper.lo
+2026-08-30T01:45:59 CC       libcurl_la-cf-h1-proxy.lo
+2026-08-30T01:45:59 CC       libcurl_la-cf-h2-proxy.lo
+2026-08-30T01:46:00 CC       libcurl_la-cf-haproxy.lo
+2026-08-30T01:46:00 CC       libcurl_la-cf-https-connect.lo
+2026-08-30T01:46:00 CC       libcurl_la-cf-socket.lo
+2026-08-30T01:46:01 CC       libcurl_la-cfilters.lo
+2026-08-30T01:46:01 CC       libcurl_la-conncache.lo
+2026-08-30T01:46:02 CC       libcurl_la-connect.lo
+2026-08-30T01:46:02 CC       libcurl_la-content_encoding.lo
+2026-08-30T01:46:03 CC       libcurl_la-cookie.lo
+2026-08-30T01:46:03 CC       libcurl_la-curl_addrinfo.lo
+2026-08-30T01:46:04 CC       libcurl_la-curl_des.lo
+2026-08-30T01:46:04 CC       libcurl_la-curl_endian.lo
+2026-08-30T01:46:04 CC       libcurl_la-curl_fnmatch.lo
+2026-08-30T01:46:04 CC       libcurl_la-curl_get_line.lo

@@ -1,0 +1,650 @@
+# 2026-08-30 01:24:17
+2026-08-30T01:24:17 make: Entering directory '/home/linux/rk3506/buildroot'
+2026-08-30T01:24:29 /usr/bin/make -j1  O=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery HOSTCC="/usr/bin/gcc" HOSTCXX="/usr/bin/g++" syncconfig
+2026-08-30T01:24:29 GEN     /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/Makefile
+2026-08-30T01:24:30 eudev-3.2.14.tar.gz: OK (sha256: 8da4319102f24abbf7fff5ce9c416af848df163b29590e666d334cc1927f006f)
+2026-08-30T01:24:30 [7m>>> eudev 3.2.14 Extracting[27m
+2026-08-30T01:24:30 gzip -d -c /home/linux/rk3506/buildroot/dl/eudev/eudev-3.2.14.tar.gz | /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/tar --strip-components=1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/eudev-3.2.14   -xf -
+2026-08-30T01:24:30 [7m>>> eudev 3.2.14 Patching[27m
+2026-08-30T01:24:30 [7m>>> eudev 3.2.14 Updating config.sub and config.guess[27m
+2026-08-30T01:24:30 for file in config.guess config.sub; do for i in $(find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/eudev-3.2.14 -name $file); do cp support/gnuconfig/$file $i; done; done
+2026-08-30T01:24:30 [7m>>> eudev 3.2.14 Patching libtool[27m
+2026-08-30T01:24:30 patching file /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/eudev-3.2.14/ltmain.sh
+2026-08-30T01:24:30 Hunk #1 succeeded at 2786 (offset 99 lines).
+2026-08-30T01:24:30 Hunk #2 succeeded at 4376 (offset 99 lines).
+2026-08-30T01:24:30 Hunk #3 succeeded at 6671 (offset 117 lines).
+2026-08-30T01:24:30 Hunk #4 succeeded at 6681 (offset 117 lines).
+2026-08-30T01:24:30 Hunk #5 succeeded at 6974 (offset 117 lines).
+2026-08-30T01:24:30 Hunk #6 succeeded at 7266 (offset 117 lines).
+2026-08-30T01:24:30 Hunk #7 succeeded at 8241 (offset 129 lines).
+2026-08-30T01:24:30 Hunk #8 succeeded at 10873 (offset 163 lines).
+2026-08-30T01:24:30 [7m>>> eudev 3.2.14 Configuring[27m
+2026-08-30T01:24:31 (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/eudev-3.2.14/ && rm -rf config.cache && GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1 AR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ar" AS="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-as" LD="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld" NM="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-nm" CC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc" GCC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc" CPP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-cpp" CXX="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++" FC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gfortran" F77="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gfortran" RANLIB="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ranlib" READELF="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-readelf" STRIP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip" OBJCOPY="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-objcopy" OBJDUMP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-objdump" AR_FOR_BUILD="/usr/bin/ar" AS_FOR_BUILD="/usr/bin/as" CC_FOR_BUILD="/usr/bin/gcc" GCC_FOR_BUILD="/usr/bin/gcc" CXX_FOR_BUILD="/usr/bin/g++" LD_FOR_BUILD="/usr/bin/ld" CPPFLAGS_FOR_BUILD="-I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CFLAGS_FOR_BUILD="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CXXFLAGS_FOR_BUILD="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" LDFLAGS_FOR_BUILD="-L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib" FCFLAGS_FOR_BUILD="" DEFAULT_ASSEMBLER="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-as" DEFAULT_LINKER="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld" CPPFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64" CFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1" CXXFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1" LDFLAGS="" FCFLAGS=" -O2 -g0" FFLAGS=" -O2 -g0" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" STAGING_DIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot" INTLTOOL_PERL=/usr/bin/perl ac_cv_lbl_unaligned_fail=yes ac_cv_func_mmap_fixed_mapped=yes ac_cv_func_memcmp_working=yes ac_cv_have_decl_malloc=yes gl_cv_func_malloc_0_nonnull=yes ac_cv_func_malloc_0_nonnull=yes ac_cv_func_calloc_0_nonnull=yes ac_cv_func_realloc_0_nonnull=yes lt_cv_sys_lib_search_path_spec="" ac_cv_c_bigendian=no   CONFIG_SITE=/dev/null ./configure --target=arm-buildroot-linux-gnueabihf --host=arm-buildroot-linux-gnueabihf --build=x86_64-pc-linux-gnu --prefix=/usr --exec-prefix=/usr --sysconfdir=/etc --localstatedir=/var --program-prefix="" --disable-gtk-doc --disable-gtk-doc-html --disable-doc --disable-docs --disable-documentation --with-xmlto=no --with-fop=no --disable-dependency-tracking --enable-ipv6 --disable-nls --disable-static --enable-shared  --disable-manpages --sbindir=/sbin --libexecdir=/lib --disable-introspection --enable-kmod --enable-blkid --disable-rule-generator --disable-hwdb --disable-selinux )
+2026-08-30T01:24:31 configure: WARNING: unrecognized options: --disable-gtk-doc, --disable-gtk-doc-html, --disable-doc, --disable-docs, --disable-documentation, --with-xmlto, --with-fop, --enable-ipv6, --disable-nls, --disable-introspection
+2026-08-30T01:24:31 checking for arm-buildroot-linux-gnueabihf-gcc... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc
+2026-08-30T01:24:31 checking whether the C compiler works... yes
+2026-08-30T01:24:31 checking for C compiler default output file name... a.out
+2026-08-30T01:24:31 checking for suffix of executables...
+2026-08-30T01:24:31 checking whether we are cross compiling... yes
+2026-08-30T01:24:32 checking for suffix of object files... o
+2026-08-30T01:24:32 checking whether we are using the GNU C compiler... yes
+2026-08-30T01:24:32 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc accepts -g... yes
+2026-08-30T01:24:32 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc option to accept ISO C89... none needed
+2026-08-30T01:24:32 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc understands -c and -o together... yes
+2026-08-30T01:24:32 checking how to run the C preprocessor... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-cpp
+2026-08-30T01:24:32 checking for grep that handles long lines and -e... /usr/bin/grep
+2026-08-30T01:24:32 checking for egrep... /usr/bin/grep -E
+2026-08-30T01:24:32 checking for ANSI C header files... yes
+2026-08-30T01:24:32 checking for sys/types.h... yes
+2026-08-30T01:24:32 checking for sys/stat.h... yes
+2026-08-30T01:24:32 checking for stdlib.h... yes
+2026-08-30T01:24:32 checking for string.h... yes
+2026-08-30T01:24:33 checking for memory.h... yes
+2026-08-30T01:24:33 checking for strings.h... yes
+2026-08-30T01:24:33 checking for inttypes.h... yes
+2026-08-30T01:24:33 checking for stdint.h... yes
+2026-08-30T01:24:33 checking for unistd.h... yes
+2026-08-30T01:24:33 checking minix/config.h usability... no
+2026-08-30T01:24:33 checking minix/config.h presence... no
+2026-08-30T01:24:33 checking for minix/config.h... no
+2026-08-30T01:24:33 checking whether it is safe to define __EXTENSIONS__... yes
+2026-08-30T01:24:33 checking for special C compiler options needed for large files... no
+2026-08-30T01:24:33 checking for _FILE_OFFSET_BITS value needed for large files... no
+2026-08-30T01:24:33 checking for a BSD-compatible install... /usr/bin/install -c
+2026-08-30T01:24:33 checking whether build environment is sane... yes
+2026-08-30T01:24:33 checking for arm-buildroot-linux-gnueabihf-strip... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip
+2026-08-30T01:24:33 checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+2026-08-30T01:24:33 checking for gawk... gawk
+2026-08-30T01:24:33 checking whether make sets $(MAKE)... yes
+2026-08-30T01:24:33 checking whether make supports the include directive... yes (GNU style)
+2026-08-30T01:24:33 checking whether make supports nested variables... yes
+2026-08-30T01:24:34 checking dependency style of /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc... none
+2026-08-30T01:24:34 checking whether make supports nested variables... (cached) yes
+2026-08-30T01:24:34 checking build system type... x86_64-pc-linux-gnu
+2026-08-30T01:24:34 checking host system type... arm-buildroot-linux-gnueabihf
+2026-08-30T01:24:34 checking how to print strings... printf
+2026-08-30T01:24:34 checking for a sed that does not truncate output... /usr/bin/sed
+2026-08-30T01:24:34 checking for fgrep... /usr/bin/grep -F
+2026-08-30T01:24:34 checking for ld used by /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld
+2026-08-30T01:24:34 checking if the linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld) is GNU ld... yes
+2026-08-30T01:24:34 checking for BSD- or MS-compatible name lister (nm)... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-nm
+2026-08-30T01:24:34 checking the name lister (/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-nm) interface... BSD nm
+2026-08-30T01:24:34 checking whether ln -s works... yes
+2026-08-30T01:24:34 checking the maximum length of command line arguments... 1572864
+2026-08-30T01:24:34 checking how to convert x86_64-pc-linux-gnu file names to arm-buildroot-linux-gnueabihf format... func_convert_file_noop
+2026-08-30T01:24:34 checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+2026-08-30T01:24:34 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld option to reload object files... -r
+2026-08-30T01:24:34 checking for arm-buildroot-linux-gnueabihf-objdump... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-objdump
+2026-08-30T01:24:34 checking how to recognize dependent libraries... pass_all
+2026-08-30T01:24:34 checking for arm-buildroot-linux-gnueabihf-dlltool... no
+2026-08-30T01:24:34 checking for dlltool... no
+2026-08-30T01:24:34 checking how to associate runtime and link libraries... printf %s\n
+2026-08-30T01:24:34 checking for arm-buildroot-linux-gnueabihf-ar... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ar
+2026-08-30T01:24:34 checking for archiver @FILE support... @
+2026-08-30T01:24:34 checking for arm-buildroot-linux-gnueabihf-strip... (cached) /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip
+2026-08-30T01:24:34 checking for arm-buildroot-linux-gnueabihf-ranlib... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ranlib
+2026-08-30T01:24:34 checking command to parse /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-nm output from /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc object... ok
+2026-08-30T01:24:34 checking for sysroot... no
+2026-08-30T01:24:34 checking for a working dd... /usr/bin/dd
+2026-08-30T01:24:34 checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+2026-08-30T01:24:34 checking for arm-buildroot-linux-gnueabihf-mt... no
+2026-08-30T01:24:34 checking for mt... mt
+2026-08-30T01:24:34 configure: WARNING: using cross tools not prefixed with host triplet
+2026-08-30T01:24:34 checking if mt is a manifest tool... no
+2026-08-30T01:24:34 checking for dlfcn.h... yes
+2026-08-30T01:24:34 checking for objdir... .libs
+2026-08-30T01:24:35 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc supports -fno-rtti -fno-exceptions... no
+2026-08-30T01:24:35 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc option to produce PIC... -fPIC -DPIC
+2026-08-30T01:24:35 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc PIC flag -fPIC -DPIC works... yes
+2026-08-30T01:24:35 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc static flag -static works... yes
+2026-08-30T01:24:35 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc supports -c -o file.o... yes
+2026-08-30T01:24:35 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc supports -c -o file.o... (cached) yes
+2026-08-30T01:24:35 checking whether the /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld) supports shared libraries... yes
+2026-08-30T01:24:35 checking whether -lc should be explicitly linked in... no
+2026-08-30T01:24:35 checking dynamic linker characteristics... GNU/Linux ld.so
+2026-08-30T01:24:35 checking how to hardcode library paths into programs... immediate
+2026-08-30T01:24:35 checking whether stripping libraries is possible... yes
+2026-08-30T01:24:35 checking if libtool supports shared libraries... yes
+2026-08-30T01:24:35 checking whether to build shared libraries... yes
+2026-08-30T01:24:35 checking whether to build static libraries... no
+2026-08-30T01:24:35 checking whether ln -s works... yes
+2026-08-30T01:24:35 checking for a sed that does not truncate output... (cached) /usr/bin/sed
+2026-08-30T01:24:35 checking for grep that handles long lines and -e... (cached) /usr/bin/grep
+2026-08-30T01:24:35 checking for gawk... (cached) gawk
+2026-08-30T01:24:35 checking for arm-buildroot-linux-gnueabihf-gcc... (cached) /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc
+2026-08-30T01:24:35 checking whether we are using the GNU C compiler... (cached) yes
+2026-08-30T01:24:35 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc accepts -g... (cached) yes
+2026-08-30T01:24:35 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc option to accept ISO C89... (cached) none needed
+2026-08-30T01:24:35 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc understands -c and -o together... (cached) yes
+2026-08-30T01:24:35 checking whether we are using the GNU C++ compiler... yes
+2026-08-30T01:24:35 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ accepts -g... yes
+2026-08-30T01:24:35 checking dependency style of /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++... none
+2026-08-30T01:24:36 checking how to run the C++ preprocessor... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ -E
+2026-08-30T01:24:36 checking for ld used by /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld
+2026-08-30T01:24:36 checking if the linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld) is GNU ld... yes
+2026-08-30T01:24:36 checking whether the /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld) supports shared libraries... yes
+2026-08-30T01:24:36 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ option to produce PIC... -fPIC -DPIC
+2026-08-30T01:24:36 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ PIC flag -fPIC -DPIC works... yes
+2026-08-30T01:24:36 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ static flag -static works... yes
+2026-08-30T01:24:37 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ supports -c -o file.o... yes
+2026-08-30T01:24:37 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ supports -c -o file.o... (cached) yes
+2026-08-30T01:24:37 checking whether the /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++ linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld) supports shared libraries... yes
+2026-08-30T01:24:37 checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+2026-08-30T01:24:37 checking how to hardcode library paths into programs... immediate
+2026-08-30T01:24:37 checking how to run the C preprocessor... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-cpp
+2026-08-30T01:24:37 checking whether ln -s works... yes
+2026-08-30T01:24:37 checking whether make sets $(MAKE)... (cached) yes
+2026-08-30T01:24:37 checking for m4... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/m4
+2026-08-30T01:24:37 checking arpa/inet.h usability... yes
+2026-08-30T01:24:37 checking arpa/inet.h presence... yes
+2026-08-30T01:24:37 checking for arpa/inet.h... yes
+2026-08-30T01:24:37 checking fcntl.h usability... yes
+2026-08-30T01:24:37 checking fcntl.h presence... yes
+2026-08-30T01:24:37 checking for fcntl.h... yes
+2026-08-30T01:24:37 checking for inttypes.h... (cached) yes
+2026-08-30T01:24:37 checking limits.h usability... yes
+2026-08-30T01:24:37 checking limits.h presence... yes
+2026-08-30T01:24:37 checking for limits.h... yes
+2026-08-30T01:24:37 checking locale.h usability... yes
+2026-08-30T01:24:37 checking locale.h presence... yes
+2026-08-30T01:24:37 checking for locale.h... yes
+2026-08-30T01:24:37 checking netinet/in.h usability... yes
+2026-08-30T01:24:38 checking netinet/in.h presence... yes
+2026-08-30T01:24:38 checking for netinet/in.h... yes
+2026-08-30T01:24:38 checking sys/ioctl.h usability... yes
+2026-08-30T01:24:38 checking sys/ioctl.h presence... yes
+2026-08-30T01:24:38 checking for sys/ioctl.h... yes
+2026-08-30T01:24:38 checking sys/mount.h usability... yes
+2026-08-30T01:24:38 checking sys/mount.h presence... yes
+2026-08-30T01:24:38 checking for sys/mount.h... yes
+2026-08-30T01:24:38 checking sys/param.h usability... yes
+2026-08-30T01:24:38 checking sys/param.h presence... yes
+2026-08-30T01:24:38 checking for sys/param.h... yes
+2026-08-30T01:24:38 checking sys/socket.h usability... yes
+2026-08-30T01:24:38 checking sys/socket.h presence... yes
+2026-08-30T01:24:38 checking for sys/socket.h... yes
+2026-08-30T01:24:38 checking sys/statvfs.h usability... yes
+2026-08-30T01:24:38 checking sys/statvfs.h presence... yes
+2026-08-30T01:24:38 checking for sys/statvfs.h... yes
+2026-08-30T01:24:39 checking sys/time.h usability... yes
+2026-08-30T01:24:39 checking sys/time.h presence... yes
+2026-08-30T01:24:39 checking for sys/time.h... yes
+2026-08-30T01:24:39 checking sys/vfs.h usability... yes
+2026-08-30T01:24:39 checking sys/vfs.h presence... yes
+2026-08-30T01:24:39 checking for sys/vfs.h... yes
+2026-08-30T01:24:39 checking syslog.h usability... yes
+2026-08-30T01:24:39 checking syslog.h presence... yes
+2026-08-30T01:24:39 checking for syslog.h... yes
+2026-08-30T01:24:39 checking termios.h usability... yes
+2026-08-30T01:24:39 checking termios.h presence... yes
+2026-08-30T01:24:39 checking for termios.h... yes
+2026-08-30T01:24:39 checking for unistd.h... (cached) yes
+2026-08-30T01:24:39 checking mtd/mtd-user.h usability... yes
+2026-08-30T01:24:39 checking mtd/mtd-user.h presence... yes
+2026-08-30T01:24:39 checking for mtd/mtd-user.h... yes
+2026-08-30T01:24:39 checking linux/btrfs.h usability... yes
+2026-08-30T01:24:39 checking linux/btrfs.h presence... yes
+2026-08-30T01:24:39 checking for linux/btrfs.h... yes
+2026-08-30T01:24:39 checking for uid_t in sys/types.h... yes
+2026-08-30T01:24:40 checking for inline... inline
+2026-08-30T01:24:40 checking for mode_t... yes
+2026-08-30T01:24:40 checking for pid_t... yes
+2026-08-30T01:24:40 checking for struct stat.st_rdev... yes
+2026-08-30T01:24:40 checking whether getrandom is declared... no
+2026-08-30T01:24:40 checking whether gettid is declared... yes
+2026-08-30T01:24:41 checking whether name_to_handle_at is declared... yes
+2026-08-30T01:24:41 checking whether accept4 is declared... yes
+2026-08-30T01:24:41 checking whether mkostemp is declared... yes
+2026-08-30T01:24:41 checking whether ppoll is declared... yes
+2026-08-30T01:24:41 checking whether strndupa is declared... yes
+2026-08-30T01:24:42 checking size of pid_t... 4
+2026-08-30T01:24:43 checking size of uid_t... 4
+2026-08-30T01:24:44 checking size of gid_t... 4
+2026-08-30T01:24:45 checking size of dev_t... 8
+2026-08-30T01:24:45 checking size of rlim_t... 8
+2026-08-30T01:24:45 checking for unistd.h... (cached) yes
+2026-08-30T01:24:45 checking for working chown... no
+2026-08-30T01:24:45 checking vfork.h usability... no
+2026-08-30T01:24:45 checking vfork.h presence... no
+2026-08-30T01:24:45 checking for vfork.h... no
+2026-08-30T01:24:45 checking for fork... yes
+2026-08-30T01:24:46 checking for vfork... yes
+2026-08-30T01:24:46 checking for working fork... cross
+2026-08-30T01:24:46 configure: WARNING: result yes guessed because of cross compilation
+2026-08-30T01:24:46 checking for working vfork... (cached) yes
+2026-08-30T01:24:46 checking for _LARGEFILE_SOURCE value needed for large files... no
+2026-08-30T01:24:46 checking type of array argument to getgroups... gid_t
+2026-08-30T01:24:46 checking for size_t... yes
+2026-08-30T01:24:46 checking for getgroups... yes
+2026-08-30T01:24:46 checking for working getgroups... no
+2026-08-30T01:24:46 checking whether lstat correctly handles trailing slash... no
+2026-08-30T01:24:46 checking whether sys/types.h defines makedev... yes
+2026-08-30T01:24:46 checking for stdlib.h... (cached) yes
+2026-08-30T01:24:46 checking for unistd.h... (cached) yes
+2026-08-30T01:24:46 checking for sys/param.h... (cached) yes
+2026-08-30T01:24:46 checking for getpagesize... yes
+2026-08-30T01:24:46 checking for working mmap... (cached) yes
+2026-08-30T01:24:47 checking for alarm... yes
+2026-08-30T01:24:47 checking for dup2... yes
+2026-08-30T01:24:47 checking for ftruncate... yes
+2026-08-30T01:24:47 checking for localtime_r... yes
+2026-08-30T01:24:47 checking for mempcpy... yes
+2026-08-30T01:24:47 checking for mkdir... yes
+2026-08-30T01:24:47 checking for munmap... yes
+2026-08-30T01:24:47 checking for nl_langinfo... yes
+2026-08-30T01:24:48 checking for rmdir... yes
+2026-08-30T01:24:48 checking for setlocale... yes
+2026-08-30T01:24:48 checking for socket... yes
+2026-08-30T01:24:48 checking for stpcpy... yes
+2026-08-30T01:24:48 checking for uname... yes
+2026-08-30T01:24:48 checking for explicit_bzero... yes
+2026-08-30T01:24:48 checking for library containing clock_gettime... none required
+2026-08-30T01:24:49 checking for cos in -lm... yes
+2026-08-30T01:24:49 checking pkg-config is at least version 0.9.0... yes
+2026-08-30T01:24:49 checking for blkid >= 2.20... yes
+2026-08-30T01:24:49 checking for mallinfo... yes
+2026-08-30T01:24:49 checking for mallinfo2... yes
+2026-08-30T01:24:49 checking whether unshare is declared... yes
+2026-08-30T01:24:49 checking for arm-buildroot-linux-gnueabihf-gperf... no
+2026-08-30T01:24:49 checking for gperf... /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/gperf
+2026-08-30T01:24:49 checking for  libkmod >= 15 ... yes
+2026-08-30T01:24:49 checking that generated files are newer than configure... done
+2026-08-30T01:24:49 configure: creating ./config.status
+2026-08-30T01:24:51 config.status: creating Makefile
+2026-08-30T01:24:51 config.status: creating hwdb/Makefile
+2026-08-30T01:24:51 config.status: creating man/Makefile
+2026-08-30T01:24:51 config.status: creating rule_generator/Makefile
+2026-08-30T01:24:51 config.status: creating rule_generator/write_net_rules
+2026-08-30T01:24:51 config.status: creating rules/Makefile
+2026-08-30T01:24:52 config.status: creating src/Makefile
+2026-08-30T01:24:52 config.status: creating src/ata_id/Makefile
+2026-08-30T01:24:52 config.status: creating src/cdrom_id/Makefile
+2026-08-30T01:24:52 config.status: creating src/collect/Makefile
+2026-08-30T01:24:52 config.status: creating src/dmi_memory_id/Makefile
+2026-08-30T01:24:52 config.status: creating src/fido_id/Makefile
+2026-08-30T01:24:52 config.status: creating src/mtd_probe/Makefile
+2026-08-30T01:24:52 config.status: creating src/scsi_id/Makefile
+2026-08-30T01:24:52 config.status: creating src/v4l_id/Makefile
+2026-08-30T01:24:52 config.status: creating src/shared/Makefile
+2026-08-30T01:24:52 config.status: creating src/libudev/Makefile
+2026-08-30T01:24:52 config.status: creating src/libudev/libudev.pc
+2026-08-30T01:24:52 config.status: creating src/udev/Makefile
+2026-08-30T01:24:52 config.status: creating src/udev/udev.pc
+2026-08-30T01:24:52 config.status: creating test/Makefile
+2026-08-30T01:24:52 config.status: creating config.h
+2026-08-30T01:24:52 config.status: executing depfiles commands
+2026-08-30T01:24:52 config.status: executing libtool commands
+2026-08-30T01:24:52 configure: WARNING: unrecognized options: --disable-gtk-doc, --disable-gtk-doc-html, --disable-doc, --disable-docs, --disable-documentation, --with-xmlto, --with-fop, --enable-ipv6, --disable-nls, --disable-introspection
+2026-08-30T01:24:52 
+2026-08-30T01:24:52 prefix:                  /usr
+2026-08-30T01:24:52 exec_prefix:             /usr
+2026-08-30T01:24:52 sysconfdir:              /etc
+2026-08-30T01:24:52 datadir:                 ${datarootdir}
+2026-08-30T01:24:52 includedir:              ${prefix}/include
+2026-08-30T01:24:52 bindir:                  ${exec_prefix}/bin
+2026-08-30T01:24:52 libdir:                  ${exec_prefix}/lib
+2026-08-30T01:24:52 
+2026-08-30T01:24:52 rootprefix:              ${prefix}
+2026-08-30T01:24:52 rootlibdir:              ${exec_prefix}/lib
+2026-08-30T01:24:52 rootlibexecdir:          ${exec_prefix}/lib/udev
+2026-08-30T01:24:52 datarootdir:             ${prefix}/share
+2026-08-30T01:24:52 rootrundir:              /run
+2026-08-30T01:24:52 
+2026-08-30T01:24:52 udevconfdir:             /etc/udev
+2026-08-30T01:24:52 udevconffile:            /etc/udev/udev.conf
+2026-08-30T01:24:52 udevhwdbdir:             /etc/udev/hwdb.d
+2026-08-30T01:24:52 udevhwdbbin:             /etc/udev/hwdb.bin
+2026-08-30T01:24:52 udevlibexecdir:          ${exec_prefix}/lib/udev
+2026-08-30T01:24:52 udevkeymapdir:           ${exec_prefix}/lib/udev/keymaps
+2026-08-30T01:24:52 udevkeymapforceredir:    ${exec_prefix}/lib/udev/keymaps/force-release
+2026-08-30T01:24:52 udevrulesdir:            ${exec_prefix}/lib/udev/rules.d
+2026-08-30T01:24:52 
+2026-08-30T01:24:52 pkgconfiglibdir:         ${exec_prefix}/lib/pkgconfig
+2026-08-30T01:24:52 sharepkgconfigdir        ${datarootdir}/pkgconfig
+2026-08-30T01:24:52 
+2026-08-30T01:24:53 [7m>>> eudev 3.2.14 Building[27m
+2026-08-30T01:24:53 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1  /usr/bin/make -j1  -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/eudev-3.2.14/
+2026-08-30T01:24:53 /usr/bin/make  all-recursive
+2026-08-30T01:24:53 Making all in src
+2026-08-30T01:24:53 Making all in shared
+2026-08-30T01:24:53 CC       conf-files.lo
+2026-08-30T01:24:53 CC       device-nodes.lo
+2026-08-30T01:24:53 CC       dev-setup.lo
+2026-08-30T01:24:54 CC       fileio.lo
+2026-08-30T01:24:54 CC       hashmap.lo
+2026-08-30T01:24:55 CC       label.lo
+2026-08-30T01:24:55 CC       log.lo
+2026-08-30T01:24:56 CC       mempool.lo
+2026-08-30T01:24:56 CC       mkdir.lo
+2026-08-30T01:24:57 CC       mkdir-label.lo
+2026-08-30T01:24:57 CC       MurmurHash2.lo
+2026-08-30T01:24:57 CC       path-util.lo
+2026-08-30T01:24:57 CC       process-util.lo
+2026-08-30T01:24:58 CC       random-util.lo
+2026-08-30T01:24:58 CC       selinux-util.lo
+2026-08-30T01:24:58 CC       siphash24.lo
+2026-08-30T01:24:59 CC       smack-util.lo
+2026-08-30T01:24:59 CC       strbuf.lo
+2026-08-30T01:24:59 CC       strv.lo
+2026-08-30T01:25:00 CC       strxcpyx.lo
+2026-08-30T01:25:00 CC       sysctl-util.lo
+2026-08-30T01:25:00 CC       terminal-util.lo
+2026-08-30T01:25:00 CC       time-util.lo
+2026-08-30T01:25:01 CC       util.lo
+2026-08-30T01:25:02 CC       utf8.lo
+2026-08-30T01:25:02 CC       virt.lo
+2026-08-30T01:25:02 CCLD     libudev_shared.la
+2026-08-30T01:25:03 Making all in libudev
+2026-08-30T01:25:03 CC       libudev_la-libudev.lo
+2026-08-30T01:25:03 CC       libudev_la-libudev-list.lo
+2026-08-30T01:25:04 CC       libudev_la-libudev-util.lo
+2026-08-30T01:25:04 CC       libudev_la-libudev-device.lo
+2026-08-30T01:25:05 CC       libudev_la-libudev-enumerate.lo
+2026-08-30T01:25:06 CC       libudev_la-libudev-monitor.lo
+2026-08-30T01:25:07 CC       libudev_la-libudev-queue.lo
+2026-08-30T01:25:07 CC       libudev_la-libudev-hwdb.lo
+2026-08-30T01:25:08 CCLD     libudev.la
+2026-08-30T01:25:08 CC       libudev_private_la-libudev.lo
+2026-08-30T01:25:08 CC       libudev_private_la-libudev-list.lo
+2026-08-30T01:25:09 CC       libudev_private_la-libudev-util.lo
+2026-08-30T01:25:09 CC       libudev_private_la-libudev-device.lo
+2026-08-30T01:25:10 CC       libudev_private_la-libudev-enumerate.lo
+2026-08-30T01:25:11 CC       libudev_private_la-libudev-monitor.lo
+2026-08-30T01:25:12 CC       libudev_private_la-libudev-queue.lo
+2026-08-30T01:25:12 CC       libudev_private_la-libudev-hwdb.lo
+2026-08-30T01:25:13 CC       libudev_private_la-libudev-device-private.lo
+2026-08-30T01:25:13 CCLD     libudev-private.la
+2026-08-30T01:25:13 Making all in udev
+2026-08-30T01:25:13 GEN      keyboard-keys.txt
+2026-08-30T01:25:13 GEN      keyboard-keys-from-name.gperf
+2026-08-30T01:25:13 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/gperf -L ANSI-C -t -N keyboard_lookup_key -H hash_key_name -p -C < keyboard-keys-from-name.gperf > keyboard-keys-from-name.h
+2026-08-30T01:25:13 GEN      keyboard-keys-to-name.h
+2026-08-30T01:25:13 /usr/bin/make  all-am
+2026-08-30T01:25:13 CC       udevadm.o
+2026-08-30T01:25:14 CC       udevadm-info.o
+2026-08-30T01:25:14 CC       udevadm-control.o
+2026-08-30T01:25:14 CC       udevadm-monitor.o
+2026-08-30T01:25:14 CC       udevadm-hwdb.o
+2026-08-30T01:25:15 CC       udevadm-settle.o
+2026-08-30T01:25:15 CC       udevadm-trigger.o
+2026-08-30T01:25:15 CC       udevadm-test.o
+2026-08-30T01:25:15 CC       udevadm-test-builtin.o
+2026-08-30T01:25:16 CC       udevadm-util.o
+2026-08-30T01:25:16 CC       libudev_core_la-udev-event.lo
+2026-08-30T01:25:17 CC       libudev_core_la-udev-watch.lo
+2026-08-30T01:25:17 CC       libudev_core_la-udev-node.lo
+2026-08-30T01:25:18 CC       libudev_core_la-udev-rules.lo
+2026-08-30T01:25:20 CC       libudev_core_la-udev-ctrl.lo
+2026-08-30T01:25:21 CC       libudev_core_la-udev-builtin.lo
+2026-08-30T01:25:21 CC       libudev_core_la-udev-builtin-btrfs.lo
+2026-08-30T01:25:22 CC       libudev_core_la-udev-builtin-hwdb.lo
+2026-08-30T01:25:23 CC       libudev_core_la-udev-builtin-input_id.lo
+2026-08-30T01:25:23 CC       libudev_core_la-udev-builtin-net_id.lo
+2026-08-30T01:25:24 CC       libudev_core_la-udev-builtin-path_id.lo
+2026-08-30T01:25:25 CC       libudev_core_la-udev-builtin-usb_id.lo
+2026-08-30T01:25:25 CC       libudev_core_la-udev-builtin-blkid.lo
+2026-08-30T01:25:26 CC       libudev_core_la-udev-builtin-kmod.lo
+2026-08-30T01:25:27 CC       libudev_core_la-udev-builtin-keyboard.lo
+2026-08-30T01:25:27 CCLD     libudev-core.la
+2026-08-30T01:25:28 CCLD     udevadm
+2026-08-30T01:25:28 CC       udevd.o
+2026-08-30T01:25:29 CCLD     udevd
+2026-08-30T01:25:29 Making all in ata_id
+2026-08-30T01:25:29 CC       ata_id.o
+2026-08-30T01:25:30 CCLD     ata_id
+2026-08-30T01:25:30 Making all in cdrom_id
+2026-08-30T01:25:30 CC       cdrom_id.o
+2026-08-30T01:25:31 CCLD     cdrom_id
+2026-08-30T01:25:31 Making all in collect
+2026-08-30T01:25:31 CC       collect.o
+2026-08-30T01:25:31 CCLD     collect
+2026-08-30T01:25:31 Making all in dmi_memory_id
+2026-08-30T01:25:31 CC       dmi_memory_id.o
+2026-08-30T01:25:32 In file included from [01m[K../../src/shared/time-util.h:29[m[K,
+2026-08-30T01:25:32 from [01m[K../../src/shared/util.h:37[m[K,
+2026-08-30T01:25:32 from [01m[Kdmi_memory_id.c:52[m[K:
+2026-08-30T01:25:32 [01m[Kdmi_memory_id.c:[m[K In function '[01m[Kdmi_memory_device_size_detail[m[K':
+2026-08-30T01:25:32 [01m[Kdmi_memory_id.c:420:34:[m[K [01;35m[Kwarning: [m[Kconversion from '[01m[Klong long unsigned int[m[K' to '[01m[Klong unsigned int[m[K' changes value from '[01m[K18446744073709551615[m[K' to '[01m[K4294967295[m[K' [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Woverflow-Woverflow]8;;[m[K]
+2026-08-30T01:25:32 420 |         if (!IN_SET(code, 0x0LU, [01;35m[K0xFFFFFFFFFFFFFFFFLU[m[K))
+2026-08-30T01:25:32 |                                  [01;35m[K^~~~~~~~~~~~~~~~~~~~[m[K
+2026-08-30T01:25:32 [01m[K../../src/shared/macro.h:209:57:[m[K [01;36m[Knote: [m[Kin definition of macro '[01m[KIN_SET[m[K'
+2026-08-30T01:25:32 209 |                         if (((const typeof(_x)[]) { _y, [01;36m[K__VA_ARGS__[m[K })[_i] == _x) { \
+2026-08-30T01:25:32 |                                                         [01;36m[K^~~~~~~~~~~[m[K
+2026-08-30T01:25:32 CCLD     dmi_memory_id
+2026-08-30T01:25:32 Making all in fido_id
+2026-08-30T01:25:32 CC       fido_id.o
+2026-08-30T01:25:32 CC       fido_id_desc.o
+2026-08-30T01:25:32 CCLD     fido_id
+2026-08-30T01:25:33 Making all in scsi_id
+2026-08-30T01:25:33 CC       scsi_id.o
+2026-08-30T01:25:33 CC       scsi_serial.o
+2026-08-30T01:25:33 CCLD     scsi_id
+2026-08-30T01:25:34 Making all in v4l_id
+2026-08-30T01:25:34 CC       v4l_id.o
+2026-08-30T01:25:34 CCLD     v4l_id
+2026-08-30T01:25:34 Making all in mtd_probe
+2026-08-30T01:25:34 CC       mtd_probe.o
+2026-08-30T01:25:34 CC       probe_smartmedia.o
+2026-08-30T01:25:35 CCLD     mtd_probe
+2026-08-30T01:25:35 make[5]: Nothing to be done for 'all-am'.
+2026-08-30T01:25:35 Making all in rules
+2026-08-30T01:25:35 /usr/bin/sed -e 's,{{ROOTBINDIR}},/usr/bin,g' ./64-btrfs.rules.in > 64-btrfs.rules
+2026-08-30T01:25:35 Making all in test
+2026-08-30T01:25:35 CC       test_libudev-test-libudev.o
+2026-08-30T01:25:35 CCLD     test-libudev
+2026-08-30T01:25:35 CC       test_udev-test-udev.o
+2026-08-30T01:25:36 CCLD     test-udev
+2026-08-30T01:25:36 [7m>>> eudev 3.2.14 Installing to staging directory[27m
+2026-08-30T01:25:36 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1  /usr/bin/make -j1 DESTDIR=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot install -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/eudev-3.2.14/
+2026-08-30T01:25:36 Making install in src
+2026-08-30T01:25:36 Making install in shared
+2026-08-30T01:25:36 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:25:36 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:36 Making install in libudev
+2026-08-30T01:25:36 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib'
+2026-08-30T01:25:36 /bin/bash ../../libtool   --mode=install /usr/bin/install -c   libudev.la '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib'
+2026-08-30T01:25:36 libtool: install: /usr/bin/install -c .libs/libudev.so.1.6.3 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/libudev.so.1.6.3
+2026-08-30T01:25:36 libtool: install: (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib && { ln -s -f libudev.so.1.6.3 libudev.so.1 || { rm -f libudev.so.1 && ln -s libudev.so.1.6.3 libudev.so.1; }; })
+2026-08-30T01:25:36 libtool: install: (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib && { ln -s -f libudev.so.1.6.3 libudev.so || { rm -f libudev.so && ln -s libudev.so.1.6.3 libudev.so; }; })
+2026-08-30T01:25:36 libtool: install: /usr/bin/install -c .libs/libudev.lai /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/libudev.la
+2026-08-30T01:25:36 libtool: [31mwarning[0m: [1mremember to run 'libtool --finish /usr/lib'[0m
+2026-08-30T01:25:36 /usr/bin/make  install-exec-hook
+2026-08-30T01:25:36 libname=libudev.so; if test "/usr/lib" != "/usr/lib"; then \
+2026-08-30T01:25:36 /usr/bin/mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib && \
+2026-08-30T01:25:36 so_img_name=$(readlink /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/$libname) && \
+2026-08-30T01:25:36 so_img_rel_target_prefix=$(echo /usr/lib | sed 's,\(^/\)\?[^/]\+,..,g') && \
+2026-08-30T01:25:36 ln -s -f $so_img_rel_target_prefix/usr/lib/$so_img_name /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/$libname && \
+2026-08-30T01:25:36 mv /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/$libname.* /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib; \
+2026-08-30T01:25:36 fi
+2026-08-30T01:25:36 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include'
+2026-08-30T01:25:36 /usr/bin/install -c -m 644 libudev.h '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include'
+2026-08-30T01:25:36 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/pkgconfig'
+2026-08-30T01:25:36 /usr/bin/install -c -m 644 libudev.pc '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/pkgconfig'
+2026-08-30T01:25:36 Making install in udev
+2026-08-30T01:25:36 /usr/bin/make  install-am
+2026-08-30T01:25:36 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/bin'
+2026-08-30T01:25:36 /bin/bash ../../libtool   --mode=install /usr/bin/install -c udevadm '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/bin'
+2026-08-30T01:25:36 libtool: install: /usr/bin/install -c udevadm /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/bin/udevadm
+2026-08-30T01:25:36 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/sbin'
+2026-08-30T01:25:36 /bin/bash ../../libtool   --mode=install /usr/bin/install -c udevd '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/sbin'
+2026-08-30T01:25:36 libtool: install: /usr/bin/install -c udevd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/sbin/udevd
+2026-08-30T01:25:36 /usr/bin/make  install-exec-hook
+2026-08-30T01:25:36 test "/usr/bin" = "/sbin" || \
+2026-08-30T01:25:36 ln -s -f /usr/bin/udevadm /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/sbin/udevadm
+2026-08-30T01:25:36 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/etc/udev'
+2026-08-30T01:25:36 /usr/bin/install -c -m 644 udev.conf '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/etc/udev'
+2026-08-30T01:25:36 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include'
+2026-08-30T01:25:36 /usr/bin/install -c -m 644 udev.h '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/include'
+2026-08-30T01:25:37 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/share/pkgconfig'
+2026-08-30T01:25:37 /usr/bin/install -c -m 644 udev.pc '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/share/pkgconfig'
+2026-08-30T01:25:37 Making install in ata_id
+2026-08-30T01:25:37 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 /bin/bash ../../libtool   --mode=install /usr/bin/install -c ata_id '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 libtool: install: /usr/bin/install -c ata_id /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev/ata_id
+2026-08-30T01:25:37 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:37 Making install in cdrom_id
+2026-08-30T01:25:37 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 /bin/bash ../../libtool   --mode=install /usr/bin/install -c cdrom_id '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 libtool: install: /usr/bin/install -c cdrom_id /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev/cdrom_id
+2026-08-30T01:25:37 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:37 Making install in collect
+2026-08-30T01:25:37 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 /bin/bash ../../libtool   --mode=install /usr/bin/install -c collect '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 libtool: install: /usr/bin/install -c collect /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev/collect
+2026-08-30T01:25:37 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:37 Making install in dmi_memory_id
+2026-08-30T01:25:37 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 /bin/bash ../../libtool   --mode=install /usr/bin/install -c dmi_memory_id '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 libtool: install: /usr/bin/install -c dmi_memory_id /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev/dmi_memory_id
+2026-08-30T01:25:37 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:37 Making install in fido_id
+2026-08-30T01:25:37 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 /bin/bash ../../libtool   --mode=install /usr/bin/install -c fido_id '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 libtool: install: /usr/bin/install -c fido_id /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev/fido_id
+2026-08-30T01:25:37 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:37 Making install in scsi_id
+2026-08-30T01:25:37 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 /bin/bash ../../libtool   --mode=install /usr/bin/install -c scsi_id '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 libtool: install: /usr/bin/install -c scsi_id /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev/scsi_id
+2026-08-30T01:25:37 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:37 Making install in v4l_id
+2026-08-30T01:25:37 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 /bin/bash ../../libtool   --mode=install /usr/bin/install -c v4l_id '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 libtool: install: /usr/bin/install -c v4l_id /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev/v4l_id
+2026-08-30T01:25:37 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:37 Making install in mtd_probe
+2026-08-30T01:25:37 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 /bin/bash ../../libtool   --mode=install /usr/bin/install -c mtd_probe '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev'
+2026-08-30T01:25:37 libtool: install: /usr/bin/install -c mtd_probe /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev/mtd_probe
+2026-08-30T01:25:37 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:37 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:25:37 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:37 Making install in rules
+2026-08-30T01:25:37 make[4]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:25:37 /usr/bin/mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/etc/udev/rules.d
+2026-08-30T01:25:37 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev/rules.d'
+2026-08-30T01:25:37 /usr/bin/install -c -m 644 50-udev-default.rules 60-autosuspend.rules 60-block.rules 60-cdrom_id.rules 60-drm.rules 60-evdev.rules 60-fido-id.rules 60-input-id.rules 60-persistent-alsa.rules 60-persistent-input.rules 60-persistent-storage-tape.rules 60-persistent-v4l.rules 60-sensor.rules 60-serial.rules 64-btrfs.rules 70-camera.rules 70-joystick.rules 70-memory.rules 70-mouse.rules 70-touchpad.rules 75-net-description.rules 78-sound-card.rules 81-net-dhcp.rules 80-net-name-slot.rules 60-persistent-storage.rules 80-drivers.rules 75-probe_mtd.rules '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib/udev/rules.d'
+2026-08-30T01:25:37 Making install in test
+2026-08-30T01:25:37 make[4]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:25:37 make[4]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:37 make[4]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:25:37 make[4]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:37 [7m>>> eudev 3.2.14 Fixing libtool files[27m
+2026-08-30T01:25:37 for la in $(find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot/usr/lib* -name "*.la"); do cp -a "${la}" "${la}.fixed" && /usr/bin/sed -i -e "s:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery:@BASE_DIR@:g" -e "s:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot:@STAGING_DIR@:g"  -e "s:\(['= ]\)/usr:\\1@STAGING_DIR@/usr:g" -e "s:\(['= ]\)/lib:\\1@STAGING_DIR@/lib:g"  -e "s:@STAGING_DIR@:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot:g" -e "s:@BASE_DIR@:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery:g" "${la}.fixed" && if cmp -s "${la}" "${la}.fixed"; then rm -f "${la}.fixed"; else mv "${la}.fixed" "${la}"; fi || exit 1; done
+2026-08-30T01:25:37 [7m>>> eudev 3.2.14 Installing to target[27m
+2026-08-30T01:25:38 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1  /usr/bin/make -j1 DESTDIR=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target install -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/eudev-3.2.14/
+2026-08-30T01:25:38 Making install in src
+2026-08-30T01:25:38 Making install in shared
+2026-08-30T01:25:38 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:25:38 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:38 Making install in libudev
+2026-08-30T01:25:38 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib'
+2026-08-30T01:25:38 /bin/bash ../../libtool   --mode=install /usr/bin/install -c   libudev.la '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib'
+2026-08-30T01:25:38 libtool: install: /usr/bin/install -c .libs/libudev.so.1.6.3 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/libudev.so.1.6.3
+2026-08-30T01:25:38 libtool: install: (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib && { ln -s -f libudev.so.1.6.3 libudev.so.1 || { rm -f libudev.so.1 && ln -s libudev.so.1.6.3 libudev.so.1; }; })
+2026-08-30T01:25:38 libtool: install: (cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib && { ln -s -f libudev.so.1.6.3 libudev.so || { rm -f libudev.so && ln -s libudev.so.1.6.3 libudev.so; }; })
+2026-08-30T01:25:38 libtool: install: /usr/bin/install -c .libs/libudev.lai /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/libudev.la
+2026-08-30T01:25:38 libtool: [31mwarning[0m: [1mremember to run 'libtool --finish /usr/lib'[0m
+2026-08-30T01:25:38 /usr/bin/make  install-exec-hook
+2026-08-30T01:25:38 libname=libudev.so; if test "/usr/lib" != "/usr/lib"; then \
+2026-08-30T01:25:38 /usr/bin/mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib && \
+2026-08-30T01:25:38 so_img_name=$(readlink /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/$libname) && \
+2026-08-30T01:25:38 so_img_rel_target_prefix=$(echo /usr/lib | sed 's,\(^/\)\?[^/]\+,..,g') && \
+2026-08-30T01:25:38 ln -s -f $so_img_rel_target_prefix/usr/lib/$so_img_name /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/$libname && \
+2026-08-30T01:25:38 mv /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/$libname.* /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib; \
+2026-08-30T01:25:38 fi
+2026-08-30T01:25:38 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/include'
+2026-08-30T01:25:38 /usr/bin/install -c -m 644 libudev.h '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/include'
+2026-08-30T01:25:38 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/pkgconfig'
+2026-08-30T01:25:38 /usr/bin/install -c -m 644 libudev.pc '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/pkgconfig'
+2026-08-30T01:25:38 Making install in udev
+2026-08-30T01:25:38 /usr/bin/make  install-am
+2026-08-30T01:25:38 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin'
+2026-08-30T01:25:38 /bin/bash ../../libtool   --mode=install /usr/bin/install -c udevadm '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin'
+2026-08-30T01:25:38 libtool: install: /usr/bin/install -c udevadm /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/udevadm
+2026-08-30T01:25:38 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/sbin'
+2026-08-30T01:25:38 /bin/bash ../../libtool   --mode=install /usr/bin/install -c udevd '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/sbin'
+2026-08-30T01:25:38 libtool: install: /usr/bin/install -c udevd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/sbin/udevd
+2026-08-30T01:25:38 /usr/bin/make  install-exec-hook
+2026-08-30T01:25:38 test "/usr/bin" = "/sbin" || \
+2026-08-30T01:25:38 ln -s -f /usr/bin/udevadm /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/sbin/udevadm
+2026-08-30T01:25:38 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/udev'
+2026-08-30T01:25:38 /usr/bin/install -c -m 644 udev.conf '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/udev'
+2026-08-30T01:25:38 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/include'
+2026-08-30T01:25:38 /usr/bin/install -c -m 644 udev.h '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/include'
+2026-08-30T01:25:38 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/pkgconfig'
+2026-08-30T01:25:38 /usr/bin/install -c -m 644 udev.pc '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/pkgconfig'
+2026-08-30T01:25:38 Making install in ata_id
+2026-08-30T01:25:38 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:38 /bin/bash ../../libtool   --mode=install /usr/bin/install -c ata_id '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:38 libtool: install: /usr/bin/install -c ata_id /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev/ata_id
+2026-08-30T01:25:38 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:38 Making install in cdrom_id
+2026-08-30T01:25:38 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:38 /bin/bash ../../libtool   --mode=install /usr/bin/install -c cdrom_id '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:38 libtool: install: /usr/bin/install -c cdrom_id /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev/cdrom_id
+2026-08-30T01:25:38 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:38 Making install in collect
+2026-08-30T01:25:38 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:38 /bin/bash ../../libtool   --mode=install /usr/bin/install -c collect '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:38 libtool: install: /usr/bin/install -c collect /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev/collect
+2026-08-30T01:25:38 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:38 Making install in dmi_memory_id
+2026-08-30T01:25:38 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:38 /bin/bash ../../libtool   --mode=install /usr/bin/install -c dmi_memory_id '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:38 libtool: install: /usr/bin/install -c dmi_memory_id /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev/dmi_memory_id
+2026-08-30T01:25:38 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:38 Making install in fido_id
+2026-08-30T01:25:38 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:38 /bin/bash ../../libtool   --mode=install /usr/bin/install -c fido_id '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:38 libtool: install: /usr/bin/install -c fido_id /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev/fido_id
+2026-08-30T01:25:38 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:38 Making install in scsi_id
+2026-08-30T01:25:38 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:38 /bin/bash ../../libtool   --mode=install /usr/bin/install -c scsi_id '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:39 libtool: install: /usr/bin/install -c scsi_id /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev/scsi_id
+2026-08-30T01:25:39 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:39 Making install in v4l_id
+2026-08-30T01:25:39 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:39 /bin/bash ../../libtool   --mode=install /usr/bin/install -c v4l_id '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:39 libtool: install: /usr/bin/install -c v4l_id /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev/v4l_id
+2026-08-30T01:25:39 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:39 Making install in mtd_probe
+2026-08-30T01:25:39 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:39 /bin/bash ../../libtool   --mode=install /usr/bin/install -c mtd_probe '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev'
+2026-08-30T01:25:39 libtool: install: /usr/bin/install -c mtd_probe /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev/mtd_probe
+2026-08-30T01:25:39 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:39 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:25:39 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:39 Making install in rules
+2026-08-30T01:25:39 make[4]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:25:39 /usr/bin/mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/udev/rules.d
+2026-08-30T01:25:39 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev/rules.d'
+2026-08-30T01:25:39 /usr/bin/install -c -m 644 50-udev-default.rules 60-autosuspend.rules 60-block.rules 60-cdrom_id.rules 60-drm.rules 60-evdev.rules 60-fido-id.rules 60-input-id.rules 60-persistent-alsa.rules 60-persistent-input.rules 60-persistent-storage-tape.rules 60-persistent-v4l.rules 60-sensor.rules 60-serial.rules 64-btrfs.rules 70-camera.rules 70-joystick.rules 70-memory.rules 70-mouse.rules 70-touchpad.rules 75-net-description.rules 78-sound-card.rules 81-net-dhcp.rules 80-net-name-slot.rules 60-persistent-storage.rules 80-drivers.rules 75-probe_mtd.rules '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/udev/rules.d'
+2026-08-30T01:25:39 Making install in test
+2026-08-30T01:25:39 make[4]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:25:39 make[4]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:39 make[4]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:25:39 make[4]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:25:39 /usr/bin/install -D -m 0755 package/eudev/S10udev /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d/S10udev
+2026-08-30T01:25:40 [7m>>> udev  Extracting[27m
+2026-08-30T01:25:40 [7m>>> udev  Patching[27m
+2026-08-30T01:25:40 [7m>>> udev  Configuring[27m
+2026-08-30T01:25:40 [7m>>> udev  Building[27m
+2026-08-30T01:25:40 [7m>>> udev  Installing to target[27m
+2026-08-30T01:25:41 [7m>>> dosfstools 4.2 Downloading[27m
+2026-08-30T01:25:41 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.dosfstools-4.2.tar.gz.chZd9F/output' 'https://sources.buildroot.net/dosfstools/dosfstools-4.2.tar.gz'
+2026-08-30T01:25:41 --2026-08-30 01:25:41--  https://sources.buildroot.net/dosfstools/dosfstools-4.2.tar.gz
+2026-08-30T01:25:41 Resolving sources.buildroot.net (sources.buildroot.net)... failed: Temporary failure in name resolution.
+2026-08-30T01:25:41 wget: unable to resolve host address 'sources.buildroot.net'
+2026-08-30T01:25:41 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.dosfstools-4.2.tar.gz.Uksobu/output' 'https://sources.buildroot.net/dosfstools-4.2.tar.gz'
+2026-08-30T01:25:41 --2026-08-30 01:25:41--  https://sources.buildroot.net/dosfstools-4.2.tar.gz
+2026-08-30T01:25:41 Resolving sources.buildroot.net (sources.buildroot.net)... failed: Temporary failure in name resolution.
+2026-08-30T01:25:41 wget: unable to resolve host address 'sources.buildroot.net'
+2026-08-30T01:25:41 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.dosfstools-4.2.tar.gz.TSiql9/output' 'https://github.com/dosfstools/dosfstools/releases/download/v4.2/dosfstools-4.2.tar.gz'
+2026-08-30T01:25:41 --2026-08-30 01:25:41--  https://github.com/dosfstools/dosfstools/releases/download/v4.2/dosfstools-4.2.tar.gz
+2026-08-30T01:25:41 Resolving github.com (github.com)... failed: Temporary failure in name resolution.
+2026-08-30T01:25:41 wget: unable to resolve host address 'github.com'
+2026-08-30T01:25:41 make[1]: *** [package/pkg-generic.mk:196: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/dosfstools-4.2/.stamp_downloaded] Error 1
+2026-08-30T01:25:41 make: *** [Makefile:112: _all] Error 2
+2026-08-30T01:25:41 make: Leaving directory '/home/linux/rk3506/buildroot'

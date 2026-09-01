@@ -1,0 +1,133 @@
+# 2026-08-30 02:07:39
+# run hook: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target
+
+[35mRunning 01-hostname.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+[36mSetting hostname: rk3506-recovery[0m
+[35mRunning 05-udev.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+[35mRunning 10-os-release.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+[36mAdding information to /etc/os-release...[0m
+[35mRunning 30-fstab.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+[36mFixing up /etc/fstab...[0m
+[36mFixing up rootfs type: auto[0m
+[36mFixup basic partitions for non-systemd init...[0m
+[36mFixing up basic partition: proc /proc[0m
+[36mFixing up basic partition: devtmpfs /dev[0m
+[36mFixing up basic partition: devpts /dev/pts mode=0620,ptmxmode=0000,gid=5[0m
+[36mFixing up basic partition: tmpfs /dev/shm nosuid,nodev,noexec[0m
+[36mFixing up basic partition: sysfs /sys nosuid,nodev,noexec[0m
+[36mFixing up basic partition: configfs /sys/kernel/config[0m
+[36mFixing up basic partition: debugfs /sys/kernel/debug[0m
+[36mFixing up basic partition: pstore /sys/fs/pstore nosuid,nodev,noexec[0m
+[36mFixing up device partition: /dev/sda1 /mnt/udisk auto[0m
+[36mFixing up device partition: /dev/mmcblk1p1 /mnt/sdcard auto[0m
+[36mFixing up device partition: PARTLABEL=oem /oem ubifs defaults[0m
+[36mFixing up device partition: PARTLABEL=userdata /userdata ubifs defaults[0m
+[35mRunning 40-busybox-reboot.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+[35mRunning 50-locale.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+[36mSetting LANG environment to en_US.UTF-8...[0m
+[35mRunning 60-mount-dirs.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+[36mAdding dirs and links...[0m
+[35mRunning 90-overlay.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+[35mInstalling overlay: /home/linux/rk3506/device/rockchip/common/overlays/recovery to /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target...[0m
+sending incremental file list
+./
+
+sent 53 bytes  received 19 bytes  144.00 bytes/sec
+total size is 0  speedup is 0.00
+[35mRunning 91-modules.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+[36mInstalling kernel modules...[0m
+[35mUsing kernel version(6.1) from environment[0m
+[36mToolchain for kernel:[0m
+[36m/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-[0m
+
+[36m==========================================[0m
+[36m          Start building modules[0m
+[36m==========================================[0m
+[35m+ make -C /home/linux/rk3506/kernel/ -j17 CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- ARCH=arm rk3506_defconfig rk3506-display.config[0m
+arch/arm/configs/rk3506_defconfig:349:warning: override: reassigning to symbol VT
+arch/arm/configs/rk3506_defconfig:382:warning: override: reassigning to symbol FTRACE
+arch/arm/configs/rk3506_defconfig:389:warning: override: reassigning to symbol SCHED_DEBUG
+arch/arm/configs/rk3506_defconfig:391:warning: override: reassigning to symbol SWAP
+arch/arm/configs/rk3506_defconfig:397:warning: override: reassigning to symbol HARDEN_BRANCH_PREDICTOR
+arch/arm/configs/rk3506_defconfig:398:warning: override: reassigning to symbol HARDEN_BRANCH_HISTORY
+arch/arm/configs/rk3506_defconfig:401:warning: override: reassigning to symbol LD_DEAD_CODE_DATA_ELIMINATION
+arch/arm/configs/rk3506_defconfig:402:warning: override: reassigning to symbol CPU_FREQ_DEFAULT_GOV_PERFORMANCE
+arch/arm/configs/rk3506_defconfig:402:warning: override: CPU_FREQ_DEFAULT_GOV_PERFORMANCE changes choice state
+arch/arm/configs/rk3506_defconfig:404:warning: override: HZ_1000 changes choice state
+arch/arm/configs/rk3506_defconfig:405:warning: override: PREEMPT_RT changes choice state
+arch/arm/configs/rk3506_defconfig:406:warning: override: reassigning to symbol VDSO
+#
+# configuration written to .config
+#
+Using .config as base
+Merging ./arch/arm/configs/rk3506-display.config
+Value of CONFIG_BACKLIGHT_CLASS_DEVICE is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+Previous value: # CONFIG_BACKLIGHT_CLASS_DEVICE is not set
+New value: CONFIG_BACKLIGHT_CLASS_DEVICE=y
+
+Value of CONFIG_DRM is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+Previous value: # CONFIG_DRM is not set
+New value: CONFIG_DRM=y
+
+Value of CONFIG_I2C_MUX is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+Previous value: # CONFIG_I2C_MUX is not set
+New value: CONFIG_I2C_MUX=y
+
+Value of CONFIG_INPUT_TOUCHSCREEN is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+Previous value: # CONFIG_INPUT_TOUCHSCREEN is not set
+New value: CONFIG_INPUT_TOUCHSCREEN=y
+
+#
+# merged configuration written to .config (needs make)
+#
+#
+# configuration written to .config
+#
+[35m+ make -C /home/linux/rk3506/kernel/ -j17 CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- ARCH=arm modules[0m
+  SYNC    include/config/auto.conf.cmd
+  CALL    scripts/checksyscalls.sh
+[35m+ make -C /home/linux/rk3506/kernel/ -j17 CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- ARCH=arm modules_install INSTALL_MOD_PATH=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/[0m
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/dwmac-rockchip.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac-platform.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/fwnode_mdio.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/of_mdio.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/mii.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/pcs/pcs_xpcs.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/fixed_phy.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/libphy.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/motorcomm.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/mdio_devres.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/phylink.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/realtek.ko
+  INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/net/core/selftests.ko
+  DEPMOD  /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36
+[35m+ find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/ -type l -delete[0m
+[35mRunning mk-kernel.sh - build_modules succeeded.[0m
+[36mStrip kernel modules...[0m
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/phylink.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stTY9HdN' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/libphy.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/steQEuin' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/realtek.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/staCkEy3' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/mdio_devres.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stLDfoIC' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/fixed_phy.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stvlnFOx' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/motorcomm.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stvsiSma' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stQVgoAY' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/dwmac-rockchip.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stE3lhiF' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac-platform.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stbR5VXX' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/fwnode_mdio.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/stVdisme' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/of_mdio.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/stDPzZ61' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/pcs/pcs_xpcs.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/pcs/stMrrJ01' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mii.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/stMy2jVw' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/net/core/selftests.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/net/core/stWDj6MH' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/ble_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/stoxMLJU' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/sle_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/stjaBygM' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/wifi_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/stgV4XEa' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/bp_test.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/stWexCKA' [elf32-littlearm]
+copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/plat_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/stsBPNMo' [elf32-littlearm]
+[35mRunning 97-ldcache.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+[36mCreating ld.so.cache for  ...[0m
+/home/linux/rk3506/device/rockchip/common/tools/x86_64/ldconfig: Can't open configuration file /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/ld.so.conf: No such file or directory
+/home/linux/rk3506/device/rockchip/common/tools/x86_64/ldconfig: /lib/libstdc++.so.6.0.30-gdb.py is not an ELF file - it has the wrong magic bytes at the start.
+
+saving cache in little endian encoding
+[35mRunning 99-owner.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m

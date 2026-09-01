@@ -1,0 +1,66 @@
+  rk3506                 - choose rk3506
+  chip                   - choose chip
+  defconfig              - choose defconfig
+  config                 - modify SDK defconfig
+  print-parts            - print partitions
+  list-parts             - alias of print-parts
+  mod-parts              - interactive partition table modify
+  edit-parts             - edit raw partitions
+  misc                   - pack misc image
+  kernel-6.1             - build kernel 6.1
+  kernel                 - build kernel
+  recovery-kernel        - build kernel for recovery
+  kernel-modules         - build kernel modules
+  modules                - alias of kernel-modules
+  linux-headers          - build linux-headers
+  kernel-config          - modify kernel defconfig
+  kconfig                - alias of kernel-config
+  kernel-make            - run kernel make
+  kmake                  - alias of kernel-make
+  wifibt                 - build Wifi/BT
+  amp                    - build and pack amp system
+  buildroot-config       - modify buildroot defconfig
+  bconfig                - alias of buildroot-config
+  buildroot-make         - run buildroot make
+  bmake                  - alias of buildroot-make
+  buildroot-sdk          - build the buildroot SDK tarball
+  bsdk                   - alias of buildroot-sdk
+  rootfs                 - build default rootfs
+  buildroot              - build buildroot rootfs
+  yocto                  - build yocto rootfs
+  debian                 - build debian rootfs
+  ubuntu                 - build ubuntu rootfs
+  recovery               - build recovery
+  security-createkeys    - create keys for security
+  security-misc          - build misc with system encryption key
+  security-ramboot       - build security ramboot
+  security-system        - build security system
+  loader                 - build loader (u-boot)
+  uboot                  - build u-boot
+  u-boot                 - alias of uboot
+  extra-parts            - pack extra partition images
+  firmware               - pack and check firmwares
+  edit-package-file      - edit package-file
+  edit-ota-package-file  - edit package-file for OTA
+  updateimg              - build update image
+  ota-updateimg          - build update image for OTA
+  all                    - build images
+  release                - release images and build info
+  all-release            - build and release images
+  shell                  - setup a shell for developing
+  buildroot-shell        - setup a shell for buildroot developing
+  bshell                 - alias of buildroot-shell
+  yocto-shell            - setup a shell for yocto developing
+  yshell                 - alias of yocto-shell
+  cleanall               - cleanup all
+  clean-extra-parts      - cleanup extra-parts
+  clean-misc             - cleanup misc
+  clean-security         - cleanup security
+  clean-firmware         - cleanup firmware
+  clean-rootfs           - cleanup rootfs
+  clean-loader           - cleanup loader
+  clean-amp              - cleanup amp
+  clean-updateimg        - cleanup updateimg
+  clean-recovery         - cleanup recovery
+  clean-config           - cleanup config
+  clean-kernel           - cleanup kernel

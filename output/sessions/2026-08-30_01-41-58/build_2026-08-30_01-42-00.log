@@ -1,0 +1,205 @@
+# 2026-08-30 01:42:00
+# run hook: build recovery
+
+[36m==========================================[0m
+[36m          Start building recovery(buildroot)[0m
+[36m==========================================[0m
+[35m
+Your network is not able to access sources.buildroot.net!
+Please retry later (it could be down for a while) or setup a VPN to bypass the GFW.
+[0m[35mWill continue in 5 seconds ...
+5 ...
+4 ...
+3 ...
+2 ...
+1 ...
+[0m
+make: Entering directory '/home/linux/rk3506/buildroot'
+  GEN     /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/Makefile
+Parsing defconfig: /home/linux/rk3506/buildroot/configs/rockchip_rk3506_recovery_defconfig
+Using configs/rockchip/base/kernel.config as base
+Merging configs/rockchip/fs/e2fs.config
+Merging configs/rockchip/base/common.config
+Merging configs/rockchip/base/base.config
+Merging configs/rockchip/base/kernel.config
+Merging configs/rockchip/fs/e2fs.config
+Merging configs/rockchip/base/common.config
+Merging configs/rockchip/fs/vfat.config
+Merging configs/rockchip/base/recovery.config
+Merging configs/rockchip/chips/rk3506.config
+Value of BR2_ROOTFS_OVERLAY is redefined by configs/rockchip/chips/rk3506.config:
+Previous value:	BR2_ROOTFS_OVERLAY="board/rockchip/common/base"
+Modify value:	BR2_ROOTFS_OVERLAY+="board/rockchip/rk3506/fs-overlay/"
+New value:	BR2_ROOTFS_OVERLAY="board/rockchip/common/base board/rockchip/rk3506/fs-overlay/"
+
+Merging configs/rockchip/chips/rk3506_arm.config
+Merging /home/linux/rk3506/buildroot/configs/rockchip_rk3506_recovery_defconfig
+#
+# merged configuration written to /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/.config.in (needs make)
+#
+#
+# configuration written to /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/.config
+#
+make: Leaving directory '/home/linux/rk3506/buildroot'
+464c464
+< BR2_JLEVEL=1
+---
+> BR2_JLEVEL=0
+[34mBuildroot config changed![0m
+[34mYou might need to clean it before building:[0m
+[34mrm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery
+[0m
+2026-08-30T01:42:20 [7m>>> parted 3.6 Extracting[27m
+2026-08-30T01:42:20 [7m>>> parted 3.6 Patching[27m
+2026-08-30T01:42:20 [7m>>> parted 3.6 Updating config.sub and config.guess[27m
+2026-08-30T01:42:20 [7m>>> parted 3.6 Patching libtool[27m
+2026-08-30T01:42:20 [7m>>> parted 3.6 Configuring[27m
+2026-08-30T01:43:01 [7m>>> parted 3.6 Building[27m
+2026-08-30T01:43:46 [7m>>> parted 3.6 Installing to staging directory[27m
+2026-08-30T01:43:48 [7m>>> parted 3.6 Fixing libtool files[27m
+2026-08-30T01:43:48 [7m>>> parted 3.6 Installing to target[27m
+2026-08-30T01:43:51 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Downloading[27m
+2026-08-30T01:43:51 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Extracting[27m
+2026-08-30T01:43:51 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Patching[27m
+2026-08-30T01:43:51 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Updating config.sub and config.guess[27m
+2026-08-30T01:43:51 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Configuring[27m
+2026-08-30T01:43:51 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Autoreconfiguring[27m
+2026-08-30T01:43:54 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Patching libtool[27m
+2026-08-30T01:43:58 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Building[27m
+2026-08-30T01:43:58 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Installing to target[27m
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Extracting[27m
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Patching[27m
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Configuring[27m
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Building[27m
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Installing to target[27m
+2026-08-30T01:44:00 [7m>>> initscripts  Extracting[27m
+2026-08-30T01:44:00 [7m>>> initscripts  Patching[27m
+2026-08-30T01:44:00 [7m>>> initscripts  Configuring[27m
+2026-08-30T01:44:00 [7m>>> initscripts  Building[27m
+2026-08-30T01:44:00 [7m>>> initscripts  Installing to target[27m
+2026-08-30T01:44:01 [7m>>> input-event-daemon 0.1.3 Extracting[27m
+2026-08-30T01:44:01 [7m>>> input-event-daemon 0.1.3 Patching[27m
+2026-08-30T01:44:01 [7m>>> input-event-daemon 0.1.3 Configuring[27m
+2026-08-30T01:44:02 [7m>>> input-event-daemon 0.1.3 Building[27m
+2026-08-30T01:44:02 [7m>>> input-event-daemon 0.1.3 Installing to target[27m
+2026-08-30T01:44:03 [7m>>> libcurl 8.6.0 Downloading[27m
+Done in 1min 56s  (error code: 2)
+[91mFailed to build rockchip_rk3506_recovery:[0m
+2026-08-30T01:43:57 checking for PARTED... yes
+2026-08-30T01:43:57 checking that generated files are newer than configure... done
+2026-08-30T01:43:57 configure: creating ./config.status
+2026-08-30T01:43:57 config.status: creating Makefile
+2026-08-30T01:43:57 config.status: creating config.h
+2026-08-30T01:43:58 config.status: executing depfiles commands
+2026-08-30T01:43:58 configure: WARNING: unrecognized options: --disable-gtk-doc, --disable-gtk-doc-html, --disable-doc, --disable-docs, --disable-documentation, --with-xmlto, --with-fop, --enable-ipv6, --disable-nls, --disable-static, --enable-shared
+2026-08-30T01:43:58 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Building[27m
+2026-08-30T01:43:58 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1  /usr/bin/make -j1  -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/fatresize-321973ba156bbf2489e82c47c94b2bca74b16316/
+2026-08-30T01:43:58 /usr/bin/make  all-am
+2026-08-30T01:43:58 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -DHAVE_CONFIG_H -I.   -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 -c -o fatresize.o fatresize.c
+2026-08-30T01:43:58 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc  -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1   -o fatresize fatresize.o -lparted-fs-resize -L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/../arm-buildroot-linux-gnueabihf/sysroot/usr/lib -lparted  -ldl
+2026-08-30T01:43:58 [7m>>> fatresize 321973ba156bbf2489e82c47c94b2bca74b16316 Installing to target[27m
+2026-08-30T01:43:58 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1  /usr/bin/make -j1 DESTDIR=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target install -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/fatresize-321973ba156bbf2489e82c47c94b2bca74b16316/
+2026-08-30T01:43:58 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/sbin'
+2026-08-30T01:43:58 /usr/bin/install -c fatresize '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/sbin'
+2026-08-30T01:43:58 /usr/bin/mkdir -p '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/man/man1'
+2026-08-30T01:43:58 /usr/bin/install -c -m 644 fatresize.1 '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/man/man1'
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Extracting[27m
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Patching[27m
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Configuring[27m
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Building[27m
+2026-08-30T01:43:59 [7m>>> ifupdown-scripts  Installing to target[27m
+2026-08-30T01:43:59 /usr/bin/install -m 0755 -D package/ifupdown-scripts//nfs_check /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/network/nfs_check
+2026-08-30T01:43:59 rsync -a --ignore-times --exclude .svn --exclude .git --exclude .hg --exclude .bzr --exclude CVS --chmod=u=rwX,go=rX --exclude .empty --exclude '*~' package/ifupdown-scripts//network/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/network/
+2026-08-30T01:43:59 /usr/bin/install -D -m 0755 package/ifupdown-scripts//S40network /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d/S40network
+2026-08-30T01:43:59 echo "# interface file auto-generated by buildroot" > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/network/interfaces
+2026-08-30T01:43:59 ( echo ; echo "auto lo"; echo "iface lo inet loopback"; ) >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/network/interfaces
+2026-08-30T01:44:00 [7m>>> initscripts  Extracting[27m
+2026-08-30T01:44:00 [7m>>> initscripts  Patching[27m
+2026-08-30T01:44:00 [7m>>> initscripts  Configuring[27m
+2026-08-30T01:44:00 [7m>>> initscripts  Building[27m
+2026-08-30T01:44:00 [7m>>> initscripts  Installing to target[27m
+2026-08-30T01:44:00 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d
+2026-08-30T01:44:00 /usr/bin/install -D -m 0755 package/initscripts/init.d/* /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d/
+2026-08-30T01:44:01 input-event-daemon-0.1.3.tar.gz: OK (sha256: 1d9a44160aead88080093f74be9d709fbbc2637f982958e2673d80aedacd0a65)
+2026-08-30T01:44:01 [7m>>> input-event-daemon 0.1.3 Extracting[27m
+2026-08-30T01:44:01 gzip -d -c /home/linux/rk3506/buildroot/dl/input-event-daemon/input-event-daemon-0.1.3.tar.gz | /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/tar --strip-components=1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/input-event-daemon-0.1.3   -xf -
+2026-08-30T01:44:01 [7m>>> input-event-daemon 0.1.3 Patching[27m
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0001-Support-specifing-devices-in-command-args.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0002-Support-parsing-configfile-.d-.conf.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0003-Support-dynamic-remove-devices-when-not-available.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0004-Support-key-press-and-release-events.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 patching file input-event-daemon.h
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0005-Support-sync-events.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 patching file input-event-daemon.h
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0006-Listen-all-devices-by-default.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0007-Support-hotplug-when-listening-all-devices.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 patching file input-event-daemon.h
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0008-Support-initial-command.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 patching file input-event-daemon.h
+2026-08-30T01:44:01 
+2026-08-30T01:44:01 Applying 0009-HACK-Ignore-BTN_TOUCH.patch using patch:
+2026-08-30T01:44:01 patching file input-event-daemon.c
+2026-08-30T01:44:01 [7m>>> input-event-daemon 0.1.3 Configuring[27m
+2026-08-30T01:44:02 [7m>>> input-event-daemon 0.1.3 Building[27m
+2026-08-30T01:44:02 touch /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/input-event-daemon-0.1.3/input-event-table.h
+2026-08-30T01:44:02 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1 /usr/bin/make -j1 CC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc" CFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1" LDFLAGS="" -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/input-event-daemon-0.1.3
+2026-08-30T01:44:02 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc -D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64  -O2 -g0 -D_FORTIFY_SOURCE=1 input-event-daemon.c  -o input-event-daemon
+2026-08-30T01:44:02 [7m>>> input-event-daemon 0.1.3 Installing to target[27m
+2026-08-30T01:44:02 /usr/bin/install -m 755 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/input-event-daemon-0.1.3/input-event-daemon /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/input-event-daemon
+2026-08-30T01:44:02 /usr/bin/install -m 644 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/input-event-daemon-0.1.3/docs/sample.conf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/input-event-daemon.conf
+2026-08-30T01:44:02 /usr/bin/install -m 0755 -d /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/input-event-daemon.conf.d/
+2026-08-30T01:44:02 # Listen all devices by default.
+2026-08-30T01:44:02 /usr/bin/sed -i -e '/^listen = /d' /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/input-event-daemon.conf
+2026-08-30T01:44:02 /usr/bin/install -m 0755 -D package/input-event-daemon/S99input-event-daemon /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/init.d/S99input-event-daemon
+2026-08-30T01:44:02 /usr/bin/install -m 0755 -D package/input-event-daemon//power-key.sh /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/bin/
+2026-08-30T01:44:02 /usr/bin/install -m 0755 -D package/input-event-daemon//power-key.conf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/input-event-daemon.conf.d/
+2026-08-30T01:44:03 [7m>>> libcurl 8.6.0 Downloading[27m
+2026-08-30T01:44:03 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.curl-8.6.0.tar.xz.al5Sr1/output' 'https://sources.buildroot.net/libcurl/curl-8.6.0.tar.xz'
+2026-08-30T01:44:03 --2026-08-30 01:44:03--  https://sources.buildroot.net/libcurl/curl-8.6.0.tar.xz
+2026-08-30T01:44:03 Resolving sources.buildroot.net (sources.buildroot.net)... failed: Temporary failure in name resolution.
+2026-08-30T01:44:03 wget: unable to resolve host address 'sources.buildroot.net'
+2026-08-30T01:44:03 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.curl-8.6.0.tar.xz.3A9X8Y/output' 'https://sources.buildroot.net/curl-8.6.0.tar.xz'
+2026-08-30T01:44:03 --2026-08-30 01:44:03--  https://sources.buildroot.net/curl-8.6.0.tar.xz
+2026-08-30T01:44:03 Resolving sources.buildroot.net (sources.buildroot.net)... failed: Temporary failure in name resolution.
+2026-08-30T01:44:03 wget: unable to resolve host address 'sources.buildroot.net'
+2026-08-30T01:44:03 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.curl-8.6.0.tar.xz.16gjcv/output' 'https://curl.se/download/curl-8.6.0.tar.xz'
+2026-08-30T01:44:03 --2026-08-30 01:44:03--  https://curl.se/download/curl-8.6.0.tar.xz
+2026-08-30T01:44:03 Resolving curl.se (curl.se)... failed: Temporary failure in name resolution.
+2026-08-30T01:44:03 wget: unable to resolve host address 'curl.se'
+2026-08-30T01:44:03 make[1]: *** [package/pkg-generic.mk:196: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/libcurl-8.6.0/.stamp_downloaded] Error 1
+2026-08-30T01:44:03 make: *** [Makefile:112: _all] Error 2
+2026-08-30T01:44:03 make: Leaving directory '/home/linux/rk3506/buildroot'
+[91mPlease check details in /home/linux/rk3506/output/sessions/2026-08-30_01-41-58/br-rockchip_rk3506_recovery_2026-08-30_01-42-07.log[0m
+[31mERROR: Running /home/linux/rk3506/device/rockchip/common/build-hooks/40-recovery.sh - build_hook failed![0m
+[31mERROR: exit code 1 from line 29:[0m
+[31m    "$RK_SCRIPTS_DIR/mk-buildroot.sh" $RK_RECOVERY_CFG "$IMAGE_DIR"[0m
+[31mERROR: call stack:[0m
+[31m    40-recovery.sh: build_hook(29)[0m
+[31m    build-helper: try_func(63)[0m
+[31m    build-helper: try_hook(96)[0m
+[31m    build-helper: source(165)[0m
+[31m    40-recovery.sh: main(49)[0m
+[31mERROR: Running /home/linux/rk3506/device/rockchip/common/build-hooks/40-recovery.sh - try_func build_hook recovery failed![0m
+[31mERROR: exit code 1 from line 67:[0m
+[31m    build_hook[0m
+[31mERROR: call stack:[0m
+[31m    build-helper: try_func(67)[0m
+[31m    build-helper: try_hook(96)[0m
+[31m    build-helper: source(165)[0m
+[31m    40-recovery.sh: main(49)[0m

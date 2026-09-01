@@ -1,0 +1,189 @@
+# 2026-08-30 02:08:52
+# run func: post_build_hook firmware
+
+[36m==========================================[0m
+[36m          Start packing firmwares[0m
+[36m==========================================[0m
+[36mLinking /home/linux/rk3506/output/firmware/parameter.txt from /home/linux/rk3506/device/rockchip/.chip/parameter-flash.txt...[0m
+[35mPreparing partiton oem[0m
+[36mMerging /home/linux/rk3506/device/rockchip/.chip/rk3506_oem into /home/linux/rk3506/output/extra-parts/oem[0m
+[35mUsing maxium size(16384K) for oem[0m
+[35mPacking /home/linux/rk3506/output/extra-parts/oem.img from /home/linux/rk3506/output/extra-parts/oem.fs[0m
+Using host tools in /home/linux/rk3506/buildroot/output/latest/host (except for mke2fs)
+Making /home/linux/rk3506/output/extra-parts/oem.img from /home/linux/rk3506/output/extra-parts/oem with size(16384KB)
+mkfs.ubifs
+	root:         /home/linux/rk3506/output/extra-parts/oem/
+	min_io_size:  2048
+	leb_size:     126976
+	max_leb_cnt:  132
+	output:       /home/linux/rk3506/output/extra-parts/oem.img
+	jrn_size:     1904640
+	reserved:     0
+	compr:        lzo
+	keyhash:      r5
+	fanout:       8
+	orph_lebs:    1
+	space_fixup:  1
+	selinux file: (null)
+	super lebs:   1
+	master lebs:  2
+	log_lebs:     4
+	lpt_lebs:     2
+	orph_lebs:    1
+	main_lebs:    39
+	gc lebs:      1
+	index lebs:   1
+	leb_cnt:      49
+	UUID:         C768B429-C7DD-4608-A39D-4AD9D81916B9
+Success!
+ubinize: LEB size:                  126976
+ubinize: PEB size:                  131072
+ubinize: min. I/O size:             2048
+ubinize: sub-page size:             2048
+ubinize: VID offset:                2048
+ubinize: data offset:               4096
+ubinize: UBI image sequence number: 1786143744
+ubinize: loaded the ini-file "/home/linux/rk3506/output/extra-parts/oem-ubinize.cfg"
+ubinize: count of sections: 1
+
+ubinize: parsing section "ubi"
+ubinize: mode=ubi, keep parsing
+ubinize: volume type: dynamic
+ubinize: volume ID: 0
+ubinize: volume size was not specified in section "ubi", assume minimum to fit image "/home/linux/rk3506/output/extra-parts/oem.img.ubifs"6221824 bytes (5.9 MiB)
+ubinize: volume name: oem
+ubinize: volume alignment: 1
+ubinize: autoresize flags found
+ubinize: adding volume 0
+ubinize: writing volume 0
+ubinize: image file: /home/linux/rk3506/output/extra-parts/oem.img.ubifs
+
+ubinize: writing layout volume
+ubinize: done
+Generated /home/linux/rk3506/output/extra-parts/oem.img
+[35mDone packing /home/linux/rk3506/output/extra-parts/oem.img[0m
+[35mPreparing partiton userdata[0m
+[36mMerging /home/linux/rk3506/device/rockchip/common/extra-parts/userdata/normal into /home/linux/rk3506/output/extra-parts/userdata[0m
+[35mFlash storage size is 2048M[0m
+[35mUsing maxium size(2048M) for userdata[0m
+[35mPacking /home/linux/rk3506/output/extra-parts/userdata.img from /home/linux/rk3506/output/extra-parts/userdata.fs[0m
+Using host tools in /home/linux/rk3506/buildroot/output/latest/host (except for mke2fs)
+Making /home/linux/rk3506/output/extra-parts/userdata.img from /home/linux/rk3506/output/extra-parts/userdata with size(2097152KB)
+mkfs.ubifs
+	root:         /home/linux/rk3506/output/extra-parts/userdata/
+	min_io_size:  2048
+	leb_size:     126976
+	max_leb_cnt:  16912
+	output:       /home/linux/rk3506/output/extra-parts/userdata.img
+	jrn_size:     8388608
+	reserved:     0
+	compr:        lzo
+	keyhash:      r5
+	fanout:       8
+	orph_lebs:    1
+	space_fixup:  1
+	selinux file: (null)
+	super lebs:   1
+	master lebs:  2
+	log_lebs:     5
+	lpt_lebs:     3
+	orph_lebs:    1
+	main_lebs:    5
+	gc lebs:      1
+	index lebs:   1
+	leb_cnt:      17
+	UUID:         93BD2304-169A-4B86-BF42-FECF36BF9641
+Success!
+ubinize: LEB size:                  126976
+ubinize: PEB size:                  131072
+ubinize: min. I/O size:             2048
+ubinize: sub-page size:             2048
+ubinize: VID offset:                2048
+ubinize: data offset:               4096
+ubinize: UBI image sequence number: 20950304
+ubinize: loaded the ini-file "/home/linux/rk3506/output/extra-parts/userdata-ubinize.cfg"
+ubinize: count of sections: 1
+
+ubinize: parsing section "ubi"
+ubinize: mode=ubi, keep parsing
+ubinize: volume type: dynamic
+ubinize: volume ID: 0
+ubinize: volume size was not specified in section "ubi", assume minimum to fit image "/home/linux/rk3506/output/extra-parts/userdata.img.ubifs"2158592 bytes (2.0 MiB)
+ubinize: volume name: userdata
+ubinize: volume alignment: 1
+ubinize: autoresize flags found
+ubinize: adding volume 0
+ubinize: writing volume 0
+ubinize: image file: /home/linux/rk3506/output/extra-parts/userdata.img.ubifs
+
+ubinize: writing layout volume
+ubinize: done
+Generated /home/linux/rk3506/output/extra-parts/userdata.img
+[35mDone packing /home/linux/rk3506/output/extra-parts/userdata.img[0m
+[35mRunning mk-extra-parts.sh - build_extra_part succeeded.[0m
+[35mPacked files:[0m
+MiniLoaderAll.bin(/home/linux/rk3506/u-boot/rk3506_spl_loader_v1.06.111.bin): 275K
+boot.img(/home/linux/rk3506/kernel-6.1/zboot.img): 3.9M
+misc.img(/home/linux/rk3506/output/misc.img): 48K
+oem.img(/home/linux/rk3506/output/extra-parts/oem.img): 6.4M
+parameter.txt(/home/linux/rk3506/device/rockchip/.chips/rk3506/parameter-flash.txt): 480
+recovery.img(/home/linux/rk3506/output/recovery/ramboot.img): 14M
+rootfs.img(/home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.ubi): 8.9M
+uboot.img(/home/linux/rk3506/u-boot/uboot.img): 4.0M
+userdata.img(/home/linux/rk3506/output/extra-parts/userdata.img): 2.4M
+[35mMaking update image...[0m
+[36m==========================================[0m
+[36m          Start packing update image[0m
+[36m==========================================[0m
+[35mGenerating package-file for update:[0m
+# NAME	PATH
+package-file	package-file
+parameter	parameter.txt
+bootloader	MiniLoaderAll.bin
+uboot	uboot.img
+misc	misc.img
+recovery	recovery.img
+boot	boot.img
+rootfs	rootfs.img
+oem	oem.img
+userdata	userdata.img
+[35mPacking /home/linux/rk3506/output/firmware/update.img for update...[0m
+Android Firmware Package Tool v2.29
+------ PACKAGE ------
+Add file: ./package-file
+package-file,Add file: ./package-file done,offset=0x800,size=0xd1,userspace=0x1
+Add file: ./parameter.txt
+parameter,Add file: ./parameter.txt done,offset=0x1000,size=0x1ec,userspace=0x1,flash_address=0x00000000
+Add file: ./MiniLoaderAll.bin
+bootloader,Add file: ./MiniLoaderAll.bin done,offset=0x1800,size=0x449c0,userspace=0x8a
+Add file: ./uboot.img
+uboot,Add file: ./uboot.img done,offset=0x46800,size=0x400000,userspace=0x800,flash_address=0x00002000
+Add file: ./misc.img
+misc,Add file: ./misc.img done,offset=0x446800,size=0xc000,userspace=0x18,flash_address=0x00005000
+Add file: ./recovery.img
+recovery,Add file: ./recovery.img done,offset=0x452800,size=0xd4ca00,userspace=0x1a9a,flash_address=0x00005a00
+Add file: ./boot.img
+boot,Add file: ./boot.img done,offset=0x119f800,size=0x3d7a00,userspace=0x7b0,flash_address=0x0000ea00
+Add file: ./rootfs.img
+rootfs,Add file: ./rootfs.img done,offset=0x1577800,size=0x8e0000,userspace=0x11c0,flash_address=0x00013a00
+Add file: ./oem.img
+oem,Add file: ./oem.img done,offset=0x1e57800,size=0x660000,userspace=0xcc0,flash_address=0x00063a00
+Add file: ./userdata.img
+userdata,Add file: ./userdata.img done,offset=0x24b7800,size=0x260000,userspace=0x4c0,flash_address=0x0006ba00
+Add CRC...
+Make firmware OK!
+------ OK ------
+********rkImageMaker ver 2.29********
+Generating new image, please wait...
+Writing head info...
+Writing boot file...
+Writing firmware...
+Generating MD5 data...
+MD5 data generated successfully!
+New image generated successfully!
+[35m
+Run 'make edit-package-file' if you want to change the package-file.
+[0m
+[35mRunning mk-updateimg.sh - build_updateimg succeeded.[0m
+[36mImages under /home/linux/rk3506/output/firmware/ are ready![0m
+[35mRunning 80-firmware.sh - build_firmware succeeded.[0m

@@ -1,0 +1,58 @@
+# 2026-08-30 01:44:40
+# run func: build_hook recovery
+
+[36m==========================================[0m
+[36m          Start building recovery(buildroot)[0m
+[36m==========================================[0m
+[35m
+Your network is not able to access sources.buildroot.net!
+Please retry later (it could be down for a while) or setup a VPN to bypass the GFW.
+[0m[35mWill continue in 5 seconds ...
+5 ...
+4 ...
+3 ...
+2 ...
+1 ...
+[0m
+make: Entering directory '/home/linux/rk3506/buildroot'
+  GEN     /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/Makefile
+Parsing defconfig: /home/linux/rk3506/buildroot/configs/rockchip_rk3506_recovery_defconfig
+Using configs/rockchip/base/kernel.config as base
+Merging configs/rockchip/fs/e2fs.config
+Merging configs/rockchip/base/common.config
+Merging configs/rockchip/base/base.config
+Merging configs/rockchip/base/kernel.config
+Merging configs/rockchip/fs/e2fs.config
+Merging configs/rockchip/base/common.config
+Merging configs/rockchip/fs/vfat.config
+Merging configs/rockchip/base/recovery.config
+Merging configs/rockchip/chips/rk3506.config
+Value of BR2_ROOTFS_OVERLAY is redefined by configs/rockchip/chips/rk3506.config:
+Previous value:	BR2_ROOTFS_OVERLAY="board/rockchip/common/base"
+Modify value:	BR2_ROOTFS_OVERLAY+="board/rockchip/rk3506/fs-overlay/"
+New value:	BR2_ROOTFS_OVERLAY="board/rockchip/common/base board/rockchip/rk3506/fs-overlay/"
+
+Merging configs/rockchip/chips/rk3506_arm.config
+Merging /home/linux/rk3506/buildroot/configs/rockchip_rk3506_recovery_defconfig
+#
+# merged configuration written to /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/.config.in (needs make)
+#
+#
+# configuration written to /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/.config
+#
+make: Leaving directory '/home/linux/rk3506/buildroot'
+464c464
+< BR2_JLEVEL=1
+---
+> BR2_JLEVEL=0
+[34mBuildroot config changed![0m
+[34mYou might need to clean it before building:[0m
+[34mrm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery
+[0m
+2026-08-30T01:44:59 [7m>>> libcurl 8.6.0 Extracting[27m
+2026-08-30T01:45:00 [7m>>> libcurl 8.6.0 Patching[27m
+2026-08-30T01:45:00 [7m>>> libcurl 8.6.0 Updating config.sub and config.guess[27m
+2026-08-30T01:45:00 [7m>>> libcurl 8.6.0 Configuring[27m
+2026-08-30T01:45:00 [7m>>> libcurl 8.6.0 Autoreconfiguring[27m
+2026-08-30T01:45:17 [7m>>> libcurl 8.6.0 Patching libtool[27m
+2026-08-30T01:45:57 [7m>>> libcurl 8.6.0 Building[27m

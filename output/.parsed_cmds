@@ -1,0 +1,55 @@
+#!/bin/bash
+
+# Parsed from device/rockchip/common/scripts/mk-config.sh.
+RK_INIT_CMDS="$RK_INIT_CMDS chip defconfig lunch [^:]*_defconfig olddefconfig savedefconfig menuconfig config default" # device/rockchip/common/scripts/mk-config.sh
+
+# Parsed from device/rockchip/common/scripts/mk-partitions.sh.
+RK_PRE_BUILD_CMDS="$RK_PRE_BUILD_CMDS print-parts list-parts mod-parts edit-parts new-parts insert-part del-part move-part rename-part resize-part" # device/rockchip/common/scripts/mk-partitions.sh
+
+# Parsed from device/rockchip/common/scripts/mk-misc.sh.
+RK_BUILD_CMDS="$RK_BUILD_CMDS misc" # device/rockchip/common/scripts/mk-misc.sh
+
+# Parsed from device/rockchip/common/scripts/mk-kernel.sh.
+RK_INIT_CMDS="$RK_INIT_CMDS default kernel-6.1" # device/rockchip/common/scripts/mk-kernel.sh
+RK_PRE_BUILD_CMDS="$RK_PRE_BUILD_CMDS kernel-config kconfig kernel-make kmake" # device/rockchip/common/scripts/mk-kernel.sh
+RK_BUILD_CMDS="$RK_BUILD_CMDS kernel-6.1 kernel recovery-kernel kernel-modules modules" # device/rockchip/common/scripts/mk-kernel.sh
+RK_POST_BUILD_CMDS="$RK_POST_BUILD_CMDS linux-headers" # device/rockchip/common/scripts/mk-kernel.sh
+
+# Parsed from device/rockchip/common/scripts/mk-wifibt.sh.
+RK_BUILD_CMDS="$RK_BUILD_CMDS wifibt" # device/rockchip/common/scripts/mk-wifibt.sh
+
+# Parsed from device/rockchip/common/scripts/mk-amp.sh.
+RK_BUILD_CMDS="$RK_BUILD_CMDS amp" # device/rockchip/common/scripts/mk-amp.sh
+
+# Parsed from device/rockchip/common/scripts/mk-rootfs.sh.
+RK_INIT_CMDS="$RK_INIT_CMDS default buildroot debian yocto ubuntu" # device/rockchip/common/scripts/mk-rootfs.sh
+RK_PRE_BUILD_CMDS="$RK_PRE_BUILD_CMDS buildroot-config bconfig buildroot-make bmake" # device/rockchip/common/scripts/mk-rootfs.sh
+RK_BUILD_CMDS="$RK_BUILD_CMDS rootfs buildroot debian yocto ubuntu" # device/rockchip/common/scripts/mk-rootfs.sh
+RK_POST_BUILD_CMDS="$RK_POST_BUILD_CMDS buildroot-sdk bsdk" # device/rockchip/common/scripts/mk-rootfs.sh
+
+# Parsed from device/rockchip/common/scripts/mk-recovery.sh.
+RK_BUILD_CMDS="$RK_BUILD_CMDS recovery" # device/rockchip/common/scripts/mk-recovery.sh
+
+# Parsed from device/rockchip/common/scripts/mk-security.sh.
+RK_BUILD_CMDS="$RK_BUILD_CMDS security-createkeys security-misc security-ramboot security-system" # device/rockchip/common/scripts/mk-security.sh
+
+# Parsed from device/rockchip/common/scripts/mk-loader.sh.
+RK_BUILD_CMDS="$RK_BUILD_CMDS loader uboot u-boot" # device/rockchip/common/scripts/mk-loader.sh
+
+# Parsed from device/rockchip/common/scripts/mk-extra-parts.sh.
+RK_POST_BUILD_CMDS="$RK_POST_BUILD_CMDS extra-parts" # device/rockchip/common/scripts/mk-extra-parts.sh
+
+# Parsed from device/rockchip/common/scripts/mk-firmware.sh.
+RK_POST_BUILD_CMDS="$RK_POST_BUILD_CMDS firmware" # device/rockchip/common/scripts/mk-firmware.sh
+
+# Parsed from device/rockchip/common/scripts/mk-updateimg.sh.
+RK_INIT_CMDS="$RK_INIT_CMDS edit-package-file edit-ota-package-file" # device/rockchip/common/scripts/mk-updateimg.sh
+RK_PRE_BUILD_CMDS="$RK_PRE_BUILD_CMDS edit-package-file edit-ota-package-file" # device/rockchip/common/scripts/mk-updateimg.sh
+RK_POST_BUILD_CMDS="$RK_POST_BUILD_CMDS updateimg ota-updateimg" # device/rockchip/common/scripts/mk-updateimg.sh
+
+# Parsed from device/rockchip/common/scripts/mk-all.sh.
+RK_BUILD_CMDS="$RK_BUILD_CMDS all all-release" # device/rockchip/common/scripts/mk-all.sh
+RK_POST_BUILD_CMDS="$RK_POST_BUILD_CMDS release" # device/rockchip/common/scripts/mk-all.sh
+
+# Parsed from device/rockchip/common/scripts/mk-shell.sh.
+RK_PRE_BUILD_CMDS="$RK_PRE_BUILD_CMDS shell buildroot-shell bshell yocto-shell yshell" # device/rockchip/common/scripts/mk-shell.sh

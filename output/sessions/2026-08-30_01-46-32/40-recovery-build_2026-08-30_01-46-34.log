@@ -1,0 +1,43 @@
+# 2026-08-30 01:46:34
+# run func: build_hook recovery
+
+[36m==========================================[0m
+[36m          Start building recovery(buildroot)[0m
+[36m==========================================[0m
+make: Entering directory '/home/linux/rk3506/buildroot'
+  GEN     /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/Makefile
+Parsing defconfig: /home/linux/rk3506/buildroot/configs/rockchip_rk3506_recovery_defconfig
+Using configs/rockchip/base/kernel.config as base
+Merging configs/rockchip/fs/e2fs.config
+Merging configs/rockchip/base/common.config
+Merging configs/rockchip/base/base.config
+Merging configs/rockchip/base/kernel.config
+Merging configs/rockchip/fs/e2fs.config
+Merging configs/rockchip/base/common.config
+Merging configs/rockchip/fs/vfat.config
+Merging configs/rockchip/base/recovery.config
+Merging configs/rockchip/chips/rk3506.config
+Value of BR2_ROOTFS_OVERLAY is redefined by configs/rockchip/chips/rk3506.config:
+Previous value:	BR2_ROOTFS_OVERLAY="board/rockchip/common/base"
+Modify value:	BR2_ROOTFS_OVERLAY+="board/rockchip/rk3506/fs-overlay/"
+New value:	BR2_ROOTFS_OVERLAY="board/rockchip/common/base board/rockchip/rk3506/fs-overlay/"
+
+Merging configs/rockchip/chips/rk3506_arm.config
+Merging /home/linux/rk3506/buildroot/configs/rockchip_rk3506_recovery_defconfig
+#
+# merged configuration written to /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/.config.in (needs make)
+#
+#
+# configuration written to /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/.config
+#
+make: Leaving directory '/home/linux/rk3506/buildroot'
+464c464
+< BR2_JLEVEL=1
+---
+> BR2_JLEVEL=0
+[34mBuildroot config changed![0m
+[34mYou might need to clean it before building:[0m
+[34mrm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery
+[0m
+2026-08-30T01:46:49 [7m>>> libcurl 8.6.0 Building[27m
+2026-08-30T01:48:00 [7m>>> libcurl 8.6.0 Installing to staging directory[27m

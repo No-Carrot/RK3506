@@ -1,0 +1,231 @@
+# 2026-08-30 01:26:23
+# run func: build_hook recovery
+
+[36m==========================================[0m
+[36m          Start building recovery(buildroot)[0m
+[36m==========================================[0m
+[35m
+Your network is not able to access sources.buildroot.net!
+Please retry later (it could be down for a while) or setup a VPN to bypass the GFW.
+[0m[35mWill continue in 5 seconds ...
+5 ...
+4 ...
+3 ...
+2 ...
+1 ...
+[0m
+make: Entering directory '/home/linux/rk3506/buildroot'
+  GEN     /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/Makefile
+Parsing defconfig: /home/linux/rk3506/buildroot/configs/rockchip_rk3506_recovery_defconfig
+Using configs/rockchip/base/kernel.config as base
+Merging configs/rockchip/fs/e2fs.config
+Merging configs/rockchip/base/common.config
+Merging configs/rockchip/base/base.config
+Merging configs/rockchip/base/kernel.config
+Merging configs/rockchip/fs/e2fs.config
+Merging configs/rockchip/base/common.config
+Merging configs/rockchip/fs/vfat.config
+Merging configs/rockchip/base/recovery.config
+Merging configs/rockchip/chips/rk3506.config
+Value of BR2_ROOTFS_OVERLAY is redefined by configs/rockchip/chips/rk3506.config:
+Previous value:	BR2_ROOTFS_OVERLAY="board/rockchip/common/base"
+Modify value:	BR2_ROOTFS_OVERLAY+="board/rockchip/rk3506/fs-overlay/"
+New value:	BR2_ROOTFS_OVERLAY="board/rockchip/common/base board/rockchip/rk3506/fs-overlay/"
+
+Merging configs/rockchip/chips/rk3506_arm.config
+Merging /home/linux/rk3506/buildroot/configs/rockchip_rk3506_recovery_defconfig
+#
+# merged configuration written to /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/.config.in (needs make)
+#
+#
+# configuration written to /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/.config
+#
+make: Leaving directory '/home/linux/rk3506/buildroot'
+464c464
+< BR2_JLEVEL=1
+---
+> BR2_JLEVEL=0
+[34mBuildroot config changed![0m
+[34mYou might need to clean it before building:[0m
+[34mrm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery
+[0m
+2026-08-30T01:26:43 [7m>>> dosfstools 4.2 Extracting[27m
+2026-08-30T01:26:43 [7m>>> dosfstools 4.2 Patching[27m
+2026-08-30T01:26:43 [7m>>> dosfstools 4.2 Updating config.sub and config.guess[27m
+2026-08-30T01:26:43 [7m>>> dosfstools 4.2 Patching libtool[27m
+2026-08-30T01:26:43 [7m>>> dosfstools 4.2 Configuring[27m
+2026-08-30T01:26:50 [7m>>> dosfstools 4.2 Building[27m
+2026-08-30T01:26:56 [7m>>> dosfstools 4.2 Installing to target[27m
+2026-08-30T01:26:57 [7m>>> util-linux 2.39.3 Extracting[27m
+2026-08-30T01:26:58 [7m>>> util-linux 2.39.3 Patching[27m
+2026-08-30T01:26:58 [7m>>> util-linux 2.39.3 Updating config.sub and config.guess[27m
+2026-08-30T01:26:58 [7m>>> util-linux 2.39.3 Configuring[27m
+2026-08-30T01:26:58 [7m>>> util-linux 2.39.3 Autoreconfiguring[27m
+2026-08-30T01:27:12 [7m>>> util-linux 2.39.3 Patching libtool[27m
+2026-08-30T01:27:50 [7m>>> util-linux 2.39.3 Building[27m
+2026-08-30T01:29:45 [7m>>> util-linux 2.39.3 Installing to staging directory[27m
+2026-08-30T01:29:46 [7m>>> util-linux 2.39.3 Fixing libtool files[27m
+2026-08-30T01:29:46 [7m>>> util-linux 2.39.3 Installing to target[27m
+2026-08-30T01:29:48 [7m>>> e2fsprogs 1.47.0 Extracting[27m
+2026-08-30T01:29:48 [7m>>> e2fsprogs 1.47.0 Patching[27m
+2026-08-30T01:29:49 [7m>>> e2fsprogs 1.47.0 Updating config.sub and config.guess[27m
+2026-08-30T01:29:49 [7m>>> e2fsprogs 1.47.0 Patching libtool[27m
+2026-08-30T01:29:49 [7m>>> e2fsprogs 1.47.0 Configuring[27m
+2026-08-30T01:30:16 [7m>>> e2fsprogs 1.47.0 Building[27m
+2026-08-30T01:31:42 [7m>>> e2fsprogs 1.47.0 Installing to staging directory[27m
+2026-08-30T01:31:43 [7m>>> e2fsprogs 1.47.0 Fixing libtool files[27m
+2026-08-30T01:31:44 [7m>>> e2fsprogs 1.47.0 Installing to target[27m
+2026-08-30T01:31:47 [7m>>> mtd 2.1.6 Extracting[27m
+2026-08-30T01:31:47 [7m>>> mtd 2.1.6 Patching[27m
+2026-08-30T01:31:47 [7m>>> mtd 2.1.6 Updating config.sub and config.guess[27m
+2026-08-30T01:31:47 [7m>>> mtd 2.1.6 Patching libtool[27m
+2026-08-30T01:31:47 [7m>>> mtd 2.1.6 Configuring[27m
+2026-08-30T01:31:51 [7m>>> mtd 2.1.6 Building[27m
+2026-08-30T01:32:07 [7m>>> mtd 2.1.6 Installing to staging directory[27m
+2026-08-30T01:32:08 [7m>>> mtd 2.1.6 Fixing libtool files[27m
+2026-08-30T01:32:08 [7m>>> mtd 2.1.6 Installing to target[27m
+2026-08-30T01:32:09 [7m>>> busybox 1.36.1 Extracting[27m
+2026-08-30T01:32:10 [7m>>> busybox 1.36.1 Patching[27m
+2026-08-30T01:32:25 [7m>>> busybox 1.36.1 Configuring[27m
+2026-08-30T01:32:25 [7m>>> busybox 1.36.1 Building[27m
+2026-08-30T01:34:31 [7m>>> busybox 1.36.1 Installing to target[27m
+2026-08-30T01:34:42 [7m>>> bzip2 1.0.8 Extracting[27m
+2026-08-30T01:34:42 [7m>>> bzip2 1.0.8 Patching[27m
+2026-08-30T01:34:42 [7m>>> bzip2 1.0.8 Configuring[27m
+2026-08-30T01:34:42 [7m>>> bzip2 1.0.8 Building[27m
+2026-08-30T01:34:52 [7m>>> bzip2 1.0.8 Installing to staging directory[27m
+2026-08-30T01:34:52 [7m>>> bzip2 1.0.8 Fixing libtool files[27m
+2026-08-30T01:34:52 [7m>>> bzip2 1.0.8 Installing to target[27m
+2026-08-30T01:34:53 [7m>>> host-util-linux 2.39.3 Extracting[27m
+2026-08-30T01:34:55 [7m>>> host-util-linux 2.39.3 Patching[27m
+2026-08-30T01:34:55 [7m>>> host-util-linux 2.39.3 Updating config.sub and config.guess[27m
+2026-08-30T01:34:55 [7m>>> host-util-linux 2.39.3 Configuring[27m
+2026-08-30T01:34:55 [7m>>> host-util-linux 2.39.3 Autoreconfiguring[27m
+2026-08-30T01:35:09 [7m>>> host-util-linux 2.39.3 Patching libtool[27m
+2026-08-30T01:35:40 [7m>>> host-util-linux 2.39.3 Building[27m
+2026-08-30T01:38:41 [7m>>> host-util-linux 2.39.3 Installing to host directory[27m
+2026-08-30T01:38:47 [7m>>> host-e2fsprogs 1.47.0 Extracting[27m
+2026-08-30T01:38:48 [7m>>> host-e2fsprogs 1.47.0 Patching[27m
+2026-08-30T01:38:48 [7m>>> host-e2fsprogs 1.47.0 Updating config.sub and config.guess[27m
+2026-08-30T01:38:48 [7m>>> host-e2fsprogs 1.47.0 Patching libtool[27m
+2026-08-30T01:38:48 [7m>>> host-e2fsprogs 1.47.0 Configuring[27m
+2026-08-30T01:39:08 [7m>>> host-e2fsprogs 1.47.0 Building[27m
+2026-08-30T01:40:21 [7m>>> host-e2fsprogs 1.47.0 Installing to host directory[27m
+2026-08-30T01:40:29 [7m>>> host-environment-setup  Extracting[27m
+2026-08-30T01:40:29 [7m>>> host-environment-setup  Patching[27m
+2026-08-30T01:40:29 [7m>>> host-environment-setup  Configuring[27m
+2026-08-30T01:40:29 [7m>>> host-environment-setup  Building[27m
+2026-08-30T01:40:29 [7m>>> host-environment-setup  Installing to host directory[27m
+2026-08-30T01:40:33 [7m>>> parted 3.6 Downloading[27m
+Done in 14min 03s  (error code: 2)
+[91mFailed to build rockchip_rk3506_recovery:[0m
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/ext3_extents.h
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/tdb.h
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/qcow2.h
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/hashmap.h
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/ext2_err.h
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/ext2_types.h
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig/ext2fs.pc
+2026-08-30T01:40:24 making install in lib/et
+2026-08-30T01:40:24 MKDIR_P /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib
+2026-08-30T01:40:24 INSTALL-ELF-LIB /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libcom_err.so.2.1
+2026-08-30T01:40:24 SYMLINK /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libcom_err.so.2
+2026-08-30T01:40:24 SYMLINK /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libcom_err.so
+2026-08-30T01:40:24 LDCONFIG
+2026-08-30T01:40:24 MKDIR_P /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/et /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/et /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/man/man1 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/man/man3
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libcom_err.a
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/et/com_err.h
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/et/et_c.awk
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/et/et_h.awk
+2026-08-30T01:40:24 INSTALL_SCRIPT /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/compile_et
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/man/man3/com_err.3
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/man/man1/compile_et.1
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig/com_err.pc
+2026-08-30T01:40:24 making install in lib/ss
+2026-08-30T01:40:24 MKDIR_P /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib
+2026-08-30T01:40:24 INSTALL-ELF-LIB /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libss.so.2.0
+2026-08-30T01:40:24 SYMLINK /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libss.so.2
+2026-08-30T01:40:24 SYMLINK /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libss.so
+2026-08-30T01:40:24 LDCONFIG
+2026-08-30T01:40:24 MKDIR_P /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ss /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/ss /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/man/man1
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libss.a
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ss/ss.h
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ss/ss_err.h
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/ss/ct_c.awk
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/ss/ct_c.sed
+2026-08-30T01:40:24 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/mk_cmds
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/man/man1/mk_cmds.1
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig/ss.pc
+2026-08-30T01:40:24 making install in lib/e2p
+2026-08-30T01:40:24 MKDIR_P /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib
+2026-08-30T01:40:24 INSTALL-ELF-LIB /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libe2p.so.2.3
+2026-08-30T01:40:24 SYMLINK /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libe2p.so.2
+2026-08-30T01:40:24 SYMLINK /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libe2p.so
+2026-08-30T01:40:24 LDCONFIG
+2026-08-30T01:40:24 MKDIR_P /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/e2p
+2026-08-30T01:40:24 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libe2p.a
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/e2p/e2p.h
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig/e2p.pc
+2026-08-30T01:40:25 making install in lib/support
+2026-08-30T01:40:25 make[3]: Nothing to be done for 'install'.
+2026-08-30T01:40:25 making install in lib/ext2fs
+2026-08-30T01:40:25 MKDIR_P /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib
+2026-08-30T01:40:25 INSTALL-ELF-LIB /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libext2fs.so.2.4
+2026-08-30T01:40:25 SYMLINK /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libext2fs.so.2
+2026-08-30T01:40:25 SYMLINK /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libext2fs.so
+2026-08-30T01:40:25 LDCONFIG
+2026-08-30T01:40:25 MKDIR_P /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/libext2fs.a
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/bitops.h
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/ext2fs.h
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/ext2_io.h
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/ext2_fs.h
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/ext2_ext_attr.h
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/ext3_extents.h
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/tdb.h
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/qcow2.h
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/hashmap.h
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/ext2_err.h
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/ext2fs/ext2_types.h
+2026-08-30T01:40:25 INSTALL_DATA /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig/ext2fs.pc
+2026-08-30T01:40:25 rm -f /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/compile_et
+2026-08-30T01:40:29 [7m>>> host-environment-setup  Extracting[27m
+2026-08-30T01:40:29 [7m>>> host-environment-setup  Patching[27m
+2026-08-30T01:40:29 [7m>>> host-environment-setup  Configuring[27m
+2026-08-30T01:40:29 [7m>>> host-environment-setup  Building[27m
+2026-08-30T01:40:29 [7m>>> host-environment-setup  Installing to host directory[27m
+2026-08-30T01:40:29 cp package/environment-setup/environment-setup /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/environment-setup
+2026-08-30T01:40:29 for var in PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg05rtTka:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FORCE_UNSAFE_CONFIGURE=1 AR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ar" AS="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-as" LD="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld" NM="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-nm" CC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc" GCC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc" CPP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-cpp" CXX="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++" FC="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gfortran" F77="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gfortran" RANLIB="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ranlib" READELF="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-readelf" STRIP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip" OBJCOPY="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-objcopy" OBJDUMP="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-objdump" AR_FOR_BUILD="/usr/bin/ar" AS_FOR_BUILD="/usr/bin/as" CC_FOR_BUILD="/usr/bin/gcc" GCC_FOR_BUILD="/usr/bin/gcc" CXX_FOR_BUILD="/usr/bin/g++" LD_FOR_BUILD="/usr/bin/ld" CPPFLAGS_FOR_BUILD="-I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CFLAGS_FOR_BUILD="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CXXFLAGS_FOR_BUILD="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" LDFLAGS_FOR_BUILD="-L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib" FCFLAGS_FOR_BUILD="" DEFAULT_ASSEMBLER="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-as" DEFAULT_LINKER="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-ld" CPPFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64" CFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -O2 -g0 -D_FORTIFY_SOURCE=1" CXXFLAGS="-D_LARGEFILE_SOURCE -D_LARGEFILE64_SOURCE -D_FILE_OFFSET_BITS=64 -O2 -g0 -D_FORTIFY_SOURCE=1" LDFLAGS="" FCFLAGS=" -O2 -g0" FFLAGS=" -O2 -g0" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" STAGING_DIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot" INTLTOOL_PERL=/usr/bin/perl; do printf "export \"$var\"\n" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/environment-setup; done
+2026-08-30T01:40:29 printf "export \"ARCH=arm\"\n" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/environment-setup
+2026-08-30T01:40:29 printf "export \"CROSS_COMPILE=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-\"\n" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/environment-setup
+2026-08-30T01:40:29 printf "export \"CONFIGURE_FLAGS=--target=arm-buildroot-linux-gnueabihf --host=arm-buildroot-linux-gnueabihf --build=x86_64-pc-linux-gnu --prefix=/usr --exec-prefix=/usr --sysconfdir=/etc --localstatedir=/var --program-prefix=\"\n" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/environment-setup
+2026-08-30T01:40:29 printf "alias configure=\"./configure \${CONFIGURE_FLAGS}\"\n" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/environment-setup
+2026-08-30T01:40:29 printf "alias cmake=\"cmake -DCMAKE_TOOLCHAIN_FILE=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/buildroot/toolchainfile.cmake -DCMAKE_INSTALL_PREFIX=/usr\"\n" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/environment-setup
+2026-08-30T01:40:29 /usr/bin/sed -i -e 's%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/%%g' -e 's%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host%\$SDK_PATH%g' -e '/^export "PATH=/c\' /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/environment-setup
+2026-08-30T01:40:29 printf "export \"PATH=\$SDK_PATH/bin:\$SDK_PATH/sbin:\$PATH\"\n" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/environment-setup
+2026-08-30T01:40:33 [7m>>> parted 3.6 Downloading[27m
+2026-08-30T01:40:33 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.parted-3.6.tar.xz.uWt4yK/output' 'https://sources.buildroot.net/parted/parted-3.6.tar.xz'
+2026-08-30T01:40:33 --2026-08-30 01:40:33--  https://sources.buildroot.net/parted/parted-3.6.tar.xz
+2026-08-30T01:40:33 Resolving sources.buildroot.net (sources.buildroot.net)... failed: Temporary failure in name resolution.
+2026-08-30T01:40:33 wget: unable to resolve host address 'sources.buildroot.net'
+2026-08-30T01:40:33 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.parted-3.6.tar.xz.hoHbQt/output' 'https://sources.buildroot.net/parted-3.6.tar.xz'
+2026-08-30T01:40:33 --2026-08-30 01:40:33--  https://sources.buildroot.net/parted-3.6.tar.xz
+2026-08-30T01:40:33 Resolving sources.buildroot.net (sources.buildroot.net)... failed: Temporary failure in name resolution.
+2026-08-30T01:40:33 wget: unable to resolve host address 'sources.buildroot.net'
+2026-08-30T01:40:33 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.parted-3.6.tar.xz.IDcPAs/output' 'https://mirrors.ustc.edu.cn/gnu/parted/parted-3.6.tar.xz'
+2026-08-30T01:40:33 --2026-08-30 01:40:33--  https://mirrors.ustc.edu.cn/gnu/parted/parted-3.6.tar.xz
+2026-08-30T01:40:33 Resolving mirrors.ustc.edu.cn (mirrors.ustc.edu.cn)... failed: Temporary failure in name resolution.
+2026-08-30T01:40:33 wget: unable to resolve host address 'mirrors.ustc.edu.cn'
+2026-08-30T01:40:33 make[1]: *** [package/pkg-generic.mk:196: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/parted-3.6/.stamp_downloaded] Error 1
+2026-08-30T01:40:33 make: *** [Makefile:112: _all] Error 2
+2026-08-30T01:40:33 make: Leaving directory '/home/linux/rk3506/buildroot'
+[91mPlease check details in /home/linux/rk3506/output/sessions/2026-08-30_01-26-21/br-rockchip_rk3506_recovery_2026-08-30_01-26-30.log[0m
+[31mERROR: Running /home/linux/rk3506/device/rockchip/common/build-hooks/40-recovery.sh - build_hook failed![0m
+[31mERROR: exit code 1 from line 29:[0m
+[31m    "$RK_SCRIPTS_DIR/mk-buildroot.sh" $RK_RECOVERY_CFG "$IMAGE_DIR"[0m
+[31mERROR: call stack:[0m
+[31m    40-recovery.sh: build_hook(29)[0m
+[31m    build-helper: try_func(63)[0m
+[31m    build-helper: try_hook(96)[0m
+[31m    build-helper: source(165)[0m
+[31m    40-recovery.sh: main(49)[0m

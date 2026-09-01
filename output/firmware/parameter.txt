@@ -1,0 +1,1 @@
+../../device/rockchip/.chips/rk3506/parameter-flash.txt

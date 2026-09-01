@@ -1,0 +1,1064 @@
+# 2026-08-30 02:04:14
+2026-08-30T02:04:14 make: Entering directory '/home/linux/rk3506/buildroot'
+2026-08-30T02:04:25 /usr/bin/make -j1  O=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery HOSTCC="/usr/bin/gcc" HOSTCXX="/usr/bin/g++" syncconfig
+2026-08-30T02:04:25 GEN     /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/Makefile
+2026-08-30T02:04:26 usbmount_0.0.22.tar.gz: OK (sha256: a2b8581534b6c92f0376d202639dbc28862d3834dac64c35bde752f84975527d)
+2026-08-30T02:04:26 [7m>>> usbmount 0.0.22 Extracting[27m
+2026-08-30T02:04:26 gzip -d -c /home/linux/rk3506/buildroot/dl/usbmount/usbmount_0.0.22.tar.gz | /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/tar --strip-components=1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/usbmount-0.0.22   -xf -
+2026-08-30T02:04:27 [7m>>> usbmount 0.0.22 Patching[27m
+2026-08-30T02:04:27 
+2026-08-30T02:04:27 Applying 0001-rules-fix.patch using patch:
+2026-08-30T02:04:27 patching file usbmount.rules
+2026-08-30T02:04:27 
+2026-08-30T02:04:27 Applying 0002-use-udev-environment-instead-of-blkid.patch using patch:
+2026-08-30T02:04:27 patching file usbmount
+2026-08-30T02:04:27 Hunk #1 succeeded at 60 (offset 1 line).
+2026-08-30T02:04:27 Hunk #2 succeeded at 79 (offset 1 line).
+2026-08-30T02:04:27 Hunk #3 succeeded at 89 (offset 1 line).
+2026-08-30T02:04:27 Hunk #4 succeeded at 152 (offset -11 lines).
+2026-08-30T02:04:27 
+2026-08-30T02:04:27 Applying 0003-usbmount.conf-Support-more-filesystems.patch using patch:
+2026-08-30T02:04:27 patching file usbmount.conf
+2026-08-30T02:04:27 
+2026-08-30T02:04:27 Applying 0004-usbmount-Allow-unmounting-other-mountpoints.patch using patch:
+2026-08-30T02:04:27 patching file usbmount
+2026-08-30T02:04:27 
+2026-08-30T02:04:27 Applying 0005-Handle-SD-card-as-well.patch using patch:
+2026-08-30T02:04:27 patching file usbmount
+2026-08-30T02:04:27 patching file usbmount.conf
+2026-08-30T02:04:27 patching file usbmount.rules
+2026-08-30T02:04:27 
+2026-08-30T02:04:27 Applying 0006-usbmount-Use-realpath-for-mountpoint-matching.patch using patch:
+2026-08-30T02:04:27 patching file usbmount
+2026-08-30T02:04:27 
+2026-08-30T02:04:27 Applying 0007-usbmount-Fallback-to-auto-fs-type.patch using patch:
+2026-08-30T02:04:27 patching file usbmount
+2026-08-30T02:04:27 
+2026-08-30T02:04:27 Applying 0008-Ignore-persistent-storages.patch using patch:
+2026-08-30T02:04:27 patching file usbmount.rules
+2026-08-30T02:04:27 
+2026-08-30T02:04:27 Applying 0009-Use-flock-instead-of-lockfile.patch using patch:
+2026-08-30T02:04:27 patching file usbmount
+2026-08-30T02:04:27 
+2026-08-30T02:04:27 Applying 0010-usbmount-Lock-umount-as-well.patch using patch:
+2026-08-30T02:04:27 patching file usbmount
+2026-08-30T02:04:27 [7m>>> usbmount 0.0.22 Configuring[27m
+2026-08-30T02:04:27 [7m>>> usbmount 0.0.22 Building[27m
+2026-08-30T02:04:27 [7m>>> usbmount 0.0.22 Installing to target[27m
+2026-08-30T02:04:27 /usr/bin/install -m 0755 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/usbmount-0.0.22/usbmount /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/usbmount/usbmount
+2026-08-30T02:04:27 /usr/bin/install -m 0755 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/usbmount-0.0.22/00_create_model_symlink /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/usbmount/mount.d/00_create_model_symlink
+2026-08-30T02:04:27 /usr/bin/install -m 0755 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/usbmount-0.0.22/00_remove_model_symlink /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/usbmount/umount.d/00_remove_model_symlink
+2026-08-30T02:04:27 /usr/bin/install -m 0644 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/usbmount-0.0.22/usbmount.rules /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/lib/udev/rules.d/usbmount.rules
+2026-08-30T02:04:27 /usr/bin/install -m 0644 -D /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/usbmount-0.0.22/usbmount.conf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/usbmount/usbmount.conf
+2026-08-30T02:04:27 for type in storage udisk sdcard; do mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/media/${type}1 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/media/${type}2 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/media/${type}3; mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/mnt/$type; rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/media/${type}0; ln -sf /mnt/$type /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/media/${type}0; done
+2026-08-30T02:04:27 /usr/bin/sed -i -e 's/^\(MOUNTOPTIONS="\)\<sync,*\(.*"\)/\1\2 #"sync,\2/' /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/usbmount/usbmount.conf
+2026-08-30T02:04:28 lz4-1.9.4.tar.gz: OK (sha256: 0b0e3aa07c8c063ddf40b082bdf7e37a1562bda40a0ff5272957f3e987e0e54b)
+2026-08-30T02:04:28 [7m>>> host-lz4 1.9.4 Extracting[27m
+2026-08-30T02:04:28 gzip -d -c /home/linux/rk3506/buildroot/dl/lz4/lz4-1.9.4.tar.gz | /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/tar --strip-components=1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lz4-1.9.4   -xf -
+2026-08-30T02:04:28 [7m>>> host-lz4 1.9.4 Patching[27m
+2026-08-30T02:04:28 
+2026-08-30T02:04:28 Applying 0001-build-Support-BUILD_SHARED-no.patch using patch:
+2026-08-30T02:04:28 patching file lib/Makefile
+2026-08-30T02:04:28 [7m>>> host-lz4 1.9.4 Configuring[27m
+2026-08-30T02:04:28 [7m>>> host-lz4 1.9.4 Building[27m
+2026-08-30T02:04:28 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" FORCE_UNSAFE_CONFIGURE=1 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" FORCE_UNSAFE_CONFIGURE=1 AR="/usr/bin/ar" AS="/usr/bin/as" LD="/usr/bin/ld" NM="/usr/bin/nm" CC="/usr/bin/gcc" GCC="/usr/bin/gcc" CXX="/usr/bin/g++" CPP="/usr/bin/cpp" OBJCOPY="/usr/bin/objcopy" RANLIB="/usr/bin/ranlib" CPPFLAGS="-I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CFLAGS="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CXXFLAGS="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" LDFLAGS="-L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib" INTLTOOL_PERL=/usr/bin/perl /usr/bin/make -j1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lz4-1.9.4 lib
+2026-08-30T02:04:29 compiling static library
+2026-08-30T02:04:35 compiling dynamic library 1.9.4
+2026-08-30T02:04:42 creating versioned links
+2026-08-30T02:04:42 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" FORCE_UNSAFE_CONFIGURE=1 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" FORCE_UNSAFE_CONFIGURE=1 AR="/usr/bin/ar" AS="/usr/bin/as" LD="/usr/bin/ld" NM="/usr/bin/nm" CC="/usr/bin/gcc" GCC="/usr/bin/gcc" CXX="/usr/bin/g++" CPP="/usr/bin/cpp" OBJCOPY="/usr/bin/objcopy" RANLIB="/usr/bin/ranlib" CPPFLAGS="-I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CFLAGS="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CXXFLAGS="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" LDFLAGS="-L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib" INTLTOOL_PERL=/usr/bin/perl /usr/bin/make -j1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lz4-1.9.4 lz4
+2026-08-30T02:04:44 [7m>>> host-lz4 1.9.4 Installing to host directory[27m
+2026-08-30T02:04:44 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" FORCE_UNSAFE_CONFIGURE=1 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" FORCE_UNSAFE_CONFIGURE=1 AR="/usr/bin/ar" AS="/usr/bin/as" LD="/usr/bin/ld" NM="/usr/bin/nm" CC="/usr/bin/gcc" GCC="/usr/bin/gcc" CXX="/usr/bin/g++" CPP="/usr/bin/cpp" OBJCOPY="/usr/bin/objcopy" RANLIB="/usr/bin/ranlib" CPPFLAGS="-I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CFLAGS="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CXXFLAGS="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" LDFLAGS="-L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib" INTLTOOL_PERL=/usr/bin/perl /usr/bin/make -j1 PREFIX=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host install -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lz4-1.9.4
+2026-08-30T02:04:44 creating pkgconfig
+2026-08-30T02:04:44 Installing libraries in /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib
+2026-08-30T02:04:44 Installing headers in /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include
+2026-08-30T02:04:44 lz4 libraries installed
+2026-08-30T02:04:44 Installing binaries in /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin
+2026-08-30T02:04:44 Installing man pages in /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/man/man1
+2026-08-30T02:04:44 lz4 installation completed
+2026-08-30T02:04:48 lzo-2.10.tar.gz: OK (sha1: 4924676a9bae5db58ef129dc1cebce3baa3c4b5d)
+2026-08-30T02:04:48 lzo-2.10.tar.gz: OK (sha256: c0f892943208266f9b6543b3ae308fab6284c5c90e627931446fb49b4221a072)
+2026-08-30T02:04:48 [7m>>> host-lzo 2.10 Extracting[27m
+2026-08-30T02:04:48 gzip -d -c /home/linux/rk3506/buildroot/dl/lzo/lzo-2.10.tar.gz | /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/tar --strip-components=1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lzo-2.10   -xf -
+2026-08-30T02:04:49 [7m>>> host-lzo 2.10 Patching[27m
+2026-08-30T02:04:49 [7m>>> host-lzo 2.10 Configuring[27m
+2026-08-30T02:04:49 (mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lzo-2.10//buildroot-build && cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lzo-2.10//buildroot-build && rm -f CMakeCache.txt && PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1  /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/cmake /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lzo-2.10/ -G"Unix Makefiles" -DCMAKE_MAKE_PROGRAM="/usr/bin/make" -DCMAKE_INSTALL_SO_NO_EXE=0 -DCMAKE_FIND_ROOT_PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host" -DCMAKE_FIND_ROOT_PATH_MODE_PROGRAM="BOTH" -DCMAKE_FIND_ROOT_PATH_MODE_LIBRARY="BOTH" -DCMAKE_FIND_ROOT_PATH_MODE_INCLUDE="BOTH" -DCMAKE_INSTALL_PREFIX="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host" -DCMAKE_C_FLAGS="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" -DCMAKE_CXX_FLAGS="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" -DCMAKE_EXE_LINKER_FLAGS="-L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib" -DCMAKE_SHARED_LINKER_FLAGS="-L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib" -DCMAKE_ASM_COMPILER="/usr/bin/as" -DCMAKE_C_COMPILER="/usr/bin/gcc" -DCMAKE_CXX_COMPILER="/usr/bin/g++"  -DCMAKE_C_COMPILER_LAUNCHER="" -DCMAKE_CXX_COMPILER_LAUNCHER=""  -DCMAKE_COLOR_MAKEFILE=OFF -DBUILD_DOC=OFF -DBUILD_DOCS=OFF -DBUILD_EXAMPLE=OFF -DBUILD_EXAMPLES=OFF -DBUILD_TEST=OFF -DBUILD_TESTS=OFF -DBUILD_TESTING=OFF -DBUILD_SHARED_LIBS=ON  -DENABLE_SHARED=ON -DENABLE_STATIC=OFF )
+2026-08-30T02:04:49 [0mCMake Deprecation Warning at CMakeLists.txt:11 (cmake_minimum_required):
+2026-08-30T02:04:49 Compatibility with CMake < 3.5 will be removed from a future version of
+2026-08-30T02:04:49 CMake.
+2026-08-30T02:04:49 
+2026-08-30T02:04:49 Update the VERSION argument <min> value or use a ...<max> suffix to tell
+2026-08-30T02:04:49 CMake that the project does not need compatibility with older versions.
+2026-08-30T02:04:49 
+2026-08-30T02:04:49 [0m
+2026-08-30T02:04:49 -- The C compiler identification is GNU 11.4.0
+2026-08-30T02:04:49 -- Detecting C compiler ABI info
+2026-08-30T02:04:50 -- Detecting C compiler ABI info - done
+2026-08-30T02:04:50 -- Check for working C compiler: /usr/bin/gcc - skipped
+2026-08-30T02:04:50 -- Detecting C compile features
+2026-08-30T02:04:50 -- Detecting C compile features - done
+2026-08-30T02:04:50 -- Found PkgConfig: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config (found version "1.6.3")
+2026-08-30T02:04:50 -- Looking for assert.h
+2026-08-30T02:04:50 -- Looking for assert.h - found
+2026-08-30T02:04:50 -- Looking for ctype.h
+2026-08-30T02:04:50 -- Looking for ctype.h - found
+2026-08-30T02:04:50 -- Looking for dirent.h
+2026-08-30T02:04:50 -- Looking for dirent.h - found
+2026-08-30T02:04:50 -- Looking for errno.h
+2026-08-30T02:04:51 -- Looking for errno.h - found
+2026-08-30T02:04:51 -- Looking for fcntl.h
+2026-08-30T02:04:51 -- Looking for fcntl.h - found
+2026-08-30T02:04:51 -- Looking for float.h
+2026-08-30T02:04:51 -- Looking for float.h - found
+2026-08-30T02:04:51 -- Looking for limits.h
+2026-08-30T02:04:51 -- Looking for limits.h - found
+2026-08-30T02:04:51 -- Looking for malloc.h
+2026-08-30T02:04:51 -- Looking for malloc.h - found
+2026-08-30T02:04:51 -- Looking for memory.h
+2026-08-30T02:04:51 -- Looking for memory.h - found
+2026-08-30T02:04:51 -- Looking for setjmp.h
+2026-08-30T02:04:52 -- Looking for setjmp.h - found
+2026-08-30T02:04:52 -- Looking for signal.h
+2026-08-30T02:04:52 -- Looking for signal.h - found
+2026-08-30T02:04:52 -- Looking for stdarg.h
+2026-08-30T02:04:52 -- Looking for stdarg.h - found
+2026-08-30T02:04:52 -- Looking for stddef.h
+2026-08-30T02:04:52 -- Looking for stddef.h - found
+2026-08-30T02:04:52 -- Looking for stdint.h
+2026-08-30T02:04:52 -- Looking for stdint.h - found
+2026-08-30T02:04:52 -- Looking for stdio.h
+2026-08-30T02:04:53 -- Looking for stdio.h - found
+2026-08-30T02:04:53 -- Looking for stdlib.h
+2026-08-30T02:04:53 -- Looking for stdlib.h - found
+2026-08-30T02:04:53 -- Looking for string.h
+2026-08-30T02:04:53 -- Looking for string.h - found
+2026-08-30T02:04:53 -- Looking for strings.h
+2026-08-30T02:04:53 -- Looking for strings.h - found
+2026-08-30T02:04:53 -- Looking for time.h
+2026-08-30T02:04:53 -- Looking for time.h - found
+2026-08-30T02:04:53 -- Looking for unistd.h
+2026-08-30T02:04:53 -- Looking for unistd.h - found
+2026-08-30T02:04:53 -- Looking for utime.h
+2026-08-30T02:04:54 -- Looking for utime.h - found
+2026-08-30T02:04:54 -- Looking for sys/mman.h
+2026-08-30T02:04:54 -- Looking for sys/mman.h - found
+2026-08-30T02:04:54 -- Looking for sys/resource.h
+2026-08-30T02:04:54 -- Looking for sys/resource.h - found
+2026-08-30T02:04:54 -- Looking for sys/stat.h
+2026-08-30T02:04:54 -- Looking for sys/stat.h - found
+2026-08-30T02:04:54 -- Looking for sys/time.h
+2026-08-30T02:04:54 -- Looking for sys/time.h - found
+2026-08-30T02:04:54 -- Looking for sys/types.h
+2026-08-30T02:04:54 -- Looking for sys/types.h - found
+2026-08-30T02:04:54 -- Looking for sys/wait.h
+2026-08-30T02:04:55 -- Looking for sys/wait.h - found
+2026-08-30T02:04:55 -- Looking for sys/types.h
+2026-08-30T02:04:55 -- Looking for sys/types.h - found
+2026-08-30T02:04:55 -- Looking for stdint.h
+2026-08-30T02:04:55 -- Looking for stdint.h - found
+2026-08-30T02:04:55 -- Looking for stddef.h
+2026-08-30T02:04:55 -- Looking for stddef.h - found
+2026-08-30T02:04:55 -- Check size of short
+2026-08-30T02:04:55 -- Check size of short - done
+2026-08-30T02:04:55 -- Check size of int
+2026-08-30T02:04:56 -- Check size of int - done
+2026-08-30T02:04:56 -- Check size of long
+2026-08-30T02:04:56 -- Check size of long - done
+2026-08-30T02:04:56 -- Check size of long long
+2026-08-30T02:04:56 -- Check size of long long - done
+2026-08-30T02:04:56 -- Check size of __int16
+2026-08-30T02:04:56 -- Check size of __int16 - failed
+2026-08-30T02:04:56 -- Check size of __int32
+2026-08-30T02:04:56 -- Check size of __int32 - failed
+2026-08-30T02:04:56 -- Check size of __int64
+2026-08-30T02:04:56 -- Check size of __int64 - failed
+2026-08-30T02:04:56 -- Check size of void *
+2026-08-30T02:04:56 -- Check size of void * - done
+2026-08-30T02:04:56 -- Check size of size_t
+2026-08-30T02:04:57 -- Check size of size_t - done
+2026-08-30T02:04:57 -- Check size of ptrdiff_t
+2026-08-30T02:04:57 -- Check size of ptrdiff_t - done
+2026-08-30T02:04:57 -- Check size of intmax_t
+2026-08-30T02:04:57 -- Check size of intmax_t - done
+2026-08-30T02:04:57 -- Check size of uintmax_t
+2026-08-30T02:04:57 -- Check size of uintmax_t - done
+2026-08-30T02:04:57 -- Check size of intptr_t
+2026-08-30T02:04:57 -- Check size of intptr_t - done
+2026-08-30T02:04:57 -- Check size of uintptr_t
+2026-08-30T02:04:58 -- Check size of uintptr_t - done
+2026-08-30T02:04:58 -- Check size of float
+2026-08-30T02:04:58 -- Check size of float - done
+2026-08-30T02:04:58 -- Check size of double
+2026-08-30T02:04:58 -- Check size of double - done
+2026-08-30T02:04:58 -- Check size of long double
+2026-08-30T02:04:58 -- Check size of long double - done
+2026-08-30T02:04:58 -- Check size of dev_t
+2026-08-30T02:04:58 -- Check size of dev_t - done
+2026-08-30T02:04:58 -- Check size of fpos_t
+2026-08-30T02:04:58 -- Check size of fpos_t - failed
+2026-08-30T02:04:58 -- Check size of mode_t
+2026-08-30T02:04:59 -- Check size of mode_t - done
+2026-08-30T02:04:59 -- Check size of off_t
+2026-08-30T02:04:59 -- Check size of off_t - done
+2026-08-30T02:04:59 -- Check size of ssize_t
+2026-08-30T02:04:59 -- Check size of ssize_t - done
+2026-08-30T02:04:59 -- Check size of time_t
+2026-08-30T02:04:59 -- Check size of time_t - done
+2026-08-30T02:04:59 -- Looking for access
+2026-08-30T02:04:59 -- Looking for access - found
+2026-08-30T02:04:59 -- Looking for alloca
+2026-08-30T02:05:00 -- Looking for alloca - not found
+2026-08-30T02:05:00 -- Looking for atexit
+2026-08-30T02:05:00 -- Looking for atexit - found
+2026-08-30T02:05:00 -- Looking for atoi
+2026-08-30T02:05:00 -- Looking for atoi - found
+2026-08-30T02:05:00 -- Looking for atol
+2026-08-30T02:05:00 -- Looking for atol - found
+2026-08-30T02:05:00 -- Looking for chmod
+2026-08-30T02:05:00 -- Looking for chmod - found
+2026-08-30T02:05:00 -- Looking for chown
+2026-08-30T02:05:00 -- Looking for chown - found
+2026-08-30T02:05:00 -- Looking for clock_getcpuclockid
+2026-08-30T02:05:01 -- Looking for clock_getcpuclockid - found
+2026-08-30T02:05:01 -- Looking for clock_getres
+2026-08-30T02:05:01 -- Looking for clock_getres - found
+2026-08-30T02:05:01 -- Looking for clock_gettime
+2026-08-30T02:05:01 -- Looking for clock_gettime - found
+2026-08-30T02:05:01 -- Looking for ctime
+2026-08-30T02:05:01 -- Looking for ctime - found
+2026-08-30T02:05:01 -- Looking for difftime
+2026-08-30T02:05:01 -- Looking for difftime - found
+2026-08-30T02:05:01 -- Looking for fstat
+2026-08-30T02:05:01 -- Looking for fstat - found
+2026-08-30T02:05:02 -- Looking for getenv
+2026-08-30T02:05:02 -- Looking for getenv - found
+2026-08-30T02:05:02 -- Looking for getpagesize
+2026-08-30T02:05:02 -- Looking for getpagesize - found
+2026-08-30T02:05:02 -- Looking for getrusage
+2026-08-30T02:05:02 -- Looking for getrusage - found
+2026-08-30T02:05:02 -- Looking for gettimeofday
+2026-08-30T02:05:02 -- Looking for gettimeofday - found
+2026-08-30T02:05:02 -- Looking for gmtime
+2026-08-30T02:05:02 -- Looking for gmtime - found
+2026-08-30T02:05:02 -- Looking for isatty
+2026-08-30T02:05:03 -- Looking for isatty - found
+2026-08-30T02:05:03 -- Looking for localtime
+2026-08-30T02:05:03 -- Looking for localtime - found
+2026-08-30T02:05:03 -- Looking for longjmp
+2026-08-30T02:05:03 -- Looking for longjmp - found
+2026-08-30T02:05:03 -- Looking for lstat
+2026-08-30T02:05:03 -- Looking for lstat - found
+2026-08-30T02:05:03 -- Looking for memcmp
+2026-08-30T02:05:03 -- Looking for memcmp - found
+2026-08-30T02:05:03 -- Looking for memcpy
+2026-08-30T02:05:03 -- Looking for memcpy - found
+2026-08-30T02:05:03 -- Looking for memmove
+2026-08-30T02:05:04 -- Looking for memmove - found
+2026-08-30T02:05:04 -- Looking for memset
+2026-08-30T02:05:04 -- Looking for memset - found
+2026-08-30T02:05:04 -- Looking for mkdir
+2026-08-30T02:05:04 -- Looking for mkdir - found
+2026-08-30T02:05:04 -- Looking for mktime
+2026-08-30T02:05:04 -- Looking for mktime - found
+2026-08-30T02:05:04 -- Looking for mmap
+2026-08-30T02:05:04 -- Looking for mmap - found
+2026-08-30T02:05:04 -- Looking for mprotect
+2026-08-30T02:05:05 -- Looking for mprotect - found
+2026-08-30T02:05:05 -- Looking for munmap
+2026-08-30T02:05:05 -- Looking for munmap - found
+2026-08-30T02:05:05 -- Looking for qsort
+2026-08-30T02:05:05 -- Looking for qsort - found
+2026-08-30T02:05:05 -- Looking for raise
+2026-08-30T02:05:05 -- Looking for raise - found
+2026-08-30T02:05:05 -- Looking for rmdir
+2026-08-30T02:05:05 -- Looking for rmdir - found
+2026-08-30T02:05:05 -- Looking for setjmp
+2026-08-30T02:05:05 -- Looking for setjmp - found
+2026-08-30T02:05:05 -- Looking for signal
+2026-08-30T02:05:06 -- Looking for signal - found
+2026-08-30T02:05:06 -- Looking for snprintf
+2026-08-30T02:05:06 -- Looking for snprintf - found
+2026-08-30T02:05:06 -- Looking for strcasecmp
+2026-08-30T02:05:06 -- Looking for strcasecmp - found
+2026-08-30T02:05:06 -- Looking for strchr
+2026-08-30T02:05:06 -- Looking for strchr - found
+2026-08-30T02:05:06 -- Looking for strdup
+2026-08-30T02:05:06 -- Looking for strdup - found
+2026-08-30T02:05:06 -- Looking for strerror
+2026-08-30T02:05:06 -- Looking for strerror - found
+2026-08-30T02:05:06 -- Looking for strftime
+2026-08-30T02:05:07 -- Looking for strftime - found
+2026-08-30T02:05:07 -- Looking for stricmp
+2026-08-30T02:05:07 -- Looking for stricmp - not found
+2026-08-30T02:05:07 -- Looking for strncasecmp
+2026-08-30T02:05:07 -- Looking for strncasecmp - found
+2026-08-30T02:05:07 -- Looking for strnicmp
+2026-08-30T02:05:07 -- Looking for strnicmp - not found
+2026-08-30T02:05:07 -- Looking for strrchr
+2026-08-30T02:05:07 -- Looking for strrchr - found
+2026-08-30T02:05:07 -- Looking for strstr
+2026-08-30T02:05:08 -- Looking for strstr - found
+2026-08-30T02:05:08 -- Looking for time
+2026-08-30T02:05:08 -- Looking for time - found
+2026-08-30T02:05:08 -- Looking for umask
+2026-08-30T02:05:08 -- Looking for umask - found
+2026-08-30T02:05:08 -- Looking for utime
+2026-08-30T02:05:08 -- Looking for utime - found
+2026-08-30T02:05:08 -- Looking for vsnprintf
+2026-08-30T02:05:08 -- Looking for vsnprintf - found
+2026-08-30T02:05:08 -- CMAKE_BUILD_TYPE = Release
+2026-08-30T02:05:08 -- Configuring done (19.2s)
+2026-08-30T02:05:08 -- Generating done (0.1s)
+2026-08-30T02:05:08 [33mCMake Warning:
+2026-08-30T02:05:08 Manually-specified variables were not used by the project:
+2026-08-30T02:05:08 
+2026-08-30T02:05:08 BUILD_DOC
+2026-08-30T02:05:08 BUILD_DOCS
+2026-08-30T02:05:08 BUILD_EXAMPLE
+2026-08-30T02:05:08 BUILD_EXAMPLES
+2026-08-30T02:05:08 BUILD_TEST
+2026-08-30T02:05:08 BUILD_TESTS
+2026-08-30T02:05:08 CMAKE_ASM_COMPILER
+2026-08-30T02:05:08 CMAKE_CXX_COMPILER
+2026-08-30T02:05:08 CMAKE_CXX_FLAGS
+2026-08-30T02:05:08 CMAKE_FIND_ROOT_PATH_MODE_LIBRARY
+2026-08-30T02:05:08 
+2026-08-30T02:05:08 [0m
+2026-08-30T02:05:08 -- Build files have been written to: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lzo-2.10/buildroot-build
+2026-08-30T02:05:08 [7m>>> host-lzo 2.10 Building[27m
+2026-08-30T02:05:08 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" FORCE_UNSAFE_CONFIGURE=1  /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/cmake --build /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lzo-2.10//buildroot-build -j1 --
+2026-08-30T02:05:09 [  1%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1.c.o
+2026-08-30T02:05:09 [  2%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1_99.c.o
+2026-08-30T02:05:09 [  3%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1a.c.o
+2026-08-30T02:05:09 [  4%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1a_99.c.o
+2026-08-30T02:05:09 [  5%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_1.c.o
+2026-08-30T02:05:09 [  7%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_2.c.o
+2026-08-30T02:05:10 [  8%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_3.c.o
+2026-08-30T02:05:10 [  9%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_4.c.o
+2026-08-30T02:05:10 [ 10%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_5.c.o
+2026-08-30T02:05:10 [ 11%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_6.c.o
+2026-08-30T02:05:10 [ 12%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_7.c.o
+2026-08-30T02:05:11 [ 14%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_8.c.o
+2026-08-30T02:05:11 [ 15%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_9.c.o
+2026-08-30T02:05:11 [ 16%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_99.c.o
+2026-08-30T02:05:11 [ 17%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_9x.c.o
+2026-08-30T02:05:11 [ 18%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_cc.c.o
+2026-08-30T02:05:11 [ 20%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_d1.c.o
+2026-08-30T02:05:12 [ 21%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_d2.c.o
+2026-08-30T02:05:12 [ 22%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_rr.c.o
+2026-08-30T02:05:12 [ 23%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1b_xx.c.o
+2026-08-30T02:05:12 [ 24%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_1.c.o
+2026-08-30T02:05:12 [ 25%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_2.c.o
+2026-08-30T02:05:12 [ 27%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_3.c.o
+2026-08-30T02:05:12 [ 28%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_4.c.o
+2026-08-30T02:05:13 [ 29%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_5.c.o
+2026-08-30T02:05:13 [ 30%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_6.c.o
+2026-08-30T02:05:13 [ 31%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_7.c.o
+2026-08-30T02:05:13 [ 32%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_8.c.o
+2026-08-30T02:05:13 [ 34%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_9.c.o
+2026-08-30T02:05:14 [ 35%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_99.c.o
+2026-08-30T02:05:14 [ 36%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_9x.c.o
+2026-08-30T02:05:14 [ 37%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_cc.c.o
+2026-08-30T02:05:14 [ 38%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_d1.c.o
+2026-08-30T02:05:14 [ 40%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_d2.c.o
+2026-08-30T02:05:14 [ 41%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_rr.c.o
+2026-08-30T02:05:15 [ 42%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1c_xx.c.o
+2026-08-30T02:05:15 [ 43%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1f_1.c.o
+2026-08-30T02:05:15 [ 44%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1f_9x.c.o
+2026-08-30T02:05:15 [ 45%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1f_d1.c.o
+2026-08-30T02:05:15 [ 47%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1f_d2.c.o
+2026-08-30T02:05:15 [ 48%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1x_1.c.o
+2026-08-30T02:05:15 [ 49%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1x_1k.c.o
+2026-08-30T02:05:16 [ 50%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1x_1l.c.o
+2026-08-30T02:05:16 [ 51%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1x_1o.c.o
+2026-08-30T02:05:16 [ 52%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1x_9x.c.o
+2026-08-30T02:05:16 [ 54%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1x_d1.c.o
+2026-08-30T02:05:17 [ 55%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1x_d2.c.o
+2026-08-30T02:05:17 [ 56%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1x_d3.c.o
+2026-08-30T02:05:17 [ 57%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1x_o.c.o
+2026-08-30T02:05:17 [ 58%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1y_1.c.o
+2026-08-30T02:05:17 [ 60%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1y_9x.c.o
+2026-08-30T02:05:18 [ 61%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1y_d1.c.o
+2026-08-30T02:05:18 [ 62%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1y_d2.c.o
+2026-08-30T02:05:18 [ 63%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1y_d3.c.o
+2026-08-30T02:05:18 [ 64%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1y_o.c.o
+2026-08-30T02:05:18 [ 65%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1z_9x.c.o
+2026-08-30T02:05:19 [ 67%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1z_d1.c.o
+2026-08-30T02:05:19 [ 68%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1z_d2.c.o
+2026-08-30T02:05:19 [ 69%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo1z_d3.c.o
+2026-08-30T02:05:19 [ 70%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo2a_9x.c.o
+2026-08-30T02:05:20 [ 71%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo2a_d1.c.o
+2026-08-30T02:05:20 [ 72%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo2a_d2.c.o
+2026-08-30T02:05:20 [ 74%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo_crc.c.o
+2026-08-30T02:05:20 [ 75%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo_init.c.o
+2026-08-30T02:05:20 [ 76%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo_ptr.c.o
+2026-08-30T02:05:20 [ 77%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo_str.c.o
+2026-08-30T02:05:20 [ 78%] Building C object CMakeFiles/lzo_shared_lib.dir/src/lzo_util.c.o
+2026-08-30T02:05:20 [ 80%] Linking C shared library liblzo2.so
+2026-08-30T02:05:20 [ 80%] Built target lzo_shared_lib
+2026-08-30T02:05:20 [ 81%] Building C object CMakeFiles/lzotest.dir/lzotest/lzotest.c.o
+2026-08-30T02:05:22 [ 82%] Linking C executable lzotest
+2026-08-30T02:05:22 [ 82%] Built target lzotest
+2026-08-30T02:05:22 [ 83%] Building C object CMakeFiles/dict.dir/examples/dict.c.o
+2026-08-30T02:05:22 [ 84%] Linking C executable dict
+2026-08-30T02:05:22 [ 84%] Built target dict
+2026-08-30T02:05:22 [ 85%] Building C object CMakeFiles/lzopack.dir/examples/lzopack.c.o
+2026-08-30T02:05:22 [ 87%] Linking C executable lzopack
+2026-08-30T02:05:22 [ 87%] Built target lzopack
+2026-08-30T02:05:22 [ 88%] Building C object CMakeFiles/overlap.dir/examples/overlap.c.o
+2026-08-30T02:05:23 [ 89%] Linking C executable overlap
+2026-08-30T02:05:23 [ 89%] Built target overlap
+2026-08-30T02:05:23 [ 90%] Building C object CMakeFiles/precomp.dir/examples/precomp.c.o
+2026-08-30T02:05:23 [ 91%] Linking C executable precomp
+2026-08-30T02:05:23 [ 91%] Built target precomp
+2026-08-30T02:05:23 [ 92%] Building C object CMakeFiles/precomp2.dir/examples/precomp2.c.o
+2026-08-30T02:05:23 [ 94%] Linking C executable precomp2
+2026-08-30T02:05:23 [ 94%] Built target precomp2
+2026-08-30T02:05:23 [ 95%] Building C object CMakeFiles/simple.dir/examples/simple.c.o
+2026-08-30T02:05:23 In file included from [01m[K/usr/include/stdio.h:894[m[K,
+2026-08-30T02:05:23 from [01m[K/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lzo-2.10/src/lzo_supp.h:737[m[K,
+2026-08-30T02:05:23 from [01m[K/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lzo-2.10/examples/portab_a.h:49[m[K,
+2026-08-30T02:05:23 from [01m[K/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lzo-2.10/examples/portab.h:62[m[K,
+2026-08-30T02:05:23 from [01m[K/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lzo-2.10/examples/simple.c:47[m[K:
+2026-08-30T02:05:23 In function '[01m[Kprintf[m[K',
+2026-08-30T02:05:23 inlined from '[01m[Kxmalloc[m[K' at [01m[K/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lzo-2.10/examples/portab.h:135:9[m[K:
+2026-08-30T02:05:23 [01m[K/usr/include/x86_64-linux-gnu/bits/stdio2.h:112:10:[m[K [01;35m[Kwarning: [m[K'[01m[K%s[m[K' directive argument is null [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-overflow=-Wformat-overflow=]8;;[m[K]
+2026-08-30T02:05:23 112 |   return [01;35m[K__printf_chk (__USE_FORTIFY_LEVEL - 1, __fmt, __va_arg_pack ())[m[K;
+2026-08-30T02:05:23 |          [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+2026-08-30T02:05:23 In function '[01m[Kprintf[m[K',
+2026-08-30T02:05:23 inlined from '[01m[Kxmalloc[m[K' at [01m[K/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lzo-2.10/examples/portab.h:130:9[m[K,
+2026-08-30T02:05:23 inlined from '[01m[Kxmalloc[m[K' at [01m[K/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lzo-2.10/examples/portab.h:122:18[m[K:
+2026-08-30T02:05:23 [01m[K/usr/include/x86_64-linux-gnu/bits/stdio2.h:112:10:[m[K [01;35m[Kwarning: [m[K'[01m[K%s[m[K' directive argument is null [[01;35m[K]8;;https://gcc.gnu.org/onlinedocs/gcc/Warning-Options.html#index-Wformat-overflow=-Wformat-overflow=]8;;[m[K]
+2026-08-30T02:05:23 112 |   return [01;35m[K__printf_chk (__USE_FORTIFY_LEVEL - 1, __fmt, __va_arg_pack ())[m[K;
+2026-08-30T02:05:23 |          [01;35m[K^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~[m[K
+2026-08-30T02:05:23 [ 96%] Linking C executable simple
+2026-08-30T02:05:23 [ 96%] Built target simple
+2026-08-30T02:05:23 [ 97%] Building C object CMakeFiles/testmini.dir/minilzo/testmini.c.o
+2026-08-30T02:05:24 [ 98%] Building C object CMakeFiles/testmini.dir/minilzo/minilzo.c.o
+2026-08-30T02:05:24 [100%] Linking C executable testmini
+2026-08-30T02:05:24 [100%] Built target testmini
+2026-08-30T02:05:24 [7m>>> host-lzo 2.10 Installing to host directory[27m
+2026-08-30T02:05:24 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" FORCE_UNSAFE_CONFIGURE=1  /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/cmake --install /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-lzo-2.10//buildroot-build
+2026-08-30T02:05:24 -- Install configuration: "Release"
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/doc/lzo/AUTHORS
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/doc/lzo/COPYING
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/doc/lzo/NEWS
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/doc/lzo/THANKS
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/doc/lzo/LZO.FAQ
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/doc/lzo/LZO.TXT
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/doc/lzo/LZOAPI.TXT
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/lzo/lzo1.h
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/lzo/lzo1a.h
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/lzo/lzo1b.h
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/lzo/lzo1c.h
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/lzo/lzo1f.h
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/lzo/lzo1x.h
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/lzo/lzo1y.h
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/lzo/lzo1z.h
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/lzo/lzo2a.h
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/lzo/lzo_asm.h
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/lzo/lzoconf.h
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/lzo/lzodefs.h
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include/lzo/lzoutil.h
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/liblzo2.so.2.0.0
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/liblzo2.so.2
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/liblzo2.so
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/libexec/lzo/examples/lzopack
+2026-08-30T02:05:24 -- Set non-toolchain portion of runtime path of "/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/libexec/lzo/examples/lzopack" to "/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib"
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/libexec/lzo/examples/lzotest
+2026-08-30T02:05:24 -- Set non-toolchain portion of runtime path of "/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/libexec/lzo/examples/lzotest" to "/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib"
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/libexec/lzo/examples/simple
+2026-08-30T02:05:24 -- Set non-toolchain portion of runtime path of "/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/libexec/lzo/examples/simple" to "/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib"
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/libexec/lzo/examples/testmini
+2026-08-30T02:05:24 -- Installing: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig/lzo2.pc
+2026-08-30T02:05:28 zstd-1.5.5.tar.gz: OK (sha256: 9c4396cc829cfae319a6e2615202e82aad41372073482fce286fac78646d3ee4)
+2026-08-30T02:05:28 [7m>>> host-zstd 1.5.5 Extracting[27m
+2026-08-30T02:05:28 gzip -d -c /home/linux/rk3506/buildroot/dl/zstd/zstd-1.5.5.tar.gz | /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/tar --strip-components=1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-zstd-1.5.5   -xf -
+2026-08-30T02:05:28 [7m>>> host-zstd 1.5.5 Patching[27m
+2026-08-30T02:05:29 [7m>>> host-zstd 1.5.5 Configuring[27m
+2026-08-30T02:05:29 [7m>>> host-zstd 1.5.5 Building[27m
+2026-08-30T02:05:29 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" FORCE_UNSAFE_CONFIGURE=1 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" FORCE_UNSAFE_CONFIGURE=1 AR="/usr/bin/ar" AS="/usr/bin/as" LD="/usr/bin/ld" NM="/usr/bin/nm" CC="/usr/bin/gcc" GCC="/usr/bin/gcc" CXX="/usr/bin/g++" CPP="/usr/bin/cpp" OBJCOPY="/usr/bin/objcopy" RANLIB="/usr/bin/ranlib" CPPFLAGS="-I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CFLAGS="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CXXFLAGS="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" LDFLAGS="-L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib" INTLTOOL_PERL=/usr/bin/perl CC="/usr/bin/gcc" CXX="/usr/bin/g++" /usr/bin/make -j1 HAVE_LZ4=1 PREFIX=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-zstd-1.5.5 zstd-release lib-release
+2026-08-30T02:05:30 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/debug.o
+2026-08-30T02:05:30 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/entropy_common.o
+2026-08-30T02:05:30 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/error_private.o
+2026-08-30T02:05:30 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/fse_decompress.o
+2026-08-30T02:05:31 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/pool.o
+2026-08-30T02:05:31 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/threading.o
+2026-08-30T02:05:31 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/xxhash.o
+2026-08-30T02:05:31 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_common.o
+2026-08-30T02:05:31 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/fse_compress.o
+2026-08-30T02:05:31 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/hist.o
+2026-08-30T02:05:32 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/huf_compress.o
+2026-08-30T02:05:33 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_compress.o
+2026-08-30T02:05:35 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_compress_literals.o
+2026-08-30T02:05:35 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_compress_sequences.o
+2026-08-30T02:05:35 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_compress_superblock.o
+2026-08-30T02:05:35 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_double_fast.o
+2026-08-30T02:05:37 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_fast.o
+2026-08-30T02:05:39 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_lazy.o
+2026-08-30T02:05:47 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_ldm.o
+2026-08-30T02:05:48 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_opt.o
+2026-08-30T02:05:49 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstdmt_compress.o
+2026-08-30T02:05:50 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/huf_decompress.o
+2026-08-30T02:05:52 AS obj/conf_6695816e9e00f047cfe0dc3212a753a9/huf_decompress_amd64.o
+2026-08-30T02:05:52 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_ddict.o
+2026-08-30T02:05:52 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_decompress.o
+2026-08-30T02:05:53 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_decompress_block.o
+2026-08-30T02:05:55 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/cover.o
+2026-08-30T02:05:55 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/divsufsort.o
+2026-08-30T02:05:57 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/fastcover.o
+2026-08-30T02:05:57 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zdict.o
+2026-08-30T02:05:58 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_v05.o
+2026-08-30T02:05:59 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_v06.o
+2026-08-30T02:06:00 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd_v07.o
+2026-08-30T02:06:01 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/benchfn.o
+2026-08-30T02:06:01 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/benchzstd.o
+2026-08-30T02:06:02 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/datagen.o
+2026-08-30T02:06:02 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/dibio.o
+2026-08-30T02:06:02 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/fileio.o
+2026-08-30T02:06:03 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/fileio_asyncio.o
+2026-08-30T02:06:04 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/timefn.o
+2026-08-30T02:06:04 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/util.o
+2026-08-30T02:06:04 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstdcli.o
+2026-08-30T02:06:05 CC obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstdcli_trace.o
+2026-08-30T02:06:05 ==> building with threading support
+2026-08-30T02:06:05 ==> building zstd with .gz compression support
+2026-08-30T02:06:05 ==> building zstd with .xz/.lzma compression support
+2026-08-30T02:06:05 ==> building zstd with .lz4 compression support
+2026-08-30T02:06:05 LINK obj/conf_6695816e9e00f047cfe0dc3212a753a9/zstd
+2026-08-30T02:06:06 zstd build completed
+2026-08-30T02:06:06 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/debug.o
+2026-08-30T02:06:06 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/entropy_common.o
+2026-08-30T02:06:06 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/error_private.o
+2026-08-30T02:06:06 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/fse_decompress.o
+2026-08-30T02:06:07 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/pool.o
+2026-08-30T02:06:07 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/threading.o
+2026-08-30T02:06:07 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/xxhash.o
+2026-08-30T02:06:07 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_common.o
+2026-08-30T02:06:07 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_v05.o
+2026-08-30T02:06:08 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_v06.o
+2026-08-30T02:06:09 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_v07.o
+2026-08-30T02:06:10 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/fse_compress.o
+2026-08-30T02:06:11 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/hist.o
+2026-08-30T02:06:11 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/huf_compress.o
+2026-08-30T02:06:12 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_compress.o
+2026-08-30T02:06:14 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_compress_literals.o
+2026-08-30T02:06:14 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_compress_sequences.o
+2026-08-30T02:06:14 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_compress_superblock.o
+2026-08-30T02:06:15 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_double_fast.o
+2026-08-30T02:06:16 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_fast.o
+2026-08-30T02:06:18 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_lazy.o
+2026-08-30T02:06:26 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_ldm.o
+2026-08-30T02:06:27 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_opt.o
+2026-08-30T02:06:29 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstdmt_compress.o
+2026-08-30T02:06:29 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/huf_decompress.o
+2026-08-30T02:06:31 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_ddict.o
+2026-08-30T02:06:31 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_decompress.o
+2026-08-30T02:06:32 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zstd_decompress_block.o
+2026-08-30T02:06:34 AS obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/huf_decompress_amd64.o
+2026-08-30T02:06:34 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/cover.o
+2026-08-30T02:06:35 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/divsufsort.o
+2026-08-30T02:06:36 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/fastcover.o
+2026-08-30T02:06:36 CC obj/conf_de8d030ec4d834af8b5aec6b15c97b69/static/zdict.o
+2026-08-30T02:06:37 compiling single-threaded static library 1.5.5
+2026-08-30T02:06:37 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/debug.o
+2026-08-30T02:06:37 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/entropy_common.o
+2026-08-30T02:06:37 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/error_private.o
+2026-08-30T02:06:37 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/fse_decompress.o
+2026-08-30T02:06:38 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/pool.o
+2026-08-30T02:06:38 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/threading.o
+2026-08-30T02:06:38 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/xxhash.o
+2026-08-30T02:06:38 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_common.o
+2026-08-30T02:06:38 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_v05.o
+2026-08-30T02:06:39 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_v06.o
+2026-08-30T02:06:40 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_v07.o
+2026-08-30T02:06:41 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/fse_compress.o
+2026-08-30T02:06:42 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/hist.o
+2026-08-30T02:06:42 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/huf_compress.o
+2026-08-30T02:06:43 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_compress.o
+2026-08-30T02:06:45 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_compress_literals.o
+2026-08-30T02:06:45 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_compress_sequences.o
+2026-08-30T02:06:45 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_compress_superblock.o
+2026-08-30T02:06:46 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_double_fast.o
+2026-08-30T02:06:47 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_fast.o
+2026-08-30T02:06:49 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_lazy.o
+2026-08-30T02:06:57 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_ldm.o
+2026-08-30T02:06:58 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_opt.o
+2026-08-30T02:07:00 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstdmt_compress.o
+2026-08-30T02:07:00 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/huf_decompress.o
+2026-08-30T02:07:02 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_ddict.o
+2026-08-30T02:07:02 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_decompress.o
+2026-08-30T02:07:03 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zstd_decompress_block.o
+2026-08-30T02:07:05 AS obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/huf_decompress_amd64.o
+2026-08-30T02:07:05 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/cover.o
+2026-08-30T02:07:06 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/divsufsort.o
+2026-08-30T02:07:07 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/fastcover.o
+2026-08-30T02:07:07 CC obj/conf_863c92c145a1dfa3da5d63ef705a0bfe/dynamic/zdict.o
+2026-08-30T02:07:08 compiling multi-threaded dynamic library 1.5.5
+2026-08-30T02:07:08 creating versioned links
+2026-08-30T02:07:08 creating pkgconfig
+2026-08-30T02:07:08 release build completed
+2026-08-30T02:07:08 [7m>>> host-zstd 1.5.5 Installing to host directory[27m
+2026-08-30T02:07:08 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" FORCE_UNSAFE_CONFIGURE=1 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" FORCE_UNSAFE_CONFIGURE=1 AR="/usr/bin/ar" AS="/usr/bin/as" LD="/usr/bin/ld" NM="/usr/bin/nm" CC="/usr/bin/gcc" GCC="/usr/bin/gcc" CXX="/usr/bin/g++" CPP="/usr/bin/cpp" OBJCOPY="/usr/bin/objcopy" RANLIB="/usr/bin/ranlib" CPPFLAGS="-I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CFLAGS="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" CXXFLAGS="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" LDFLAGS="-L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib" INTLTOOL_PERL=/usr/bin/perl CC="/usr/bin/gcc" CXX="/usr/bin/g++" /usr/bin/make -j1 HAVE_LZ4=1 PREFIX=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-zstd-1.5.5 install
+2026-08-30T02:07:08 Installing static library
+2026-08-30T02:07:08 Installing shared library
+2026-08-30T02:07:08 Installing includes
+2026-08-30T02:07:08 zstd static and shared library installed
+2026-08-30T02:07:09 Installing binaries
+2026-08-30T02:07:09 Installing man pages
+2026-08-30T02:07:09 zstd installation completed
+2026-08-30T02:07:13 squashfs-4.6.1.tar.gz: OK (sha256: 94201754b36121a9f022a190c75f718441df15402df32c2b520ca331a107511c)
+2026-08-30T02:07:13 [7m>>> host-squashfs 4.6.1 Extracting[27m
+2026-08-30T02:07:13 gzip -d -c /home/linux/rk3506/buildroot/dl/squashfs/squashfs-4.6.1.tar.gz | /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/tar --strip-components=1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-squashfs-4.6.1   -xf -
+2026-08-30T02:07:13 [7m>>> host-squashfs 4.6.1 Patching[27m
+2026-08-30T02:07:13 [7m>>> host-squashfs 4.6.1 Configuring[27m
+2026-08-30T02:07:14 [7m>>> host-squashfs 4.6.1 Building[27m
+2026-08-30T02:07:14 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" FORCE_UNSAFE_CONFIGURE=1 /usr/bin/make -j1 CC="/usr/bin/gcc" EXTRA_CFLAGS="-O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include" EXTRA_LDFLAGS="-L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib" XATTR_SUPPORT=1 XZ_SUPPORT=1 GZIP_SUPPORT=1 LZ4_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 ZSTD_SUPPORT=1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-squashfs-4.6.1/squashfs-tools/
+2026-08-30T02:07:14 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o mksquashfs.o mksquashfs.c
+2026-08-30T02:07:16 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o read_fs.o read_fs.c
+2026-08-30T02:07:17 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o action.o action.c
+2026-08-30T02:07:18 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o swap.o swap.c
+2026-08-30T02:07:18 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o pseudo.o pseudo.c
+2026-08-30T02:07:18 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o compressor.o compressor.c
+2026-08-30T02:07:18 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o sort.o sort.c
+2026-08-30T02:07:18 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o progressbar.o progressbar.c
+2026-08-30T02:07:19 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o info.o info.c
+2026-08-30T02:07:19 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o restore.o restore.c
+2026-08-30T02:07:19 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o process_fragments.o process_fragments.c
+2026-08-30T02:07:19 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o caches-queues-lists.o caches-queues-lists.c
+2026-08-30T02:07:19 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o reader.o reader.c
+2026-08-30T02:07:20 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o tar.o tar.c
+2026-08-30T02:07:20 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o date.o date.c
+2026-08-30T02:07:20 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o gzip_wrapper.o gzip_wrapper.c
+2026-08-30T02:07:20 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o lzma_xz_wrapper.o lzma_xz_wrapper.c
+2026-08-30T02:07:21 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o xz_wrapper.o xz_wrapper.c
+2026-08-30T02:07:21 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o lzo_wrapper.o lzo_wrapper.c
+2026-08-30T02:07:21 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o lz4_wrapper.o lz4_wrapper.c
+2026-08-30T02:07:21 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o zstd_wrapper.o zstd_wrapper.c
+2026-08-30T02:07:21 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o xattr.o xattr.c
+2026-08-30T02:07:22 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o read_xattrs.o read_xattrs.c
+2026-08-30T02:07:22 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o tar_xattr.o tar_xattr.c
+2026-08-30T02:07:22 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o pseudo_xattr.o pseudo_xattr.c
+2026-08-30T02:07:22 /usr/bin/gcc  -L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib mksquashfs.o read_fs.o action.o swap.o pseudo.o compressor.o sort.o progressbar.o info.o restore.o process_fragments.o caches-queues-lists.o reader.o tar.o date.o gzip_wrapper.o lzma_xz_wrapper.o xz_wrapper.o lzo_wrapper.o lz4_wrapper.o zstd_wrapper.o xattr.o read_xattrs.o tar_xattr.o pseudo_xattr.o -lpthread -lm -lz -llzma -llzma -llzo2 -llz4 -lzstd -o mksquashfs
+2026-08-30T02:07:22 ln -sf mksquashfs sqfstar
+2026-08-30T02:07:22 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o unsquashfs.o unsquashfs.c
+2026-08-30T02:07:23 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o unsquash-1.o unsquash-1.c
+2026-08-30T02:07:24 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o unsquash-2.o unsquash-2.c
+2026-08-30T02:07:24 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o unsquash-3.o unsquash-3.c
+2026-08-30T02:07:25 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o unsquash-4.o unsquash-4.c
+2026-08-30T02:07:25 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o unsquash-123.o unsquash-123.c
+2026-08-30T02:07:25 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o unsquash-34.o unsquash-34.c
+2026-08-30T02:07:25 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o unsquash-1234.o unsquash-1234.c
+2026-08-30T02:07:25 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o unsquash-12.o unsquash-12.c
+2026-08-30T02:07:26 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o unsquashfs_info.o unsquashfs_info.c
+2026-08-30T02:07:26 /usr/bin/gcc -O2 -O2 -I/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/include -I. -D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE -D_GNU_SOURCE -DCOMP_DEFAULT=\"gzip\" -Wall -DGZIP_SUPPORT -DLZMA_SUPPORT -DXZ_SUPPORT -DLZO_SUPPORT -DLZ4_SUPPORT -DZSTD_SUPPORT -DXATTR_SUPPORT -DXATTR_DEFAULT -DREPRODUCIBLE_DEFAULT -DVERSION=\"4.6.1\" -DDATE=\"2023/03/25\" -DYEAR=\"2023\"   -c -o unsquashfs_xattr.o unsquashfs_xattr.c
+2026-08-30T02:07:26 /usr/bin/gcc  -L/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib -Wl,-rpath,/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib unsquashfs.o unsquash-1.o unsquash-2.o unsquash-3.o unsquash-4.o unsquash-123.o unsquash-34.o unsquash-1234.o unsquash-12.o swap.o compressor.o unsquashfs_info.o date.o gzip_wrapper.o lzma_xz_wrapper.o xz_wrapper.o lzo_wrapper.o lz4_wrapper.o zstd_wrapper.o read_xattrs.o unsquashfs_xattr.o -lpthread -lm -lz -llzma -llzma -llzo2 -llz4 -lzstd -o unsquashfs
+2026-08-30T02:07:26 ln -sf unsquashfs sqfscat
+2026-08-30T02:07:26 [7m>>> host-squashfs 4.6.1 Installing to host directory[27m
+2026-08-30T02:07:26 GIT_DIR=. PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" PKG_CONFIG="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkg-config" PKG_CONFIG_SYSROOT_DIR="/" PKG_CONFIG_ALLOW_SYSTEM_CFLAGS=1 PKG_CONFIG_ALLOW_SYSTEM_LIBS=1 PKG_CONFIG_LIBDIR="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/lib/pkgconfig:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/share/pkgconfig" FORCE_UNSAFE_CONFIGURE=1 /usr/bin/make -j1 XATTR_SUPPORT=1 XZ_SUPPORT=1 GZIP_SUPPORT=1 LZ4_SUPPORT=1 LZO_SUPPORT=1 LZMA_XZ_SUPPORT=1 ZSTD_SUPPORT=1 -C /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-squashfs-4.6.1/squashfs-tools/ INSTALL_DIR=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin INSTALL_MANPAGES_DIR="" install
+2026-08-30T02:07:26 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin
+2026-08-30T02:07:26 cp mksquashfs /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin
+2026-08-30T02:07:26 cp unsquashfs /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin
+2026-08-30T02:07:26 ln -fs unsquashfs /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/sqfscat
+2026-08-30T02:07:26 ln -fs mksquashfs /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/sqfstar
+2026-08-30T02:07:26 ../generate-manpages/install-manpages.sh /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/host-squashfs-4.6.1/squashfs-tools/.. "" "n"
+2026-08-30T02:07:26 ../generate-manpages/install-manpages.sh: Install path for manpages empty.  Skipping manpage install
+2026-08-30T02:07:30 [7m>>>   Finalizing host directory[27m
+2026-08-30T02:07:30 [7m>>>   Finalizing target directory[27m
+2026-08-30T02:07:30 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/etc/meson
+2026-08-30T02:07:30 sed -e "s%@TARGET_CFLAGS@%'-D_LARGEFILE_SOURCE', '-D_LARGEFILE64_SOURCE', '-D_FILE_OFFSET_BITS=64', '-O2', '-g0', '-D_FORTIFY_SOURCE=1'@PKG_TARGET_CFLAGS@%g" -e "s%@TARGET_LDFLAGS@%@PKG_TARGET_LDFLAGS@%g" -e "s%@TARGET_CXXFLAGS@%'-D_LARGEFILE_SOURCE', '-D_LARGEFILE64_SOURCE', '-D_FILE_OFFSET_BITS=64', '-O2', '-g0', '-D_FORTIFY_SOURCE=1'@PKG_TARGET_CXXFLAGS@%g" -e "s%@TARGET_FCFLAGS@%'-O2', '-g0'@PKG_TARGET_FCFLAGS@%g"         -e "s%@TARGET_CC@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc%g" -e "s%@TARGET_CXX@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++%g" -e "s%@TARGET_AR@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ar%g" -e "s%@TARGET_STRIP@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip%g"         -e "s%@TARGET_FC@%/bin/false%g" -e "s%@TARGET_ARCH@%arm%g" -e "s%@TARGET_CPU@%cortex-a7%g" -e "s%@TARGET_ENDIAN@%little%g" -e "s%@TARGET_FCFLAGS@%%g" -e "s%@TARGET_CFLAGS@%%g" -e "s%@TARGET_LDFLAGS@%%g" -e "s%@TARGET_CXXFLAGS@%%g" -e "s%@BR2_CMAKE@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/cmake%g" -e "s%@PKGCONF_HOST_BINARY@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkgconf%g" -e "s%@HOST_DIR@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host%g" -e "s%@STAGING_DIR@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot%g" -e "s%@STATIC@%false%g" /home/linux/rk3506/buildroot/support/misc/cross-compilation.conf.in > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/etc/meson/cross-compilation.conf.in
+2026-08-30T02:07:30 sed         -e "s%@TARGET_CC@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc%g" -e "s%@TARGET_CXX@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-g++%g" -e "s%@TARGET_AR@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-gcc-ar%g" -e "s%@TARGET_STRIP@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip%g"         -e "s%@TARGET_FC@%/bin/false%g" -e "s%@TARGET_ARCH@%arm%g" -e "s%@TARGET_CPU@%cortex-a7%g" -e "s%@TARGET_ENDIAN@%little%g" -e "s%@TARGET_FCFLAGS@%'-O2', '-g0'%g" -e "s%@TARGET_CFLAGS@%'-D_LARGEFILE_SOURCE', '-D_LARGEFILE64_SOURCE', '-D_FILE_OFFSET_BITS=64', '-O2', '-g0', '-D_FORTIFY_SOURCE=1'%g" -e "s%@TARGET_LDFLAGS@%%g" -e "s%@TARGET_CXXFLAGS@%'-D_LARGEFILE_SOURCE', '-D_LARGEFILE64_SOURCE', '-D_FILE_OFFSET_BITS=64', '-O2', '-g0', '-D_FORTIFY_SOURCE=1'%g" -e "s%@BR2_CMAKE@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/cmake%g" -e "s%@PKGCONF_HOST_BINARY@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/pkgconf%g" -e "s%@HOST_DIR@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host%g" -e "s%@STAGING_DIR@%/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot%g" -e "s%@STATIC@%false%g" /home/linux/rk3506/buildroot/support/misc/cross-compilation.conf.in > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/etc/meson/cross-compilation.conf
+2026-08-30T02:07:30 grep -qsE '^/bin/bash$' /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/shells || echo "/bin/bash" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/shells
+2026-08-30T02:07:30 /usr/bin/sed -i -e '/# GENERIC_SERIAL$/s~^.*#~::respawn:-/bin/sh # ttyS0::respawn:/sbin/getty -L ttyS0 115200 vt100 #~' /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/inittab
+2026-08-30T02:07:30 /usr/bin/sed -i -e '/^#.*-o remount,rw \/$/s~^#\+~~' /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/inittab
+2026-08-30T02:07:30 if grep -q CONFIG_ASH=y /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/busybox-1.36.1/.config; then grep -qsE '^/bin/ash$' /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/shells || echo "/bin/ash" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/shells; fi
+2026-08-30T02:07:30 if grep -q CONFIG_HUSH=y /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/busybox-1.36.1/.config; then grep -qsE '^/bin/hush$' /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/shells || echo "/bin/hush" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/shells; fi
+2026-08-30T02:07:30 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc
+2026-08-30T02:07:30 echo "rk3506" > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/hostname
+2026-08-30T02:07:30 /usr/bin/sed -i -e '$a \127.0.1.1\trk3506' -e '/^127.0.1.1/d' /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/hosts
+2026-08-30T02:07:30 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc
+2026-08-30T02:07:30 echo "Welcome to RK3506 Buildroot" > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/issue
+2026-08-30T02:07:30 /usr/bin/sed -i -e s,^root:[^:]*:,root:"`/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/mkpasswd -m "sha-256" "123456"`":, /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/shadow
+2026-08-30T02:07:30 grep -qsE '^/bin/sh$' /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/shells || echo "/bin/sh" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/shells
+2026-08-30T02:07:30 ln -sf bash /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/bin/sh
+2026-08-30T02:07:30 /usr/bin/sed -i -e '/^root:/s,[^/]*$,bash,' /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/passwd
+2026-08-30T02:07:30 if [ -x /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/sbin/swapon -a -x /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/sbin/swapoff ]; then /usr/bin/sed -i -e '/^#.*\/sbin\/swap/s/^#\+[[:blank:]]*//' /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/inittab; else /usr/bin/sed -i -e '/^[^#].*\/sbin\/swap/s/^/#/' /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/inittab; fi
+2026-08-30T02:07:30 printf '%s\n' C en_US locale-archive > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/locales.nopurge
+2026-08-30T02:07:30 for dir in /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/locale /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/X11/locale /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/locale; do if [ ! -d $dir ]; then continue; fi; for langdir in $dir/*; do if [ -e "${langdir}" ]; then grep -qx "${langdir##*/}" /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/locales.nopurge || rm -rf $langdir; fi done; done
+2026-08-30T02:07:30 if [ -d /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/X11/locale ]; then for lang in C en_US; do if [ -f /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/X11/locale/$lang/XLC_LOCALE ]; then echo "$lang/XLC_LOCALE: $lang"; fi done > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/X11/locale/locale.dir; fi
+2026-08-30T02:07:30 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/aclocal \
+2026-08-30T02:07:30 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/cmake /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/cmake \
+2026-08-30T02:07:30 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/rpm /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/doc
+2026-08-30T02:07:30 find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/{lib,share}/ -name '*.cmake' -print0 | xargs -0 rm -f
+2026-08-30T02:07:30 find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/lib/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/libexec/ \
+2026-08-30T02:07:30 \( -name '*.la' -o -name '*.prl' \) -print0 | xargs -0 rm -f
+2026-08-30T02:07:30 find: '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/libexec/': No such file or directory
+2026-08-30T02:07:30 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/include \
+2026-08-30T02:07:30 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/pkgconfig /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/pkgconfig
+2026-08-30T02:07:30 find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/lib/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/libexec/ \
+2026-08-30T02:07:30 -name '*.a' -print0 | xargs -0 rm -f
+2026-08-30T02:07:30 find: '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/libexec/': No such file or directory
+2026-08-30T02:07:30 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/gdb
+2026-08-30T02:07:30 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/zsh
+2026-08-30T02:07:30 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/man /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/man
+2026-08-30T02:07:30 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/info /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/info
+2026-08-30T02:07:30 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/doc /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/doc
+2026-08-30T02:07:30 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share/gtk-doc
+2026-08-30T02:07:30 rmdir /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/share 2>/dev/null || true
+2026-08-30T02:07:30 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/lib/debug /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/debug
+2026-08-30T02:07:30 find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target   -type f \( -perm /111 -o -name '*.so*' \) -not \( -name 'libpthread*.so*' -o -name 'ld-*.so*' -o -name '*.ko' \) -print0 | xargs -0 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip --remove-section=.comment --remove-section=.note 2>/dev/null || true
+2026-08-30T02:07:31 find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target   \( -name 'ld-*.so*' -o -name 'libpthread*.so*' \) -print0 | xargs -0 -r /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/arm-buildroot-linux-gnueabihf-strip --remove-section=.comment --remove-section=.note --strip-debug 2>/dev/null || true
+2026-08-30T02:07:31 test -f /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/ld.so.conf && \
+2026-08-30T02:07:31 { echo "ERROR: we shouldn't have a /etc/ld.so.conf file"; exit 1; } || true
+2026-08-30T02:07:31 test -d /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/ld.so.conf.d && \
+2026-08-30T02:07:31 { echo "ERROR: we shouldn't have a /etc/ld.so.conf.d directory"; exit 1; } || true
+2026-08-30T02:07:31 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc
+2026-08-30T02:07:31 ( \
+2026-08-30T02:07:31 echo "NAME=Buildroot"; \
+2026-08-30T02:07:31 echo "VERSION=2024.02"; \
+2026-08-30T02:07:31 echo "ID=buildroot"; \
+2026-08-30T02:07:31 echo "VERSION_ID=2024.02"; \
+2026-08-30T02:07:31 echo "PRETTY_NAME=\"Buildroot 2024.02\"" \
+2026-08-30T02:07:31 ) >  /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/os-release
+2026-08-30T02:07:31 ln -sf ../usr/lib/os-release /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc
+2026-08-30T02:07:31 [7m>>>   Sanitizing RPATH in target tree[27m
+2026-08-30T02:07:31 PARALLEL_JOBS=1 \
+2026-08-30T02:07:31 PER_PACKAGE_DIR=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/per-package \
+2026-08-30T02:07:31 /home/linux/rk3506/buildroot/support/scripts/fix-rpath target
+2026-08-30T02:07:36 [7m>>>   Sanity check in overlay board/rockchip/common/base[27m
+2026-08-30T02:07:36 [7m>>>   Sanity check in overlay board/rockchip/rk3506/fs-overlay/[27m
+2026-08-30T02:07:36 [7m>>>   Copying overlay board/rockchip/common/base[27m
+2026-08-30T02:07:37 [7m>>>   Copying overlay board/rockchip/rk3506/fs-overlay/[27m
+2026-08-30T02:07:37 [7m>>>   Executing post-build script board/rockchip/common/post-build.sh[27m
+2026-08-30T02:07:37 >>> Ignored board/rockchip/common/overlays/10-weston
+2026-08-30T02:07:37 >>> Ignored board/rockchip/common/overlays/11-weston-chromium
+2026-08-30T02:07:37 >>> Ignored board/rockchip/common/overlays/20-wlan0
+2026-08-30T02:07:37 >>> Copying board/rockchip/common/overlays/default
+2026-08-30T02:07:37 sending incremental file list
+2026-08-30T02:07:37 
+2026-08-30T02:07:37 sent 50 bytes  received 12 bytes  124.00 bytes/sec
+2026-08-30T02:07:37 total size is 0  speedup is 0.00
+2026-08-30T02:07:37 Executing post-build.sh...
+2026-08-30T02:07:37 [35mLog colors: [0m[36mmessage [0m[35mnotice [0m[34mwarning [0m[91merror [0m[31mfatal[0m
+2026-08-30T02:07:37 
+2026-08-30T02:07:38 [35mUsing kernel version(6.1) from environment[0m
+2026-08-30T02:07:38 [35mUsing rootfs system(buildroot) from environment[0m
+2026-08-30T02:07:39 >>> [35mRunning 01-hostname.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+2026-08-30T02:07:39 [36mSetting hostname: rk3506-recovery[0m
+2026-08-30T02:07:39 >>> [35mRunning 05-udev.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+2026-08-30T02:07:39 >>> [35mRunning 10-os-release.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+2026-08-30T02:07:39 [36mAdding information to /etc/os-release...[0m
+2026-08-30T02:07:39 >>> [35mRunning 30-fstab.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+2026-08-30T02:07:39 [36mFixing up /etc/fstab...[0m
+2026-08-30T02:07:39 [36mFixing up rootfs type: auto[0m
+2026-08-30T02:07:39 [36mFixup basic partitions for non-systemd init...[0m
+2026-08-30T02:07:39 [36mFixing up basic partition: proc /proc[0m
+2026-08-30T02:07:39 [36mFixing up basic partition: devtmpfs /dev[0m
+2026-08-30T02:07:39 [36mFixing up basic partition: devpts /dev/pts mode=0620,ptmxmode=0000,gid=5[0m
+2026-08-30T02:07:39 [36mFixing up basic partition: tmpfs /dev/shm nosuid,nodev,noexec[0m
+2026-08-30T02:07:39 [36mFixing up basic partition: sysfs /sys nosuid,nodev,noexec[0m
+2026-08-30T02:07:39 [36mFixing up basic partition: configfs /sys/kernel/config[0m
+2026-08-30T02:07:39 [36mFixing up basic partition: debugfs /sys/kernel/debug[0m
+2026-08-30T02:07:39 [36mFixing up basic partition: pstore /sys/fs/pstore nosuid,nodev,noexec[0m
+2026-08-30T02:07:39 [36mFixing up device partition: /dev/sda1 /mnt/udisk auto[0m
+2026-08-30T02:07:39 [36mFixing up device partition: /dev/mmcblk1p1 /mnt/sdcard auto[0m
+2026-08-30T02:07:39 [36mFixing up device partition: PARTLABEL=oem /oem ubifs defaults[0m
+2026-08-30T02:07:40 [36mFixing up device partition: PARTLABEL=userdata /userdata ubifs defaults[0m
+2026-08-30T02:07:40 >>> [35mRunning 40-busybox-reboot.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+2026-08-30T02:07:40 >>> [35mRunning 50-locale.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+2026-08-30T02:07:40 [36mSetting LANG environment to en_US.UTF-8...[0m
+2026-08-30T02:07:40 >>> [35mRunning 60-mount-dirs.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+2026-08-30T02:07:40 [36mAdding dirs and links...[0m
+2026-08-30T02:07:40 >>> [35mRunning 90-overlay.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+2026-08-30T02:07:40 >>> [35mInstalling overlay: /home/linux/rk3506/device/rockchip/common/overlays/recovery to /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target...[0m
+2026-08-30T02:07:40 sending incremental file list
+2026-08-30T02:07:40 ./
+2026-08-30T02:07:40 
+2026-08-30T02:07:40 sent 53 bytes  received 19 bytes  144.00 bytes/sec
+2026-08-30T02:07:40 total size is 0  speedup is 0.00
+2026-08-30T02:07:40 >>> [35mRunning 91-modules.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+2026-08-30T02:07:40 >>> [36mInstalling kernel modules...[0m
+2026-08-30T02:07:40 [35mUsing kernel version(6.1) from environment[0m
+2026-08-30T02:07:40 [36mToolchain for kernel:[0m
+2026-08-30T02:07:40 [36m/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-[0m
+2026-08-30T02:07:40 
+2026-08-30T02:07:40 [36m==========================================[0m
+2026-08-30T02:07:40 >>> [36m          Start building modules[0m
+2026-08-30T02:07:40 [36m==========================================[0m
+2026-08-30T02:07:40 [35m+ make -C /home/linux/rk3506/kernel/ -j17 CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- ARCH=arm rk3506_defconfig rk3506-display.config[0m
+2026-08-30T02:07:44 arch/arm/configs/rk3506_defconfig:349:warning: override: reassigning to symbol VT
+2026-08-30T02:07:44 arch/arm/configs/rk3506_defconfig:382:warning: override: reassigning to symbol FTRACE
+2026-08-30T02:07:44 arch/arm/configs/rk3506_defconfig:389:warning: override: reassigning to symbol SCHED_DEBUG
+2026-08-30T02:07:44 arch/arm/configs/rk3506_defconfig:391:warning: override: reassigning to symbol SWAP
+2026-08-30T02:07:44 arch/arm/configs/rk3506_defconfig:397:warning: override: reassigning to symbol HARDEN_BRANCH_PREDICTOR
+2026-08-30T02:07:44 arch/arm/configs/rk3506_defconfig:398:warning: override: reassigning to symbol HARDEN_BRANCH_HISTORY
+2026-08-30T02:07:44 arch/arm/configs/rk3506_defconfig:401:warning: override: reassigning to symbol LD_DEAD_CODE_DATA_ELIMINATION
+2026-08-30T02:07:44 arch/arm/configs/rk3506_defconfig:402:warning: override: reassigning to symbol CPU_FREQ_DEFAULT_GOV_PERFORMANCE
+2026-08-30T02:07:44 arch/arm/configs/rk3506_defconfig:402:warning: override: CPU_FREQ_DEFAULT_GOV_PERFORMANCE changes choice state
+2026-08-30T02:07:44 arch/arm/configs/rk3506_defconfig:404:warning: override: HZ_1000 changes choice state
+2026-08-30T02:07:44 arch/arm/configs/rk3506_defconfig:405:warning: override: PREEMPT_RT changes choice state
+2026-08-30T02:07:44 arch/arm/configs/rk3506_defconfig:406:warning: override: reassigning to symbol VDSO
+2026-08-30T02:07:44 #
+2026-08-30T02:07:44 # configuration written to .config
+2026-08-30T02:07:44 #
+2026-08-30T02:07:45 Using .config as base
+2026-08-30T02:07:45 Merging ./arch/arm/configs/rk3506-display.config
+2026-08-30T02:07:45 Value of CONFIG_BACKLIGHT_CLASS_DEVICE is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+2026-08-30T02:07:45 Previous value: # CONFIG_BACKLIGHT_CLASS_DEVICE is not set
+2026-08-30T02:07:45 New value: CONFIG_BACKLIGHT_CLASS_DEVICE=y
+2026-08-30T02:07:45 
+2026-08-30T02:07:45 Value of CONFIG_DRM is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+2026-08-30T02:07:45 Previous value: # CONFIG_DRM is not set
+2026-08-30T02:07:45 New value: CONFIG_DRM=y
+2026-08-30T02:07:45 
+2026-08-30T02:07:45 Value of CONFIG_I2C_MUX is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+2026-08-30T02:07:45 Previous value: # CONFIG_I2C_MUX is not set
+2026-08-30T02:07:45 New value: CONFIG_I2C_MUX=y
+2026-08-30T02:07:45 
+2026-08-30T02:07:45 Value of CONFIG_INPUT_TOUCHSCREEN is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+2026-08-30T02:07:45 Previous value: # CONFIG_INPUT_TOUCHSCREEN is not set
+2026-08-30T02:07:45 New value: CONFIG_INPUT_TOUCHSCREEN=y
+2026-08-30T02:07:45 
+2026-08-30T02:07:47 #
+2026-08-30T02:07:47 # merged configuration written to .config (needs make)
+2026-08-30T02:07:47 #
+2026-08-30T02:07:51 #
+2026-08-30T02:07:51 # configuration written to .config
+2026-08-30T02:07:51 #
+2026-08-30T02:07:51 [35m+ make -C /home/linux/rk3506/kernel/ -j17 CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- ARCH=arm modules[0m
+2026-08-30T02:07:53 SYNC    include/config/auto.conf.cmd
+2026-08-30T02:07:58 CALL    scripts/checksyscalls.sh
+2026-08-30T02:07:59 [35m+ make -C /home/linux/rk3506/kernel/ -j17 CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- ARCH=arm modules_install INSTALL_MOD_PATH=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/[0m
+2026-08-30T02:08:00 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/dwmac-rockchip.ko
+2026-08-30T02:08:00 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac-platform.ko
+2026-08-30T02:08:00 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac.ko
+2026-08-30T02:08:00 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/fwnode_mdio.ko
+2026-08-30T02:08:00 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/of_mdio.ko
+2026-08-30T02:08:00 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/mii.ko
+2026-08-30T02:08:00 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/pcs/pcs_xpcs.ko
+2026-08-30T02:08:00 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/fixed_phy.ko
+2026-08-30T02:08:00 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/libphy.ko
+2026-08-30T02:08:00 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/motorcomm.ko
+2026-08-30T02:08:00 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/mdio_devres.ko
+2026-08-30T02:08:00 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/phylink.ko
+2026-08-30T02:08:00 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/realtek.ko
+2026-08-30T02:08:00 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36/kernel/net/core/selftests.ko
+2026-08-30T02:08:00 DEPMOD  /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/6.1.118-rt36
+2026-08-30T02:08:00 [35m+ find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target//lib/modules/ -type l -delete[0m
+2026-08-30T02:08:00 >>> [35mRunning mk-kernel.sh - build_modules succeeded.[0m
+2026-08-30T02:08:00 [36mStrip kernel modules...[0m
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/phylink.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stTY9HdN' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/libphy.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/steQEuin' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/realtek.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/staCkEy3' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/mdio_devres.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stLDfoIC' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/fixed_phy.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stvlnFOx' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/motorcomm.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stvsiSma' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stQVgoAY' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/dwmac-rockchip.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stE3lhiF' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac-platform.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stbR5VXX' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/fwnode_mdio.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/stVdisme' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/of_mdio.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/stDPzZ61' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/pcs/pcs_xpcs.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/pcs/stMrrJ01' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mii.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/stMy2jVw' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/net/core/selftests.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/6.1.118-rt36/kernel/net/core/stWDj6MH' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/ble_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/stoxMLJU' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/sle_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/stjaBygM' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/wifi_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/stgV4XEa' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/bp_test.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/stWexCKA' [elf32-littlearm]
+2026-08-30T02:08:00 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/plat_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr/lib/modules/ws73/stsBPNMo' [elf32-littlearm]
+2026-08-30T02:08:00 >>> [35mRunning 97-ldcache.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+2026-08-30T02:08:00 [36mCreating ld.so.cache for  ...[0m
+2026-08-30T02:08:00 /home/linux/rk3506/device/rockchip/common/tools/x86_64/ldconfig: Can't open configuration file /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/etc/ld.so.conf: No such file or directory
+2026-08-30T02:08:00 /home/linux/rk3506/device/rockchip/common/tools/x86_64/ldconfig: /lib/libstdc++.so.6.0.30-gdb.py is not an ELF file - it has the wrong magic bytes at the start.
+2026-08-30T02:08:00 
+2026-08-30T02:08:00 saving cache in little endian encoding
+2026-08-30T02:08:00 >>> [35mRunning 99-owner.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target (recovery init=busybox)...[0m
+2026-08-30T02:08:00 >>> [35mRunning build.sh - post-rootfs succeeded.[0m
+2026-08-30T02:08:00 [35mFiles changed in post-rootfs stage:[0m
+2026-08-30T02:08:00 ./mnt/external_sd
+2026-08-30T02:08:00 ./mnt/usb_storage
+2026-08-30T02:08:00 ./etc/hostname
+2026-08-30T02:08:00 ./etc/hosts
+2026-08-30T02:08:00 ./etc/ld.so.cache
+2026-08-30T02:08:00 ./etc/profile.d/lang.sh
+2026-08-30T02:08:00 ./etc/os-release
+2026-08-30T02:08:00 ./etc/fstab
+2026-08-30T02:08:00 ./data
+2026-08-30T02:08:00 ./sdcard
+2026-08-30T02:08:00 ./usr/lib/modules/6.1.118-rt36/modules.symbols
+2026-08-30T02:08:00 ./usr/lib/modules/6.1.118-rt36/modules.builtin.bin
+2026-08-30T02:08:00 ./usr/lib/modules/6.1.118-rt36/modules.alias
+2026-08-30T02:08:00 ./usr/lib/modules/6.1.118-rt36/modules.softdep
+2026-08-30T02:08:00 ./usr/lib/modules/6.1.118-rt36/modules.builtin.alias.bin
+2026-08-30T02:08:00 ./usr/lib/modules/6.1.118-rt36/modules.symbols.bin
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/modules.devname
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/modules.dep
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/phylink.ko
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/libphy.ko
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/realtek.ko
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/mdio_devres.ko
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/fixed_phy.ko
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/motorcomm.ko
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac.ko
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/dwmac-rockchip.ko
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac-platform.ko
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/fwnode_mdio.ko
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/of_mdio.ko
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/pcs/pcs_xpcs.ko
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mii.ko
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/kernel/net/core/selftests.ko
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/modules.dep.bin
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/modules.builtin
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/modules.alias.bin
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/modules.order
+2026-08-30T02:08:01 ./usr/lib/modules/6.1.118-rt36/modules.builtin.modinfo
+2026-08-30T02:08:01 ./usr/lib/modules/ws73/ble_soc.ko
+2026-08-30T02:08:01 ./usr/lib/modules/ws73/sle_soc.ko
+2026-08-30T02:08:01 ./usr/lib/modules/ws73/wifi_soc.ko
+2026-08-30T02:08:01 ./usr/lib/modules/ws73/bp_test.ko
+2026-08-30T02:08:01 ./usr/lib/modules/ws73/plat_soc.ko
+2026-08-30T02:08:01 ./udisk
+2026-08-30T02:08:01 touch /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/usr
+2026-08-30T02:08:01 [7m>>>   Generating root filesystems common tables[27m
+2026-08-30T02:08:01 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs
+2026-08-30T02:08:01 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs
+2026-08-30T02:08:01 printf '   	- - input -1 * - - - Input device group\n	- - kvm -1 * - - - kvm nodes\n	- - sgx -1 * - - - SGX device nodes\n\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_users_table.txt
+2026-08-30T02:08:01 printf '   	/bin/busybox                     f 4755 0  0 - - - - -\n\n' > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_devices_table.txt
+2026-08-30T02:08:01 cat system/device_table.txt >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_devices_table.txt
+2026-08-30T02:08:01 [7m>>>   Generating filesystem image rootfs.cpio[27m
+2026-08-30T02:08:01 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images
+2026-08-30T02:08:01 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio
+2026-08-30T02:08:01 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio
+2026-08-30T02:08:01 rsync -auH --exclude=/THIS_IS_NOT_YOUR_ROOT_FILESYSTEM /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/target
+2026-08-30T02:08:01 echo '#!/bin/sh' > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/fakeroot
+2026-08-30T02:08:01 echo "set -e" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/fakeroot
+2026-08-30T02:08:01 echo "chown -h -R 0:0 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/fakeroot
+2026-08-30T02:08:01 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" /home/linux/rk3506/buildroot/support/scripts/mkusers /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_users_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/target >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/fakeroot
+2026-08-30T02:08:01 echo "/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/makedevs -d /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_devices_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/fakeroot
+2026-08-30T02:08:01 printf '   	rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/target/usr/lib/udev/hwdb.d/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/target/etc/udev/hwdb.d/\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/fakeroot
+2026-08-30T02:08:01 printf '   	if [ ! -e /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/target/init ]; then /usr/bin/install -m 0755 fs/cpio/init /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/target/init; fi\n	mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/target/dev\n	mknod -m 0622 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/target/dev/console c 5 1\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/fakeroot
+2026-08-30T02:08:01 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/target/run/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/fakeroot
+2026-08-30T02:08:01 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/target/tmp/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/fakeroot
+2026-08-30T02:08:01 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/fakeroot
+2026-08-30T02:08:01 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/fakeroot
+2026-08-30T02:08:01 printf '   	cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/target && find . | LC_ALL=C sort | cpio  --quiet -o -H newc > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images/rootfs.cpio\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/fakeroot
+2026-08-30T02:08:01 chmod a+x /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/fakeroot
+2026-08-30T02:08:01 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FAKEROOTDONTTRYCHOWN=1 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/fakeroot -- /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/fakeroot
+2026-08-30T02:08:02 rootdir=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/cpio/target
+2026-08-30T02:08:02 table='/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_devices_table.txt'
+2026-08-30T02:08:03 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" gzip -9 -c -n /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images/rootfs.cpio > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images/rootfs.cpio.gz
+2026-08-30T02:08:08 [7m>>>   Generating filesystem image rootfs.ext2[27m
+2026-08-30T02:08:08 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images
+2026-08-30T02:08:08 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2
+2026-08-30T02:08:08 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2
+2026-08-30T02:08:08 rsync -auH --exclude=/THIS_IS_NOT_YOUR_ROOT_FILESYSTEM /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/target
+2026-08-30T02:08:08 echo '#!/bin/sh' > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/fakeroot
+2026-08-30T02:08:08 echo "set -e" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/fakeroot
+2026-08-30T02:08:08 echo "chown -h -R 0:0 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/fakeroot
+2026-08-30T02:08:08 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" /home/linux/rk3506/buildroot/support/scripts/mkusers /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_users_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/target >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/fakeroot
+2026-08-30T02:08:09 echo "/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/makedevs -d /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_devices_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/fakeroot
+2026-08-30T02:08:09 printf '   	rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/target/usr/lib/udev/hwdb.d/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/target/etc/udev/hwdb.d/\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/fakeroot
+2026-08-30T02:08:09 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/target/run/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/fakeroot
+2026-08-30T02:08:09 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/target/tmp/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/fakeroot
+2026-08-30T02:08:09 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/fakeroot
+2026-08-30T02:08:09 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/fakeroot
+2026-08-30T02:08:09 printf '   	rm -f /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images/rootfs.ext2\n	FILE_SIZE="$(du --apparent-size -sm /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/target | cut -f1)"\n	ALIGN_SIZE="$(($(find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/target | wc -l) * 4096 / 1024 / 1024))"\n	ROOTFS_SIZE="$(( ($FILE_SIZE + $ALIGN_SIZE) * 110 / 100 + 64 ))"\n	/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin/mkfs.ext4 -d /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/target -r 1 -b 4096 -N 0 -m 5 -L "rootfs" -I 256 -O ^64bit /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images/rootfs.ext2 "${ROOTFS_SIZE}M"\n	/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin/resize2fs -M /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images/rootfs.ext2\n	/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin/e2fsck -fy /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images/rootfs.ext2\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/fakeroot
+2026-08-30T02:08:09 chmod a+x /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/fakeroot
+2026-08-30T02:08:09 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FAKEROOTDONTTRYCHOWN=1 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/fakeroot -- /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/fakeroot
+2026-08-30T02:08:09 rootdir=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/ext2/target
+2026-08-30T02:08:09 table='/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_devices_table.txt'
+2026-08-30T02:08:10 mke2fs 1.47.0 (5-Feb-2023)
+2026-08-30T02:08:10 Creating regular file /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images/rootfs.ext2
+2026-08-30T02:08:10 64-bit filesystem support is not enabled.  The larger fields afforded by this feature enable full-strength checksumming.  Pass -O 64bit to rectify.
+2026-08-30T02:08:10 Creating filesystem with 23040 4k blocks and 23040 inodes
+2026-08-30T02:08:10 
+2026-08-30T02:08:10 Allocating group tables: 0/1   done
+2026-08-30T02:08:10 Writing inode tables: 0/1   done
+2026-08-30T02:08:10 Creating journal (1024 blocks): done
+2026-08-30T02:08:10 Copying files into the device: done
+2026-08-30T02:08:10 Writing superblocks and filesystem accounting information: 0/1   done
+2026-08-30T02:08:10 
+2026-08-30T02:08:10 resize2fs 1.47.0 (5-Feb-2023)
+2026-08-30T02:08:10 Resizing the filesystem on /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images/rootfs.ext2 to 8031 (4k) blocks.
+2026-08-30T02:08:10 The filesystem on /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images/rootfs.ext2 is now 8031 (4k) blocks long.
+2026-08-30T02:08:10 
+2026-08-30T02:08:10 e2fsck 1.47.0 (5-Feb-2023)
+2026-08-30T02:08:10 Pass 1: Checking inodes, blocks, and sizes
+2026-08-30T02:08:10 Pass 2: Checking directory structure
+2026-08-30T02:08:10 Pass 3: Checking directory connectivity
+2026-08-30T02:08:10 Pass 4: Checking reference counts
+2026-08-30T02:08:10 Pass 5: Checking group summary information
+2026-08-30T02:08:10 rootfs: 805/23040 files (0.1% non-contiguous), 8001/8031 blocks
+2026-08-30T02:08:11 ln -sf rootfs.ext2 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images/rootfs.ext4
+2026-08-30T02:08:11 [7m>>>   Generating filesystem image rootfs.squashfs[27m
+2026-08-30T02:08:11 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images
+2026-08-30T02:08:11 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs
+2026-08-30T02:08:11 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs
+2026-08-30T02:08:11 rsync -auH --exclude=/THIS_IS_NOT_YOUR_ROOT_FILESYSTEM /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/target
+2026-08-30T02:08:11 echo '#!/bin/sh' > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T02:08:11 echo "set -e" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T02:08:11 echo "chown -h -R 0:0 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T02:08:11 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" /home/linux/rk3506/buildroot/support/scripts/mkusers /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_users_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/target >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T02:08:11 echo "/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/makedevs -d /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_devices_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T02:08:11 printf '   	rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/target/usr/lib/udev/hwdb.d/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/target/etc/udev/hwdb.d/\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T02:08:11 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/target/run/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T02:08:11 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/target/tmp/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T02:08:11 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T02:08:11 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T02:08:11 printf '   	/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/mksquashfs /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/target /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images/rootfs.squashfs -noappend -processors 1 -b 128K  -comp gzip\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T02:08:11 chmod a+x /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T02:08:11 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FAKEROOTDONTTRYCHOWN=1 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/fakeroot -- /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T02:08:12 rootdir=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/squashfs/target
+2026-08-30T02:08:12 table='/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_devices_table.txt'
+2026-08-30T02:08:12 Parallel mksquashfs: Using 1 processor
+2026-08-30T02:08:12 Creating 4.0 filesystem on /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images/rootfs.squashfs, block size 131072.
+2026-08-30T02:08:16 
+2026-08-30T02:08:16 
+2026-08-30T02:08:16 Exportable Squashfs 4.0 filesystem, gzip compressed, data block size 131072
+2026-08-30T02:08:16 compressed data, compressed metadata, compressed fragments,
+2026-08-30T02:08:16 compressed xattrs, compressed ids
+2026-08-30T02:08:16 duplicates are removed
+2026-08-30T02:08:16 Filesystem size 9579.29 Kbytes (9.35 Mbytes)
+2026-08-30T02:08:16 46.15% of uncompressed filesystem size (20757.52 Kbytes)
+2026-08-30T02:08:16 Inode table size 7292 bytes (7.12 Kbytes)
+2026-08-30T02:08:16 26.01% of uncompressed inode table size (28040 bytes)
+2026-08-30T02:08:16 Directory table size 7811 bytes (7.63 Kbytes)
+2026-08-30T02:08:16 55.61% of uncompressed directory table size (14045 bytes)
+2026-08-30T02:08:16 Number of duplicate files found 8
+2026-08-30T02:08:16 Number of inodes 794
+2026-08-30T02:08:16 Number of files 322
+2026-08-30T02:08:16 Number of fragments 44
+2026-08-30T02:08:16 Number of symbolic links 368
+2026-08-30T02:08:16 Number of device nodes 0
+2026-08-30T02:08:16 Number of fifo nodes 0
+2026-08-30T02:08:16 Number of socket nodes 0
+2026-08-30T02:08:16 Number of directories 104
+2026-08-30T02:08:16 Number of hard-links 0
+2026-08-30T02:08:16 Number of ids (unique uids + gids) 2
+2026-08-30T02:08:16 Number of uids 2
+2026-08-30T02:08:16 root (0)
+2026-08-30T02:08:16 www-data (33)
+2026-08-30T02:08:16 Number of gids 2
+2026-08-30T02:08:16 root (0)
+2026-08-30T02:08:16 www-data (33)
+2026-08-30T02:08:16 [7m>>>   Generating filesystem image rootfs.tar[27m
+2026-08-30T02:08:16 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images
+2026-08-30T02:08:16 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar
+2026-08-30T02:08:16 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar
+2026-08-30T02:08:16 rsync -auH --exclude=/THIS_IS_NOT_YOUR_ROOT_FILESYSTEM /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/target/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/target
+2026-08-30T02:08:16 echo '#!/bin/sh' > /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/fakeroot
+2026-08-30T02:08:16 echo "set -e" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/fakeroot
+2026-08-30T02:08:16 echo "chown -h -R 0:0 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/fakeroot
+2026-08-30T02:08:16 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" /home/linux/rk3506/buildroot/support/scripts/mkusers /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_users_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/target >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/fakeroot
+2026-08-30T02:08:17 echo "/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/makedevs -d /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_devices_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/fakeroot
+2026-08-30T02:08:17 printf '   	rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/target/usr/lib/udev/hwdb.d/ /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/target/etc/udev/hwdb.d/\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/fakeroot
+2026-08-30T02:08:17 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/target/run/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/fakeroot
+2026-08-30T02:08:17 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/target/tmp/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/fakeroot
+2026-08-30T02:08:17 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/fakeroot
+2026-08-30T02:08:17 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/fakeroot
+2026-08-30T02:08:17 printf '   	(cd /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/target; find -print0 | LC_ALL=C sort -z | tar  --pax-option=exthdr.name=%%d/PaxHeaders/%%f,atime:=0,ctime:=0 -cf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/images/rootfs.tar --null --xattrs-include='\''*'\'' --no-recursion -T - --numeric-owner)\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/fakeroot
+2026-08-30T02:08:17 chmod a+x /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/fakeroot
+2026-08-30T02:08:17 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FAKEROOTDONTTRYCHOWN=1 /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/bin/fakeroot -- /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/fakeroot
+2026-08-30T02:08:17 rootdir=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/tar/target
+2026-08-30T02:08:17 table='/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/buildroot-fs/full_devices_table.txt'
+2026-08-30T02:08:18 ln -snf /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/host/arm-buildroot-linux-gnueabihf/sysroot /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/staging
+2026-08-30T02:08:18 make: Leaving directory '/home/linux/rk3506/buildroot'

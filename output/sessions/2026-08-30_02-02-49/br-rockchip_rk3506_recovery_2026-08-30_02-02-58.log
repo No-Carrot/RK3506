@@ -1,0 +1,21 @@
+# 2026-08-30 02:02:58
+2026-08-30T02:02:58 make: Entering directory '/home/linux/rk3506/buildroot'
+2026-08-30T02:03:10 /usr/bin/make -j1  O=/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery HOSTCC="/usr/bin/gcc" HOSTCXX="/usr/bin/g++" syncconfig
+2026-08-30T02:03:10 GEN     /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/Makefile
+2026-08-30T02:03:11 [7m>>> usbmount 0.0.22 Downloading[27m
+2026-08-30T02:03:11 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.usbmount_0.0.22.tar.gz.16vq9Y/output' 'https://sources.buildroot.net/usbmount/usbmount_0.0.22.tar.gz'
+2026-08-30T02:03:11 --2026-08-30 02:03:11--  https://sources.buildroot.net/usbmount/usbmount_0.0.22.tar.gz
+2026-08-30T02:03:11 Resolving sources.buildroot.net (sources.buildroot.net)... failed: Temporary failure in name resolution.
+2026-08-30T02:03:11 wget: unable to resolve host address 'sources.buildroot.net'
+2026-08-30T02:03:11 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.usbmount_0.0.22.tar.gz.4x9yAg/output' 'https://sources.buildroot.net/usbmount_0.0.22.tar.gz'
+2026-08-30T02:03:11 --2026-08-30 02:03:11--  https://sources.buildroot.net/usbmount_0.0.22.tar.gz
+2026-08-30T02:03:11 Resolving sources.buildroot.net (sources.buildroot.net)... failed: Temporary failure in name resolution.
+2026-08-30T02:03:11 wget: unable to resolve host address 'sources.buildroot.net'
+2026-08-30T02:03:11 wget --passive-ftp -nd -t 3 --no-check-certificate -O '/home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/.usbmount_0.0.22.tar.gz.1UcCFw/output' 'http://snapshot.debian.org/archive/debian/20141023T043132Z/pool/main/u/usbmount/usbmount_0.0.22.tar.gz'
+2026-08-30T02:03:11 URL transformed to HTTPS due to an HSTS policy
+2026-08-30T02:03:11 --2026-08-30 02:03:11--  https://snapshot.debian.org/archive/debian/20141023T043132Z/pool/main/u/usbmount/usbmount_0.0.22.tar.gz
+2026-08-30T02:03:11 Resolving snapshot.debian.org (snapshot.debian.org)... failed: Temporary failure in name resolution.
+2026-08-30T02:03:11 wget: unable to resolve host address 'snapshot.debian.org'
+2026-08-30T02:03:11 make[1]: *** [package/pkg-generic.mk:196: /home/linux/rk3506/buildroot/output/rockchip_rk3506_recovery/build/usbmount-0.0.22/.stamp_downloaded] Error 1
+2026-08-30T02:03:11 make: *** [Makefile:112: _all] Error 2
+2026-08-30T02:03:11 make: Leaving directory '/home/linux/rk3506/buildroot'

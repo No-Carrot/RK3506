@@ -1,0 +1,1089 @@
+# 2026-08-30 01:56:49
+2026-08-30T01:56:50 make: Entering directory '/home/linux/rk3506/buildroot'
+2026-08-30T01:57:01 /usr/bin/make -j1  O=/home/linux/rk3506/buildroot/output/rockchip_rk3506 HOSTCC="/usr/bin/gcc" HOSTCXX="/usr/bin/g++" syncconfig
+2026-08-30T01:57:01 GEN     /home/linux/rk3506/buildroot/output/rockchip_rk3506/Makefile
+2026-08-30T01:57:02 [7m>>>   Finalizing host directory[27m
+2026-08-30T01:57:02 [7m>>>   Finalizing target directory[27m
+2026-08-30T01:57:02 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/etc/meson
+2026-08-30T01:57:02 sed -e "s%@TARGET_CFLAGS@%'-D_LARGEFILE_SOURCE', '-D_LARGEFILE64_SOURCE', '-D_FILE_OFFSET_BITS=64', '-O2', '-g0', '-D_FORTIFY_SOURCE=1'@PKG_TARGET_CFLAGS@%g" -e "s%@TARGET_LDFLAGS@%@PKG_TARGET_LDFLAGS@%g" -e "s%@TARGET_CXXFLAGS@%'-D_LARGEFILE_SOURCE', '-D_LARGEFILE64_SOURCE', '-D_FILE_OFFSET_BITS=64', '-O2', '-g0', '-D_FORTIFY_SOURCE=1'@PKG_TARGET_CXXFLAGS@%g" -e "s%@TARGET_FCFLAGS@%'-O2', '-g0'@PKG_TARGET_FCFLAGS@%g"         -e "s%@TARGET_CC@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-gcc%g" -e "s%@TARGET_CXX@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-g++%g" -e "s%@TARGET_AR@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-gcc-ar%g" -e "s%@TARGET_STRIP@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-strip%g"         -e "s%@TARGET_FC@%/bin/false%g" -e "s%@TARGET_ARCH@%arm%g" -e "s%@TARGET_CPU@%cortex-a7%g" -e "s%@TARGET_ENDIAN@%little%g" -e "s%@TARGET_FCFLAGS@%%g" -e "s%@TARGET_CFLAGS@%%g" -e "s%@TARGET_LDFLAGS@%%g" -e "s%@TARGET_CXXFLAGS@%%g" -e "s%@BR2_CMAKE@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/cmake%g" -e "s%@PKGCONF_HOST_BINARY@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/pkgconf%g" -e "s%@HOST_DIR@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host%g" -e "s%@STAGING_DIR@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/arm-buildroot-linux-gnueabihf/sysroot%g" -e "s%@STATIC@%false%g" /home/linux/rk3506/buildroot/support/misc/cross-compilation.conf.in > /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/etc/meson/cross-compilation.conf.in
+2026-08-30T01:57:02 sed         -e "s%@TARGET_CC@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-gcc%g" -e "s%@TARGET_CXX@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-g++%g" -e "s%@TARGET_AR@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-gcc-ar%g" -e "s%@TARGET_STRIP@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-strip%g"         -e "s%@TARGET_FC@%/bin/false%g" -e "s%@TARGET_ARCH@%arm%g" -e "s%@TARGET_CPU@%cortex-a7%g" -e "s%@TARGET_ENDIAN@%little%g" -e "s%@TARGET_FCFLAGS@%'-O2', '-g0'%g" -e "s%@TARGET_CFLAGS@%'-D_LARGEFILE_SOURCE', '-D_LARGEFILE64_SOURCE', '-D_FILE_OFFSET_BITS=64', '-O2', '-g0', '-D_FORTIFY_SOURCE=1'%g" -e "s%@TARGET_LDFLAGS@%%g" -e "s%@TARGET_CXXFLAGS@%'-D_LARGEFILE_SOURCE', '-D_LARGEFILE64_SOURCE', '-D_FILE_OFFSET_BITS=64', '-O2', '-g0', '-D_FORTIFY_SOURCE=1'%g" -e "s%@BR2_CMAKE@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/cmake%g" -e "s%@PKGCONF_HOST_BINARY@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/pkgconf%g" -e "s%@HOST_DIR@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host%g" -e "s%@STAGING_DIR@%/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/arm-buildroot-linux-gnueabihf/sysroot%g" -e "s%@STATIC@%false%g" /home/linux/rk3506/buildroot/support/misc/cross-compilation.conf.in > /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/etc/meson/cross-compilation.conf
+2026-08-30T01:57:02 /usr/bin/sed -i -e '/# GENERIC_SERIAL$/s~^.*#~::respawn:-/bin/sh # ttyS0::respawn:/sbin/getty -L ttyS0 115200 vt100 #~' /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/inittab
+2026-08-30T01:57:02 /usr/bin/sed -i -e '/^[^#].*-o remount,rw \/$/s~^~#~' /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/inittab
+2026-08-30T01:57:02 if grep -q CONFIG_ASH=y /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/busybox-1.36.1/.config; then grep -qsE '^/bin/ash$' /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/shells || echo "/bin/ash" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/shells; fi
+2026-08-30T01:57:02 if grep -q CONFIG_HUSH=y /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/busybox-1.36.1/.config; then grep -qsE '^/bin/hush$' /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/shells || echo "/bin/hush" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/shells; fi
+2026-08-30T01:57:02 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc
+2026-08-30T01:57:02 echo "rk3506" > /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/hostname
+2026-08-30T01:57:02 /usr/bin/sed -i -e '$a \127.0.1.1\trk3506' -e '/^127.0.1.1/d' /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/hosts
+2026-08-30T01:57:02 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc
+2026-08-30T01:57:02 echo "Welcome to RK3506 Buildroot" > /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/issue
+2026-08-30T01:57:02 /usr/bin/sed -i -e s,^root:[^:]*:,root:"`/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/mkpasswd -m "sha-256" "123456"`":, /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/shadow
+2026-08-30T01:57:02 grep -qsE '^/bin/sh$' /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/shells || echo "/bin/sh" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/shells
+2026-08-30T01:57:02 if [ -x /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/sbin/swapon -a -x /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/sbin/swapoff ]; then /usr/bin/sed -i -e '/^#.*\/sbin\/swap/s/^#\+[[:blank:]]*//' /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/inittab; else /usr/bin/sed -i -e '/^[^#].*\/sbin\/swap/s/^/#/' /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/inittab; fi
+2026-08-30T01:57:02 printf '%s\n' C en_US locale-archive > /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/locales.nopurge
+2026-08-30T01:57:02 for dir in /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/locale /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/X11/locale /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/locale; do if [ ! -d $dir ]; then continue; fi; for langdir in $dir/*; do if [ -e "${langdir}" ]; then grep -qx "${langdir##*/}" /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/locales.nopurge || rm -rf $langdir; fi done; done
+2026-08-30T01:57:02 if [ -d /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/X11/locale ]; then for lang in C en_US; do if [ -f /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/X11/locale/$lang/XLC_LOCALE ]; then echo "$lang/XLC_LOCALE: $lang"; fi done > /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/X11/locale/locale.dir; fi
+2026-08-30T01:57:02 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/aclocal \
+2026-08-30T01:57:02 /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/cmake /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/cmake \
+2026-08-30T01:57:02 /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/rpm /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/doc
+2026-08-30T01:57:02 find /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/{lib,share}/ -name '*.cmake' -print0 | xargs -0 rm -f
+2026-08-30T01:57:02 find /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/lib/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/libexec/ \
+2026-08-30T01:57:02 \( -name '*.la' -o -name '*.prl' \) -print0 | xargs -0 rm -f
+2026-08-30T01:57:02 find: '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/libexec/': No such file or directory
+2026-08-30T01:57:02 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/include \
+2026-08-30T01:57:02 /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/pkgconfig /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/pkgconfig
+2026-08-30T01:57:02 find /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/lib/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/libexec/ \
+2026-08-30T01:57:02 -name '*.a' -print0 | xargs -0 rm -f
+2026-08-30T01:57:02 find: '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/libexec/': No such file or directory
+2026-08-30T01:57:02 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/gdb
+2026-08-30T01:57:02 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/bash-completion
+2026-08-30T01:57:02 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/bash_completion.d
+2026-08-30T01:57:02 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/zsh
+2026-08-30T01:57:02 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/man /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/man
+2026-08-30T01:57:02 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/info /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/info
+2026-08-30T01:57:02 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/doc /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/doc
+2026-08-30T01:57:02 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/gtk-doc
+2026-08-30T01:57:02 rmdir /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share 2>/dev/null || true
+2026-08-30T01:57:02 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/lib/debug /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/debug
+2026-08-30T01:57:02 find /home/linux/rk3506/buildroot/output/rockchip_rk3506/target   -type f \( -perm /111 -o -name '*.so*' \) -not \( -name 'libpthread*.so*' -o -name 'ld-*.so*' -o -name '*.ko' \) -print0 | xargs -0 /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-strip --remove-section=.comment --remove-section=.note 2>/dev/null || true
+2026-08-30T01:57:02 find /home/linux/rk3506/buildroot/output/rockchip_rk3506/target   \( -name 'ld-*.so*' -o -name 'libpthread*.so*' \) -print0 | xargs -0 -r /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-strip --remove-section=.comment --remove-section=.note --strip-debug 2>/dev/null || true
+2026-08-30T01:57:02 test -f /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/ld.so.conf && \
+2026-08-30T01:57:02 { echo "ERROR: we shouldn't have a /etc/ld.so.conf file"; exit 1; } || true
+2026-08-30T01:57:02 test -d /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/ld.so.conf.d && \
+2026-08-30T01:57:02 { echo "ERROR: we shouldn't have a /etc/ld.so.conf.d directory"; exit 1; } || true
+2026-08-30T01:57:03 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc
+2026-08-30T01:57:03 ( \
+2026-08-30T01:57:03 echo "NAME=Buildroot"; \
+2026-08-30T01:57:03 echo "VERSION=2024.02"; \
+2026-08-30T01:57:03 echo "ID=buildroot"; \
+2026-08-30T01:57:03 echo "VERSION_ID=2024.02"; \
+2026-08-30T01:57:03 echo "PRETTY_NAME=\"Buildroot 2024.02\"" \
+2026-08-30T01:57:03 ) >  /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/os-release
+2026-08-30T01:57:03 ln -sf ../usr/lib/os-release /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc
+2026-08-30T01:57:03 [7m>>>   Sanitizing RPATH in target tree[27m
+2026-08-30T01:57:03 PARALLEL_JOBS=17 \
+2026-08-30T01:57:03 PER_PACKAGE_DIR=/home/linux/rk3506/buildroot/output/rockchip_rk3506/per-package \
+2026-08-30T01:57:03 /home/linux/rk3506/buildroot/support/scripts/fix-rpath target
+2026-08-30T01:57:03 [7m>>>   Sanity check in overlay board/rockchip/common/base[27m
+2026-08-30T01:57:03 [7m>>>   Sanity check in overlay board/rockchip/rk3506/fs-overlay/[27m
+2026-08-30T01:57:03 [7m>>>   Sanity check in overlay board/rockchip/rk3506/fast-display-overlay/[27m
+2026-08-30T01:57:03 [7m>>>   Copying overlay board/rockchip/common/base[27m
+2026-08-30T01:57:03 [7m>>>   Copying overlay board/rockchip/rk3506/fs-overlay/[27m
+2026-08-30T01:57:03 [7m>>>   Copying overlay board/rockchip/rk3506/fast-display-overlay/[27m
+2026-08-30T01:57:03 [7m>>>   Executing post-build script board/rockchip/common/post-build.sh[27m
+2026-08-30T01:57:03 >>> Ignored board/rockchip/common/overlays/10-weston
+2026-08-30T01:57:03 >>> Ignored board/rockchip/common/overlays/11-weston-chromium
+2026-08-30T01:57:03 >>> Ignored board/rockchip/common/overlays/20-wlan0
+2026-08-30T01:57:03 >>> Copying board/rockchip/common/overlays/default
+2026-08-30T01:57:03 sending incremental file list
+2026-08-30T01:57:03 
+2026-08-30T01:57:03 sent 50 bytes  received 12 bytes  124.00 bytes/sec
+2026-08-30T01:57:03 total size is 0  speedup is 0.00
+2026-08-30T01:57:03 Executing post-build.sh...
+2026-08-30T01:57:03 [35mLog colors: [0m[36mmessage [0m[35mnotice [0m[34mwarning [0m[91merror [0m[31mfatal[0m
+2026-08-30T01:57:03 
+2026-08-30T01:57:04 [35mUsing kernel version(6.1) from environment[0m
+2026-08-30T01:57:04 [35mUsing rootfs system(buildroot) from environment[0m
+2026-08-30T01:57:05 >>> [35mRunning 00-wifibt.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:05 >>> [36mBuilding Wifi/BT module and firmwares...[0m
+2026-08-30T01:57:05 >>> [35mRunning 01-hostname.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:05 [36mSetting hostname: rk3506-buildroot[0m
+2026-08-30T01:57:05 >>> [35mRunning 05-udev.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:05 >>> [35mRunning 06-async-commit.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:05 >>> [36mInstalling async-commit service...[0m
+2026-08-30T01:57:05 '/home/linux/rk3506/device/rockchip/common/tools/armhf/modetest' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/bin/modetest'
+2026-08-30T01:57:05 >>> [35mRunning 07-log-guardian.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:05 >>> [35mRunning 09-disk.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:05 >>> [36mInstalling mount service...[0m
+2026-08-30T01:57:05 >>> [35mRunning 10-os-release.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:05 [36mAdding information to /etc/os-release...[0m
+2026-08-30T01:57:06 >>> [35mRunning 20-info.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:06 >>> [35mRunning 30-fstab.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:06 [36mFixing up /etc/fstab...[0m
+2026-08-30T01:57:06 [36mFixing up rootfs type: auto[0m
+2026-08-30T01:57:06 [36mFixup basic partitions for non-systemd init...[0m
+2026-08-30T01:57:06 [36mFixing up basic partition: proc /proc[0m
+2026-08-30T01:57:06 [36mFixing up basic partition: devtmpfs /dev[0m
+2026-08-30T01:57:06 [36mFixing up basic partition: devpts /dev/pts mode=0620,ptmxmode=0000,gid=5[0m
+2026-08-30T01:57:06 [36mFixing up basic partition: tmpfs /dev/shm nosuid,nodev,noexec[0m
+2026-08-30T01:57:06 [36mFixing up basic partition: sysfs /sys nosuid,nodev,noexec[0m
+2026-08-30T01:57:06 [36mFixing up basic partition: configfs /sys/kernel/config[0m
+2026-08-30T01:57:06 [36mFixing up basic partition: debugfs /sys/kernel/debug[0m
+2026-08-30T01:57:06 [36mFixing up basic partition: pstore /sys/fs/pstore nosuid,nodev,noexec[0m
+2026-08-30T01:57:06 [36mFixing up device partition: PARTLABEL=oem /oem ubifs defaults[0m
+2026-08-30T01:57:06 [36mFixing up device partition: PARTLABEL=userdata /userdata ubifs defaults[0m
+2026-08-30T01:57:06 >>> [35mRunning 40-busybox-reboot.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:06 >>> [35mRunning 50-locale.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:06 [36mSetting LANG environment to en_US.UTF-8...[0m
+2026-08-30T01:57:06 >>> [35mRunning 60-mount-dirs.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:06 [36mAdding dirs and links...[0m
+2026-08-30T01:57:06 >>> [35mRunning 90-overlay.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:06 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/bootanim)...[0m
+2026-08-30T01:57:06 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/chromium)...[0m
+2026-08-30T01:57:07 >>> [35mInstalling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/default to /home/linux/rk3506/buildroot/output/rockchip_rk3506/target...[0m
+2026-08-30T01:57:07 sending incremental file list
+2026-08-30T01:57:07 ./
+2026-08-30T01:57:07 
+2026-08-30T01:57:07 sent 53 bytes  received 19 bytes  144.00 bytes/sec
+2026-08-30T01:57:07 total size is 0  speedup is 0.00
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/fonts)...[0m
+2026-08-30T01:57:07 [35mNo extra fonts for buildroot by default[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/frecon)...[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/fstrim)...[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/generate-logs)...[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/input-event-daemon)...[0m
+2026-08-30T01:57:07 [35mDisabling input-event-daemon...[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/irqbalance)...[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/tools)...[0m
+2026-08-30T01:57:07 >>> [35mHandling overlay: /home/linux/rk3506/device/rockchip/common/overlays/rootfs/usb-gadget)...[0m
+2026-08-30T01:57:07 [35mUSB gadget disabled...[0m
+2026-08-30T01:57:07 >>> [35mInstalling overlay: /home/linux/rk3506/device/rockchip/common/overlays/buildroot to /home/linux/rk3506/buildroot/output/rockchip_rk3506/target...[0m
+2026-08-30T01:57:07 sending incremental file list
+2026-08-30T01:57:07 
+2026-08-30T01:57:07 sent 50 bytes  received 12 bytes  124.00 bytes/sec
+2026-08-30T01:57:07 total size is 0  speedup is 0.00
+2026-08-30T01:57:07 >>> [35mRunning 91-modules.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:07 >>> [36mInstalling kernel modules...[0m
+2026-08-30T01:57:07 [35mUsing kernel version(6.1) from environment[0m
+2026-08-30T01:57:07 [36mToolchain for kernel:[0m
+2026-08-30T01:57:07 [36m/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf-[0m
+2026-08-30T01:57:07 
+2026-08-30T01:57:07 [36m==========================================[0m
+2026-08-30T01:57:07 >>> [36m          Start building modules[0m
+2026-08-30T01:57:07 [36m==========================================[0m
+2026-08-30T01:57:07 [35m+ make -C /home/linux/rk3506/kernel/ -j17 CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- ARCH=arm rk3506_defconfig rk3506-display.config[0m
+2026-08-30T01:57:10 arch/arm/configs/rk3506_defconfig:349:warning: override: reassigning to symbol VT
+2026-08-30T01:57:10 arch/arm/configs/rk3506_defconfig:382:warning: override: reassigning to symbol FTRACE
+2026-08-30T01:57:10 arch/arm/configs/rk3506_defconfig:389:warning: override: reassigning to symbol SCHED_DEBUG
+2026-08-30T01:57:10 arch/arm/configs/rk3506_defconfig:391:warning: override: reassigning to symbol SWAP
+2026-08-30T01:57:10 arch/arm/configs/rk3506_defconfig:397:warning: override: reassigning to symbol HARDEN_BRANCH_PREDICTOR
+2026-08-30T01:57:10 arch/arm/configs/rk3506_defconfig:398:warning: override: reassigning to symbol HARDEN_BRANCH_HISTORY
+2026-08-30T01:57:10 arch/arm/configs/rk3506_defconfig:401:warning: override: reassigning to symbol LD_DEAD_CODE_DATA_ELIMINATION
+2026-08-30T01:57:11 arch/arm/configs/rk3506_defconfig:402:warning: override: reassigning to symbol CPU_FREQ_DEFAULT_GOV_PERFORMANCE
+2026-08-30T01:57:11 arch/arm/configs/rk3506_defconfig:402:warning: override: CPU_FREQ_DEFAULT_GOV_PERFORMANCE changes choice state
+2026-08-30T01:57:11 arch/arm/configs/rk3506_defconfig:404:warning: override: HZ_1000 changes choice state
+2026-08-30T01:57:11 arch/arm/configs/rk3506_defconfig:405:warning: override: PREEMPT_RT changes choice state
+2026-08-30T01:57:11 arch/arm/configs/rk3506_defconfig:406:warning: override: reassigning to symbol VDSO
+2026-08-30T01:57:11 #
+2026-08-30T01:57:11 # configuration written to .config
+2026-08-30T01:57:11 #
+2026-08-30T01:57:11 Using .config as base
+2026-08-30T01:57:11 Merging ./arch/arm/configs/rk3506-display.config
+2026-08-30T01:57:11 Value of CONFIG_BACKLIGHT_CLASS_DEVICE is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+2026-08-30T01:57:11 Previous value: # CONFIG_BACKLIGHT_CLASS_DEVICE is not set
+2026-08-30T01:57:11 New value: CONFIG_BACKLIGHT_CLASS_DEVICE=y
+2026-08-30T01:57:11 
+2026-08-30T01:57:11 Value of CONFIG_DRM is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+2026-08-30T01:57:11 Previous value: # CONFIG_DRM is not set
+2026-08-30T01:57:11 New value: CONFIG_DRM=y
+2026-08-30T01:57:11 
+2026-08-30T01:57:11 Value of CONFIG_I2C_MUX is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+2026-08-30T01:57:11 Previous value: # CONFIG_I2C_MUX is not set
+2026-08-30T01:57:11 New value: CONFIG_I2C_MUX=y
+2026-08-30T01:57:11 
+2026-08-30T01:57:11 Value of CONFIG_INPUT_TOUCHSCREEN is redefined by fragment ./arch/arm/configs/rk3506-display.config:
+2026-08-30T01:57:11 Previous value: # CONFIG_INPUT_TOUCHSCREEN is not set
+2026-08-30T01:57:11 New value: CONFIG_INPUT_TOUCHSCREEN=y
+2026-08-30T01:57:11 
+2026-08-30T01:57:14 #
+2026-08-30T01:57:14 # merged configuration written to .config (needs make)
+2026-08-30T01:57:14 #
+2026-08-30T01:57:17 #
+2026-08-30T01:57:17 # configuration written to .config
+2026-08-30T01:57:17 #
+2026-08-30T01:57:18 [35m+ make -C /home/linux/rk3506/kernel/ -j17 CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- ARCH=arm modules[0m
+2026-08-30T01:57:19 SYNC    include/config/auto.conf.cmd
+2026-08-30T01:57:24 CALL    scripts/checksyscalls.sh
+2026-08-30T01:57:25 [35m+ make -C /home/linux/rk3506/kernel/ -j17 CROSS_COMPILE=/home/linux/rk3506/prebuilts/gcc/linux-x86/arm/gcc-arm-10.3-2021.07-x86_64-arm-none-linux-gnueabihf/bin/arm-none-linux-gnueabihf- ARCH=arm modules_install INSTALL_MOD_PATH=/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/[0m
+2026-08-30T01:57:26 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/dwmac-rockchip.ko
+2026-08-30T01:57:26 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac-platform.ko
+2026-08-30T01:57:26 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac.ko
+2026-08-30T01:57:26 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/fwnode_mdio.ko
+2026-08-30T01:57:26 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/of_mdio.ko
+2026-08-30T01:57:26 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/mii.ko
+2026-08-30T01:57:26 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/pcs/pcs_xpcs.ko
+2026-08-30T01:57:26 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/fixed_phy.ko
+2026-08-30T01:57:26 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/libphy.ko
+2026-08-30T01:57:26 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/mdio_devres.ko
+2026-08-30T01:57:26 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/motorcomm.ko
+2026-08-30T01:57:26 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/phylink.ko
+2026-08-30T01:57:26 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/drivers/net/phy/realtek.ko
+2026-08-30T01:57:26 INSTALL /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36/kernel/net/core/selftests.ko
+2026-08-30T01:57:26 DEPMOD  /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/6.1.118-rt36
+2026-08-30T01:57:26 [35m+ find /home/linux/rk3506/buildroot/output/rockchip_rk3506/target//lib/modules/ -type l -delete[0m
+2026-08-30T01:57:26 >>> [35mRunning mk-kernel.sh - build_modules succeeded.[0m
+2026-08-30T01:57:26 [36mStrip kernel modules...[0m
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/phylink.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/st3ekQwD' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/libphy.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stNd5cFl' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/realtek.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stfV4IIh' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/mdio_devres.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stiVbGdz' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/fixed_phy.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stJoSRE3' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/motorcomm.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/stz1lza0' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stHYJxqo' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/dwmac-rockchip.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stwgT4xO' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac-platform.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stNXzEUv' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/fwnode_mdio.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/st6GRKi4' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/of_mdio.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/stwql4ST' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/pcs/pcs_xpcs.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/pcs/stSkf6Ek' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mii.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/drivers/net/stRpm1nw' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/net/core/selftests.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/6.1.118-rt36/kernel/net/core/stL2Twlm' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/ble_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/stBojpFM' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/sle_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/stNRI5FT' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/wifi_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/stGk4hIz' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/bp_test.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/stzzOZqO' [elf32-littlearm]
+2026-08-30T01:57:26 copy from `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/plat_soc.ko' [elf32-littlearm] to `/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/modules/ws73/stLBqPC4' [elf32-littlearm]
+2026-08-30T01:57:26 >>> [35mRunning 95-extra-parts.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:26 [36mPreparing extra partitions...[0m
+2026-08-30T01:57:27 >>> [35mRunning 97-ldcache.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:27 [35mKeep original /etc/ld.so.cache[0m
+2026-08-30T01:57:27 >>> [35mRunning 99-owner.sh for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target (buildroot init=busybox)...[0m
+2026-08-30T01:57:27 >>> [35mRunning build.sh - post-rootfs succeeded.[0m
+2026-08-30T01:57:27 [35mFiles changed in post-rootfs stage:[0m
+2026-08-30T01:57:27 ./mnt/external_sd
+2026-08-30T01:57:27 ./mnt/usb_storage
+2026-08-30T01:57:27 ./etc/hostname
+2026-08-30T01:57:27 ./etc/hosts
+2026-08-30T01:57:27 ./etc/init.d/S00mountall.sh
+2026-08-30T01:57:27 ./etc/init.d/S05async-commit.sh
+2026-08-30T01:57:27 ./etc/profile.d/lang.sh
+2026-08-30T01:57:27 ./etc/os-release
+2026-08-30T01:57:27 ./etc/fstab
+2026-08-30T01:57:27 ./data
+2026-08-30T01:57:27 ./sdcard
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/modules.symbols
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/modules.builtin.bin
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/modules.alias
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/modules.softdep
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/modules.builtin.alias.bin
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/modules.symbols.bin
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/modules.devname
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/modules.dep
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/phylink.ko
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/libphy.ko
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/realtek.ko
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/mdio_devres.ko
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/fixed_phy.ko
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/phy/motorcomm.ko
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac.ko
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/dwmac-rockchip.ko
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/ethernet/stmicro/stmmac/stmmac-platform.ko
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/fwnode_mdio.ko
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mdio/of_mdio.ko
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/pcs/pcs_xpcs.ko
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/kernel/drivers/net/mii.ko
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/kernel/net/core/selftests.ko
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/modules.dep.bin
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/modules.builtin
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/modules.alias.bin
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/modules.order
+2026-08-30T01:57:27 ./usr/lib/modules/6.1.118-rt36/modules.builtin.modinfo
+2026-08-30T01:57:27 ./usr/lib/modules/ws73/ble_soc.ko
+2026-08-30T01:57:27 ./usr/lib/modules/ws73/sle_soc.ko
+2026-08-30T01:57:27 ./usr/lib/modules/ws73/wifi_soc.ko
+2026-08-30T01:57:27 ./usr/lib/modules/ws73/bp_test.ko
+2026-08-30T01:57:27 ./usr/lib/modules/ws73/plat_soc.ko
+2026-08-30T01:57:27 ./usr/bin/async-commit
+2026-08-30T01:57:27 ./usr/bin/modetest
+2026-08-30T01:57:27 ./usr/bin/disk-helper
+2026-08-30T01:57:27 ./usr/bin/mount-helper
+2026-08-30T01:57:27 ./udisk
+2026-08-30T01:57:27 [7m>>>   Executing post-build script board/rockchip/rk3506/post-build-fast-display.sh[27m
+2026-08-30T01:57:28 Rebuilding EtherCAT modules for kernel 6.1.118-rt36
+2026-08-30T01:57:28 目标目录: /home/linux/rk3506/buildroot/output/rockchip_rk3506/target
+2026-08-30T01:57:28 内核版本: 6.1.118-rt36
+2026-08-30T01:57:28 === 1/5 配置 ===
+2026-08-30T01:57:34 configure: WARNING: unrecognized options: --enable-igc
+2026-08-30T01:57:35 checking for a BSD-compatible install... /usr/bin/install -c
+2026-08-30T01:57:35 checking whether build environment is sane... yes
+2026-08-30T01:57:35 checking for arm-buildroot-linux-gnueabihf-strip... /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-strip
+2026-08-30T01:57:35 checking for a race-free mkdir -p... /usr/bin/mkdir -p
+2026-08-30T01:57:35 checking for gawk... gawk
+2026-08-30T01:57:35 checking whether make sets $(MAKE)... yes
+2026-08-30T01:57:35 checking whether make supports nested variables... yes
+2026-08-30T01:57:35 checking whether make supports nested variables... (cached) yes
+2026-08-30T01:57:35 checking for a sed that does not truncate output... /usr/bin/sed
+2026-08-30T01:57:35 checking for arm-buildroot-linux-gnueabihf-pkg-config... no
+2026-08-30T01:57:35 checking for pkg-config... /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/pkg-config
+2026-08-30T01:57:35 configure: WARNING: using cross tools not prefixed with host triplet
+2026-08-30T01:57:35 checking pkg-config is at least version 0.27... yes
+2026-08-30T01:57:35 checking whether make supports the include directive... yes (GNU style)
+2026-08-30T01:57:35 checking for arm-buildroot-linux-gnueabihf-gcc... /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc
+2026-08-30T01:57:35 checking whether the C compiler works... yes
+2026-08-30T01:57:35 checking for C compiler default output file name... a.out
+2026-08-30T01:57:35 checking for suffix of executables...
+2026-08-30T01:57:35 checking whether we are cross compiling... yes
+2026-08-30T01:57:35 checking for suffix of object files... o
+2026-08-30T01:57:35 checking whether the compiler supports GNU C... yes
+2026-08-30T01:57:35 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc accepts -g... yes
+2026-08-30T01:57:35 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc option to enable C11 features... none needed
+2026-08-30T01:57:36 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc understands -c and -o together... yes
+2026-08-30T01:57:36 checking dependency style of /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc... gcc3
+2026-08-30T01:57:36 checking for arm-buildroot-linux-gnueabihf-ar... /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ar
+2026-08-30T01:57:36 checking the archiver (/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ar) interface... ar
+2026-08-30T01:57:36 checking whether the compiler supports GNU C++... yes
+2026-08-30T01:57:36 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ accepts -g... yes
+2026-08-30T01:57:36 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ option to enable C++11 features... none needed
+2026-08-30T01:57:36 checking dependency style of /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++... gcc3
+2026-08-30T01:57:36 checking build system type... x86_64-pc-linux-gnu
+2026-08-30T01:57:36 checking host system type... arm-buildroot-linux-gnueabihf
+2026-08-30T01:57:36 checking how to print strings... printf
+2026-08-30T01:57:36 checking for a sed that does not truncate output... (cached) /usr/bin/sed
+2026-08-30T01:57:36 checking for grep that handles long lines and -e... /usr/bin/grep
+2026-08-30T01:57:36 checking for egrep... /usr/bin/grep -E
+2026-08-30T01:57:36 checking for fgrep... /usr/bin/grep -F
+2026-08-30T01:57:36 checking for ld used by /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc... /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld
+2026-08-30T01:57:36 checking if the linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld) is GNU ld... yes
+2026-08-30T01:57:36 checking for BSD- or MS-compatible name lister (nm)... /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-nm -B
+2026-08-30T01:57:36 checking the name lister (/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-nm -B) interface... BSD nm
+2026-08-30T01:57:36 checking whether ln -s works... yes
+2026-08-30T01:57:37 checking the maximum length of command line arguments... 1572864
+2026-08-30T01:57:37 checking how to convert x86_64-pc-linux-gnu file names to arm-buildroot-linux-gnueabihf format... func_convert_file_noop
+2026-08-30T01:57:37 checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+2026-08-30T01:57:37 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld option to reload object files... -r
+2026-08-30T01:57:37 checking for arm-buildroot-linux-gnueabihf-objdump... arm-buildroot-linux-gnueabihf-objdump
+2026-08-30T01:57:37 checking how to recognize dependent libraries... pass_all
+2026-08-30T01:57:37 checking for arm-buildroot-linux-gnueabihf-dlltool... no
+2026-08-30T01:57:37 checking for dlltool... no
+2026-08-30T01:57:37 checking how to associate runtime and link libraries... printf %s\n
+2026-08-30T01:57:37 checking for arm-buildroot-linux-gnueabihf-ar... (cached) /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ar
+2026-08-30T01:57:37 checking for archiver @FILE support... @
+2026-08-30T01:57:37 checking for arm-buildroot-linux-gnueabihf-strip... (cached) /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-strip
+2026-08-30T01:57:37 checking for arm-buildroot-linux-gnueabihf-ranlib... /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ranlib
+2026-08-30T01:57:37 checking command to parse /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-nm -B output from /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc object... ok
+2026-08-30T01:57:37 checking for sysroot... no
+2026-08-30T01:57:37 checking for a working dd... /usr/bin/dd
+2026-08-30T01:57:37 checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+2026-08-30T01:57:37 checking for arm-buildroot-linux-gnueabihf-mt... no
+2026-08-30T01:57:37 checking for mt... mt
+2026-08-30T01:57:37 checking if mt is a manifest tool... no
+2026-08-30T01:57:37 checking for stdio.h... yes
+2026-08-30T01:57:37 checking for stdlib.h... yes
+2026-08-30T01:57:37 checking for string.h... yes
+2026-08-30T01:57:37 checking for inttypes.h... yes
+2026-08-30T01:57:37 checking for stdint.h... yes
+2026-08-30T01:57:37 checking for strings.h... yes
+2026-08-30T01:57:37 checking for sys/stat.h... yes
+2026-08-30T01:57:37 checking for sys/types.h... yes
+2026-08-30T01:57:38 checking for unistd.h... yes
+2026-08-30T01:57:38 checking for dlfcn.h... yes
+2026-08-30T01:57:38 checking for objdir... .libs
+2026-08-30T01:57:38 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc supports -fno-rtti -fno-exceptions... no
+2026-08-30T01:57:38 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc option to produce PIC... -fPIC -DPIC
+2026-08-30T01:57:38 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc PIC flag -fPIC -DPIC works... yes
+2026-08-30T01:57:38 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc static flag -static works... yes
+2026-08-30T01:57:38 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc supports -c -o file.o... yes
+2026-08-30T01:57:38 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc supports -c -o file.o... (cached) yes
+2026-08-30T01:57:38 checking whether the /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld) supports shared libraries... yes
+2026-08-30T01:57:38 checking whether -lc should be explicitly linked in... no
+2026-08-30T01:57:39 checking dynamic linker characteristics... GNU/Linux ld.so
+2026-08-30T01:57:39 checking how to hardcode library paths into programs... immediate
+2026-08-30T01:57:39 checking whether stripping libraries is possible... yes
+2026-08-30T01:57:39 checking if libtool supports shared libraries... yes
+2026-08-30T01:57:39 checking whether to build shared libraries... yes
+2026-08-30T01:57:39 checking whether to build static libraries... yes
+2026-08-30T01:57:39 checking how to run the C++ preprocessor... /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ -E
+2026-08-30T01:57:39 checking for ld used by /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++... /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld
+2026-08-30T01:57:39 checking if the linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld) is GNU ld... yes
+2026-08-30T01:57:39 checking whether the /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld) supports shared libraries... yes
+2026-08-30T01:57:39 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ option to produce PIC... -fPIC -DPIC
+2026-08-30T01:57:39 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ PIC flag -fPIC -DPIC works... yes
+2026-08-30T01:57:40 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ static flag -static works... yes
+2026-08-30T01:57:40 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ supports -c -o file.o... yes
+2026-08-30T01:57:40 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ supports -c -o file.o... (cached) yes
+2026-08-30T01:57:40 checking whether the /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld) supports shared libraries... yes
+2026-08-30T01:57:40 checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+2026-08-30T01:57:40 checking how to hardcode library paths into programs... immediate
+2026-08-30T01:57:40 checking whether to build kernel modules... yes
+2026-08-30T01:57:40 checking for Linux kernel sources... /home/linux/rk3506/kernel (Kernel 6.1)
+2026-08-30T01:57:40 checking for Linux modules installation directory... ethercat
+2026-08-30T01:57:40 checking for kernel for stmmac driver... 6.1
+2026-08-30T01:57:40 checking whether to build the CCAT driver... no
+2026-08-30T01:57:40 checking for RTAI path... not specified.
+2026-08-30T01:57:40 checking for Xenomai path... not specified.
+2026-08-30T01:57:40 checking whether to build RTDM interface... no
+2026-08-30T01:57:40 checking whether to build the debug interface... no
+2026-08-30T01:57:40 checking whether to build the debug ring... no
+2026-08-30T01:57:40 checking whether to build with EoE support... yes
+2026-08-30T01:57:40 checking whether to use the CPU timestamp counter... no
+2026-08-30T01:57:40 checking whether to use rtmutexes... no
+2026-08-30T01:57:40 checking whether to use high-resolution timers for scheduling... no
+2026-08-30T01:57:40 checking whether to read alias addresses from registers... no
+2026-08-30T01:57:40 checking whether to force the reference clock to OP... no
+2026-08-30T01:57:40 checking whether to build the command-line tool... yes
+2026-08-30T01:57:40 checking whether to build the userspace library... yes
+2026-08-30T01:57:40 checking whether to build the tty driver... no
+2026-08-30T01:57:40 checking whether to allow identification wildcards... no
+2026-08-30T01:57:40 checking for number of Ethernet devices... 1 (Redundancy disabled)
+2026-08-30T01:57:40 checking whether to assign the SII to PDI... yes
+2026-08-30T01:57:40 checking whether to syslog in realtime context... yes
+2026-08-30T01:57:40 checking whether to use loop control registers... no
+2026-08-30T01:57:40 checking whether to skip SDO dictionary during slave scan... no
+2026-08-30T01:57:40 checking that generated files are newer than configure... done
+2026-08-30T01:57:40 configure: creating ./config.status
+2026-08-30T01:57:42 config.status: creating Doxyfile
+2026-08-30T01:57:42 config.status: creating Kbuild
+2026-08-30T01:57:42 config.status: creating Makefile
+2026-08-30T01:57:42 config.status: creating devices/Kbuild
+2026-08-30T01:57:42 config.status: creating devices/Makefile
+2026-08-30T01:57:42 config.status: creating devices/ccat/Kbuild
+2026-08-30T01:57:42 config.status: creating devices/ccat/Makefile
+2026-08-30T01:57:42 config.status: creating devices/e1000/Kbuild
+2026-08-30T01:57:42 config.status: creating devices/e1000/Makefile
+2026-08-30T01:57:42 config.status: creating devices/e1000e/Kbuild
+2026-08-30T01:57:42 config.status: creating devices/e1000e/Makefile
+2026-08-30T01:57:42 config.status: creating devices/igb/Kbuild
+2026-08-30T01:57:42 config.status: creating devices/igb/Makefile
+2026-08-30T01:57:43 config.status: creating devices/stmmac/Kbuild
+2026-08-30T01:57:43 config.status: creating devices/stmmac/Makefile
+2026-08-30T01:57:43 config.status: creating ethercat.spec
+2026-08-30T01:57:43 config.status: creating examples/Kbuild
+2026-08-30T01:57:43 config.status: creating examples/Makefile
+2026-08-30T01:57:43 config.status: creating examples/dc_rtai/Kbuild
+2026-08-30T01:57:43 config.status: creating examples/dc_rtai/Makefile
+2026-08-30T01:57:43 config.status: creating examples/dc_user/Makefile
+2026-08-30T01:57:43 config.status: creating examples/mini/Kbuild
+2026-08-30T01:57:43 config.status: creating examples/mini/Makefile
+2026-08-30T01:57:43 config.status: creating examples/rtai/Kbuild
+2026-08-30T01:57:43 config.status: creating examples/rtai/Makefile
+2026-08-30T01:57:43 config.status: creating examples/rtai_rtdm/Makefile
+2026-08-30T01:57:43 config.status: creating examples/rtai_rtdm_dc/Makefile
+2026-08-30T01:57:43 config.status: creating examples/tty/Kbuild
+2026-08-30T01:57:43 config.status: creating examples/tty/Makefile
+2026-08-30T01:57:43 config.status: creating examples/user/Makefile
+2026-08-30T01:57:43 config.status: creating examples/xenomai/Makefile
+2026-08-30T01:57:43 config.status: creating examples/xenomai_posix/Makefile
+2026-08-30T01:57:44 config.status: creating include/Makefile
+2026-08-30T01:57:44 config.status: creating lib/Makefile
+2026-08-30T01:57:44 config.status: creating lib/libethercat.pc
+2026-08-30T01:57:44 config.status: creating master/Kbuild
+2026-08-30T01:57:44 config.status: creating master/Makefile
+2026-08-30T01:57:44 config.status: creating script/Makefile
+2026-08-30T01:57:44 config.status: creating tool/Makefile
+2026-08-30T01:57:44 config.status: creating tty/Kbuild
+2026-08-30T01:57:44 config.status: creating tty/Makefile
+2026-08-30T01:57:44 config.status: creating config.h
+2026-08-30T01:57:44 config.status: config.h is unchanged
+2026-08-30T01:57:44 config.status: executing depfiles commands
+2026-08-30T01:57:45 config.status: executing libtool commands
+2026-08-30T01:57:45 configure: WARNING: unrecognized options: --enable-igc
+2026-08-30T01:57:45 === 2/5 编译用户空间 ===
+2026-08-30T01:57:45 make  all-recursive
+2026-08-30T01:57:45 Making all in include
+2026-08-30T01:57:45 make[4]: Nothing to be done for 'all'.
+2026-08-30T01:57:45 Making all in script
+2026-08-30T01:57:45 /usr/bin/mkdir -p init.d && \
+2026-08-30T01:57:45 /usr/bin/sed -e 's,[@]VERSION[@],1.6.0-rc1,g' -e 's,[@]bindir[@],/home/linux/rk3506/external/ethercat_igh/out/bin,g' -e 's,[@]sbindir[@],/home/linux/rk3506/external/ethercat_igh/out/sbin,g' -e 's,[@]sysconfdir[@],/home/linux/rk3506/external/ethercat_igh/out/etc,g' < init.d/ethercat.in > init.d/ethercat
+2026-08-30T01:57:45 /usr/bin/sed -e 's,[@]VERSION[@],1.6.0-rc1,g' -e 's,[@]bindir[@],/home/linux/rk3506/external/ethercat_igh/out/bin,g' -e 's,[@]sbindir[@],/home/linux/rk3506/external/ethercat_igh/out/sbin,g' -e 's,[@]sysconfdir[@],/home/linux/rk3506/external/ethercat_igh/out/etc,g' < ethercatctl.in > ethercatctl
+2026-08-30T01:57:45 /usr/bin/sed -e 's,for use with ethercatctl,for use with init.d,g' < ethercat.conf > ethercat
+2026-08-30T01:57:45 Making all in devices
+2026-08-30T01:57:45 Making all in ccat
+2026-08-30T01:57:45 make[5]: Nothing to be done for 'all'.
+2026-08-30T01:57:45 Making all in e1000
+2026-08-30T01:57:45 make[5]: Nothing to be done for 'all'.
+2026-08-30T01:57:45 Making all in e1000e
+2026-08-30T01:57:45 make[5]: Nothing to be done for 'all'.
+2026-08-30T01:57:45 Making all in igb
+2026-08-30T01:57:45 make[5]: Nothing to be done for 'all'.
+2026-08-30T01:57:45 Making all in stmmac
+2026-08-30T01:57:45 make[5]: Nothing to be done for 'all'.
+2026-08-30T01:57:45 make[5]: Nothing to be done for 'all-am'.
+2026-08-30T01:57:45 Making all in master
+2026-08-30T01:57:45 make[4]: Nothing to be done for 'all'.
+2026-08-30T01:57:45 Making all in tool
+2026-08-30T01:57:45 make[4]: Nothing to be done for 'all'.
+2026-08-30T01:57:45 Making all in lib
+2026-08-30T01:57:45 /usr/bin/sed -e 's,%libdir%,/home/linux/rk3506/external/ethercat_igh/out/lib,' -e 's,%includedir%,/home/linux/rk3506/external/ethercat_igh/out/include,' ethercat-config.cmake.in > ethercat-config.cmake
+2026-08-30T01:57:45 Making all in examples
+2026-08-30T01:57:45 Making all in dc_user
+2026-08-30T01:57:45 make[5]: Nothing to be done for 'all'.
+2026-08-30T01:57:45 Making all in user
+2026-08-30T01:57:45 make[5]: Nothing to be done for 'all'.
+2026-08-30T01:57:45 make[5]: Nothing to be done for 'all-am'.
+2026-08-30T01:57:45 === 3/5 编译内核模块 ===
+2026-08-30T01:57:45 CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/bash '/home/linux/rk3506/external/ethercat_igh/autoconf/missing' aclocal-1.16 -I m4
+2026-08-30T01:57:46 cd . && /bin/bash /home/linux/rk3506/external/ethercat_igh/autoconf/missing automake-1.16 --foreign
+2026-08-30T01:57:47 CDPATH="${ZSH_VERSION+.}:" && cd . && /bin/bash '/home/linux/rk3506/external/ethercat_igh/autoconf/missing' autoconf
+2026-08-30T01:57:48 /bin/bash ./config.status --recheck
+2026-08-30T01:57:48 running CONFIG_SHELL=/bin/bash /bin/bash ./configure --prefix=/home/linux/rk3506/external/ethercat_igh/out --with-linux-dir=/home/linux/rk3506/kernel --enable-generic=yes --enable-stmmac=yes --with-stmmac-kernel=6.1 --enable-8139too=no --enable-e100=no --enable-e1000=no --enable-e1000e=no --enable-r8169=no --enable-ccat=no --enable-igb=no --enable-igc=no --with-systemdsystemunitdir=no --build=x86_64-pc-linux-gnu --host=arm-buildroot-linux-gnueabihf CC=/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc CXX=/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ AR=/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ar LD=/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld RANLIB=/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ranlib STRIP=/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-strip build_alias=x86_64-pc-linux-gnu host_alias=arm-buildroot-linux-gnueabihf --no-create --no-recursion
+2026-08-30T01:57:48 configure: WARNING: unrecognized options: --enable-igc
+2026-08-30T01:57:48 checking for a BSD-compatible install... /usr/bin/install -c
+2026-08-30T01:57:48 checking whether build environment is sane... yes
+2026-08-30T01:57:48 checking for arm-buildroot-linux-gnueabihf-strip... /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-strip
+2026-08-30T01:57:48 checking for a race-free mkdir -p... /usr/bin/mkdir -p
+2026-08-30T01:57:48 checking for gawk... gawk
+2026-08-30T01:57:48 checking whether make sets $(MAKE)... yes
+2026-08-30T01:57:48 checking whether make supports nested variables... yes
+2026-08-30T01:57:48 checking whether make supports nested variables... (cached) yes
+2026-08-30T01:57:48 checking for a sed that does not truncate output... /usr/bin/sed
+2026-08-30T01:57:49 checking for arm-buildroot-linux-gnueabihf-pkg-config... no
+2026-08-30T01:57:49 checking for pkg-config... /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/pkg-config
+2026-08-30T01:57:49 configure: WARNING: using cross tools not prefixed with host triplet
+2026-08-30T01:57:49 checking pkg-config is at least version 0.27... yes
+2026-08-30T01:57:49 checking whether make supports the include directive... yes (GNU style)
+2026-08-30T01:57:49 checking for arm-buildroot-linux-gnueabihf-gcc... /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc
+2026-08-30T01:57:49 checking whether the C compiler works... yes
+2026-08-30T01:57:49 checking for C compiler default output file name... a.out
+2026-08-30T01:57:49 checking for suffix of executables...
+2026-08-30T01:57:49 checking whether we are cross compiling... yes
+2026-08-30T01:57:49 checking for suffix of object files... o
+2026-08-30T01:57:49 checking whether the compiler supports GNU C... yes
+2026-08-30T01:57:49 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc accepts -g... yes
+2026-08-30T01:57:49 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc option to enable C11 features... none needed
+2026-08-30T01:57:49 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc understands -c and -o together... yes
+2026-08-30T01:57:49 checking dependency style of /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc... gcc3
+2026-08-30T01:57:49 checking for arm-buildroot-linux-gnueabihf-ar... /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ar
+2026-08-30T01:57:49 checking the archiver (/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ar) interface... ar
+2026-08-30T01:57:50 checking whether the compiler supports GNU C++... yes
+2026-08-30T01:57:50 checking whether /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ accepts -g... yes
+2026-08-30T01:57:50 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ option to enable C++11 features... none needed
+2026-08-30T01:57:50 checking dependency style of /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++... gcc3
+2026-08-30T01:57:50 checking build system type... x86_64-pc-linux-gnu
+2026-08-30T01:57:50 checking host system type... arm-buildroot-linux-gnueabihf
+2026-08-30T01:57:50 checking how to print strings... printf
+2026-08-30T01:57:50 checking for a sed that does not truncate output... (cached) /usr/bin/sed
+2026-08-30T01:57:50 checking for grep that handles long lines and -e... /usr/bin/grep
+2026-08-30T01:57:50 checking for egrep... /usr/bin/grep -E
+2026-08-30T01:57:50 checking for fgrep... /usr/bin/grep -F
+2026-08-30T01:57:50 checking for ld used by /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc... /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld
+2026-08-30T01:57:50 checking if the linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld) is GNU ld... yes
+2026-08-30T01:57:50 checking for BSD- or MS-compatible name lister (nm)... /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-nm -B
+2026-08-30T01:57:50 checking the name lister (/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-nm -B) interface... BSD nm
+2026-08-30T01:57:50 checking whether ln -s works... yes
+2026-08-30T01:57:50 checking the maximum length of command line arguments... 1572864
+2026-08-30T01:57:50 checking how to convert x86_64-pc-linux-gnu file names to arm-buildroot-linux-gnueabihf format... func_convert_file_noop
+2026-08-30T01:57:50 checking how to convert x86_64-pc-linux-gnu file names to toolchain format... func_convert_file_noop
+2026-08-30T01:57:50 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld option to reload object files... -r
+2026-08-30T01:57:50 checking for arm-buildroot-linux-gnueabihf-objdump... arm-buildroot-linux-gnueabihf-objdump
+2026-08-30T01:57:50 checking how to recognize dependent libraries... pass_all
+2026-08-30T01:57:50 checking for arm-buildroot-linux-gnueabihf-dlltool... no
+2026-08-30T01:57:50 checking for dlltool... no
+2026-08-30T01:57:50 checking how to associate runtime and link libraries... printf %s\n
+2026-08-30T01:57:50 checking for arm-buildroot-linux-gnueabihf-ar... (cached) /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ar
+2026-08-30T01:57:50 checking for archiver @FILE support... @
+2026-08-30T01:57:50 checking for arm-buildroot-linux-gnueabihf-strip... (cached) /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-strip
+2026-08-30T01:57:50 checking for arm-buildroot-linux-gnueabihf-ranlib... /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ranlib
+2026-08-30T01:57:50 checking command to parse /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/arm-buildroot-linux-gnueabihf-nm -B output from /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc object... ok
+2026-08-30T01:57:50 checking for sysroot... no
+2026-08-30T01:57:50 checking for a working dd... /usr/bin/dd
+2026-08-30T01:57:50 checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+2026-08-30T01:57:50 checking for arm-buildroot-linux-gnueabihf-mt... no
+2026-08-30T01:57:50 checking for mt... mt
+2026-08-30T01:57:51 checking if mt is a manifest tool... no
+2026-08-30T01:57:51 checking for stdio.h... yes
+2026-08-30T01:57:51 checking for stdlib.h... yes
+2026-08-30T01:57:51 checking for string.h... yes
+2026-08-30T01:57:51 checking for inttypes.h... yes
+2026-08-30T01:57:51 checking for stdint.h... yes
+2026-08-30T01:57:51 checking for strings.h... yes
+2026-08-30T01:57:51 checking for sys/stat.h... yes
+2026-08-30T01:57:51 checking for sys/types.h... yes
+2026-08-30T01:57:51 checking for unistd.h... yes
+2026-08-30T01:57:51 checking for dlfcn.h... yes
+2026-08-30T01:57:51 checking for objdir... .libs
+2026-08-30T01:57:52 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc supports -fno-rtti -fno-exceptions... no
+2026-08-30T01:57:52 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc option to produce PIC... -fPIC -DPIC
+2026-08-30T01:57:52 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc PIC flag -fPIC -DPIC works... yes
+2026-08-30T01:57:52 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc static flag -static works... yes
+2026-08-30T01:57:52 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc supports -c -o file.o... yes
+2026-08-30T01:57:52 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc supports -c -o file.o... (cached) yes
+2026-08-30T01:57:52 checking whether the /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-gcc linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld) supports shared libraries... yes
+2026-08-30T01:57:52 checking whether -lc should be explicitly linked in... no
+2026-08-30T01:57:52 checking dynamic linker characteristics... GNU/Linux ld.so
+2026-08-30T01:57:52 checking how to hardcode library paths into programs... immediate
+2026-08-30T01:57:52 checking whether stripping libraries is possible... yes
+2026-08-30T01:57:52 checking if libtool supports shared libraries... yes
+2026-08-30T01:57:52 checking whether to build shared libraries... yes
+2026-08-30T01:57:52 checking whether to build static libraries... yes
+2026-08-30T01:57:52 checking how to run the C++ preprocessor... /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ -E
+2026-08-30T01:57:53 checking for ld used by /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++... /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld
+2026-08-30T01:57:53 checking if the linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld) is GNU ld... yes
+2026-08-30T01:57:53 checking whether the /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld) supports shared libraries... yes
+2026-08-30T01:57:53 checking for /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ option to produce PIC... -fPIC -DPIC
+2026-08-30T01:57:53 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ PIC flag -fPIC -DPIC works... yes
+2026-08-30T01:57:53 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ static flag -static works... yes
+2026-08-30T01:57:53 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ supports -c -o file.o... yes
+2026-08-30T01:57:53 checking if /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ supports -c -o file.o... (cached) yes
+2026-08-30T01:57:53 checking whether the /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-g++ linker (/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ld) supports shared libraries... yes
+2026-08-30T01:57:53 checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+2026-08-30T01:57:53 checking how to hardcode library paths into programs... immediate
+2026-08-30T01:57:53 checking whether to build kernel modules... yes
+2026-08-30T01:57:53 checking for Linux kernel sources... /home/linux/rk3506/kernel (Kernel 6.1)
+2026-08-30T01:57:53 checking for Linux modules installation directory... ethercat
+2026-08-30T01:57:53 checking for kernel for stmmac driver... 6.1
+2026-08-30T01:57:53 checking whether to build the CCAT driver... no
+2026-08-30T01:57:53 checking for RTAI path... not specified.
+2026-08-30T01:57:53 checking for Xenomai path... not specified.
+2026-08-30T01:57:53 checking whether to build RTDM interface... no
+2026-08-30T01:57:53 checking whether to build the debug interface... no
+2026-08-30T01:57:53 checking whether to build the debug ring... no
+2026-08-30T01:57:53 checking whether to build with EoE support... yes
+2026-08-30T01:57:53 checking whether to use the CPU timestamp counter... no
+2026-08-30T01:57:53 checking whether to use rtmutexes... no
+2026-08-30T01:57:53 checking whether to use high-resolution timers for scheduling... no
+2026-08-30T01:57:53 checking whether to read alias addresses from registers... no
+2026-08-30T01:57:53 checking whether to force the reference clock to OP... no
+2026-08-30T01:57:53 checking whether to build the command-line tool... yes
+2026-08-30T01:57:53 checking whether to build the userspace library... yes
+2026-08-30T01:57:53 checking whether to build the tty driver... no
+2026-08-30T01:57:53 checking whether to allow identification wildcards... no
+2026-08-30T01:57:53 checking for number of Ethernet devices... 1 (Redundancy disabled)
+2026-08-30T01:57:53 checking whether to assign the SII to PDI... yes
+2026-08-30T01:57:53 checking whether to syslog in realtime context... yes
+2026-08-30T01:57:53 checking whether to use loop control registers... no
+2026-08-30T01:57:53 checking whether to skip SDO dictionary during slave scan... no
+2026-08-30T01:57:53 checking that generated files are newer than configure... done
+2026-08-30T01:57:53 configure: creating ./config.status
+2026-08-30T01:57:55 configure: WARNING: unrecognized options: --enable-igc
+2026-08-30T01:57:55 /bin/bash ./config.status
+2026-08-30T01:57:56 config.status: creating Doxyfile
+2026-08-30T01:57:56 config.status: creating Kbuild
+2026-08-30T01:57:56 config.status: creating Makefile
+2026-08-30T01:57:56 config.status: creating devices/Kbuild
+2026-08-30T01:57:56 config.status: creating devices/Makefile
+2026-08-30T01:57:56 config.status: creating devices/ccat/Kbuild
+2026-08-30T01:57:56 config.status: creating devices/ccat/Makefile
+2026-08-30T01:57:56 config.status: creating devices/e1000/Kbuild
+2026-08-30T01:57:56 config.status: creating devices/e1000/Makefile
+2026-08-30T01:57:56 config.status: creating devices/e1000e/Kbuild
+2026-08-30T01:57:56 config.status: creating devices/e1000e/Makefile
+2026-08-30T01:57:56 config.status: creating devices/igb/Kbuild
+2026-08-30T01:57:56 config.status: creating devices/igb/Makefile
+2026-08-30T01:57:56 config.status: creating devices/stmmac/Kbuild
+2026-08-30T01:57:56 config.status: creating devices/stmmac/Makefile
+2026-08-30T01:57:56 config.status: creating ethercat.spec
+2026-08-30T01:57:56 config.status: creating examples/Kbuild
+2026-08-30T01:57:56 config.status: creating examples/Makefile
+2026-08-30T01:57:57 config.status: creating examples/dc_rtai/Kbuild
+2026-08-30T01:57:57 config.status: creating examples/dc_rtai/Makefile
+2026-08-30T01:57:57 config.status: creating examples/dc_user/Makefile
+2026-08-30T01:57:57 config.status: creating examples/mini/Kbuild
+2026-08-30T01:57:57 config.status: creating examples/mini/Makefile
+2026-08-30T01:57:57 config.status: creating examples/rtai/Kbuild
+2026-08-30T01:57:57 config.status: creating examples/rtai/Makefile
+2026-08-30T01:57:57 config.status: creating examples/rtai_rtdm/Makefile
+2026-08-30T01:57:57 config.status: creating examples/rtai_rtdm_dc/Makefile
+2026-08-30T01:57:57 config.status: creating examples/tty/Kbuild
+2026-08-30T01:57:57 config.status: creating examples/tty/Makefile
+2026-08-30T01:57:57 config.status: creating examples/user/Makefile
+2026-08-30T01:57:57 config.status: creating examples/xenomai/Makefile
+2026-08-30T01:57:57 config.status: creating examples/xenomai_posix/Makefile
+2026-08-30T01:57:57 config.status: creating include/Makefile
+2026-08-30T01:57:57 config.status: creating lib/Makefile
+2026-08-30T01:57:57 config.status: creating lib/libethercat.pc
+2026-08-30T01:57:57 config.status: creating master/Kbuild
+2026-08-30T01:57:57 config.status: creating master/Makefile
+2026-08-30T01:57:58 config.status: creating script/Makefile
+2026-08-30T01:57:58 config.status: creating tool/Makefile
+2026-08-30T01:57:58 config.status: creating tty/Kbuild
+2026-08-30T01:57:58 config.status: creating tty/Makefile
+2026-08-30T01:57:58 config.status: creating config.h
+2026-08-30T01:57:58 config.status: config.h is unchanged
+2026-08-30T01:57:58 config.status: executing depfiles commands
+2026-08-30T01:57:59 config.status: executing libtool commands
+2026-08-30T01:57:59 make -C "/home/linux/rk3506/kernel" M="/home/linux/rk3506/external/ethercat_igh" INSTALL_MOD_DIR="ethercat" modules
+2026-08-30T01:58:01 CC [M]  /home/linux/rk3506/external/ethercat_igh/examples/mini/mini.o
+2026-08-30T01:58:01 LD [M]  /home/linux/rk3506/external/ethercat_igh/examples/mini/ec_mini.o
+2026-08-30T01:58:01 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/cdev.o
+2026-08-30T01:58:02 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/coe_emerg_ring.o
+2026-08-30T01:58:02 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/datagram.o
+2026-08-30T01:58:03 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/datagram_pair.o
+2026-08-30T01:58:04 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/device.o
+2026-08-30T01:58:05 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/domain.o
+2026-08-30T01:58:06 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/flag.o
+2026-08-30T01:58:06 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/fmmu_config.o
+2026-08-30T01:58:07 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/foe_request.o
+2026-08-30T01:58:08 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/fsm_change.o
+2026-08-30T01:58:08 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/fsm_coe.o
+2026-08-30T01:58:10 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/fsm_foe.o
+2026-08-30T01:58:11 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/fsm_master.o
+2026-08-30T01:58:12 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/fsm_pdo.o
+2026-08-30T01:58:13 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/fsm_pdo_entry.o
+2026-08-30T01:58:14 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/fsm_sii.o
+2026-08-30T01:58:15 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/fsm_slave.o
+2026-08-30T01:58:16 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/fsm_slave_config.o
+2026-08-30T01:58:17 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/fsm_slave_scan.o
+2026-08-30T01:58:19 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/fsm_soe.o
+2026-08-30T01:58:20 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/ioctl.o
+2026-08-30T01:58:22 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/mailbox.o
+2026-08-30T01:58:23 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/master.o
+2026-08-30T01:58:25 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/module.o
+2026-08-30T01:58:26 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/pdo.o
+2026-08-30T01:58:27 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/pdo_entry.o
+2026-08-30T01:58:27 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/pdo_list.o
+2026-08-30T01:58:28 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/reg_request.o
+2026-08-30T01:58:28 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/sdo.o
+2026-08-30T01:58:29 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/sdo_entry.o
+2026-08-30T01:58:30 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/sdo_request.o
+2026-08-30T01:58:30 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/slave.o
+2026-08-30T01:58:31 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/slave_config.o
+2026-08-30T01:58:32 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/soe_errors.o
+2026-08-30T01:58:33 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/soe_request.o
+2026-08-30T01:58:33 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/sync.o
+2026-08-30T01:58:34 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/sync_config.o
+2026-08-30T01:58:34 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/voe_handler.o
+2026-08-30T01:58:35 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/dict_request.o
+2026-08-30T01:58:35 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/eoe_request.o
+2026-08-30T01:58:36 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/fsm_eoe.o
+2026-08-30T01:58:37 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/ethernet.o
+2026-08-30T01:58:38 LD [M]  /home/linux/rk3506/external/ethercat_igh/master/ec_master.o
+2026-08-30T01:58:38 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/generic.o
+2026-08-30T01:58:39 LD [M]  /home/linux/rk3506/external/ethercat_igh/devices/ec_generic.o
+2026-08-30T01:58:39 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/stmmac_main-6.1-ethercat.o
+2026-08-30T01:58:44 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/stmmac_mdio-6.1-ethercat.o
+2026-08-30T01:58:45 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/dwmac_lib-6.1-ethercat.o
+2026-08-30T01:58:46 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/mmc_core-6.1-ethercat.o
+2026-08-30T01:58:47 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/dwmac4_descs-6.1-ethercat.o
+2026-08-30T01:58:48 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/dwmac4_dma-6.1-ethercat.o
+2026-08-30T01:58:49 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/dwmac4_lib-6.1-ethercat.o
+2026-08-30T01:58:49 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/dwmac4_core-6.1-ethercat.o
+2026-08-30T01:58:51 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/hwif-6.1-ethercat.o
+2026-08-30T01:58:52 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/ring_mode-6.1-ethercat.o
+2026-08-30T01:58:53 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/chain_mode-6.1-ethercat.o
+2026-08-30T01:58:54 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/dwmac1000_core-6.1-ethercat.o
+2026-08-30T01:58:55 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/dwmac1000_dma-6.1-ethercat.o
+2026-08-30T01:58:55 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/dwmac100_core-6.1-ethercat.o
+2026-08-30T01:58:56 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/dwmac100_dma-6.1-ethercat.o
+2026-08-30T01:58:57 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/enh_desc-6.1-ethercat.o
+2026-08-30T01:58:58 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/norm_desc-6.1-ethercat.o
+2026-08-30T01:58:59 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/dwmac5-6.1-ethercat.o
+2026-08-30T01:59:00 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/stmmac_tc-6.1-ethercat.o
+2026-08-30T01:59:01 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/dwxgmac2_core-6.1-ethercat.o
+2026-08-30T01:59:03 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/dwxgmac2_dma-6.1-ethercat.o
+2026-08-30T01:59:04 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/dwxgmac2_descs-6.1-ethercat.o
+2026-08-30T01:59:05 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/stmmac_ethtool-6.1-ethercat.o
+2026-08-30T01:59:06 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/stmmac_hwtstamp-6.1-ethercat.o
+2026-08-30T01:59:07 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/stmmac_ptp-6.1-ethercat.o
+2026-08-30T01:59:08 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/stmmac_platform-6.1-ethercat.o
+2026-08-30T01:59:09 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/dwmac-rk-6.1-ethercat.o
+2026-08-30T01:59:11 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/stmmac_xdp-6.1-ethercat.o
+2026-08-30T01:59:12 LD [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/ec_stmmac.o
+2026-08-30T01:59:12 MODPOST /home/linux/rk3506/external/ethercat_igh/Module.symvers
+2026-08-30T01:59:12 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/ec_generic.mod.o
+2026-08-30T01:59:12 LD [M]  /home/linux/rk3506/external/ethercat_igh/devices/ec_generic.ko
+2026-08-30T01:59:12 CC [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/ec_stmmac.mod.o
+2026-08-30T01:59:13 LD [M]  /home/linux/rk3506/external/ethercat_igh/devices/stmmac/ec_stmmac.ko
+2026-08-30T01:59:13 CC [M]  /home/linux/rk3506/external/ethercat_igh/examples/mini/ec_mini.mod.o
+2026-08-30T01:59:13 LD [M]  /home/linux/rk3506/external/ethercat_igh/examples/mini/ec_mini.ko
+2026-08-30T01:59:13 CC [M]  /home/linux/rk3506/external/ethercat_igh/master/ec_master.mod.o
+2026-08-30T01:59:13 LD [M]  /home/linux/rk3506/external/ethercat_igh/master/ec_master.ko
+2026-08-30T01:59:13 === 4/5 安装 ===
+2026-08-30T01:59:13 Making install in include
+2026-08-30T01:59:13 make[4]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:59:13 /usr/bin/mkdir -p '/home/linux/rk3506/external/ethercat_igh/out/include'
+2026-08-30T01:59:13 /usr/bin/install -c -m 644 ecrt.h ectty.h '/home/linux/rk3506/external/ethercat_igh/out/include'
+2026-08-30T01:59:14 Making install in script
+2026-08-30T01:59:14 /usr/bin/mkdir -p init.d && \
+2026-08-30T01:59:14 /usr/bin/sed -e 's,[@]VERSION[@],1.6.0-rc1,g' -e 's,[@]bindir[@],/home/linux/rk3506/external/ethercat_igh/out/bin,g' -e 's,[@]sbindir[@],/home/linux/rk3506/external/ethercat_igh/out/sbin,g' -e 's,[@]sysconfdir[@],/home/linux/rk3506/external/ethercat_igh/out/etc,g' < init.d/ethercat.in > init.d/ethercat
+2026-08-30T01:59:14 /usr/bin/sed -e 's,[@]VERSION[@],1.6.0-rc1,g' -e 's,[@]bindir[@],/home/linux/rk3506/external/ethercat_igh/out/bin,g' -e 's,[@]sbindir[@],/home/linux/rk3506/external/ethercat_igh/out/sbin,g' -e 's,[@]sysconfdir[@],/home/linux/rk3506/external/ethercat_igh/out/etc,g' < ethercatctl.in > ethercatctl
+2026-08-30T01:59:14 /usr/bin/sed -e 's,for use with ethercatctl,for use with init.d,g' < ethercat.conf > ethercat
+2026-08-30T01:59:14 /usr/bin/mkdir -p '/home/linux/rk3506/external/ethercat_igh/out/etc'
+2026-08-30T01:59:14 /usr/bin/install -c -m 644 ethercat.conf '/home/linux/rk3506/external/ethercat_igh/out/etc'
+2026-08-30T01:59:14 /usr/bin/mkdir -p '/home/linux/rk3506/external/ethercat_igh/out/sbin'
+2026-08-30T01:59:14 /usr/bin/install -c ethercatctl '/home/linux/rk3506/external/ethercat_igh/out/sbin'
+2026-08-30T01:59:14 /usr/bin/mkdir -p '/home/linux/rk3506/external/ethercat_igh/out/share/bash-completion/completions'
+2026-08-30T01:59:14 /usr/bin/install -c -m 644 ethercat.bash_completion '/home/linux/rk3506/external/ethercat_igh/out/share/bash-completion/completions'
+2026-08-30T01:59:14 /usr/bin/mkdir -p '/home/linux/rk3506/external/ethercat_igh/out/etc/init.d'
+2026-08-30T01:59:14 /usr/bin/install -c init.d/ethercat '/home/linux/rk3506/external/ethercat_igh/out/etc/init.d'
+2026-08-30T01:59:14 /usr/bin/mkdir -p '/home/linux/rk3506/external/ethercat_igh/out/etc/sysconfig'
+2026-08-30T01:59:14 /usr/bin/install -c -m 644 ethercat '/home/linux/rk3506/external/ethercat_igh/out/etc/sysconfig'
+2026-08-30T01:59:14 make  install-data-hook
+2026-08-30T01:59:14 cd /home/linux/rk3506/external/ethercat_igh/out/share/bash-completion/completions; \
+2026-08-30T01:59:14 mv ethercat.bash_completion ethercat
+2026-08-30T01:59:14 Making install in devices
+2026-08-30T01:59:14 Making install in ccat
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:59:14 Making install in e1000
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:59:14 Making install in e1000e
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:59:14 Making install in igb
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:59:14 Making install in stmmac
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:59:14 Making install in master
+2026-08-30T01:59:14 make[4]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:59:14 make[4]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:59:14 Making install in tool
+2026-08-30T01:59:14 /usr/bin/mkdir -p '/home/linux/rk3506/external/ethercat_igh/out/bin'
+2026-08-30T01:59:14 /bin/bash ../libtool   --mode=install /usr/bin/install -c ethercat '/home/linux/rk3506/external/ethercat_igh/out/bin'
+2026-08-30T01:59:14 libtool: install: /usr/bin/install -c ethercat /home/linux/rk3506/external/ethercat_igh/out/bin/ethercat
+2026-08-30T01:59:14 make[4]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:59:14 Making install in lib
+2026-08-30T01:59:14 /usr/bin/sed -e 's,%libdir%,/home/linux/rk3506/external/ethercat_igh/out/lib,' -e 's,%includedir%,/home/linux/rk3506/external/ethercat_igh/out/include,' ethercat-config.cmake.in > ethercat-config.cmake
+2026-08-30T01:59:14 /usr/bin/mkdir -p '/home/linux/rk3506/external/ethercat_igh/out/lib'
+2026-08-30T01:59:14 /bin/bash ../libtool   --mode=install /usr/bin/install -c   libethercat.la '/home/linux/rk3506/external/ethercat_igh/out/lib'
+2026-08-30T01:59:14 libtool: install: /usr/bin/install -c .libs/libethercat.so.1.1.0 /home/linux/rk3506/external/ethercat_igh/out/lib/libethercat.so.1.1.0
+2026-08-30T01:59:14 libtool: install: (cd /home/linux/rk3506/external/ethercat_igh/out/lib && { ln -s -f libethercat.so.1.1.0 libethercat.so.1 || { rm -f libethercat.so.1 && ln -s libethercat.so.1.1.0 libethercat.so.1; }; })
+2026-08-30T01:59:14 libtool: install: (cd /home/linux/rk3506/external/ethercat_igh/out/lib && { ln -s -f libethercat.so.1.1.0 libethercat.so || { rm -f libethercat.so && ln -s libethercat.so.1.1.0 libethercat.so; }; })
+2026-08-30T01:59:14 libtool: install: /usr/bin/install -c .libs/libethercat.lai /home/linux/rk3506/external/ethercat_igh/out/lib/libethercat.la
+2026-08-30T01:59:14 libtool: install: /usr/bin/install -c .libs/libethercat.a /home/linux/rk3506/external/ethercat_igh/out/lib/libethercat.a
+2026-08-30T01:59:14 libtool: install: chmod 644 /home/linux/rk3506/external/ethercat_igh/out/lib/libethercat.a
+2026-08-30T01:59:14 libtool: install: /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/../host/bin/arm-buildroot-linux-gnueabihf-ranlib /home/linux/rk3506/external/ethercat_igh/out/lib/libethercat.a
+2026-08-30T01:59:14 libtool: finish: PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/sbin" ldconfig -n /home/linux/rk3506/external/ethercat_igh/out/lib
+2026-08-30T01:59:14 ----------------------------------------------------------------------
+2026-08-30T01:59:14 Libraries have been installed in:
+2026-08-30T01:59:14 /home/linux/rk3506/external/ethercat_igh/out/lib
+2026-08-30T01:59:14 
+2026-08-30T01:59:14 If you ever happen to want to link against installed libraries
+2026-08-30T01:59:14 in a given directory, LIBDIR, you must either use libtool, and
+2026-08-30T01:59:14 specify the full pathname of the library, or use the '-LLIBDIR'
+2026-08-30T01:59:14 flag during linking and do at least one of the following:
+2026-08-30T01:59:14 - add LIBDIR to the 'LD_LIBRARY_PATH' environment variable
+2026-08-30T01:59:14 during execution
+2026-08-30T01:59:14 - add LIBDIR to the 'LD_RUN_PATH' environment variable
+2026-08-30T01:59:14 during linking
+2026-08-30T01:59:14 - use the '-Wl,-rpath -Wl,LIBDIR' linker flag
+2026-08-30T01:59:14 - have your system administrator add LIBDIR to '/etc/ld.so.conf'
+2026-08-30T01:59:14 
+2026-08-30T01:59:14 See any operating system documentation about shared libraries for
+2026-08-30T01:59:14 more information, such as the ld(1) and ld.so(8) manual pages.
+2026-08-30T01:59:14 ----------------------------------------------------------------------
+2026-08-30T01:59:14 /usr/bin/mkdir -p '/home/linux/rk3506/external/ethercat_igh/out/lib/cmake/ethercat'
+2026-08-30T01:59:14 /usr/bin/install -c -m 644 ethercat-config.cmake '/home/linux/rk3506/external/ethercat_igh/out/lib/cmake/ethercat'
+2026-08-30T01:59:14 /usr/bin/mkdir -p '/home/linux/rk3506/external/ethercat_igh/out/lib/pkgconfig'
+2026-08-30T01:59:14 /usr/bin/install -c -m 644 libethercat.pc '/home/linux/rk3506/external/ethercat_igh/out/lib/pkgconfig'
+2026-08-30T01:59:14 Making install in examples
+2026-08-30T01:59:14 Making install in dc_user
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:59:14 Making install in user
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:59:14 make[5]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:59:14 make[4]: Nothing to be done for 'install-exec-am'.
+2026-08-30T01:59:14 make[4]: Nothing to be done for 'install-data-am'.
+2026-08-30T01:59:14 === 5/5 复制到目标 ===
+2026-08-30T01:59:14 'master/ec_master.ko' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/lib/modules/6.1.118-rt36/ec_master.ko'
+2026-08-30T01:59:14 'devices/ec_generic.ko' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/lib/modules/6.1.118-rt36/ec_generic.ko'
+2026-08-30T01:59:14 'devices/stmmac/ec_stmmac.ko' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/lib/modules/6.1.118-rt36/ec_stmmac.ko'
+2026-08-30T01:59:14 'examples/mini/ec_mini.ko' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/lib/modules/6.1.118-rt36/ec_mini.ko'
+2026-08-30T01:59:14 'master/ec_master.ko' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/lib/modules/6.1.118-rt36/kernel/drivers/ethercat/ec_master.ko'
+2026-08-30T01:59:14 'devices/ec_generic.ko' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/lib/modules/6.1.118-rt36/kernel/drivers/ethercat/ec_generic.ko'
+2026-08-30T01:59:14 'devices/stmmac/ec_stmmac.ko' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/lib/modules/6.1.118-rt36/kernel/drivers/ethercat/ec_stmmac.ko'
+2026-08-30T01:59:15 '/home/linux/rk3506/external/ethercat_igh/out/bin/ethercat' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/bin/ethercat'
+2026-08-30T01:59:15 '/home/linux/rk3506/external/ethercat_igh/out/sbin/ethercatctl' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/sbin/ethercatctl'
+2026-08-30T01:59:15 '/home/linux/rk3506/external/ethercat_igh/out/lib/libethercat.so.1.1.0' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/lib/libethercat.so.1.1.0'
+2026-08-30T01:59:15 '/home/linux/rk3506/external/ethercat_igh/out/etc/ethercat.conf' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/ethercat.conf'
+2026-08-30T01:59:15 '/home/linux/rk3506/external/ethercat_igh/out/etc/init.d/ethercat' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/init.d/ethercat'
+2026-08-30T01:59:15 '/home/linux/rk3506/external/ethercat_igh/out/etc/sysconfig/ethercat' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/sysconfig/ethercat'
+2026-08-30T01:59:15 '/home/linux/rk3506/external/ethercat_igh/out/share/bash-completion/completions/ethercat' -> '/home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr/share/bash-completion/completions/ethercat'
+2026-08-30T01:59:15 === 完成 ===
+2026-08-30T01:59:15 /home/linux/rk3506/device/rockchip/common/tools/x86_64/ldconfig: Can't open configuration file /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/etc/ld.so.conf: No such file or directory
+2026-08-30T01:59:15 saving cache in little endian encoding
+2026-08-30T01:59:15 touch /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/usr
+2026-08-30T01:59:15 [7m>>>   Generating root filesystems common tables[27m
+2026-08-30T01:59:15 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs
+2026-08-30T01:59:15 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs
+2026-08-30T01:59:15 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_users_table.txt
+2026-08-30T01:59:15 printf '   	/bin/busybox                     f 4755 0  0 - - - - -\n\n' > /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_devices_table.txt
+2026-08-30T01:59:15 cat system/device_table.txt >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_devices_table.txt
+2026-08-30T01:59:15 [7m>>>   Generating filesystem image rootfs.cpio[27m
+2026-08-30T01:59:15 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/images
+2026-08-30T01:59:15 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio
+2026-08-30T01:59:15 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio
+2026-08-30T01:59:15 rsync -auH --exclude=/THIS_IS_NOT_YOUR_ROOT_FILESYSTEM /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/target
+2026-08-30T01:59:15 echo '#!/bin/sh' > /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/fakeroot
+2026-08-30T01:59:15 echo "set -e" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/fakeroot
+2026-08-30T01:59:15 echo "chown -h -R 0:0 /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/fakeroot
+2026-08-30T01:59:15 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" /home/linux/rk3506/buildroot/support/scripts/mkusers /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_users_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/target >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/fakeroot
+2026-08-30T01:59:15 echo "/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/makedevs -d /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_devices_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/fakeroot
+2026-08-30T01:59:16 printf '   	rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/target/usr/lib/udev/hwdb.d/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/target/etc/udev/hwdb.d/\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/fakeroot
+2026-08-30T01:59:16 printf '   	if [ ! -e /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/target/init ]; then /usr/bin/install -m 0755 fs/cpio/init /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/target/init; fi\n	mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/target/dev\n	mknod -m 0622 /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/target/dev/console c 5 1\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/fakeroot
+2026-08-30T01:59:16 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/target/run/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/fakeroot
+2026-08-30T01:59:16 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/target/tmp/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/fakeroot
+2026-08-30T01:59:16 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/fakeroot
+2026-08-30T01:59:16 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/fakeroot
+2026-08-30T01:59:16 printf '   	cd /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/target && find . | LC_ALL=C sort | cpio  --quiet -o -H newc > /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.cpio\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/fakeroot
+2026-08-30T01:59:16 chmod a+x /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/fakeroot
+2026-08-30T01:59:16 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FAKEROOTDONTTRYCHOWN=1 /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/fakeroot -- /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/fakeroot
+2026-08-30T01:59:16 rootdir=/home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/cpio/target
+2026-08-30T01:59:16 table='/home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_devices_table.txt'
+2026-08-30T01:59:17 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" gzip -9 -c -n /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.cpio > /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.cpio.gz
+2026-08-30T01:59:20 [7m>>>   Generating filesystem image rootfs.ext2[27m
+2026-08-30T01:59:20 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/images
+2026-08-30T01:59:20 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2
+2026-08-30T01:59:20 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2
+2026-08-30T01:59:20 rsync -auH --exclude=/THIS_IS_NOT_YOUR_ROOT_FILESYSTEM /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/target
+2026-08-30T01:59:20 echo '#!/bin/sh' > /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/fakeroot
+2026-08-30T01:59:20 echo "set -e" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/fakeroot
+2026-08-30T01:59:20 echo "chown -h -R 0:0 /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/fakeroot
+2026-08-30T01:59:20 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" /home/linux/rk3506/buildroot/support/scripts/mkusers /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_users_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/target >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/fakeroot
+2026-08-30T01:59:20 echo "/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/makedevs -d /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_devices_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/fakeroot
+2026-08-30T01:59:20 printf '   	rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/target/usr/lib/udev/hwdb.d/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/target/etc/udev/hwdb.d/\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/fakeroot
+2026-08-30T01:59:20 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/target/run/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/fakeroot
+2026-08-30T01:59:20 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/target/tmp/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/fakeroot
+2026-08-30T01:59:20 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/fakeroot
+2026-08-30T01:59:20 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/fakeroot
+2026-08-30T01:59:20 printf '   	rm -f /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.ext2\n	FILE_SIZE="$(du --apparent-size -sm /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/target | cut -f1)"\n	ALIGN_SIZE="$(($(find /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/target | wc -l) * 4096 / 1024 / 1024))"\n	ROOTFS_SIZE="$(( ($FILE_SIZE + $ALIGN_SIZE) * 110 / 100 + 64 ))"\n	/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin/mkfs.ext4 -d /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/target -r 1 -b 4096 -N 0 -m 5 -L "rootfs" -I 256 -O ^64bit /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.ext2 "${ROOTFS_SIZE}M"\n	/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin/resize2fs -M /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.ext2\n	/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin/e2fsck -fy /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.ext2\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/fakeroot
+2026-08-30T01:59:20 chmod a+x /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/fakeroot
+2026-08-30T01:59:20 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FAKEROOTDONTTRYCHOWN=1 /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/fakeroot -- /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/fakeroot
+2026-08-30T01:59:20 rootdir=/home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ext2/target
+2026-08-30T01:59:20 table='/home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_devices_table.txt'
+2026-08-30T01:59:21 mke2fs 1.47.0 (5-Feb-2023)
+2026-08-30T01:59:21 Creating regular file /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.ext2
+2026-08-30T01:59:21 64-bit filesystem support is not enabled.  The larger fields afforded by this feature enable full-strength checksumming.  Pass -O 64bit to rectify.
+2026-08-30T01:59:21 Creating filesystem with 19712 4k blocks and 19712 inodes
+2026-08-30T01:59:21 
+2026-08-30T01:59:21 Allocating group tables: 0/1   done
+2026-08-30T01:59:21 Writing inode tables: 0/1   done
+2026-08-30T01:59:21 Creating journal (1024 blocks): done
+2026-08-30T01:59:21 Copying files into the device: done
+2026-08-30T01:59:21 Writing superblocks and filesystem accounting information: 0/1   done
+2026-08-30T01:59:21 
+2026-08-30T01:59:21 resize2fs 1.47.0 (5-Feb-2023)
+2026-08-30T01:59:21 Resizing the filesystem on /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.ext2 to 5164 (4k) blocks.
+2026-08-30T01:59:21 The filesystem on /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.ext2 is now 5164 (4k) blocks long.
+2026-08-30T01:59:21 
+2026-08-30T01:59:21 e2fsck 1.47.0 (5-Feb-2023)
+2026-08-30T01:59:21 Pass 1: Checking inodes, blocks, and sizes
+2026-08-30T01:59:21 Pass 2: Checking directory structure
+2026-08-30T01:59:21 Pass 3: Checking directory connectivity
+2026-08-30T01:59:21 Pass 4: Checking reference counts
+2026-08-30T01:59:21 Pass 5: Checking group summary information
+2026-08-30T01:59:21 rootfs: 498/19712 files (0.2% non-contiguous), 5135/5164 blocks
+2026-08-30T01:59:21 ln -sf rootfs.ext2 /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.ext4
+2026-08-30T01:59:21 [7m>>>   Generating filesystem image rootfs.squashfs[27m
+2026-08-30T01:59:21 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/images
+2026-08-30T01:59:21 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs
+2026-08-30T01:59:21 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs
+2026-08-30T01:59:21 rsync -auH --exclude=/THIS_IS_NOT_YOUR_ROOT_FILESYSTEM /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/target
+2026-08-30T01:59:21 echo '#!/bin/sh' > /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T01:59:21 echo "set -e" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T01:59:21 echo "chown -h -R 0:0 /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T01:59:21 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" /home/linux/rk3506/buildroot/support/scripts/mkusers /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_users_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/target >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T01:59:21 echo "/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/makedevs -d /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_devices_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T01:59:21 printf '   	rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/target/usr/lib/udev/hwdb.d/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/target/etc/udev/hwdb.d/\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T01:59:21 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/target/run/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T01:59:21 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/target/tmp/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T01:59:21 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T01:59:21 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T01:59:21 printf '   	/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/mksquashfs /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/target /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.squashfs -noappend -processors 17 -b 128K  -comp zstd\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T01:59:21 chmod a+x /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T01:59:22 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FAKEROOTDONTTRYCHOWN=1 /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/fakeroot -- /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/fakeroot
+2026-08-30T01:59:22 rootdir=/home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/squashfs/target
+2026-08-30T01:59:22 table='/home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_devices_table.txt'
+2026-08-30T01:59:22 Parallel mksquashfs: Using 17 processors
+2026-08-30T01:59:22 Creating 4.0 filesystem on /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.squashfs, block size 131072.
+2026-08-30T01:59:23 
+2026-08-30T01:59:23 
+2026-08-30T01:59:23 Exportable Squashfs 4.0 filesystem, zstd compressed, data block size 131072
+2026-08-30T01:59:23 compressed data, compressed metadata, compressed fragments,
+2026-08-30T01:59:23 compressed xattrs, compressed ids
+2026-08-30T01:59:23 duplicates are removed
+2026-08-30T01:59:23 Filesystem size 4856.86 Kbytes (4.74 Mbytes)
+2026-08-30T01:59:23 44.69% of uncompressed filesystem size (10867.03 Kbytes)
+2026-08-30T01:59:23 Inode table size 3422 bytes (3.34 Kbytes)
+2026-08-30T01:59:23 19.34% of uncompressed inode table size (17692 bytes)
+2026-08-30T01:59:23 Directory table size 4486 bytes (4.38 Kbytes)
+2026-08-30T01:59:23 56.63% of uncompressed directory table size (7921 bytes)
+2026-08-30T01:59:23 Number of duplicate files found 1
+2026-08-30T01:59:23 Number of inodes 487
+2026-08-30T01:59:23 Number of files 108
+2026-08-30T01:59:23 Number of fragments 14
+2026-08-30T01:59:23 Number of symbolic links 322
+2026-08-30T01:59:23 Number of device nodes 0
+2026-08-30T01:59:23 Number of fifo nodes 0
+2026-08-30T01:59:23 Number of socket nodes 0
+2026-08-30T01:59:23 Number of directories 57
+2026-08-30T01:59:23 Number of hard-links 0
+2026-08-30T01:59:23 Number of ids (unique uids + gids) 2
+2026-08-30T01:59:23 Number of uids 2
+2026-08-30T01:59:23 root (0)
+2026-08-30T01:59:23 www-data (33)
+2026-08-30T01:59:23 Number of gids 2
+2026-08-30T01:59:23 root (0)
+2026-08-30T01:59:23 www-data (33)
+2026-08-30T01:59:23 [7m>>>   Generating filesystem image rootfs.tar[27m
+2026-08-30T01:59:23 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/images
+2026-08-30T01:59:23 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar
+2026-08-30T01:59:23 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar
+2026-08-30T01:59:23 rsync -auH --exclude=/THIS_IS_NOT_YOUR_ROOT_FILESYSTEM /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/target
+2026-08-30T01:59:23 echo '#!/bin/sh' > /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/fakeroot
+2026-08-30T01:59:23 echo "set -e" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/fakeroot
+2026-08-30T01:59:23 echo "chown -h -R 0:0 /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/fakeroot
+2026-08-30T01:59:23 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" /home/linux/rk3506/buildroot/support/scripts/mkusers /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_users_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/target >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/fakeroot
+2026-08-30T01:59:23 echo "/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/makedevs -d /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_devices_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/fakeroot
+2026-08-30T01:59:23 printf '   	rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/target/usr/lib/udev/hwdb.d/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/target/etc/udev/hwdb.d/\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/fakeroot
+2026-08-30T01:59:23 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/target/run/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/fakeroot
+2026-08-30T01:59:23 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/target/tmp/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/fakeroot
+2026-08-30T01:59:23 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/fakeroot
+2026-08-30T01:59:23 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/fakeroot
+2026-08-30T01:59:23 printf '   	(cd /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/target; find -print0 | LC_ALL=C sort -z | tar  --pax-option=exthdr.name=%%d/PaxHeaders/%%f,atime:=0,ctime:=0 -cf /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.tar --null --xattrs-include='\''*'\'' --no-recursion -T - --numeric-owner)\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/fakeroot
+2026-08-30T01:59:23 chmod a+x /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/fakeroot
+2026-08-30T01:59:23 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FAKEROOTDONTTRYCHOWN=1 /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/fakeroot -- /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/fakeroot
+2026-08-30T01:59:24 rootdir=/home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/tar/target
+2026-08-30T01:59:24 table='/home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_devices_table.txt'
+2026-08-30T01:59:24 [7m>>>   Generating filesystem image rootfs.ubifs[27m
+2026-08-30T01:59:24 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/images
+2026-08-30T01:59:24 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs
+2026-08-30T01:59:24 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs
+2026-08-30T01:59:24 rsync -auH --exclude=/THIS_IS_NOT_YOUR_ROOT_FILESYSTEM /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/target
+2026-08-30T01:59:24 echo '#!/bin/sh' > /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/fakeroot
+2026-08-30T01:59:24 echo "set -e" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/fakeroot
+2026-08-30T01:59:24 echo "chown -h -R 0:0 /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/fakeroot
+2026-08-30T01:59:24 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" /home/linux/rk3506/buildroot/support/scripts/mkusers /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_users_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/target >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/fakeroot
+2026-08-30T01:59:24 echo "/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/makedevs -d /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_devices_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/fakeroot
+2026-08-30T01:59:24 printf '   	rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/target/usr/lib/udev/hwdb.d/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/target/etc/udev/hwdb.d/\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/fakeroot
+2026-08-30T01:59:25 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/target/run/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/fakeroot
+2026-08-30T01:59:25 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/target/tmp/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/fakeroot
+2026-08-30T01:59:25 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/fakeroot
+2026-08-30T01:59:25 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/fakeroot
+2026-08-30T01:59:25 printf '   	/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin/mkfs.ubifs -d /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/target -e 0x1F000 -c 1024 -m 0x800 -x lzo -F -v -o /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.ubifs\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/fakeroot
+2026-08-30T01:59:25 chmod a+x /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/fakeroot
+2026-08-30T01:59:25 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FAKEROOTDONTTRYCHOWN=1 /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/fakeroot -- /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/fakeroot
+2026-08-30T01:59:25 rootdir=/home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/target
+2026-08-30T01:59:25 table='/home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_devices_table.txt'
+2026-08-30T01:59:25 mkfs.ubifs
+2026-08-30T01:59:25 root:         /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubifs/target/
+2026-08-30T01:59:25 min_io_size:  2048
+2026-08-30T01:59:25 leb_size:     126976
+2026-08-30T01:59:25 max_leb_cnt:  1024
+2026-08-30T01:59:25 output:       /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.ubifs
+2026-08-30T01:59:25 jrn_size:     8388608
+2026-08-30T01:59:25 reserved:     0
+2026-08-30T01:59:25 compr:        lzo
+2026-08-30T01:59:25 keyhash:      r5
+2026-08-30T01:59:25 fanout:       8
+2026-08-30T01:59:25 orph_lebs:    1
+2026-08-30T01:59:25 space_fixup:  1
+2026-08-30T01:59:25 selinux file: (null)
+2026-08-30T01:59:27 super lebs:   1
+2026-08-30T01:59:27 master lebs:  2
+2026-08-30T01:59:27 log_lebs:     5
+2026-08-30T01:59:27 lpt_lebs:     2
+2026-08-30T01:59:27 orph_lebs:    1
+2026-08-30T01:59:27 main_lebs:    58
+2026-08-30T01:59:27 gc lebs:      1
+2026-08-30T01:59:27 index lebs:   1
+2026-08-30T01:59:27 leb_cnt:      69
+2026-08-30T01:59:27 UUID:         614CFF09-57D1-43B6-9832-82B48FE16D15
+2026-08-30T01:59:27 Success!
+2026-08-30T01:59:27 [7m>>>   Generating filesystem image rootfs.ubi[27m
+2026-08-30T01:59:27 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/images
+2026-08-30T01:59:27 rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi
+2026-08-30T01:59:27 mkdir -p /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi
+2026-08-30T01:59:27 rsync -auH --exclude=/THIS_IS_NOT_YOUR_ROOT_FILESYSTEM /home/linux/rk3506/buildroot/output/rockchip_rk3506/target/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/target
+2026-08-30T01:59:27 echo '#!/bin/sh' > /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/fakeroot
+2026-08-30T01:59:27 echo "set -e" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/fakeroot
+2026-08-30T01:59:27 echo "chown -h -R 0:0 /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/fakeroot
+2026-08-30T01:59:27 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" /home/linux/rk3506/buildroot/support/scripts/mkusers /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_users_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/target >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/fakeroot
+2026-08-30T01:59:27 echo "/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/makedevs -d /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_devices_table.txt /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/target" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/fakeroot
+2026-08-30T01:59:27 printf '   	rm -rf /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/target/usr/lib/udev/hwdb.d/ /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/target/etc/udev/hwdb.d/\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/fakeroot
+2026-08-30T01:59:27 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/target/run/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/fakeroot
+2026-08-30T01:59:27 echo "find /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/target/tmp/ -mindepth 1 -prune -print0 | xargs -0r rm -rf --" >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/fakeroot
+2026-08-30T01:59:27 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/fakeroot
+2026-08-30T01:59:27 printf '   \n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/fakeroot
+2026-08-30T01:59:27 printf '   	sed -e '\''s;BR2_ROOTFS_UBI_PATH;/home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.ubifs;'\'' -e '\''s;BINARIES_DIR;/home/linux/rk3506/buildroot/output/rockchip_rk3506/images;'\'' -e '\''s;UBI_VOL_TYPE;dynamic;'\'' fs/ubi/ubinize.cfg > /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/ubinize.cfg\n	/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin/ubinize -o /home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.ubi -m 0x800 -p 0x20000 -s 2048  /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/ubinize.cfg\n	rm /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/ubinize.cfg\n' >> /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/fakeroot
+2026-08-30T01:59:27 chmod a+x /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/fakeroot
+2026-08-30T01:59:27 PATH="/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin:/home/linux/rk3506/buildroot/output/rockchip_rk3506/host/sbin:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/home/linux/.codex/tmp/arg0/codex-arg0liZvue:/usr/lib/node_modules/@openai/codex/node_modules/@openai/codex-linux-x64/vendor/x86_64-unknown-linux-musl/codex-path:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin" FAKEROOTDONTTRYCHOWN=1 /home/linux/rk3506/buildroot/output/rockchip_rk3506/host/bin/fakeroot -- /home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/fakeroot
+2026-08-30T01:59:28 rootdir=/home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/ubi/target
+2026-08-30T01:59:28 table='/home/linux/rk3506/buildroot/output/rockchip_rk3506/build/buildroot-fs/full_devices_table.txt'
+2026-08-30T01:59:28 ubinize: volume size was not specified in section "ubifs", assume minimum to fit image "/home/linux/rk3506/buildroot/output/rockchip_rk3506/images/rootfs.ubifs"8761344 bytes (8.3 MiB)
+2026-08-30T01:59:28 make: Leaving directory '/home/linux/rk3506/buildroot'
