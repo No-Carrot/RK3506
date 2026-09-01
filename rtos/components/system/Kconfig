@@ -1,0 +1,38 @@
+menu "System"
+
+config RT_USING_LVGL
+	bool "LVGL: Light and Versatile Graphics Library"
+	default n
+	help
+	  Enable LVGL.
+
+	choice LVGL_VERSION
+		prompt "LVGL Version."
+		default RT_USING_LVGL8
+		depends on RT_USING_LVGL
+		help
+		  Select LVGL version.
+
+		config RT_USING_LVGL8
+			bool "v8.x"
+		config RT_USING_LVGL9
+			bool "v9.x"
+	endchoice
+
+if RT_USING_LVGL8
+	source "$RTT_DIR/components/system/lvgl/Kconfig"
+	source "$RTT_DIR/components/system/lvgl/Kconfig.rtt"
+endif
+
+if RT_USING_LVGL9
+	source "$RTT_DIR/components/system/lvgl9/Kconfig"
+	source "$RTT_DIR/components/system/lvgl9/Kconfig.rtt"
+endif
+
+config RT_USING_FREETYPE
+	bool "FreeType Font Library Enable"
+	default n
+	help
+	  Enable Freetype.
+
+endmenu
