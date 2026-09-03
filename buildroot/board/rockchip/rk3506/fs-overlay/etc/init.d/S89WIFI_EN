@@ -1,0 +1,13 @@
+#! /bin/sh
+
+case $1 in
+    start)
+	/usr/bin/wifi_en.sh
+	;;
+    stop)
+	/usr/bin/wifi_en.sh
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+        ;;
+esac

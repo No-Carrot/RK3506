@@ -1,0 +1,38 @@
+From d9827e6cd0b9ffedafc11e655d178da1c657ddb4 Mon Sep 17 00:00:00 2001
+From: Jiajian Wu <jair.wu@rock-chips.com>
+Date: Mon, 30 Dec 2024 19:54:46 +0800
+Subject: [PATCH 2/2] fix(rlottie): update texture if SDL is enabled
+
+Signed-off-by: Jiajian Wu <jair.wu@rock-chips.com>
+---
+ src/extra/libs/rlottie/lv_rlottie.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/src/extra/libs/rlottie/lv_rlottie.c b/src/extra/libs/rlottie/lv_rlottie.c
+index 730bb7028..1be640124 100644
+--- a/src/extra/libs/rlottie/lv_rlottie.c
++++ b/src/extra/libs/rlottie/lv_rlottie.c
+@@ -10,6 +10,9 @@
+ #if LV_USE_RLOTTIE
+ 
+ #include <rlottie_capi.h>
++#if LV_USE_GPU_SDL
++#include "../../../draw/sdl/lv_draw_sdl_texture_cache.h"
++#endif
+ 
+ /*********************
+ *      DEFINES
+@@ -277,6 +280,10 @@ static void next_frame_task_cb(lv_timer_t * t)
+     convert_to_rgba5658(rlottie->allocated_buf, rlottie->imgdsc.header.w, rlottie->imgdsc.header.h);
+ #endif
+ 
++#if LV_USE_GPU_SDL
++    lv_draw_sdl_texture_cache_update(obj, &rlottie->imgdsc, 0);
++#endif
++
+     lv_obj_invalidate(obj);
+ }
+ 
+-- 
+2.25.1
+

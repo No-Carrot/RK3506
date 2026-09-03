@@ -1,0 +1,96 @@
+From 6f59188c0888a48d1dfb5144d4b9c07276e7711f Mon Sep 17 00:00:00 2001
+From: Jeffy Chen <jeffy.chen@rock-chips.com>
+Date: Thu, 9 Jan 2025 14:52:44 +0800
+Subject: [PATCH 50/50] HACK: kmssink: Fallback to RFBC for AFBC
+
+NOTE:
+Those formats only supported on a few planes of a few chips.
+
+Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
+---
+ sys/kms/gstkmsallocator.c | 10 ++++++++++
+ sys/kms/gstkmssink.c      |  3 ++-
+ sys/kms/gstkmsutils.h     | 30 ++++++++++++++++++++++++++++++
+ 3 files changed, 42 insertions(+), 1 deletion(-)
+
+diff --git a/sys/kms/gstkmsallocator.c b/sys/kms/gstkmsallocator.c
+index 359646a..a834eef 100644
+--- a/sys/kms/gstkmsallocator.c
++++ b/sys/kms/gstkmsallocator.c
+@@ -475,8 +475,18 @@ gst_kms_allocator_add_fb (GstKMSAllocator * alloc, GstKMSMemory * kmsmem,
+       ret = drmModeAddFB2WithModifiers (alloc->priv->fd, w, h, _fmt, _handles,
+           _pitches, _offsets, _modifiers, &kmsmem->fb_id,
+           DRM_MODE_FB_MODIFIERS);
++
++      /* Fallback to RFBC */
++      if (ret) {
++        _modifiers[0] = DRM_RFBC_MODIFIER;
++
++        ret = drmModeAddFB2WithModifiers (alloc->priv->fd, w, h, _fmt, _handles,
++            _pitches, _offsets, _modifiers, &kmsmem->fb_id,
++            DRM_MODE_FB_MODIFIERS);
++      }
+     }
+ 
++    /* Old kernel, e.g. 4.4 */
+     if (ret)
+       ret = drmModeAddFB2WithModifiers (alloc->priv->fd, w, h, fmt, bo_handles,
+           pitches, offsets, modifiers, &kmsmem->fb_id, DRM_MODE_FB_MODIFIERS);
+diff --git a/sys/kms/gstkmssink.c b/sys/kms/gstkmssink.c
+index 9fd1746..3cb9093 100644
+--- a/sys/kms/gstkmssink.c
++++ b/sys/kms/gstkmssink.c
+@@ -1162,7 +1162,8 @@ check_afbc (GstKMSSink * self, drmModePlane * plane, guint32 drmfmt,
+       if (!(mod->formats & (1 << (i - mod->offset))))
+         continue;
+ 
+-      if (mod->modifier == DRM_AFBC_MODIFIER)
++      if (mod->modifier == DRM_AFBC_MODIFIER ||
++          mod->modifier == DRM_RFBC_MODIFIER)
+         *afbc = TRUE;
+       else if (mod->modifier == DRM_FORMAT_MOD_LINEAR)
+         *linear = TRUE;
+diff --git a/sys/kms/gstkmsutils.h b/sys/kms/gstkmsutils.h
+index 500405a..dd575a4 100644
+--- a/sys/kms/gstkmsutils.h
++++ b/sys/kms/gstkmsutils.h
+@@ -70,6 +70,36 @@ G_BEGIN_DECLS
+   (DRM_FORMAT_MOD_ARM_AFBC(AFBC_FORMAT_MOD_SPARSE) | \
+    DRM_FORMAT_MOD_ARM_AFBC(AFBC_FORMAT_MOD_BLOCK_SIZE_16x16))
+ 
++#ifndef DRM_FORMAT_MOD_VENDOR_ROCKCHIP
++#define DRM_FORMAT_MOD_VENDOR_ROCKCHIP 0x0b
++#endif
++
++#ifndef DRM_FORMAT_MOD_ROCKCHIP_TYPE_SHIFT
++#define DRM_FORMAT_MOD_ROCKCHIP_TYPE_SHIFT  52
++#endif
++
++#ifndef DRM_FORMAT_MOD_ROCKCHIP_TYPE_RFBC
++#define DRM_FORMAT_MOD_ROCKCHIP_TYPE_RFBC 0x1
++#endif
++
++#ifndef ROCKCHIP_RFBC_BLOCK_SIZE_64x4
++#define ROCKCHIP_RFBC_BLOCK_SIZE_64x4   (1ULL)
++#endif
++
++#ifndef DRM_FORMAT_MOD_ROCKCHIP_CODE
++#define DRM_FORMAT_MOD_ROCKCHIP_CODE(__type, __val) \
++  fourcc_mod_code(ROCKCHIP, ((__u64)(__type) << DRM_FORMAT_MOD_ROCKCHIP_TYPE_SHIFT) | \
++      ((__val) & 0x000fffffffffffffULL))
++#endif
++
++#ifndef DRM_FORMAT_MOD_ROCKCHIP_RFBC
++#define DRM_FORMAT_MOD_ROCKCHIP_RFBC(mode) \
++  DRM_FORMAT_MOD_ROCKCHIP_CODE(DRM_FORMAT_MOD_ROCKCHIP_TYPE_RFBC, mode)
++#endif
++
++#define DRM_RFBC_MODIFIER \
++  DRM_FORMAT_MOD_ROCKCHIP_RFBC(ROCKCHIP_RFBC_BLOCK_SIZE_64x4)
++
+ #ifndef GST_VIDEO_FLAG_ARM_AFBC
+ #define GST_VIDEO_FLAG_ARM_AFBC (1UL << 31)
+ #define GST_VIDEO_INFO_SET_AFBC(i) \
+-- 
+2.20.1
+

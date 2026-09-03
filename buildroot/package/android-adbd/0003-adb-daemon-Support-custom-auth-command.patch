@@ -1,0 +1,342 @@
+From 709561e3d7f4908796060ab2c3bd8a88430436df Mon Sep 17 00:00:00 2001
+From: Jeffy Chen <jeffy.chen@rock-chips.com>
+Date: Sun, 8 Oct 2023 12:07:33 +0800
+Subject: [PATCH 3/7] adb: daemon: Support custom auth command
+
+Run "adb shell" to trigger /usr/bin/adbd-auth.sh for custom
+authentication.
+
+Tested on RK3588 EVB with:
+1/ echo true > /usr/bin/adbd-auth.sh
+2/ chmod 755 /usr/bin/adbd-auth.sh
+3/ echo ADB_SECURE=1 > /etc/profile.d/adbd.sh
+4/ reboot
+
+Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
+---
+ adb/adb.cpp                  | 38 +++++++++++++++++++++++++++++++++---
+ adb/adb_auth.h               |  8 ++++++++
+ adb/daemon/auth.cpp          | 20 +++++++++++++++++++
+ adb/daemon/services.cpp      | 27 +++++++++++++++++++++++++
+ adb/daemon/shell_service.cpp | 25 +++++++++++++++++-------
+ adb/daemon/shell_service.h   |  8 ++++++--
+ 6 files changed, 114 insertions(+), 12 deletions(-)
+
+diff --git a/adb/adb.cpp b/adb/adb.cpp
+index 3dbf70f..e39b613 100644
+--- a/adb/adb.cpp
++++ b/adb/adb.cpp
+@@ -185,7 +185,7 @@ static void send_close(unsigned local, unsigned remote, atransport *t)
+     send_packet(p, t);
+ }
+ 
+-std::string get_connection_string() {
++std::string get_connection_string(atransport* t) {
+     std::vector<std::string> connection_properties;
+ 
+ #if !ADB_HOST
+@@ -201,8 +201,16 @@ std::string get_connection_string() {
+     }
+ #endif
+ 
++    FeatureSet features = supported_features();
++
++#ifndef __ANDROID__
++    /* Force using raw shell for authentication noticing */
++    if (auth_required && !t->has_feature(FEATURE_AUTHED))
++        features.erase(kFeatureShell2);
++#endif
++
+     connection_properties.push_back(android::base::StringPrintf(
+-        "features=%s", FeatureSetToString(supported_features()).c_str()));
++        "features=%s", FeatureSetToString(features).c_str()));
+ 
+     return android::base::StringPrintf(
+         "%s::%s", adb_device_banner,
+@@ -219,7 +227,7 @@ void send_connect(atransport* t) {
+     cp->msg.arg0 = A_VERSION;
+     cp->msg.arg1 = t->get_max_payload();
+ 
+-    std::string connection_str = get_connection_string();
++    std::string connection_str = get_connection_string(t);
+     // Connect and auth packets are limited to MAX_PAYLOAD_V1 because we don't
+     // yet know how much data the other size is willing to accept.
+     if (connection_str.length() > MAX_PAYLOAD_V1) {
+@@ -343,6 +351,10 @@ void handle_packet(apacket *p, atransport *t)
+                     t->failed_auth_attempts = 0;
+                     t->auth_key = auth_key;
+                     adbd_notify_framework_connected_key(t);
++
++#ifndef __ANDROID__
++                    t->SetFeatures(FEATURE_AUTHED);
++#endif
+                 } else {
+                     if (t->failed_auth_attempts++ > 256) std::this_thread::sleep_for(1s);
+                     send_auth_request(t);
+@@ -371,7 +383,27 @@ void handle_packet(apacket *p, atransport *t)
+             // being interpreted as part of the string, unless we explicitly strip them.
+             address = StripTrailingNulls(address);
+ 
++#ifndef __ANDROID__
++            if (auth_required && !t->has_feature(FEATURE_AUTHED)) {
++                if (!adbd_auth_custom_supported()) {
++                    /* Should not reach here */
++                    t->SetConnectionState(kCsOffline);
++                    handle_offline(t);
++                    return;
++                }
++
++                /* Try custom authentication */
++                if (address.starts_with("shell:")) {
++                    if (t->failed_auth_attempts++ > 3) std::this_thread::sleep_for(1s);
++                    address = AUTH_CUSTOM;
++                } else if(!address.starts_with("reboot:")) {
++                    address = AUTH_REQUIRED;
++                }
++            }
++#endif
++
+             asocket* s = create_local_service_socket(address, t);
++
+             if (s == nullptr) {
+                 send_close(0, p->msg.arg0, t);
+             } else {
+diff --git a/adb/adb_auth.h b/adb/adb_auth.h
+index 2be9a76..513d340 100644
+--- a/adb/adb_auth.h
++++ b/adb/adb_auth.h
+@@ -44,11 +44,19 @@ void send_auth_response(const char* token, size_t token_size, atransport* t);
+ 
+ #else // !ADB_HOST
+ 
++#define FEATURE_AUTHED "authed"
++
++#define AUTH_CUSTOM "auth:custom"
++#define AUTH_REQUIRED "auth:required"
++
+ extern bool auth_required;
++extern const char *auth_command;
+ 
+ void adbd_auth_init(void);
+ void adbd_auth_verified(atransport *t);
+ 
++bool adbd_auth_custom_supported(void);
++
+ void adbd_cloexec_auth_socket();
+ bool adbd_auth_verify(const char* token, size_t token_size, const std::string& sig,
+                       std::string* auth_key);
+diff --git a/adb/daemon/auth.cpp b/adb/daemon/auth.cpp
+index 553ac59..1266a48 100644
+--- a/adb/daemon/auth.cpp
++++ b/adb/daemon/auth.cpp
+@@ -171,6 +171,14 @@ void adbd_auth_confirm_key(atransport* t) {
+         t->AddDisconnect(&adb_disconnect);
+     }
+ 
++#ifndef __ANDROID__
++    /* Try custom authentication later */
++    if (adbd_auth_custom_supported()) {
++        adbd_auth_verified(t);
++        return;
++    }
++#endif
++
+     {
+         std::lock_guard<std::mutex> lock(framework_mutex);
+         if (framework_fd < 0) {
+@@ -236,16 +244,28 @@ void adbd_notify_framework_connected_key(atransport* t) {
+ void adbd_cloexec_auth_socket() {
+     int fd = android_get_control_socket("adbd");
+     if (fd == -1) {
++#ifdef __ANDROID__
+         PLOG(ERROR) << "Failed to get adbd socket";
++#endif
+         return;
+     }
+     fcntl(fd, F_SETFD, FD_CLOEXEC);
+ }
+ 
++const char *auth_command = "/bin/false";
++
++bool adbd_auth_custom_supported(void) {
++    return access(auth_command, X_OK) == 0;
++}
++
+ void adbd_auth_init(void) {
++    auth_command = getenv("ADBD_AUTH_COMMAND") ?: "/usr/bin/adbd-auth.sh";
++
+     int fd = android_get_control_socket("adbd");
+     if (fd == -1) {
++#ifdef __ANDROID__
+         PLOG(ERROR) << "Failed to get adbd socket";
++#endif
+         return;
+     }
+ 
+diff --git a/adb/daemon/services.cpp b/adb/daemon/services.cpp
+index d92922e..c6b49d2 100644
+--- a/adb/daemon/services.cpp
++++ b/adb/daemon/services.cpp
+@@ -54,6 +54,8 @@
+ #include "sysdeps.h"
+ #include "transport.h"
+ 
++#include "adb_auth.h"
++
+ #include "daemon/file_sync_service.h"
+ #include "daemon/framebuffer_service.h"
+ #include "daemon/reboot_service.h"
+@@ -247,6 +249,24 @@ asocket* daemon_service_to_socket(std::string_view name) {
+ }
+ #endif
+ 
++#ifndef __ANDROID__
++static void require_auth_service(unique_fd fd)
++{
++    WriteFdExactly(fd.get(), "login with \"adb shell\" to continue.\r\n");
++}
++
++void auth_finished(int exit_code, void *userdata)
++{
++    if (exit_code) return;
++
++    atransport *t = static_cast<atransport*>(userdata);
++    t->SetFeatures(FEATURE_AUTHED);
++
++    /* Update features to enable shell v2 */
++    send_connect(t);
++}
++#endif
++
+ unique_fd daemon_service_to_fd(std::string_view name, atransport* transport) {
+ #if defined(__ANDROID__) && !defined(__ANDROID_RECOVERY__)
+     if (name.starts_with("abb:") || name.starts_with("abb_exec:")) {
+@@ -303,6 +323,13 @@ unique_fd daemon_service_to_fd(std::string_view name, atransport* transport) {
+         std::string arg(name);
+         return create_service_thread("reboot",
+                                      std::bind(reboot_service, std::placeholders::_1, arg));
++    } else if (ConsumePrefix(&name, AUTH_CUSTOM)) {
++        return StartSubprocess(auth_command, nullptr,
++                              SubprocessType::kPty, SubprocessProtocol::kNone,
++                              auth_finished,
++                              reinterpret_cast<void*>(const_cast<atransport*>(transport)));
++    } else if (ConsumePrefix(&name, AUTH_REQUIRED)) {
++        return create_service_thread("auth-required", require_auth_service);
+     }
+ #endif
+ 
+diff --git a/adb/daemon/shell_service.cpp b/adb/daemon/shell_service.cpp
+index a73fe59..c5c426a 100644
+--- a/adb/daemon/shell_service.cpp
++++ b/adb/daemon/shell_service.cpp
+@@ -147,7 +147,8 @@ bool CreateSocketpair(unique_fd* fd1, unique_fd* fd2) {
+ class Subprocess {
+   public:
+     Subprocess(std::string command, const char* terminal_type, SubprocessType type,
+-               SubprocessProtocol protocol, bool make_pty_raw);
++               SubprocessProtocol protocol, bool make_pty_raw,
++               exit_func exit_func = nullptr, void *userdata = nullptr);
+     ~Subprocess();
+ 
+     const std::string& command() const { return command_; }
+@@ -200,16 +201,22 @@ class Subprocess {
+     std::unique_ptr<ShellProtocol> input_, output_;
+     size_t input_bytes_left_ = 0;
+ 
++    exit_func exit_func_;
++    void *userdata_;
++
+     DISALLOW_COPY_AND_ASSIGN(Subprocess);
+ };
+ 
+ Subprocess::Subprocess(std::string command, const char* terminal_type, SubprocessType type,
+-                       SubprocessProtocol protocol, bool make_pty_raw)
++                       SubprocessProtocol protocol, bool make_pty_raw,
++                       exit_func exit_func, void *userdata)
+     : command_(std::move(command)),
+       terminal_type_(terminal_type ? terminal_type : ""),
+       type_(type),
+       protocol_(protocol),
+-      make_pty_raw_(make_pty_raw) {}
++      make_pty_raw_(make_pty_raw),
++      exit_func_(exit_func),
++      userdata_(userdata) {}
+ 
+ Subprocess::~Subprocess() {
+     WaitForExit();
+@@ -757,6 +764,9 @@ void Subprocess::WaitForExit() {
+         }
+     }
+ 
++    if (exit_func_)
++        exit_func_(exit_code, userdata_);
++
+     // If we have an open protocol FD send an exit packet.
+     if (protocol_sfd_ != -1) {
+         output_->data()[0] = exit_code;
+@@ -802,7 +812,7 @@ unique_fd ReportError(SubprocessProtocol protocol, const std::string& message) {
+ }
+ 
+ unique_fd StartSubprocess(std::string name, const char* terminal_type, SubprocessType type,
+-                          SubprocessProtocol protocol) {
++                          SubprocessProtocol protocol, exit_func exit_func, void *userdata) {
+     // If we aren't using the shell protocol we must allocate a PTY to properly close the
+     // subprocess. PTYs automatically send SIGHUP to the slave-side process when the master side
+     // of the PTY closes, which we rely on. If we use a raw pipe, processes that don't read/write,
+@@ -819,7 +829,7 @@ unique_fd StartSubprocess(std::string name, const char* terminal_type, Subproces
+ 
+     unique_fd error_fd;
+     unique_fd fd = StartSubprocess(std::move(name), terminal_type, type, protocol, make_pty_raw,
+-                                   protocol, &error_fd);
++                                   protocol, &error_fd, exit_func, userdata);
+     if (fd == -1) {
+         return error_fd;
+     }
+@@ -828,13 +838,14 @@ unique_fd StartSubprocess(std::string name, const char* terminal_type, Subproces
+ 
+ unique_fd StartSubprocess(std::string name, const char* terminal_type, SubprocessType type,
+                           SubprocessProtocol protocol, bool make_pty_raw,
+-                          SubprocessProtocol error_protocol, unique_fd* error_fd) {
++                          SubprocessProtocol error_protocol, unique_fd* error_fd,
++                          exit_func exit_func, void *userdata) {
+     D("starting %s subprocess (protocol=%s, TERM=%s): '%s'",
+       type == SubprocessType::kRaw ? "raw" : "PTY",
+       protocol == SubprocessProtocol::kNone ? "none" : "shell", terminal_type, name.c_str());
+ 
+     auto subprocess = std::make_unique<Subprocess>(std::move(name), terminal_type, type, protocol,
+-                                                   make_pty_raw);
++                                                   make_pty_raw, exit_func, userdata);
+     if (!subprocess) {
+         LOG(ERROR) << "failed to allocate new subprocess";
+         *error_fd = ReportError(error_protocol, "failed to allocate new subprocess");
+diff --git a/adb/daemon/shell_service.h b/adb/daemon/shell_service.h
+index 3abd958..7a4a81c 100644
+--- a/adb/daemon/shell_service.h
++++ b/adb/daemon/shell_service.h
+@@ -32,17 +32,21 @@ enum class SubprocessProtocol {
+     kShell,
+ };
+ 
++typedef void (*exit_func)(int exit_code, void *userdata);
++
+ // Forks and starts a new shell subprocess. If |name| is empty an interactive
+ // shell is started, otherwise |name| is executed non-interactively.
+ //
+ // Returns an open FD connected to the subprocess or -1 on failure.
+ unique_fd StartSubprocess(std::string name, const char* terminal_type, SubprocessType type,
+-                          SubprocessProtocol protocol);
++                          SubprocessProtocol protocol,
++                          exit_func exit_func = nullptr, void *userdata = nullptr);
+ 
+ // The same as above but with more fined grained control and custom error handling.
+ unique_fd StartSubprocess(std::string name, const char* terminal_type, SubprocessType type,
+                           SubprocessProtocol protocol, bool make_pty_raw,
+-                          SubprocessProtocol error_protocol, unique_fd* error_fd);
++                          SubprocessProtocol error_protocol, unique_fd* error_fd,
++                          exit_func exit_func = nullptr, void *userdata = nullptr);
+ 
+ // Executes |command| in a separate thread.
+ // Sets up in/out and error streams to emulate shell-like behavior.
+-- 
+2.20.1
+

@@ -1,0 +1,14 @@
+config BR2_PACKAGE_POPT
+	bool "popt"
+	help
+	  Popt is a C library for parsing command line parameters.
+
+	  https://github.com/rpm-software-management/popt
+
+if BR2_PACKAGE_POPT
+
+config BR2_PACKAGE_POPT_STATIC
+	bool "Enable static"
+	default y if BR2_STATIC_LIBS
+
+endif

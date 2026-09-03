@@ -1,0 +1,171 @@
+From c686ef980444e7e57c3300427cc7941d8704a2e1 Mon Sep 17 00:00:00 2001
+From: Jiajian Wu <jair.wu@rock-chips.com>
+Date: Wed, 4 Dec 2024 11:09:52 +0800
+Subject: [PATCH 14/22] fix(drm): support software rotation
+
+Signed-off-by: Jiajian Wu <jair.wu@rock-chips.com>
+---
+ src/drivers/display/drm/lv_linux_drm.c | 106 +++++++++++++++++++++++--
+ 1 file changed, 99 insertions(+), 7 deletions(-)
+
+diff --git a/src/drivers/display/drm/lv_linux_drm.c b/src/drivers/display/drm/lv_linux_drm.c
+index fc944b992..ea976bcd4 100644
+--- a/src/drivers/display/drm/lv_linux_drm.c
++++ b/src/drivers/display/drm/lv_linux_drm.c
+@@ -39,16 +39,24 @@
+ #if (LV_COLOR_DEPTH == 16)
+ #define DRM_FORMAT      DRM_FORMAT_RGB565
+ #define RGA_FORMAT      RK_FORMAT_BGR_565
++#define SW_ROTATION     1
+ #elif (LV_COLOR_DEPTH == 24)
+ #define DRM_FORMAT      DRM_FORMAT_RGB888
+ #define RGA_FORMAT      RK_FORMAT_BGR_888
++#define SW_ROTATION     0
+ #elif (LV_COLOR_DEPTH == 32)
+ #define DRM_FORMAT      DRM_FORMAT_ARGB8888
+ #define RGA_FORMAT      RK_FORMAT_BGRA_8888
++#define SW_ROTATION     1
+ #else
+     #error "Unsupported depth"
+ #endif
+ 
++#if LV_DRM_USE_RGA
++#undef SW_ROTATION
++#define SW_ROTATION     0
++#endif
++
+ typedef struct drm_bo {
+     int fd;
+     void *ptr;
+@@ -808,7 +816,7 @@ static void drm_flip_handler(int fd, unsigned frame, unsigned sec,
+     *(int*)data = 0;
+ }
+ 
+-static drm_device_t * drm_init(int bpp)
++static drm_device_t * drm_init(void)
+ {
+     drm_device_t * dev;
+     int ret;
+@@ -1085,6 +1093,74 @@ static void *drm_thread(void *arg)
+     return NULL;
+ }
+ 
++#if SW_ROTATION
++#if (LV_COLOR_DEPTH == 16)
++typedef uint16_t data_type;
++#elif (LV_COLOR_DEPTH == 32)
++typedef uint32_t data_type;
++#endif
++
++static void rotate_90(lv_display_t * disp, const lv_area_t * area, uint8_t * color_p)
++{
++    drm_device_t * dev = lv_display_get_driver_data(disp);
++    data_type *src = (data_type *)color_p;
++    data_type *dst;
++    int32_t x, tx;
++    int32_t y, ty;
++
++    for(y = area->y1; y <= area->y2; y++) {
++        tx = (dev->lcd_w - 1) - y;
++        ty = area->x1;
++        dst = (data_type *)(dev->drm_buff + (ty * dev->lcd_sw + tx) * (LV_COLOR_DEPTH >> 3));
++        for(x = area->x1; x <= area->x2; x++) {
++            *dst = *src;
++            src++;
++            dst += dev->lcd_sw;
++        }
++    }
++}
++
++static void rotate_180(lv_display_t * disp, const lv_area_t * area, uint8_t * color_p)
++{
++    drm_device_t * dev = lv_display_get_driver_data(disp);
++    data_type *src = (data_type *)color_p;
++    data_type *dst;
++    int32_t x, tx;
++    int32_t y, ty;
++
++    for(y = area->y1; y <= area->y2; y++) {
++        tx = (dev->lcd_w - 1) - area->x1;
++        ty = (dev->lcd_h - 1) - y;
++        dst = (data_type *)(dev->drm_buff + (ty * dev->lcd_sw + tx) * (LV_COLOR_DEPTH >> 3));
++        for(x = area->x1; x <= area->x2; x++) {
++            *dst = *src;
++            src++;
++            dst--;
++        }
++    }
++}
++
++static void rotate_270(lv_display_t * disp, const lv_area_t * area, uint8_t * color_p)
++{
++    drm_device_t * dev = lv_display_get_driver_data(disp);
++    data_type *src = (data_type *)color_p;
++    data_type *dst;
++    int32_t x, tx;
++    int32_t y, ty;
++
++    for(y = area->y1; y <= area->y2; y++) {
++        tx = y;
++        ty = (dev->lcd_h - 1) - area->x1;
++        dst = (data_type *)(dev->drm_buff + (ty * dev->lcd_sw + tx) * (LV_COLOR_DEPTH >> 3));
++        for(x = area->x1; x <= area->x2; x++) {
++            *dst = *src;
++            src++;
++            dst -= dev->lcd_sw;
++        }
++    }
++}
++#endif
++
+ static void drm_flush(lv_display_t * disp, const lv_area_t * area, uint8_t * color_p)
+ {
+     drm_device_t * dev = lv_display_get_driver_data(disp);
+@@ -1095,11 +1171,27 @@ static void drm_flush(lv_display_t * disp, const lv_area_t * area, uint8_t * col
+ 
+     pthread_mutex_lock(&dev->mutex);
+ 
+-    for(y = area->y1; y <= area->y2; y++) {
+-        lv_color_t *ptr = (lv_color_t*)(dev->drm_buff + (y * dev->lcd_sw + area->x1) * (LV_COLOR_DEPTH >> 3));
+-        memcpy(ptr, color_p, w * (LV_COLOR_DEPTH >> 3));
+-        color_p += w * (LV_COLOR_DEPTH >> 3);
++#if SW_ROTATION
++    if (!dev->disp_rot)
++    {
++#endif
++        for(y = area->y1; y <= area->y2; y++) {
++            lv_color_t *ptr = (lv_color_t*)(dev->drm_buff + (y * dev->lcd_sw + area->x1) * (LV_COLOR_DEPTH >> 3));
++            memcpy(ptr, color_p, w * (LV_COLOR_DEPTH >> 3));
++            color_p += w * (LV_COLOR_DEPTH >> 3);
++        }
++#if SW_ROTATION
+     }
++    else
++    {
++        if (dev->disp_rot == 90)
++            rotate_90(disp, area, color_p);
++        else if (dev->disp_rot == 180)
++            rotate_180(disp, area, color_p);
++        else if (dev->disp_rot == 270)
++            rotate_270(disp, area, color_p);
++    }
++#endif
+     if(lv_display_flush_is_last(disp))
+         dev->draw_update = 1;
+     pthread_mutex_unlock(&dev->mutex);
+@@ -1153,10 +1245,10 @@ lv_display_t * lv_drm_disp_create(int hor_res, int ver_res, int rot)
+ {
+     lv_display_t * disp;
+ 
+-    drm_device_t * dev = drm_init(32);
++    drm_device_t * dev = drm_init();
+     if (!dev)
+         return NULL;
+-#if LV_DRM_USE_RGA
++#if LV_DRM_USE_RGA || SW_ROTATION
+     dev->disp_rot = rot;
+ #endif
+     lv_env_get_u32("lv_disp_width", &dev->lcd_w, hor_res);
+-- 
+2.25.1
+

@@ -1,0 +1,2 @@
+#include "chips/rk3506_arm.config"
+#include "base/security-ramdisk.config"

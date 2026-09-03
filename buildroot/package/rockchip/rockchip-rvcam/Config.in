@@ -1,0 +1,10 @@
+config BR2_PACKAGE_ROCKCHIP_RVCAM
+	bool "rockchip-rvcam"
+	select BR2_PACKAGE_ROCKCHIP_ERPC
+	select BR2_PACKAGE_TINYXML2
+	help
+	  This option activates the Rockchip Vehicle Camera (RVCAM)
+	  middleware solution, delivering a reliable virtual
+	  multi-camera capability. This feature is designed to
+	  enhance Automotive Camera HAL3 and EVS HAL, along with
+	  other native applications.

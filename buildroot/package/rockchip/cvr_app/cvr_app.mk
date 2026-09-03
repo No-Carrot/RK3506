@@ -1,0 +1,38 @@
+CVR_APP_SITE = $(TOPDIR)/../app/cvr
+CVR_APP_SITE_METHOD = local
+
+# add dependencies
+CVR_APP_DEPENDENCIES = rkfsmk camera-engine-rkaiq rkadk rockchip-rga lvgl
+
+CVR_APP_INSTALL_STAGING = YES
+
+ifeq ($(BR2_PACKAGE_CVR_RV1103B), y)
+CVR_APP_CONF_OPTS += -DSOC_RV1103B=ON
+endif
+
+ifeq ($(BR2_PACKAGE_CVR_RV1126), y)
+CVR_APP_CONF_OPTS += -DSOC_RV1126=ON
+endif
+
+ifeq ($(BR2_PACKAGE_CVR_RK3576), y)
+CVR_APP_CONF_OPTS += -DSOC_RK3576=ON
+endif
+
+ifeq ($(BR2_PACKAGE_CVR_RV1106), y)
+CVR_APP_CONF_OPTS += -DSOC_RV1106=ON
+endif
+
+ifeq ($(BR2_PACKAGE_CVR_USE_AIQ), y)
+CVR_APP_CONF_OPTS += -DUSE_RKAIQ=ON
+endif
+
+ifeq ($(BR2_PACKAGE_CVR_LVGL), y)
+CVR_APP_CONF_OPTS += -DUSE_LVGL=ON
+endif
+
+ifeq ($(BR2_PACKAGE_CVR_FILE_CACHE), y)
+CVR_APP_CONF_OPTS += -DUSE_FILECACHE=ON
+endif
+
+$(eval $(cmake-package))
+

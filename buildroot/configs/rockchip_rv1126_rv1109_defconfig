@@ -1,0 +1,12 @@
+#include "base/base.config"
+#include "chips/rv1126_rv1109_arm.config"
+#include "fs/vfat.config"
+#include "multimedia/audio.config"
+#include "multimedia/camera.config"
+#include "multimedia/mpp.config"
+#include "multimedia/rockit.config"
+BR2_PACKAGE_LIBDRM=y
+BR2_PACKAGE_LIBDRM_INSTALL_TESTS=y
+BR2_PACKAGE_ROCKCHIP_RGA=y
+BR2_PACKAGE_CAMERA_ENGINE_RKAIQ_RKISP_DEMO=y
+BR2_PACKAGE_RKNPU=y

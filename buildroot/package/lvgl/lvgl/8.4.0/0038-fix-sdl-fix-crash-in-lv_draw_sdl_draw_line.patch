@@ -1,0 +1,35 @@
+From b47c87f5ec77175f12c7e1402b10ecd21981145a Mon Sep 17 00:00:00 2001
+From: Jiajian Wu <jair.wu@rock-chips.com>
+Date: Tue, 21 Jan 2025 15:51:10 +0800
+Subject: [PATCH] fix(sdl): fix crash in lv_draw_sdl_draw_line
+
+Signed-off-by: Jiajian Wu <jair.wu@rock-chips.com>
+---
+ src/draw/sdl/lv_draw_sdl_line.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/draw/sdl/lv_draw_sdl_line.c b/src/draw/sdl/lv_draw_sdl_line.c
+index 204e1a3d8..3a15d6d33 100644
+--- a/src/draw/sdl/lv_draw_sdl_line.c
++++ b/src/draw/sdl/lv_draw_sdl_line.c
+@@ -53,7 +53,7 @@ static SDL_Texture * line_texture_create(lv_draw_sdl_ctx_t * sdl_ctx, const lv_d
+  *   GLOBAL FUNCTIONS
+  **********************/
+ void lv_draw_sdl_draw_line(lv_draw_ctx_t * draw_ctx, const lv_draw_line_dsc_t * dsc, const lv_point_t * point1,
+-                           const lv_point_t * point2, bool * in_cache)
++                           const lv_point_t * point2)
+ {
+     lv_draw_sdl_ctx_t * sdl_ctx = (lv_draw_sdl_ctx_t *) draw_ctx;
+     SDL_Renderer * renderer = sdl_ctx->renderer;
+@@ -68,7 +68,7 @@ void lv_draw_sdl_draw_line(lv_draw_ctx_t * draw_ctx, const lv_draw_line_dsc_t *
+     SDL_Texture * texture = lv_draw_sdl_texture_cache_get(sdl_ctx, &key, sizeof(key), NULL);
+     if(!texture) {
+         texture = line_texture_create(sdl_ctx, dsc, (lv_coord_t) length);
+-        *in_cache = lv_draw_sdl_texture_cache_put(sdl_ctx, &key, sizeof(key), texture);
++        lv_draw_sdl_texture_cache_put(sdl_ctx, &key, sizeof(key), texture);
+     }
+ 
+     lv_area_t coords = {x1, y1, x2, y2};
+-- 
+2.25.1
+

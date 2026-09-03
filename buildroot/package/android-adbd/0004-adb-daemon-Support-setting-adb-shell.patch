@@ -1,0 +1,41 @@
+From 681784eacf1e192e8417faa2397d124c5c5c719d Mon Sep 17 00:00:00 2001
+From: Jeffy Chen <jeffy.chen@rock-chips.com>
+Date: Sun, 8 Oct 2023 18:03:25 +0800
+Subject: [PATCH 4/7] adb: daemon: Support setting adb shell
+
+Tested on RK3588 EVB with:
+1/ echo ADBD_SHELL=/bin/bash > /etc/profile.d/adbd.sh
+2/ reboot
+
+Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
+---
+ adb/daemon/shell_service.cpp | 9 ++++++---
+ 1 file changed, 6 insertions(+), 3 deletions(-)
+
+diff --git a/adb/daemon/shell_service.cpp b/adb/daemon/shell_service.cpp
+index c5c426a..869609f 100644
+--- a/adb/daemon/shell_service.cpp
++++ b/adb/daemon/shell_service.cpp
+@@ -376,13 +376,16 @@ bool Subprocess::ForkAndExec(std::string* error) {
+         }
+ #endif
+ 
++        const char *shell_command = getenv("ADBD_SHELL") ? : _PATH_BSHELL;
+         if (command_.empty()) {
+             // Spawn a login shell if we don't have a command.
+-            execle(_PATH_BSHELL, "-" _PATH_BSHELL, nullptr, cenv.data());
++            execle(shell_command, shell_command, "-l", nullptr, cenv.data());
+         } else {
+-            execle(_PATH_BSHELL, _PATH_BSHELL, "-c", command_.c_str(), nullptr, cenv.data());
++            execle(shell_command, shell_command, "-c", command_.c_str(), nullptr, cenv.data());
+         }
+-        WriteFdExactly(child_error_sfd, "exec '" _PATH_BSHELL "' failed: ");
++        WriteFdExactly(child_error_sfd, "exec '");
++        WriteFdExactly(child_error_sfd, shell_command);
++        WriteFdExactly(child_error_sfd, "' failed: ");
+         WriteFdExactly(child_error_sfd, strerror(errno));
+         child_error_sfd.reset(-1);
+         _Exit(1);
+-- 
+2.20.1
+

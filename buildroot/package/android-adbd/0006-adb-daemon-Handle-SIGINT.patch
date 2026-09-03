@@ -1,0 +1,27 @@
+From d5d3ce785efff575f1067ffd687c8baa36ee523f Mon Sep 17 00:00:00 2001
+From: Jeffy Chen <jeffy.chen@rock-chips.com>
+Date: Mon, 27 Nov 2023 09:32:23 +0800
+Subject: [PATCH 6/7] adb: daemon: Handle SIGINT
+
+The SIGINT would be ignored by default when running as systemd service.
+
+Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
+---
+ adb/daemon/main.cpp | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/adb/daemon/main.cpp b/adb/daemon/main.cpp
+index 4428832..8839135 100644
+--- a/adb/daemon/main.cpp
++++ b/adb/daemon/main.cpp
+@@ -204,6 +204,7 @@ static void setup_port(int port) {
+ int adbd_main(int server_port) {
+     umask(0);
+ 
++    signal(SIGINT, SIG_DFL);
+     signal(SIGPIPE, SIG_IGN);
+ 
+ #if defined(__BIONIC__)
+-- 
+2.20.1
+

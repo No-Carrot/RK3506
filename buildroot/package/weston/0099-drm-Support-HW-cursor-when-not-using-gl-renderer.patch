@@ -1,0 +1,464 @@
+From 0c27c081b73b199fb616b4e50bf3fb5e5d5cb92a Mon Sep 17 00:00:00 2001
+From: Jeffy Chen <jeffy.chen@rock-chips.com>
+Date: Wed, 22 Jan 2025 16:32:10 +0800
+Subject: [PATCH 099/104] drm: Support HW cursor when not using gl-renderer
+
+Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
+---
+ libweston/backend-drm/drm-gbm.c       | 69 ---------------------------
+ libweston/backend-drm/drm-internal.h  |  4 +-
+ libweston/backend-drm/drm.c           | 69 +++++++++++++++++++--------
+ libweston/backend-drm/fb.c            | 53 +++++++++++---------
+ libweston/backend-drm/kms.c           |  4 +-
+ libweston/backend-drm/state-propose.c | 23 +--------
+ 6 files changed, 84 insertions(+), 138 deletions(-)
+
+diff --git a/libweston/backend-drm/drm-gbm.c b/libweston/backend-drm/drm-gbm.c
+index 27c76d71d..bbe0a6af3 100644
+--- a/libweston/backend-drm/drm-gbm.c
++++ b/libweston/backend-drm/drm-gbm.c
+@@ -117,71 +117,6 @@ init_egl(struct drm_backend *b)
+ 	return 0;
+ }
+ 
+-static void drm_output_fini_cursor_egl(struct drm_output *output)
+-{
+-	unsigned int i;
+-
+-	for (i = 0; i < ARRAY_LENGTH(output->gbm_cursor_fb); i++) {
+-		if (!output->gbm_cursor_fb[i])
+-			continue;
+-
+-		/* This cursor does not have a GBM device */
+-		if (!output->gbm_cursor_fb[i]->bo)
+-			output->gbm_cursor_fb[i]->type = BUFFER_PIXMAN_DUMB;
+-		drm_fb_unref(output->gbm_cursor_fb[i]);
+-		output->gbm_cursor_fb[i] = NULL;
+-	}
+-}
+-
+-static int
+-drm_output_init_cursor_egl(struct drm_output *output, struct drm_backend *b)
+-{
+-	struct drm_device *device = output->device;
+-	unsigned int i;
+-
+-	/* No point creating cursors if we don't have a plane for them. */
+-	if (!output->cursor_plane)
+-		return 0;
+-
+-	for (i = 0; i < ARRAY_LENGTH(output->gbm_cursor_fb); i++) {
+-		struct gbm_bo *bo;
+-
+-		if (gbm_device_get_fd(b->gbm) != output->device->drm.fd) {
+-			output->gbm_cursor_fb[i] =
+-				drm_fb_create_dumb(output->device,
+-						   device->cursor_width,
+-						   device->cursor_height,
+-						   DRM_FORMAT_ARGB8888);
+-			/* Override buffer type, since we know it is a cursor */
+-			output->gbm_cursor_fb[i]->type = BUFFER_CURSOR;
+-			output->gbm_cursor_handle[i] =
+-				output->gbm_cursor_fb[i]->handles[0];
+-		} else {
+-			bo = gbm_bo_create(b->gbm, device->cursor_width, device->cursor_height,
+-					   GBM_FORMAT_ARGB8888,
+-					   GBM_BO_USE_CURSOR | GBM_BO_USE_WRITE);
+-			if (!bo)
+-				goto err;
+-
+-			output->gbm_cursor_fb[i] =
+-				drm_fb_get_from_bo(bo, device, false, BUFFER_CURSOR);
+-			if (!output->gbm_cursor_fb[i]) {
+-				gbm_bo_destroy(bo);
+-				goto err;
+-			}
+-			output->gbm_cursor_handle[i] = gbm_bo_get_handle(bo).s32;
+-		}
+-	}
+-
+-	return 0;
+-
+-err:
+-	weston_log("cursor buffers unavailable, using gl cursors\n");
+-	device->cursors_are_broken = true;
+-	drm_output_fini_cursor_egl(output);
+-	return -1;
+-}
+-
+ static struct gbm_surface *
+ create_gbm_surface(struct gbm_device *gbm, struct drm_output *output,
+ 		   struct weston_drm_format *fmt)
+@@ -338,8 +273,6 @@ drm_output_init_egl(struct drm_output *output, struct drm_backend *b)
+ 		}
+ 	}
+ 
+-	drm_output_init_cursor_egl(output, b);
+-
+ 	return 0;
+ }
+ 
+@@ -370,8 +303,6 @@ drm_output_fini_egl(struct drm_output *output)
+ 		output->gbm_surfaces[i] = NULL;
+ 	}
+ 	output->gbm_surface = NULL;
+-
+-	drm_output_fini_cursor_egl(output);
+ }
+ 
+ struct drm_fb *
+diff --git a/libweston/backend-drm/drm-internal.h b/libweston/backend-drm/drm-internal.h
+index 73d0c82e4..66191d7bd 100644
+--- a/libweston/backend-drm/drm-internal.h
++++ b/libweston/backend-drm/drm-internal.h
+@@ -595,8 +595,8 @@ struct drm_output {
+ 	bool dpms_off_pending;
+ 	bool mode_switch_pending;
+ 
+-	uint32_t gbm_cursor_handle[2];
+-	struct drm_fb *gbm_cursor_fb[2];
++	uint32_t cursor_handle[2];
++	struct drm_fb *cursor_fb[2];
+ 	struct drm_plane *cursor_plane;
+ 	struct weston_view *cursor_view;
+ 	struct wl_listener cursor_view_destroy_listener;
+diff --git a/libweston/backend-drm/drm.c b/libweston/backend-drm/drm.c
+index 1c5dc6064..c0031d5c1 100644
+--- a/libweston/backend-drm/drm.c
++++ b/libweston/backend-drm/drm.c
+@@ -921,7 +921,6 @@ err:
+ 	weston_capture_task_retire_failed(ct, msg);
+ }
+ 
+-#ifdef BUILD_DRM_GBM
+ /**
+  * Update the image for the current cursor surface
+  *
+@@ -929,10 +928,9 @@ err:
+  * @param ev Source view for cursor
+  */
+ static void
+-cursor_bo_update(struct drm_output *output, struct weston_view *ev)
++cursor_update(struct drm_output *output, struct weston_view *ev)
+ {
+ 	struct drm_device *device = output->device;
+-	struct gbm_bo *bo = output->gbm_cursor_fb[output->current_cursor]->bo;
+ 	struct weston_buffer *buffer = ev->surface->buffer_ref.buffer;
+ 	uint32_t buf[device->cursor_width * device->cursor_height];
+ 	uint8_t *s;
+@@ -953,20 +951,8 @@ cursor_bo_update(struct drm_output *output, struct weston_view *ev)
+ 		       buffer->width * 4);
+ 	wl_shm_buffer_end_access(buffer->shm_buffer);
+ 
+-	if (bo) {
+-		if (gbm_bo_write(bo, buf, sizeof buf) < 0)
+-			weston_log("failed update cursor: %s\n", strerror(errno));
+-	} else {
+-		memcpy(output->gbm_cursor_fb[output->current_cursor]->map,
+-		       buf, sizeof buf);
+-	}
+-}
+-#else
+-static void
+-cursor_bo_update(struct drm_output *output, struct weston_view *ev)
+-{
++	memcpy(output->cursor_fb[output->current_cursor]->map, buf, sizeof buf);
+ }
+-#endif
+ 
+ static void
+ drm_output_prepare_repaint(struct weston_output *output_base)
+@@ -1040,7 +1026,7 @@ drm_output_repaint(struct weston_output *output_base)
+ 		pixman_region32_t damage;
+ 
+ 		assert(cursor_state->plane == output->cursor_plane);
+-		assert(cursor_state->fb == output->gbm_cursor_fb[0]);
++		assert(cursor_state->fb == output->cursor_fb[0]);
+ 
+ 		pixman_region32_init(&damage);
+ 		weston_output_flush_damage_for_plane(&output->base,
+@@ -1050,13 +1036,13 @@ drm_output_repaint(struct weston_output *output_base)
+ 			output->current_cursor++;
+ 			output->current_cursor =
+ 				output->current_cursor %
+-					ARRAY_LENGTH(output->gbm_cursor_fb);
+-			cursor_bo_update(output, output->cursor_view);
++					ARRAY_LENGTH(output->cursor_fb);
++			cursor_update(output, output->cursor_view);
+ 		}
+ 		pixman_region32_fini(&damage);
+ 
+-		cursor_state->fb = drm_fb_ref(output->gbm_cursor_fb[output->current_cursor]);
+-		drm_fb_unref(output->gbm_cursor_fb[0]);
++		cursor_state->fb = drm_fb_ref(output->cursor_fb[output->current_cursor]);
++		drm_fb_unref(output->cursor_fb[0]);
+ 	}
+ 
+ 
+@@ -2732,6 +2718,43 @@ should_wait_drm_events(struct drm_device *device)
+ 	return false;
+ }
+ 
++static void drm_output_fini_cursor(struct drm_output *output)
++{
++	unsigned int i;
++
++	for (i = 0; i < ARRAY_LENGTH(output->cursor_fb); i++) {
++		if (!output->cursor_fb[i])
++			continue;
++
++		output->cursor_fb[i]->type = BUFFER_PIXMAN_DUMB;
++		drm_fb_unref(output->cursor_fb[i]);
++		output->cursor_fb[i] = NULL;
++	}
++}
++
++static void
++drm_output_init_cursor(struct drm_output *output, struct drm_backend *b)
++{
++	struct drm_device *device = output->device;
++	unsigned int i;
++
++	/* No point creating cursors if we don't have a plane for them. */
++	if (!output->cursor_plane)
++		return;
++
++	for (i = 0; i < ARRAY_LENGTH(output->cursor_fb); i++) {
++		output->cursor_fb[i] =
++			drm_fb_create_dumb(output->device,
++					   device->cursor_width,
++					   device->cursor_height,
++					   DRM_FORMAT_ARGB8888);
++		/* Override buffer type, since we know it is a cursor */
++		output->cursor_fb[i]->type = BUFFER_CURSOR;
++		output->cursor_handle[i] =
++			output->cursor_fb[i]->handles[0];
++	}
++}
++
+ static int
+ drm_output_enable(struct weston_output *base)
+ {
+@@ -2794,6 +2817,8 @@ drm_output_enable(struct weston_output *base)
+ 		goto err_planes;
+ 	}
+ 
++	drm_output_init_cursor(output, b);
++
+ 	drm_output_init_backlight(output);
+ 
+ 	output->base.start_repaint_loop = drm_output_start_repaint_loop;
+@@ -2846,6 +2871,8 @@ drm_output_deinit(struct weston_output *base)
+ 	else
+ 		drm_output_fini_egl(output);
+ 
++	drm_output_fini_cursor(output);
++
+ 	drm_output_deinit_planes(output);
+ 	drm_output_detach_crtc(output);
+ 
+diff --git a/libweston/backend-drm/fb.c b/libweston/backend-drm/fb.c
+index cbfaf1e65..f39124b12 100644
+--- a/libweston/backend-drm/fb.c
++++ b/libweston/backend-drm/fb.c
+@@ -400,13 +400,6 @@ drm_fb_get_from_dmabuf(struct linux_dmabuf_buffer *dmabuf,
+ 	struct drm_backend *backend = device->backend;
+ 	struct drm_fb *fb;
+ 	int i;
+-	struct gbm_import_fd_modifier_data import_mod = {
+-		.width = dmabuf->attributes.width,
+-		.height = dmabuf->attributes.height,
+-		.format = dmabuf->attributes.format,
+-		.num_fds = dmabuf->attributes.n_planes,
+-		.modifier = dmabuf->attributes.modifier,
+-	};
+ 
+ #if 0
+ 	/* We should not import to KMS a buffer that has been allocated using no
+@@ -444,12 +437,6 @@ drm_fb_get_from_dmabuf(struct linux_dmabuf_buffer *dmabuf,
+ 	fb->type = BUFFER_DMABUF;
+ 	fb->backend = device->backend;
+ 
+-	ARRAY_COPY(import_mod.fds, dmabuf->attributes.fd);
+-	ARRAY_COPY(import_mod.strides, dmabuf->attributes.stride);
+-	ARRAY_COPY(import_mod.offsets, dmabuf->attributes.offset);
+-
+-	fb->bo = gbm_bo_import(backend->gbm, GBM_BO_IMPORT_FD_MODIFIER,
+-			       &import_mod, GBM_BO_USE_SCANOUT);
+ 	fb->width = dmabuf->attributes.width;
+ 	fb->height = dmabuf->attributes.height;
+ 	fb->modifier = dmabuf->attributes.modifier;
+@@ -478,6 +465,25 @@ drm_fb_get_from_dmabuf(struct linux_dmabuf_buffer *dmabuf,
+ 	}
+ 
+ 	fb->num_planes = dmabuf->attributes.n_planes;
++
++#ifdef BUILD_DRM_GBM
++	if (backend->gbm) {
++		struct gbm_import_fd_modifier_data import_mod = {
++			.width = dmabuf->attributes.width,
++			.height = dmabuf->attributes.height,
++			.format = dmabuf->attributes.format,
++			.num_fds = dmabuf->attributes.n_planes,
++			.modifier = dmabuf->attributes.modifier,
++		};
++
++		ARRAY_COPY(import_mod.fds, dmabuf->attributes.fd);
++		ARRAY_COPY(import_mod.strides, dmabuf->attributes.stride);
++		ARRAY_COPY(import_mod.offsets, dmabuf->attributes.offset);
++
++		fb->bo = gbm_bo_import(backend->gbm, GBM_BO_IMPORT_FD_MODIFIER,
++				       &import_mod, GBM_BO_USE_SCANOUT);
++	}
++
+ 	if (fb->bo) {
+ 		for (i = 0; i < fb->num_planes; i++) {
+ 			union gbm_bo_handle handle;
+@@ -490,9 +496,12 @@ drm_fb_get_from_dmabuf(struct linux_dmabuf_buffer *dmabuf,
+ 			}
+ 			fb->handles[i] = handle.u32;
+ 		}
+-	} else {
++	}
++#endif
++
++	if (!fb->bo) {
+ 		for (i = 0; i < fb->num_planes; i++) {
+-			if (drmPrimeFDToHandle(fb->fd, import_mod.fds[i],
++			if (drmPrimeFDToHandle(fb->fd, dmabuf->attributes.fd[i],
+ 					       &fb->handles[i])) {
+ 				*try_view_on_plane_failure_reasons |=
+ 					FAILURE_REASONS_GBM_BO_IMPORT_FAILED;
+@@ -618,7 +627,6 @@ drm_fb_unref(struct drm_fb *fb)
+ 	}
+ }
+ 
+-#ifdef BUILD_DRM_GBM
+ bool
+ drm_can_scanout_dmabuf(struct weston_backend *backend,
+ 		       struct linux_dmabuf_buffer *dmabuf)
+@@ -747,17 +755,16 @@ drm_fb_get_from_paint_node(struct drm_output_state *state,
+ 	buf_fb->device = device;
+ 	wl_list_insert(&private->buffer_fb_list, &buf_fb->link);
+ 
+-	/* GBM is used for dmabuf import as well as from client wl_buffer. */
+-	if (!b->gbm) {
+-		pnode->try_view_on_plane_failure_reasons |= FAILURE_REASONS_NO_GBM;
+-		goto unsuitable;
+-	}
+-
+ 	if (buffer->type == WESTON_BUFFER_DMABUF) {
+ 		fb = drm_fb_get_from_dmabuf(buffer->dmabuf, device, is_opaque,
+ 					    &buf_fb->failure_reasons);
+ 		if (!fb)
+ 			goto unsuitable;
++#ifdef BUILD_DRM_GBM
++	} else if (!b->gbm) {
++		/* GBM is used for dmabuf import as well as from client wl_buffer. */
++		pnode->try_view_on_plane_failure_reasons |= FAILURE_REASONS_NO_GBM;
++		goto unsuitable;
+ 	} else if (buffer->type == WESTON_BUFFER_RENDERER_OPAQUE) {
+ 		struct gbm_bo *bo;
+ 
+@@ -773,6 +780,7 @@ drm_fb_get_from_paint_node(struct drm_output_state *state,
+ 			gbm_bo_destroy(bo);
+ 			goto unsuitable;
+ 		}
++#endif
+ 	} else {
+ 		pnode->try_view_on_plane_failure_reasons |= FAILURE_REASONS_BUFFER_TYPE;
+ 		goto unsuitable;
+@@ -806,4 +814,3 @@ unsuitable:
+ 	pnode->try_view_on_plane_failure_reasons |= buf_fb->failure_reasons;
+ 	return NULL;
+ }
+-#endif
+diff --git a/libweston/backend-drm/kms.c b/libweston/backend-drm/kms.c
+index a4e55440d..5b9a2235c 100644
+--- a/libweston/backend-drm/kms.c
++++ b/libweston/backend-drm/kms.c
+@@ -811,10 +811,10 @@ drm_output_set_cursor(struct drm_output_state *output_state)
+ 		return;
+ 	}
+ 
+-	assert(state->fb == output->gbm_cursor_fb[output->current_cursor]);
++	assert(state->fb == output->cursor_fb[output->current_cursor]);
+ 	assert(!plane->state_cur->output || plane->state_cur->output == output);
+ 
+-	handle = output->gbm_cursor_handle[output->current_cursor];
++	handle = output->cursor_handle[output->current_cursor];
+ 	if (plane->state_cur->fb != state->fb) {
+ 		if (drmModeSetCursor(device->drm.fd, crtc->crtc_id, handle,
+ 				     device->cursor_width, device->cursor_height)) {
+diff --git a/libweston/backend-drm/state-propose.c b/libweston/backend-drm/state-propose.c
+index c71b842fc..4f8595081 100644
+--- a/libweston/backend-drm/state-propose.c
++++ b/libweston/backend-drm/state-propose.c
+@@ -176,7 +176,6 @@ out:
+ 	return NULL;
+ }
+ 
+-#ifdef BUILD_DRM_GBM
+ static struct drm_plane_state *
+ drm_output_prepare_cursor_paint_node(struct drm_output_state *output_state,
+ 				     struct weston_paint_node *node,
+@@ -195,9 +194,6 @@ drm_output_prepare_cursor_paint_node(struct drm_output_state *output_state,
+ 	assert(plane->state_cur->complete);
+ 	assert(!plane->state_cur->output || plane->state_cur->output == output);
+ 
+-	/* We use GBM to import SHM buffers. */
+-	assert(b->gbm);
+-
+ 	plane_state = drm_output_state_get_plane(output_state, plane);
+ 	assert(!plane_state->fb);
+ 
+@@ -228,7 +224,7 @@ drm_output_prepare_cursor_paint_node(struct drm_output_state *output_state,
+ 	 * Later when we determine if the cursor needs an update, we'll
+ 	 * select the correct fb to use.
+ 	 */
+-	plane_state->fb = drm_fb_ref(output->gbm_cursor_fb[0]);
++	plane_state->fb = drm_fb_ref(output->cursor_fb[0]);
+ 
+ 	if (device->atomic_modeset) {
+ 		float scale =
+@@ -275,15 +271,6 @@ err:
+ 	drm_plane_state_put_back(plane_state);
+ 	return NULL;
+ }
+-#else
+-static struct drm_plane_state *
+-drm_output_prepare_cursor_paint_node(struct drm_output_state *output_state,
+-				     struct weston_paint_node *node,
+-				     uint64_t zpos)
+-{
+-	return NULL;
+-}
+-#endif
+ 
+ static void
+ drm_output_check_zpos_plane_states(struct drm_output_state *state)
+@@ -832,12 +819,6 @@ drm_output_propose_state(struct weston_output *output_base,
+ 			continue;
+ 		}
+ 
+-		if (!b->gbm) {
+-			drm_debug(b, "\t\t\t\t[view] not assigning view %p to plane "
+-			             "(GBM not available)\n", ev);
+-			force_renderer = true;
+-		}
+-
+ 		if (!weston_view_has_valid_buffer(ev)) {
+ 			drm_debug(b, "\t\t\t\t[view] not assigning view %p to plane "
+ 			             "(no buffer available)\n", ev);
+@@ -1017,7 +998,7 @@ drm_assign_planes(struct weston_output *output_base)
+ 	/* Force single plane in mirror mode */
+ 	if (drm_is_mirroring(b)) {
+ 		drm_debug(b, "\t[state] no overlay plane in mirror mode\n");
+-	} else if (!device->sprites_are_broken && !output->is_virtual && b->gbm) {
++	} else if (!device->sprites_are_broken && !output->is_virtual) {
+ 		drm_debug(b, "\t[repaint] trying planes-only build state\n");
+ 		state = drm_output_propose_state(output_base, pending_state, mode);
+ 		if (!state) {
+-- 
+2.20.1
+

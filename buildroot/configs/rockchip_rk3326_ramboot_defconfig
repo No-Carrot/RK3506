@@ -1,0 +1,2 @@
+#include "chips/rk3326_aarch64.config"
+#include "base/security-ramdisk.config"

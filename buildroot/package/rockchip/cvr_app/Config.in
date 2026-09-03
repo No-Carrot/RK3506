@@ -1,0 +1,59 @@
+config BR2_PACKAGE_CVR_APP
+        bool "cvr app"
+        select BR2_PACKAGE_RKADK
+        select BR2_PACKAGE_RKFSMK
+        select BR2_PACKAGE_ROCKIT
+        default n
+        help
+                cvr app
+if BR2_PACKAGE_CVR_APP
+
+config BR2_PACKAGE_CVR_USE_AIQ
+
+
+        bool "camera capture with rkaiq api"
+        select BR2_PACKAGE_CAMERA_ENGINE_RKAIQ
+        default n
+        help
+                camera capture with rkaiq api
+
+config BR2_PACKAGE_CVR_FILE_CACHE
+        bool "file cache"
+        default n
+        help
+                enable file cache
+
+config BR2_PACKAGE_CVR_LVGL
+        bool "lvgl"
+        select BR2_PACKAGE_LVGL
+        default n
+        help
+                enable lvgl
+
+choice
+        prompt "SOC Type"
+        default BR2_PACKAGE_CVR_RV1106
+
+config BR2_PACKAGE_CVR_RV1103B
+        bool "RV1103B"
+        help
+                Enable RV1103B specific features
+
+config BR2_PACKAGE_CVR_RV1126
+        bool "RV1126"
+        help
+                Enable RV1126 specific features
+
+config BR2_PACKAGE_CVR_RK3576
+        bool "RK3576"
+        help
+                Enable RK3576 specific features
+
+config BR2_PACKAGE_CVR_RV1106
+        bool "RV1106"
+        help
+                Enable RV1106 specific features
+
+endchoice
+
+endif # BR2_PACKAGE_CVR_APP

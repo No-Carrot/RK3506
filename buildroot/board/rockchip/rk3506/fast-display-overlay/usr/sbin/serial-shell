@@ -1,0 +1,51 @@
+#!/bin/sh
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+LOG=/tmp/serial-shell.log
+
+log_msg() {
+	mkdir -p /tmp 2>/dev/null || true
+	printf '%s\n' "$*" >>"${LOG}" 2>/dev/null || true
+}
+
+open_console() {
+	for tty in /dev/ttyFIQ0 /dev/console; do
+		[ -c "${tty}" ] || {
+			log_msg "missing ${tty}"
+			continue
+		}
+
+		if exec <"${tty}" >"${tty}" 2>&1; then
+			SERIAL_TTY="${tty}"
+			return 0
+		fi
+
+		log_msg "failed to open ${tty}"
+	done
+
+	return 1
+}
+
+log_msg "serial-shell start pid=$$"
+if ! open_console; then
+	log_msg "no usable serial console"
+	sleep 2
+	exit 1
+fi
+
+export HOME=/root
+export USER=root
+export LOGNAME=root
+export TERM="${TERM:-vt100}"
+export PS1='\u@\h:\w# '
+export PS2='> '
+
+[ -t 0 ] && stty sane 2>/dev/null
+cd /root 2>/dev/null || cd /
+
+printf '\r\nserial-shell: ready on %s\r\n' "${SERIAL_TTY}"
+/bin/sh -i
+status=$?
+log_msg "shell exited status=${status}"
+sleep 1
+exit "${status}"

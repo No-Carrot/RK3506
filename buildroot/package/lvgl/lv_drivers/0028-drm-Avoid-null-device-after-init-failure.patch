@@ -1,0 +1,159 @@
+From 7a8e3d1b8fbbdb4514308622eebfc96ec7e69a0a Mon Sep 17 00:00:00 2001
+From: Codex <codex@local>
+Date: Sun, 26 Jul 2026 03:00:00 +0800
+Subject: [PATCH] drm: Avoid null device after init failure
+
+On RK3506 motor demo images the display path opens /dev/dri/card0
+directly.  Calling drmOpen(NULL, NULL) can emit a confusing
+"realpath: : No such file or directory" message before falling back.
+
+When plane selection fails, drm_init() tears down pdev.  The old code
+continued into getdrmresolve(), buffer allocation and LVGL display
+registration, which can dereference pdev and crash at address 0x4.
+Stop display setup immediately on init failure and guard helper paths.
+
+Signed-off-by: Codex <codex@local>
+---
+ display/drm.c | 58 +++++++++++++++++++++++++++++++++++++++++---------
+ 1 file changed, 48 insertions(+), 10 deletions(-)
+
+diff --git a/display/drm.c b/display/drm.c
+--- a/display/drm.c
++++ b/display/drm.c
+@@ -273,13 +273,15 @@ err:
+ struct drm_bo *malloc_drm_bo(int width, int height, int format)
+ {
+     struct device *dev = pdev;
++    if (!dev)
++        return NULL;
+     return bo_create(dev, width, height, format);
+ }
+ 
+ void free_drm_bo(struct drm_bo *bo)
+ {
+     struct device *dev = pdev;
+-    if (bo)
++    if (dev && bo)
+         bo_destroy(dev, bo);
+ }
+ 
+@@ -862,9 +864,7 @@ int drm_init(int bpp)
+ 
+     //drm_install_sighandler(pdev);
+ 
+-    pdev->fd = drmOpen(NULL, NULL);
+-    if (pdev->fd < 0)
+-        pdev->fd = open("/dev/dri/card0", O_RDWR);
++    pdev->fd = open("/dev/dri/card0", O_RDWR);
+     if (pdev->fd < 0) {
+         fprintf(stderr, "drm open failed\n");
+         goto err_drm_open;
+@@ -922,6 +922,8 @@ int drm_exit(void)
+ 
+ int getdrmfd(void)
+ {
++    if (!pdev)
++        return -1;
+     return pdev->fd;
+ }
+ 
+@@ -990,6 +992,11 @@ void setdrmdisp(struct drm_bo *bo)
+ 
+ void getdrmresolve(int *w, int *h)
+ {
++    if (!pdev) {
++        *w = 0;
++        *h = 0;
++        return;
++    }
+     *w = pdev->mode.width;
+     *h = pdev->mode.height;
+ }
+@@ -1212,12 +1219,17 @@ void drm_flush(lv_disp_drv_t *disp_drv, const lv_area_t *area, lv_color_t *color
+     lv_disp_flush_ready(disp_drv);
+ }
+ 
+-void disp_init(int hor_res, int ver_res)
++int disp_init(int hor_res, int ver_res)
+ {
+     int format = 0;
+     int buf_w, buf_h;
++    int ret;
+     /*You code here*/
+-    drm_init(32);
++    ret = drm_init(32);
++    if (ret) {
++        fprintf(stderr, "drm init failed\n");
++        return -1;
++    }
+ 
+     lv_env_get_u32("lv_disp_width", &lcd_w, hor_res);
+     lv_env_get_u32("lv_disp_height", &lcd_h, ver_res);
+@@ -1226,6 +1238,10 @@ void disp_init(int hor_res, int ver_res)
+ 
+     if(lcd_w == 0 || lcd_h == 0)
+         getdrmresolve(&lcd_w, &lcd_h);
++    if(lcd_w == 0 || lcd_h == 0) {
++        fprintf(stderr, "drm resolution invalid\n");
++        goto err;
++    }
+ 
+     printf("%s res1:[%d x %d@%dfps] bit depth %d\n", __func__, lcd_w, lcd_h, lcd_fps, LV_COLOR_DEPTH);
+     if (LV_COLOR_DEPTH == 16) {
+@@ -1245,19 +1261,42 @@ void disp_init(int hor_res, int ver_res)
+     }
+ #if USE_RGA
+     gbo = malloc_drm_bo(buf_w, buf_h, format);
++    if (!gbo)
++        goto err;
+     drm_buff = gbo->ptr;
+     lcd_sw = gbo->pitch / (LV_COLOR_DEPTH >> 3);
+     c_RkRgaInit();
+ #else
+     drm_buff = malloc(buf_w * buf_h * (LV_COLOR_DEPTH >> 3));
++    if (!drm_buff)
++        goto err;
+     lcd_sw = lcd_w;
+ #endif
+     vop_buf[0] = malloc_drm_bo(lcd_w, lcd_h, format);
+     vop_buf[1] = malloc_drm_bo(lcd_w, lcd_h, format);
++    if (!vop_buf[0] || !vop_buf[1])
++        goto err;
+ 
+     drm_crtc_mode_frame_rate_adjust(pdev, format, lcd_fps);
+ 
+     printf("DRM subsystem and buffer mapped successfully lcd_fps:%d\n", lcd_fps);
++    return 0;
++
++err:
++    free_drm_bo(vop_buf[1]);
++    free_drm_bo(vop_buf[0]);
++    vop_buf[1] = NULL;
++    vop_buf[0] = NULL;
++#if USE_RGA
++    free_drm_bo(gbo);
++    gbo = NULL;
++#else
++    if (drm_buff)
++        free(drm_buff);
++#endif
++    drm_buff = NULL;
++    drm_exit();
++    return -1;
+ }
+ 
+ void disp_deinit(void)
+@@ -1295,7 +1334,10 @@ void drm_disp_drv_init(int hor_res, int ver_res, int rot)
+ #if USE_RGA || SW_ROTATION
+     disp_rot = rot;
+ #endif
+-    disp_init(hor_res, ver_res);
++    if (disp_init(hor_res, ver_res)) {
++        fprintf(stderr, "drm display init failed\n");
++        return;
++    }
+ 
+     /*-----------------------------
+      * Create a buffer for drawing
+-- 
+2.34.1

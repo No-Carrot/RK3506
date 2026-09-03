@@ -1,0 +1,16 @@
+config BR2_PACKAGE_MIMALLOC
+	bool "mimalloc"
+	depends on BR2_TOOLCHAIN_HAS_THREADS
+	help
+	  Mimalloc is a compact general purpose allocator with excellent
+	  performance.
+
+	  https://github.com/microsoft/mimalloc
+
+if BR2_PACKAGE_MIMALLOC
+
+config BR2_PACKAGE_MIMALLOC_STATIC_ONLY
+	bool "static only"
+	default y
+
+endif

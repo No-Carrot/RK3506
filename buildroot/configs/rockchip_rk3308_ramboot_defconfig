@@ -1,0 +1,2 @@
+#include "chips/rk3308_arm.config"
+#include "base/security-ramdisk.config"

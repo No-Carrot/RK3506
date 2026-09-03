@@ -1,0 +1,46 @@
+From c4ea3295d8bcee836d27424954cecf412e1d5bc9 Mon Sep 17 00:00:00 2001
+From: Jeffy Chen <jeffy.chen@rock-chips.com>
+Date: Wed, 15 Jan 2025 11:56:59 +0800
+Subject: [PATCH 5/5] HACK: Force using DRM_FORMAT_MOD_LINEAR in
+ drmModeAddFB2WithModifiers()
+
+The Rockchip DRM driver prefers DRM_FORMAT_MOD_LINEAR over
+DRM_FORMAT_MOD_INVALID.
+
+Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
+---
+ xf86drmMode.c | 17 ++++++++++++++++-
+ 1 file changed, 16 insertions(+), 1 deletion(-)
+
+diff --git a/xf86drmMode.c b/xf86drmMode.c
+index a4873a0..f48ff29 100644
+--- a/xf86drmMode.c
++++ b/xf86drmMode.c
+@@ -294,8 +294,23 @@ drm_public int drmModeAddFB2WithModifiers(int fd, uint32_t width,
+ 	memcpy(f.handles, bo_handles, 4 * sizeof(bo_handles[0]));
+ 	memcpy(f.pitches, pitches, 4 * sizeof(pitches[0]));
+ 	memcpy(f.offsets, offsets, 4 * sizeof(offsets[0]));
+-	if (modifier)
++	if (modifier) {
++		/**
++		 * HACK: The Rockchip DRM driver prefers DRM_FORMAT_MOD_LINEAR
++		 * over DRM_FORMAT_MOD_INVALID.
++		 */
++#if 1
++		int i;
++		for (i = 0; i < 4; i++) {
++			if (modifier[i] != DRM_FORMAT_MOD_INVALID)
++				f.modifier[i] = modifier[i];
++			else
++				f.modifier[i] = DRM_FORMAT_MOD_LINEAR;
++		}
++#else
+ 		memcpy(f.modifier, modifier, 4 * sizeof(modifier[0]));
++#endif
++	}
+ 
+ 	if ((ret = DRM_IOCTL(fd, DRM_IOCTL_MODE_ADDFB2, &f)))
+ 		return ret;
+-- 
+2.20.1
+

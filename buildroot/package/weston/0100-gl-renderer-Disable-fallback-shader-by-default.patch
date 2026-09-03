@@ -1,0 +1,53 @@
+From 8397b02ab88753091fa1c5623c0b9b7272832fb4 Mon Sep 17 00:00:00 2001
+From: Jeffy Chen <jeffy.chen@rock-chips.com>
+Date: Fri, 7 Feb 2025 16:43:29 +0800
+Subject: [PATCH 100/100] gl-renderer: Disable fallback shader by default
+
+It's slow to create fallback shader.
+
+export WESTON_GL_FALLBACK_SHADER=1 to enable it.
+
+Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
+---
+ libweston/renderer-gl/gl-renderer.c | 10 ++++++----
+ libweston/renderer-gl/gl-shaders.c  |  3 +++
+ 2 files changed, 9 insertions(+), 4 deletions(-)
+
+diff --git a/libweston/renderer-gl/gl-renderer.c b/libweston/renderer-gl/gl-renderer.c
+index 9c915268e..049446691 100644
+--- a/libweston/renderer-gl/gl-renderer.c
++++ b/libweston/renderer-gl/gl-renderer.c
+@@ -4930,10 +4930,12 @@ gl_renderer_setup(struct weston_compositor *ec)
+ 
+ 	glActiveTexture(GL_TEXTURE0);
+ 
+-	gr->fallback_shader = gl_renderer_create_fallback_shader(gr);
+-	if (!gr->fallback_shader) {
+-		weston_log("Error: compiling fallback shader failed.\n");
+-		return -1;
++	if (getenv("WESTON_GL_FALLBACK_SHADER")) {
++		gr->fallback_shader = gl_renderer_create_fallback_shader(gr);
++		if (!gr->fallback_shader) {
++			weston_log("Error: compiling fallback shader failed.\n");
++			return -1;
++		}
+ 	}
+ 
+ 	gr->debug_mode_binding =
+diff --git a/libweston/renderer-gl/gl-shaders.c b/libweston/renderer-gl/gl-shaders.c
+index 007e107e7..0bfa50c30 100644
+--- a/libweston/renderer-gl/gl-shaders.c
++++ b/libweston/renderer-gl/gl-shaders.c
+@@ -783,6 +783,9 @@ gl_renderer_use_program(struct gl_renderer *gr,
+ 		weston_log("Error: failed to generate shader program.\n");
+ 		gr->current_shader = NULL;
+ 
++		if (!gr->fallback_shader)
++			return false;
++
+ 		/*
+ 		 * We only have one fallback shader, so it cannot do correct
+ 		 * color on color managed outputs. Hence, what is painted
+-- 
+2.20.1
+

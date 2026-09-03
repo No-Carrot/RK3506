@@ -1,0 +1,45 @@
+menuconfig BR2_PACKAGE_FLUTTER_EMBEDDED_LINUX
+	bool "flutter-embedded-linux"
+	depends on BR2_PACKAGE_HOST_FLUTTER_SDK_BIN_ARCH_SUPPORTS
+	depends on BR2_PACKAGE_FLUTTER_ENGINE_ARCH_SUPPORTS
+	depends on BR2_HOST_GCC_AT_LEAST_5 # flutter-engine
+	depends on BR2_TOOLCHAIN_GCC_AT_LEAST_5 # flutter-engine
+	depends on !BR2_TOOLCHAIN_HAS_GCC_BUG_64735 # flutter-engine
+	depends on BR2_TOOLCHAIN_USES_GLIBC # flutter-engine
+	depends on BR2_INSTALL_LIBSTDCPP # flutter-engine
+	depends on !BR2_STATIC_LIBS # flutter-engine, wayland
+	depends on BR2_USE_WCHAR # flutter-engine
+	depends on BR2_PACKAGE_HAS_LIBGLES # flutter-engine
+	select BR2_PACKAGE_HOST_FLUTTER_SDK_BIN
+	select BR2_PACKAGE_FLUTTER_ENGINE
+	select BR2_PACKAGE_LIBXKBCOMMON
+	select BR2_PACKAGE_LIBDRM
+	help
+	  Embedded Linux embedding for Flutter.
+
+	  https://github.com/sony/flutter-embedded-linux
+
+if BR2_PACKAGE_FLUTTER_EMBEDDED_LINUX
+
+choice
+	prompt "backend"
+
+config BR2_PACKAGE_FLUTTER_EMBEDDED_LINUX_WAYLAND
+	bool "wayland"
+	depends on BR2_PACKAGE_WAYLAND
+
+config BR2_PACKAGE_FLUTTER_EMBEDDED_LINUX_X11
+	bool "x11"
+	depends on BR2_PACKAGE_XORG7
+
+config BR2_PACKAGE_FLUTTER_EMBEDDED_LINUX_GBM
+	bool "gbm"
+	depends on BR2_PACKAGE_HAS_LIBGBM
+	depends on BR2_PACKAGE_SYSTEMD
+
+endchoice
+
+config BR2_PACKAGE_FLUTTER_EMBEDDED_LINUX_CLIENT
+	bool "client example"
+
+endif

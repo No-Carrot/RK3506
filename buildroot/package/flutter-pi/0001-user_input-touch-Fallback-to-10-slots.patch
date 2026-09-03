@@ -1,0 +1,32 @@
+From c8acd557d3dff6746580e4b2f2a33544a47b1e1a Mon Sep 17 00:00:00 2001
+From: Jeffy Chen <jeffy.chen@rock-chips.com>
+Date: Wed, 18 Dec 2024 16:24:41 +0800
+Subject: [PATCH] user_input: touch: Fallback to 10 slots
+
+The touch device might not able to provide slots info.
+
+Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
+---
+ src/user_input.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/src/user_input.c b/src/user_input.c
+index 652d7df..f10ecf2 100644
+--- a/src/user_input.c
++++ b/src/user_input.c
+@@ -571,10 +571,10 @@ static int on_device_added(struct user_input *input, struct libinput_event *even
+         int n_slots = libinput_device_touch_get_touch_count(device);
+         if (n_slots == -1) {
+             LOG_ERROR("Could not query input device multitouch slot count.\n");
+-            goto fail_free_data;
++            n_slots = 10;
+         } else if (n_slots == 0) {
+             LOG_ERROR("Input devive has unknown number of multitouch slots.\n");
+-            goto fail_free_data;
++            n_slots = 10;
+         }
+ 
+         data->touch_device_id_offset = input->next_unused_flutter_device_id;
+-- 
+2.20.1
+

@@ -1,0 +1,329 @@
+From bd0ed72f4c02c16a9701e61d2122911c4458c0fb Mon Sep 17 00:00:00 2001
+From: Jiajian Wu <jair.wu@rock-chips.com>
+Date: Tue, 17 Dec 2024 15:50:12 +0800
+Subject: [PATCH 21/23] fix(draw): add rk_transform
+
+Signed-off-by: Jiajian Wu <jair.wu@rock-chips.com>
+---
+ lv_conf.h.in                       |  15 +++-
+ lv_conf_default.mk                 |   3 +
+ src/draw/sw/lv_draw_rk_transform.c | 136 +++++++++++++++++++++++++++++
+ src/draw/sw/lv_draw_rk_transform.h |  64 ++++++++++++++
+ src/draw/sw/lv_draw_sw.c           |   8 ++
+ src/draw/sw/lv_draw_sw.h           |   4 +
+ src/draw/sw/lv_draw_sw_transform.c |   7 ++
+ 7 files changed, 236 insertions(+), 1 deletion(-)
+ create mode 100644 src/draw/sw/lv_draw_rk_transform.c
+ create mode 100644 src/draw/sw/lv_draw_rk_transform.h
+
+diff --git a/lv_conf.h.in b/lv_conf.h.in
+index 410410d2e..1b37dd352 100644
+--- a/lv_conf.h.in
++++ b/lv_conf.h.in
+@@ -120,7 +120,20 @@
+ 
+     /* Enable native helium assembly to be compiled */
+     #define LV_USE_NATIVE_HELIUM_ASM    @BR2_LV_USE_NATIVE_HELIUM_ASM@
+-    
++
++    /* Enable RK transform in lv_draw_sw_transform for better performance */
++    #define LV_USE_DRAW_RK_TRANSFORM    @BR2_LV_USE_DRAW_RK_TRANSFORM@
++
++    #if LV_USE_DRAW_RK_TRANSFORM
++        /* 0: use nearest interpolation
++         * 1: use bilinear interpolation */
++        #define LV_DRAW_RK_TRANSFORM_SCALER_METHOD @BR2_LV_DRAW_RK_TRANSFORM_SCALER_METHOD@
++
++        /* Set the cores of scaler.
++         * -1 means according to the number of cpu */
++        #define LV_DRAW_RK_TRANSFORM_SCALER_CORES @BR2_LV_DRAW_RK_TRANSFORM_SCALER_CORES@
++    #endif
++
+     /* 0: use a simple renderer capable of drawing only simple rectangles with gradient, images, texts, and straight lines only
+      * 1: use a complex renderer capable of drawing rounded corners, shadow, skew lines, and arcs too */
+     #define LV_DRAW_SW_COMPLEX          @BR2_LV_DRAW_SW_COMPLEX@
+diff --git a/lv_conf_default.mk b/lv_conf_default.mk
+index 4de5ec81c..f627a13b5 100644
+--- a/lv_conf_default.mk
++++ b/lv_conf_default.mk
+@@ -12,6 +12,9 @@ set(BR2_LV_USE_DRAW_SW 1)
+ set(BR2_LV_DRAW_SW_DRAW_UNIT_CNT 1)
+ set(BR2_LV_USE_DRAW_ARM2D_SYNC 0)
+ set(BR2_LV_USE_NATIVE_HELIUM_ASM 0)
++set(BR2_LV_USE_DRAW_RK_TRANSFORM 0)
++set(BR2_LV_DRAW_RK_TRANSFORM_SCALE_METHOD 0)
++set(BR2_LV_DRAW_RK_TRANSFORM_SCALE_CORES 1)
+ set(BR2_LV_DRAW_SW_COMPLEX 0)
+ set(BR2_LV_DRAW_SW_SHADOW_CACHE_SIZE 0)
+ set(BR2_LV_DRAW_SW_CIRCLE_CACHE_SIZE 4)
+diff --git a/src/draw/sw/lv_draw_rk_transform.c b/src/draw/sw/lv_draw_rk_transform.c
+new file mode 100644
+index 000000000..a059ef436
+--- /dev/null
++++ b/src/draw/sw/lv_draw_rk_transform.c
+@@ -0,0 +1,136 @@
++/**
++ * @file lv_draw_rk_transform.c
++ *
++ */
++
++/*********************
++ *      INCLUDES
++ *********************/
++#include "lv_draw_sw.h"
++#if LV_USE_DRAW_RK_TRANSFORM
++
++#include <unistd.h>
++#include "../../misc/lv_area.h"
++#include "libRkScalerApi.h"
++
++/*********************
++ *      DEFINES
++ *********************/
++
++#ifndef LV_DRAW_RK_TRANSFORM_SCALER_METHOD
++    #define LV_DRAW_RK_TRANSFORM_SCALER_METHOD SCALER_METHOD_NEAREST
++#endif
++
++#ifndef LV_DRAW_RK_TRANSFORM_SCALER_CORES
++    #define LV_DRAW_RK_TRANSFORM_SCALER_CORES 3
++#endif
++
++/**********************
++ *      TYPEDEFS
++ **********************/
++
++/**********************
++ *  STATIC PROTOTYPES
++ **********************/
++
++/**********************
++ *  STATIC VARIABLES
++ **********************/
++static RkScalerContext scalerContext;
++static bool rkscaler_inited = false;
++static int rkscaler_cores = LV_DRAW_RK_TRANSFORM_SCALER_CORES;
++/**********************
++ *      MACROS
++ **********************/
++
++/**********************
++ *   GLOBAL FUNCTIONS
++ **********************/
++
++void lv_draw_rk_transform_init(void)
++{
++    if(!rkscaler_inited) {
++        if(rkscaler_cores <= 0)
++            rkscaler_cores = sysconf(_SC_NPROCESSORS_CONF);
++        if(rkscaler_cores <= 0) {
++            LV_LOG_WARN("Invalid number of cores");
++            rkscaler_cores = 1;
++        }
++        int ret = RkScalerInit(&scalerContext, rkscaler_cores);
++        if(ret) {
++            LV_LOG_ERROR("Failed to init scaler context %d", ret);
++            return;
++        }
++        RkScalerSetLoglevel(&scalerContext, 0);
++        rkscaler_inited = true;
++    }
++}
++
++void lv_draw_rk_transform_deinit(void)
++{
++    if(!rkscaler_inited)
++        return;
++
++    int ret = RkScalerDeinit(scalerContext);
++    if(ret)
++        LV_LOG_ERROR("Failed to deinit scaler context %d", ret);
++    rkscaler_inited = false;
++}
++
++int lv_draw_rk_transform(lv_draw_unit_t * draw_unit, const lv_area_t * dest_area, const void * src_buf,
++                         int32_t src_w, int32_t src_h, int32_t src_stride,
++                         const lv_draw_image_dsc_t * draw_dsc, const lv_draw_image_sup_t * sup, lv_color_format_t src_cf, void * dest_buf)
++{
++    LV_UNUSED(draw_unit);
++    LV_UNUSED(sup);
++
++    /* Do not support rotation */
++    if(draw_dsc->rotation)
++        return LV_RESULT_INVALID;
++
++    /* Only support ARGB for now */
++    if((src_cf != LV_COLOR_FORMAT_ARGB8888) && (src_cf != LV_COLOR_FORMAT_XRGB8888))
++        return LV_RESULT_INVALID;
++
++    if(!rkscaler_inited) {
++        lv_draw_rk_transform_init();
++        if(!rkscaler_inited) {
++            LV_LOG_ERROR("Failed to init scaler context");
++            return LV_RESULT_INVALID;
++        }
++    }
++
++    RkScalerParams scalerParam = {0};
++    scalerParam.nMethodLuma = LV_DRAW_RK_TRANSFORM_SCALER_METHOD;
++    scalerParam.nMethodChrm = LV_DRAW_RK_TRANSFORM_SCALER_METHOD;
++    scalerParam.nCores = rkscaler_cores;
++    scalerParam.nSrcWid = src_w;
++    scalerParam.nSrcHgt = src_h;
++    scalerParam.nSrcWStrides[0] = src_stride;
++    scalerParam.nSrcHStrides[0] = 0;
++    scalerParam.nSrcFmt = SCALER_FMT_ARGB8888;
++    scalerParam.pSrcBufs[0] = (RK_U8 *)src_buf;
++    scalerParam.pSrcBufs[1] = NULL;
++    scalerParam.pSrcBufs[2] = NULL;
++    scalerParam.nDstWid = lv_area_get_width(dest_area);
++    scalerParam.nDstHgt = lv_area_get_height(dest_area);
++    scalerParam.nDstWStrides[0] = 0;
++    scalerParam.nDstHStrides[0] = 0;
++    scalerParam.nDstFmt = SCALER_FMT_ARGB8888;
++    scalerParam.pDstBufs[0] = (RK_U8 *)dest_buf;
++    scalerParam.pDstBufs[1] = NULL;
++    scalerParam.pDstBufs[2] = NULL;
++    int ret = RkScalerProcessor(scalerContext, &scalerParam);
++    if(ret) {
++        LV_LOG_ERROR("failed to run processor %d", ret);
++        return LV_RESULT_INVALID;
++    }
++
++    return LV_RESULT_OK;
++}
++
++/**********************
++ *   STATIC FUNCTIONS
++ **********************/
++
++#endif /*LV_USE_DRAW_RK_TRANSFORM*/
+diff --git a/src/draw/sw/lv_draw_rk_transform.h b/src/draw/sw/lv_draw_rk_transform.h
+new file mode 100644
+index 000000000..0bb1fa52d
+--- /dev/null
++++ b/src/draw/sw/lv_draw_rk_transform.h
+@@ -0,0 +1,64 @@
++/**
++ * @file lv_draw_rk_transform.h
++ *
++ */
++
++#ifndef LV_DRAW_RK_TRANSFORM_H
++#define LV_DRAW_RK_TRANSFORM_H
++
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++/*********************
++ *      INCLUDES
++ *********************/
++#include "../lv_draw.h"
++#if LV_USE_DRAW_RK_TRANSFORM
++
++/*********************
++ *      DEFINES
++ *********************/
++
++/**********************
++ *      TYPEDEFS
++ **********************/
++
++/**********************
++ * GLOBAL PROTOTYPES
++ **********************/
++
++/**
++ * Initialize rk transform. Called in internally.
++ */
++void lv_draw_rk_transform_init(void);
++
++/**
++ * Deinitialize rk transform.
++ */
++void lv_draw_rk_transform_deinit(void);
++
++/**
++ * Used internally to get a transformed area of an image
++ * @param draw_unit     pointer to a draw unit
++ * @param dest_area     the area to calculate, i.e. get this area from the transformed image
++ * @param src_buf       the source buffer
++ * @param src_w         source buffer width in pixels
++ * @param src_h         source buffer height in pixels
++ * @param src_stride    source buffer stride in bytes
++ * @param dsc           the draw descriptor
++ * @param sup           supplementary data
++ * @param cf            color format of the source buffer
++ * @param dest_buf      the destination buffer
++ */
++int lv_draw_rk_transform(lv_draw_unit_t * draw_unit, const lv_area_t * dest_area, const void * src_buf,
++                         int32_t src_w, int32_t src_h, int32_t src_stride,
++                         const lv_draw_image_dsc_t * draw_dsc, const lv_draw_image_sup_t * sup, lv_color_format_t cf, void * dest_buf);
++
++#endif /*LV_USE_DRAW_SW*/
++
++#ifdef __cplusplus
++} /*extern "C"*/
++#endif
++
++#endif /*LV_DRAW_SW_H*/
+diff --git a/src/draw/sw/lv_draw_sw.c b/src/draw/sw/lv_draw_sw.c
+index 559441930..f65ac1c96 100644
+--- a/src/draw/sw/lv_draw_sw.c
++++ b/src/draw/sw/lv_draw_sw.c
+@@ -159,10 +159,18 @@ void lv_draw_sw_init(void)
+ #if LV_USE_VECTOR_GRAPHIC && LV_USE_THORVG
+     tvg_engine_init(TVG_ENGINE_SW, 0);
+ #endif
++
++#if LV_USE_DRAW_RK_TRANSFORM
++    lv_draw_rk_transform_init();
++#endif
+ }
+ 
+ void lv_draw_sw_deinit(void)
+ {
++#if LV_USE_DRAW_RK_TRANSFORM
++    lv_draw_rk_transform_deinit();
++#endif
++
+ #if LV_USE_VECTOR_GRAPHIC && LV_USE_THORVG
+     tvg_engine_term(TVG_ENGINE_SW);
+ #endif
+diff --git a/src/draw/sw/lv_draw_sw.h b/src/draw/sw/lv_draw_sw.h
+index 23f1c58dd..6acfa42ec 100644
+--- a/src/draw/sw/lv_draw_sw.h
++++ b/src/draw/sw/lv_draw_sw.h
+@@ -23,6 +23,10 @@ extern "C" {
+ 
+ #include "../../draw/lv_draw_vector.h"
+ 
++#if LV_USE_DRAW_RK_TRANSFORM
++#include "lv_draw_rk_transform.h"
++#endif
++
+ /*********************
+  *      DEFINES
+  *********************/
+diff --git a/src/draw/sw/lv_draw_sw_transform.c b/src/draw/sw/lv_draw_sw_transform.c
+index 71fadd7de..a0c5b14c0 100644
+--- a/src/draw/sw/lv_draw_sw_transform.c
++++ b/src/draw/sw/lv_draw_sw_transform.c
+@@ -85,6 +85,13 @@ void lv_draw_sw_transform(lv_draw_unit_t * draw_unit, const lv_area_t * dest_are
+ {
+     LV_UNUSED(draw_unit);
+     LV_UNUSED(sup);
++#if LV_USE_DRAW_RK_TRANSFORM
++    /* Check if rk tranform can handle this work */
++    int ret = lv_draw_rk_transform(draw_unit, dest_area, src_buf, src_w, src_h, src_stride,
++                                   draw_dsc, sup, src_cf, dest_buf);
++    if(ret == LV_RESULT_OK)
++        return;
++#endif
+ 
+     point_transform_dsc_t tr_dsc;
+     tr_dsc.angle = -draw_dsc->rotation;
+-- 
+2.25.1
+

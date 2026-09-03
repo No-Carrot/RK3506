@@ -1,0 +1,145 @@
+From 05f588c1cdffb54dff7153be89b824ad482e94bd Mon Sep 17 00:00:00 2001
+From: Jiajian Wu <jair.wu@rock-chips.com>
+Date: Wed, 4 Dec 2024 12:00:44 +0800
+Subject: [PATCH] drm: Support software rotation
+
+Signed-off-by: Jiajian Wu <jair.wu@rock-chips.com>
+---
+ display/drm.c | 99 +++++++++++++++++++++++++++++++++++++++++++++++----
+ 1 file changed, 93 insertions(+), 6 deletions(-)
+
+diff --git a/display/drm.c b/display/drm.c
+index 7bfa0b1c..a01704ac 100644
+--- a/display/drm.c
++++ b/display/drm.c
+@@ -45,6 +45,12 @@
+ 
+ #define ALIGN(x, a)     (((x) + (a - 1)) & ~(a - 1))
+ 
++#if USE_RGA
++#define SW_ROTATION     0
++#else
++#define SW_ROTATION     1
++#endif
++
+ struct drm_bo {
+     int fd;
+     void *ptr;
+@@ -1063,6 +1069,71 @@ static int32_t lv_env_get_u32(const char *name, uint32_t *value, uint32_t defaul
+     return 0;
+ }
+ 
++#if SW_ROTATION
++#if (LV_COLOR_DEPTH == 16)
++typedef uint16_t data_type;
++#elif (LV_COLOR_DEPTH == 32)
++typedef uint32_t data_type;
++#endif
++
++static void rotate_90(lv_disp_drv_t * disp, const lv_area_t * area, lv_color_t * color_p)
++{
++    data_type *src = (data_type *)color_p;
++    data_type *dst;
++    int32_t x, tx;
++    int32_t y, ty;
++
++    for(y = area->y1; y <= area->y2; y++) {
++        tx = (lcd_w - 1) - y;
++        ty = area->x1;
++        dst = (data_type *)(drm_buff + (ty * lcd_sw + tx) * (LV_COLOR_DEPTH >> 3));
++        for(x = area->x1; x <= area->x2; x++) {
++            *dst = *src;
++            src++;
++            dst += lcd_sw;
++        }
++    }
++}
++
++static void rotate_180(lv_disp_drv_t * disp, const lv_area_t * area, lv_color_t * color_p)
++{
++    data_type *src = (data_type *)color_p;
++    data_type *dst;
++    int32_t x, tx;
++    int32_t y, ty;
++
++    for(y = area->y1; y <= area->y2; y++) {
++        tx = (lcd_w - 1) - area->x1;
++        ty = (lcd_h - 1) - y;
++        dst = (data_type *)(drm_buff + (ty * lcd_sw + tx) * (LV_COLOR_DEPTH >> 3));
++        for(x = area->x1; x <= area->x2; x++) {
++            *dst = *src;
++            src++;
++            dst--;
++        }
++    }
++}
++
++static void rotate_270(lv_disp_drv_t * disp, const lv_area_t * area, lv_color_t * color_p)
++{
++    data_type *src = (data_type *)color_p;
++    data_type *dst;
++    int32_t x, tx;
++    int32_t y, ty;
++
++    for(y = area->y1; y <= area->y2; y++) {
++        tx = y;
++        ty = (lcd_h - 1) - area->x1;
++        dst = (data_type *)(drm_buff + (ty * lcd_sw + tx) * (LV_COLOR_DEPTH >> 3));
++        for(x = area->x1; x <= area->x2; x++) {
++            *dst = *src;
++            src++;
++            dst -= lcd_sw;
++        }
++    }
++}
++#endif
++
+ void drm_flush(lv_disp_drv_t *disp_drv, const lv_area_t *area, lv_color_t *color_p)
+ {
+    /*The most simple case (but also the slowest) to put all pixels to the screen one-by-one*/
+@@ -1110,12 +1181,28 @@ void drm_flush(lv_disp_drv_t *disp_drv, const lv_area_t *area, lv_color_t *color
+     if (ret)
+         printf("c_RkRgaBlit2 error : %s\n", strerror(errno));
+ #else
+-    for(y = area->y1; y <= area->y2; y++) {
+-        int area_w = area->x2 - area->x1 + 1;
+-        lv_color_t *disp = (lv_color_t*)(drm_buff + (y * lcd_sw + area->x1) * (LV_COLOR_DEPTH >> 3));
+-        memcpy(disp, color_p, area_w * (LV_COLOR_DEPTH >> 3));
+-        color_p += area_w;
++#if SW_ROTATION
++    if (!disp_rot)
++    {
++#endif
++        for(y = area->y1; y <= area->y2; y++) {
++            int area_w = area->x2 - area->x1 + 1;
++            lv_color_t *disp = (lv_color_t*)(drm_buff + (y * lcd_sw + area->x1) * (LV_COLOR_DEPTH >> 3));
++            memcpy(disp, color_p, area_w * (LV_COLOR_DEPTH >> 3));
++            color_p += area_w;
++        }
++#if SW_ROTATION
++    }
++    else
++    {
++        if (disp_rot == 90)
++            rotate_90(disp_drv, area, color_p);
++        else if (disp_rot == 180)
++            rotate_180(disp_drv, area, color_p);
++        else if (disp_rot == 270)
++            rotate_270(disp_drv, area, color_p);
+     }
++#endif
+ #endif
+     if(lv_disp_flush_is_last(disp_drv))
+         draw_update = 1;
+@@ -1205,7 +1292,7 @@ void drm_disp_drv_init(int hor_res, int ver_res, int rot)
+     /*-------------------------
+      * Initialize your display
+      * -----------------------*/
+-#if USE_RGA
++#if USE_RGA || SW_ROTATION
+     disp_rot = rot;
+ #endif
+     disp_init(hor_res, ver_res);
+-- 
+2.25.1
+

@@ -1,0 +1,159 @@
+#! /bin/sh
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
+RT_CPU=${SERVO_REALTIME_CPU:-2}
+EC_CPU=${SERVO_ETHERCAT_THREAD_CPU:-${RT_CPU}}
+HOUSEKEEPING_CPUS=${SERVO_HOUSEKEEPING_CPUS:-0-1}
+HOUSEKEEPING_CPUMASK=${SERVO_HOUSEKEEPING_CPUMASK:-3}
+WORKQUEUE_CPUMASK=${SERVO_WORKQUEUE_CPUMASK:-${HOUSEKEEPING_CPUMASK}}
+PRINTK_LOGLEVEL=${SERVO_PRINTK_LOGLEVEL:-3}
+RT_RUNTIME_US=${SERVO_RT_RUNTIME_US:--1}
+VM_STAT_INTERVAL=${SERVO_VM_STAT_INTERVAL:-120}
+SCHED_AUTOGROUP_ENABLED=${SERVO_SCHED_AUTOGROUP_ENABLED:-0}
+DIRTY_BACKGROUND_RATIO=${SERVO_DIRTY_BACKGROUND_RATIO:-2}
+DIRTY_RATIO=${SERVO_DIRTY_RATIO:-5}
+DIRTY_WRITEBACK_CENTISECS=${SERVO_DIRTY_WRITEBACK_CENTISECS:-100}
+DIRTY_EXPIRE_CENTISECS=${SERVO_DIRTY_EXPIRE_CENTISECS:-500}
+# This sysfs knob is read-only on some kernels. Leave it opt-in so boot logs
+# stay clean unless a board explicitly supports changing it.
+WORKQUEUE_POWER_EFFICIENT=${SERVO_WORKQUEUE_POWER_EFFICIENT:-}
+PM_QOS_LATENCY_US=${SERVO_PM_QOS_LATENCY_US:-50}
+LOCK_CPU_MAX_FREQ=${SERVO_LOCK_CPU_MAX_FREQ:-1}
+DISABLE_RT_DEEP_IDLE=${SERVO_DISABLE_RT_DEEP_IDLE:-1}
+PIDFILE=/run/servo-pm-qos.pid
+PM_QOS_HELPER=/usr/bin/cpu_dma_latency_keeper
+
+write_file() {
+	[ -w "$1" ] || return 0
+	if command -v tee >/dev/null 2>&1; then
+		printf '%s\n' "$2" | tee "$1" >/dev/null 2>/dev/null || true
+	else
+		printf '%s\n' "$2" >"$1" 2>/dev/null || true
+	fi
+}
+
+first_housekeeping_cpu() {
+	printf '%s\n' "${HOUSEKEEPING_CPUS}" | sed 's/,.*//;s/-.*//'
+}
+
+configure_sysctl() {
+	write_file /proc/sys/kernel/sched_rt_runtime_us "${RT_RUNTIME_US}"
+	write_file /proc/sys/kernel/printk "${PRINTK_LOGLEVEL}"
+	write_file /proc/irq/default_smp_affinity "${HOUSEKEEPING_CPUMASK}"
+	write_file /proc/sys/kernel/timer_migration 0
+	write_file /proc/sys/vm/stat_interval "${VM_STAT_INTERVAL}"
+	write_file /proc/sys/kernel/watchdog 0
+	write_file /proc/sys/kernel/sched_autogroup_enabled "${SCHED_AUTOGROUP_ENABLED}"
+	write_file /proc/sys/vm/dirty_background_ratio "${DIRTY_BACKGROUND_RATIO}"
+	write_file /proc/sys/vm/dirty_ratio "${DIRTY_RATIO}"
+	write_file /proc/sys/vm/dirty_writeback_centisecs "${DIRTY_WRITEBACK_CENTISECS}"
+	write_file /proc/sys/vm/dirty_expire_centisecs "${DIRTY_EXPIRE_CENTISECS}"
+}
+
+configure_workqueue_policy() {
+	[ -n "${WORKQUEUE_POWER_EFFICIENT}" ] || return 0
+	for parameter in \
+		/sys/module/workqueue/parameters/power_efficient \
+		/sys/devices/virtual/workqueue/power_efficient; do
+		write_file "${parameter}" "${WORKQUEUE_POWER_EFFICIENT}"
+	done
+}
+
+configure_workqueues() {
+	for cpumask in /sys/devices/virtual/workqueue/cpumask \
+		/sys/devices/virtual/workqueue/*/cpumask; do
+		[ -w "${cpumask}" ] || continue
+		printf '%s\n' "${WORKQUEUE_CPUMASK}" >"${cpumask}" 2>/dev/null || true
+	done
+}
+
+configure_cpufreq() {
+	[ "${LOCK_CPU_MAX_FREQ}" = "1" ] || return 0
+
+	for policy in /sys/devices/system/cpu/cpufreq/policy* \
+		/sys/devices/system/cpu/cpu*/cpufreq; do
+		[ -d "${policy}" ] || continue
+		write_file "${policy}/scaling_governor" performance
+
+		max_freq=$(cat "${policy}/cpuinfo_max_freq" 2>/dev/null)
+		[ -n "${max_freq}" ] || max_freq=$(cat "${policy}/scaling_max_freq" 2>/dev/null)
+		[ -n "${max_freq}" ] || continue
+		write_file "${policy}/scaling_max_freq" "${max_freq}"
+		write_file "${policy}/scaling_min_freq" "${max_freq}"
+	done
+}
+
+disable_deep_idle_for_cpu() {
+	cpu=$1
+	case "${cpu}" in
+	''|*[!0-9]*)
+		return 0
+		;;
+	esac
+
+	for state in /sys/devices/system/cpu/cpu"${cpu}"/cpuidle/state*; do
+		[ -d "${state}" ] || continue
+		idx=${state##*state}
+		[ "${idx}" = "0" ] && continue
+		write_file "${state}/disable" 1
+	done
+}
+
+configure_cpuidle() {
+	[ "${DISABLE_RT_DEEP_IDLE}" = "1" ] || return 0
+	disable_deep_idle_for_cpu "${RT_CPU}"
+	[ "${EC_CPU}" = "${RT_CPU}" ] || disable_deep_idle_for_cpu "${EC_CPU}"
+}
+
+start_pm_qos() {
+	[ "${PM_QOS_LATENCY_US}" = "0" ] && return 0
+	if [ -r "${PIDFILE}" ] && kill -0 "$(cat "${PIDFILE}")" 2>/dev/null; then
+		return 0
+	fi
+	rm -f "${PIDFILE}"
+
+	hk_cpu=$(first_housekeeping_cpu)
+	[ -n "${hk_cpu}" ] || hk_cpu=0
+	if [ -x "${PM_QOS_HELPER}" ]; then
+		if command -v taskset >/dev/null 2>&1; then
+			taskset -c "${hk_cpu}" "${PM_QOS_HELPER}" &
+		else
+			"${PM_QOS_HELPER}" &
+		fi
+	else
+		if command -v taskset >/dev/null 2>&1; then
+			taskset -c "${hk_cpu}" sh -c 'while :; do exec 9>/dev/cpu_dma_latency && { printf "\000\000\000\000" >&9; while :; do sleep 3600; done; }; sleep 1; done' &
+		else
+			sh -c 'while :; do exec 9>/dev/cpu_dma_latency && { printf "\000\000\000\000" >&9; while :; do sleep 3600; done; }; sleep 1; done' &
+		fi
+	fi
+	pm_qos_pid=$!
+	echo "${pm_qos_pid}" >"${PIDFILE}"
+}
+
+stop_pm_qos() {
+	if [ -r "${PIDFILE}" ]; then
+		kill -TERM "$(cat "${PIDFILE}")" 2>/dev/null || true
+		rm -f "${PIDFILE}"
+	fi
+}
+
+start() {
+	configure_sysctl
+	configure_workqueue_policy
+	configure_workqueues
+	configure_cpufreq
+	configure_cpuidle
+	start_pm_qos
+}
+
+case "$1" in
+	start) start ;;
+	stop) stop_pm_qos ;;
+	restart)
+		stop_pm_qos
+		start
+		;;
+	*) echo "Usage: $0 {start|stop|restart}"; exit 1 ;;
+esac

@@ -1,0 +1,668 @@
+#!/bin/sh
+
+PATH=/sbin:/usr/sbin:/bin:/usr/bin
+
+SERVO_RT_CHECK_VERSION=20260727-gmac-watchdog-v19
+SERVO_RT_CHECK_ETHTOOL=${SERVO_RT_CHECK_ETHTOOL:-0}
+CHECK_CPU=${1:-${SERVO_REALTIME_CPU:-2}}
+case "${CHECK_CPU}" in
+''|*[!0-9]*)
+	CHECK_CPU=2
+	;;
+esac
+SERVO_RT_CPU=${SERVO_REALTIME_CPU:-2}
+ETHERCAT_THREAD_CPU=${SERVO_ETHERCAT_THREAD_CPU:-${SERVO_RT_CPU}}
+
+section() {
+	printf '\n== %s ==\n' "$*"
+}
+
+policy_name() {
+	case "$1" in
+	0) printf '%s' OTHER ;;
+	1) printf '%s' FIFO ;;
+	2) printf '%s' RR ;;
+	3) printf '%s' BATCH ;;
+	5) printf '%s' IDLE ;;
+	6) printf '%s' DEADLINE ;;
+	*) printf '%s' "${1:-?}" ;;
+	esac
+}
+
+task_stat_fields() {
+	awk '{print $39, $40, $41}' "$1/stat" 2>/dev/null
+}
+
+task_cpu() {
+	awk '{print $39}' "$1/stat" 2>/dev/null
+}
+
+task_affinity() {
+	awk '/^Cpus_allowed_list:/ {print $2}' "$1/status" 2>/dev/null
+}
+
+read_file_value() {
+	file=$1
+	[ -r "${file}" ] || {
+		printf '%s' not-readable
+		return 0
+	}
+	value=$(cat "${file}" 2>/dev/null)
+	[ -n "${value}" ] || value=empty
+	printf '%s' "${value}"
+}
+
+run_with_timeout() {
+	seconds=$1
+	shift
+
+	tmp="/tmp/servo-rt-check.$$.$seconds"
+	"$@" >"${tmp}" 2>&1 &
+	pid=$!
+	remaining=${seconds}
+	while [ "${remaining}" -gt 0 ] && kill -0 "${pid}" 2>/dev/null; do
+		sleep 1
+		remaining=$((remaining - 1))
+	done
+	if kill -0 "${pid}" 2>/dev/null; then
+		kill -TERM "${pid}" 2>/dev/null || true
+		sleep 1
+	fi
+	if kill -0 "${pid}" 2>/dev/null; then
+		kill -KILL "${pid}" 2>/dev/null || true
+		printf 'command timed out after %ss: %s\n' "${seconds}" "$*"
+	else
+		wait "${pid}" 2>/dev/null || true
+	fi
+	cat "${tmp}" 2>/dev/null
+	rm -f "${tmp}"
+}
+
+print_task() {
+	task=$1
+	[ -d "${task}" ] || return 1
+
+	set -- $(task_stat_fields "${task}")
+	[ -n "$1" ] || return 1
+
+	cpu=$1
+	rtprio=$2
+	policy=$3
+	pid=${task%/task/*}
+	pid=${pid##*/}
+	tid=${task##*/}
+	name=$(cat "${task}/comm" 2>/dev/null)
+	affinity=$(task_affinity "${task}")
+	[ -n "${affinity}" ] || affinity=?
+
+	printf '%-6s %-6s %-4s %-10s %-8s %-6s %s\n' \
+		"${pid}" "${tid}" "${cpu}" "${affinity}" \
+		"$(policy_name "${policy}")" "${rtprio:-?}" "${name:-?}"
+}
+
+show_process_threads() {
+	name=$1
+	pids=$(pidof "${name}" 2>/dev/null || true)
+	if [ -z "${pids}" ]; then
+		printf '%s: not running\n' "${name}"
+		return 0
+	fi
+
+	printf '%s pid(s): %s\n' "${name}" "${pids}"
+	printf '%-6s %-6s %-4s %-10s %-8s %-6s %s\n' \
+		PID TID CPU AFFINITY POLICY RTPRIO COMM
+	for pid in ${pids}; do
+		for task in /proc/"${pid}"/task/*; do
+			print_task "${task}"
+		done
+	done
+}
+
+show_matching_threads() {
+	count=0
+
+	for task in /proc/[0-9]*/task/[0-9]*; do
+		[ -d "${task}" ] || continue
+		name=$(cat "${task}/comm" 2>/dev/null)
+		case "${name}" in
+		EtherCAT*|ec_*|ecm*)
+			if [ "${count}" -eq 0 ]; then
+				printf '%-6s %-6s %-4s %-10s %-8s %-6s %s\n' \
+					PID TID CPU AFFINITY POLICY RTPRIO COMM
+			fi
+			print_task "${task}" && count=$((count + 1))
+			;;
+		esac
+	done
+
+	if [ "${count}" -eq 0 ]; then
+		printf 'no EtherCAT kernel thread found\n'
+	fi
+}
+
+show_matching_threads_by_pattern() {
+	pattern=$1
+	label=${2:-$1}
+	count=0
+
+	for task in /proc/[0-9]*/task/[0-9]*; do
+		[ -d "${task}" ] || continue
+		name=$(cat "${task}/comm" 2>/dev/null)
+		case "${name}" in
+		${pattern})
+			if [ "${count}" -eq 0 ]; then
+				printf '%-6s %-6s %-4s %-10s %-8s %-6s %s\n' \
+					PID TID CPU AFFINITY POLICY RTPRIO COMM
+			fi
+			print_task "${task}" && count=$((count + 1))
+			;;
+		esac
+	done
+
+	if [ "${count}" -eq 0 ]; then
+		printf 'no thread matching %s\n' "${label}"
+	fi
+}
+
+show_cpu_tasks() {
+	filter_cpu=$1
+	count=0
+
+	for task in /proc/[0-9]*/task/[0-9]*; do
+		[ -d "${task}" ] || continue
+		cpu=$(task_cpu "${task}")
+		[ "${cpu}" = "${filter_cpu}" ] || continue
+		if [ "${count}" -eq 0 ]; then
+			printf '%-6s %-6s %-4s %-10s %-8s %-6s %s\n' \
+				PID TID CPU AFFINITY POLICY RTPRIO COMM
+		fi
+		print_task "${task}" && count=$((count + 1))
+	done
+
+	if [ "${count}" -eq 0 ]; then
+		printf 'no thread last scheduled on CPU%s\n' "${filter_cpu}"
+	fi
+}
+
+cmdline_value() {
+	name=$1
+	tr ' ' '\n' </proc/cmdline 2>/dev/null |
+		awk -F= -v key="${name}" '$1 == key {print ($2 == "" ? "present" : $2); exit}'
+}
+
+show_cmdline_value() {
+	name=$1
+	value=$(cmdline_value "${name}")
+	[ -n "${value}" ] || value=-
+	printf '%-16s %s\n' "${name}" "${value}"
+}
+
+find_gmac0_iface() {
+	for interface_path in /sys/class/net/*; do
+		[ -e "${interface_path}" ] || continue
+		device_path=$(readlink -f "${interface_path}/device" 2>/dev/null || true)
+		case "${device_path}" in
+		*/ff4c8000.ethernet)
+			basename "${interface_path}"
+			return 0
+			;;
+		esac
+	done
+
+	device_driver=$(readlink -f /sys/bus/platform/devices/ff4c8000.ethernet/driver 2>/dev/null || true)
+	case "${device_driver##*/}" in
+	rk_gmac-dwmac-ethercat)
+		return 0
+		;;
+	esac
+
+	[ -d /sys/class/net/eth0 ] && printf '%s\n' eth0
+}
+
+show_gmac0_no_iface_reason() {
+	device_driver=$(readlink -f /sys/bus/platform/devices/ff4c8000.ethernet/driver 2>/dev/null || true)
+	case "${device_driver##*/}" in
+	rk_gmac-dwmac-ethercat)
+		printf '%-24s %s\n' gmac0_netdev "none (ff4c8000 owned by ec_stmmac native EtherCAT driver)"
+		;;
+	*)
+		printf 'GMAC0 interface not found\n'
+		;;
+	esac
+}
+
+show_file_value() {
+	label=$1
+	file=$2
+	value=$(read_file_value "${file}")
+	printf '%-24s %s\n' "${label}" "${value}"
+}
+
+iface_admin_up() {
+	iface=$1
+	flags=$(cat /sys/class/net/"${iface}"/flags 2>/dev/null)
+	case "${flags}" in
+	''|*[!0-9A-Fa-fx]*)
+		printf '%s' unknown
+		return 0
+		;;
+	esac
+
+	if [ $((flags & 1)) -ne 0 ] 2>/dev/null; then
+		printf '%s' yes
+	else
+		printf '%s' no
+	fi
+}
+
+show_iface_admin() {
+	iface=$1
+	show_file_value flags /sys/class/net/"${iface}"/flags
+	printf '%-24s %s\n' admin_up "$(iface_admin_up "${iface}")"
+}
+
+show_iface_carrier() {
+	iface=$1
+	carrier=$(cat /sys/class/net/"${iface}"/carrier 2>/dev/null)
+	if [ -n "${carrier}" ]; then
+		printf '%-24s %s\n' carrier "${carrier}"
+		return 0
+	fi
+
+	operstate=$(cat /sys/class/net/"${iface}"/operstate 2>/dev/null)
+	case "${operstate}" in
+	'')
+		printf '%-24s %s\n' carrier "unknown (carrier unreadable)"
+		;;
+	*)
+		printf '%-24s %s\n' carrier \
+			"unknown (carrier unreadable, operstate=${operstate}, admin_up=$(iface_admin_up "${iface}"))"
+		;;
+	esac
+}
+
+show_ethercat_tool_summary() {
+	command -v ethercat >/dev/null 2>&1 || return 0
+
+	show_ethercat_command "ethercat master" 120 ethercat master
+	show_ethercat_command "ethercat slaves" 80 ethercat slaves
+	show_ethercat_command "ethercat slaves -v" 180 ethercat slaves -v
+	show_ethercat_command "ethercat pdos -p0" 220 ethercat pdos -p0
+}
+
+show_ethercat_command() {
+	title=$1
+	lines=$2
+	shift 2
+
+	printf '\n%s:\n' "${title}"
+	output=$(run_with_timeout 3 "$@" 2>&1)
+	if [ -n "${output}" ]; then
+		printf '%s\n' "${output}" | sed -n "1,${lines}p"
+	else
+		printf 'no output (servo_backend may own the master)\n'
+	fi
+}
+
+show_netdev_stats() {
+	iface=$1
+	stats_dir=/sys/class/net/"${iface}"/statistics
+	[ -d "${stats_dir}" ] || return 0
+
+	for stat in \
+		rx_packets rx_bytes rx_errors rx_dropped rx_crc_errors rx_frame_errors rx_over_errors \
+		tx_packets tx_bytes tx_errors tx_dropped tx_aborted_errors tx_carrier_errors \
+		tx_fifo_errors collisions; do
+		[ -r "${stats_dir}/${stat}" ] || continue
+		printf '%-24s %s\n' "stat.${stat}" "$(cat "${stats_dir}/${stat}" 2>/dev/null)"
+	done
+
+	for queue in /sys/class/net/"${iface}"/queues/tx-*; do
+		[ -d "${queue}" ] || continue
+		show_file_value "queue.${queue##*/}.tx_timeout" "${queue}/tx_timeout"
+	done
+}
+
+show_phy_state() {
+	iface=$1
+	phy_path=$(readlink -f /sys/class/net/"${iface}"/phydev 2>/dev/null || true)
+	if [ -z "${phy_path}" ] || [ ! -d "${phy_path}" ]; then
+		printf '%-24s %s\n' phydev not-found
+		return 0
+	fi
+
+	printf '%-24s %s\n' phydev "${phy_path##*/}"
+	for file in phy_id phy_interface state attached_dev link speed duplex; do
+		[ -r "${phy_path}/${file}" ] || continue
+		show_file_value "phy.${file}" "${phy_path}/${file}"
+	done
+}
+
+show_ethtool_summary() {
+	iface=$1
+	if [ "${SERVO_RT_CHECK_ETHTOOL}" != "1" ]; then
+		printf 'skipped (set SERVO_RT_CHECK_ETHTOOL=1 to run ethtool ioctls)\n'
+		return 0
+	fi
+	if ! command -v ethtool >/dev/null 2>&1; then
+		printf 'ethtool not installed\n'
+		return 0
+	fi
+
+	printf '\nethtool %s:\n' "${iface}"
+	run_with_timeout 2 ethtool "${iface}" 2>&1 | sed -n '1,80p'
+	printf '\nethtool -k %s:\n' "${iface}"
+	run_with_timeout 2 ethtool -k "${iface}" 2>&1 | sed -n '1,80p'
+	printf '\nethtool -c %s:\n' "${iface}"
+	run_with_timeout 2 ethtool -c "${iface}" 2>&1 | sed -n '1,80p'
+	printf '\nethtool -S %s:\n' "${iface}"
+	run_with_timeout 2 ethtool -S "${iface}" 2>&1 |
+		grep -Ei 'error|timeout|under|over|miss|collision|carrier|fifo|watchdog|tx_|rx_|dma' |
+		sed -n '1,120p'
+}
+
+show_stmmac_debugfs() {
+	iface=$1
+	debug_dir=/sys/kernel/debug/stmmaceth/"${iface}"
+	if [ ! -d "${debug_dir}" ]; then
+		if [ -d /sys/kernel/debug ]; then
+			printf '%-24s %s\n' stmmac_debugfs "missing ${debug_dir}"
+		else
+			printf '%-24s %s\n' stmmac_debugfs debugfs-not-mounted
+		fi
+		return 0
+	fi
+
+	for file in dma_cap descriptors_status; do
+		if [ -r "${debug_dir}/${file}" ]; then
+			printf '\nstmmac debugfs %s:\n' "${file}"
+			sed -n '1,120p' "${debug_dir}/${file}"
+		else
+			printf '%-24s %s\n' "stmmac.${file}" not-readable
+		fi
+	done
+}
+
+show_gmac_dmesg() {
+	command -v dmesg >/dev/null 2>&1 || {
+		printf 'dmesg not available\n'
+		return 0
+	}
+
+	dmesg 2>&1 |
+		grep -Ei 'servo-op|rk_gmac|stmmac|ff4c8000|eth0|NETDEV|watchdog|transmit queue|PHY|phylink|Motorcomm|YT|EtherCAT|ec_|AL status|SAFEOP|PREOP|OP|SDO|PDO|sync manager|invalid|abort|failed' |
+		tail -n 180
+}
+
+show_iface_irq_affinity() {
+	iface=$1
+	[ -n "${iface}" ] || return 0
+	[ -r /proc/interrupts ] || return 0
+
+	irq_list=$(awk -v iface="${iface}" '
+		$0 ~ iface {
+			gsub(":", "", $1)
+			print $1
+		}
+	' /proc/interrupts 2>/dev/null)
+
+	for irq in ${irq_list}; do
+		list=$(read_file_value /proc/irq/"${irq}"/smp_affinity_list)
+		mask=$(read_file_value /proc/irq/"${irq}"/smp_affinity)
+		printf '%-24s list=%s mask=%s\n' "irq${irq}_affinity" "${list}" "${mask}"
+	done
+}
+
+show_gmac_module_state() {
+	printf '/proc/modules:\n'
+	if [ -r /proc/modules ]; then
+		awk '/(^ec_|stmmac|dwmac|rk_gmac)/ {print}' /proc/modules
+	else
+		printf '/proc/modules not readable\n'
+	fi
+
+	device_driver=$(readlink -f /sys/bus/platform/devices/ff4c8000.ethernet/driver 2>/dev/null || true)
+	if [ -n "${device_driver}" ]; then
+		printf '%-24s %s\n' ff4c8000_driver "${device_driver##*/}"
+	else
+		printf '%-24s %s\n' ff4c8000_driver not-bound
+	fi
+
+	printf 'platform drivers:\n'
+	count=0
+	for driver in /sys/bus/platform/drivers/*stmmac* \
+		/sys/bus/platform/drivers/*dwmac* \
+		/sys/bus/platform/drivers/*gmac*; do
+		[ -d "${driver}" ] || continue
+		printf '%s\n' "${driver##*/}"
+		count=$((count + 1))
+	done
+	[ "${count}" -gt 0 ] || printf 'none\n'
+}
+
+show_cpufreq() {
+	count=0
+	for policy in /sys/devices/system/cpu/cpufreq/policy* \
+		/sys/devices/system/cpu/cpu*/cpufreq; do
+		[ -d "${policy}" ] || continue
+		name=${policy#/sys/devices/system/cpu/}
+		governor=$(read_file_value "${policy}/scaling_governor")
+		min_freq=$(read_file_value "${policy}/scaling_min_freq")
+		max_freq=$(read_file_value "${policy}/scaling_max_freq")
+		cur_freq=$(read_file_value "${policy}/scaling_cur_freq")
+		printf '%-24s governor=%s min=%s max=%s cur=%s\n' \
+			"${name}" "${governor}" "${min_freq}" "${max_freq}" "${cur_freq}"
+		count=$((count + 1))
+	done
+
+	[ "${count}" -gt 0 ] || printf 'cpufreq sysfs not present\n'
+}
+
+show_pm_qos_holder() {
+	pidfile=/run/servo-pm-qos.pid
+	if [ ! -r "${pidfile}" ]; then
+		printf '%-24s %s\n' cpu_dma_latency none
+		return 0
+	fi
+
+	pid=$(cat "${pidfile}" 2>/dev/null)
+	if [ -n "${pid}" ] && kill -0 "${pid}" 2>/dev/null; then
+		printf '%-24s pid=%s active\n' cpu_dma_latency "${pid}"
+		for task in /proc/"${pid}"/task/*; do
+			print_task "${task}" >/dev/null 2>&1 || continue
+			print_task "${task}"
+		done
+	else
+		printf '%-24s stale-pid=%s\n' cpu_dma_latency "${pid:-?}"
+	fi
+}
+
+section "Image marker"
+printf '%-24s %s\n' servo_rt_check "${SERVO_RT_CHECK_VERSION}"
+printf '%-24s %s\n' kernel "$(uname -r 2>/dev/null || printf '?')"
+
+section "Servo startup log"
+if [ -r /run/servo_backend-start.log ]; then
+	sed -n '1,160p' /run/servo_backend-start.log
+else
+	printf '/run/servo_backend-start.log not found\n'
+fi
+if [ -r /run/servo_backend.log ]; then
+	printf '\nservo backend runtime log:\n'
+	grep -Ei 'servo_backend|MADHT|EtherCAT|master|slave|PDO|SDO|domain|activate|AL|SAFEOP|PREOP|OP|failed|fail|abort|error|watchdog' \
+		/run/servo_backend.log 2>/dev/null | tail -n 180
+else
+	printf '%-24s %s\n' backend_runtime_log not-found
+fi
+if [ -r /run/servo-ethercat-link-guard.pid ]; then
+	guard_pid=$(cat /run/servo-ethercat-link-guard.pid 2>/dev/null)
+	if [ -n "${guard_pid}" ] && kill -0 "${guard_pid}" 2>/dev/null; then
+		printf '%-24s pid=%s active\n' link_guard "${guard_pid}"
+	else
+		printf '%-24s pid=%s stale\n' link_guard "${guard_pid:-?}"
+	fi
+else
+	printf '%-24s %s\n' link_guard no-pidfile
+fi
+
+section "LVGL startup log"
+if [ -r /run/motor_demo-start.log ]; then
+	sed -n '1,40p' /run/motor_demo-start.log
+else
+	printf '/run/motor_demo-start.log not found\n'
+fi
+
+section "Servo backend socket state"
+if command -v servo_state_dump >/dev/null 2>&1; then
+	run_with_timeout 2 servo_state_dump 2>&1 | sed -n '1,120p'
+else
+	printf 'servo_state_dump not installed\n'
+fi
+
+section "CPU isolation"
+printf '%-24s %s\n' check_cpu "${CHECK_CPU}"
+printf '%-24s %s\n' servo_rt_expected_cpu "${SERVO_RT_CPU}"
+printf '%-24s %s\n' ethercat_expected_cpu "${ETHERCAT_THREAD_CPU}"
+if [ -r /proc/cmdline ]; then
+	show_cmdline_value isolcpus
+	show_cmdline_value nohz_full
+	show_cmdline_value rcu_nocbs
+	show_cmdline_value irqaffinity
+	show_cmdline_value rcu_nocb_poll
+fi
+show_file_value sys_isolated /sys/devices/system/cpu/isolated
+sys_nohz_full=$(read_file_value /sys/devices/system/cpu/nohz_full)
+printf '%-24s %s\n' sys_nohz_full "${sys_nohz_full}"
+cmd_nohz_full=$(cmdline_value nohz_full)
+[ -n "${cmd_nohz_full}" ] || cmd_nohz_full=-
+printf '%-24s cmdline nohz_full=%s\n' nohz_full_expected "${cmd_nohz_full}"
+case "${sys_nohz_full}" in
+empty|not-readable)
+	isol_arg=$(cmdline_value isolcpus)
+	case "${isol_arg}" in
+	*nohz*) ;;
+	*) printf '%-24s %s\n' nohz_full_hint "use isolcpus=nohz,... on PREEMPT_RT" ;;
+	esac
+	;;
+esac
+for state in /sys/devices/system/cpu/cpu"${CHECK_CPU}"/cpuidle/state*; do
+	[ -d "${state}" ] || continue
+	name=$(cat "${state}/name" 2>/dev/null)
+	disabled=$(cat "${state}/disable" 2>/dev/null)
+	printf 'cpu%s %-16s disable=%s\n' "${CHECK_CPU}" "${name:-${state##*/}}" "${disabled:-?}"
+done
+
+section "Kernel realtime knobs"
+show_file_value sched_rt_runtime_us /proc/sys/kernel/sched_rt_runtime_us
+show_file_value sched_rt_period_us /proc/sys/kernel/sched_rt_period_us
+show_file_value printk /proc/sys/kernel/printk
+show_file_value default_smp_affinity /proc/irq/default_smp_affinity
+show_file_value timer_migration /proc/sys/kernel/timer_migration
+show_file_value sched_autogroup_enabled /proc/sys/kernel/sched_autogroup_enabled
+show_file_value dirty_background_ratio /proc/sys/vm/dirty_background_ratio
+show_file_value dirty_ratio /proc/sys/vm/dirty_ratio
+show_file_value dirty_writeback_centisecs /proc/sys/vm/dirty_writeback_centisecs
+show_file_value dirty_expire_centisecs /proc/sys/vm/dirty_expire_centisecs
+show_file_value vm_stat_interval /proc/sys/vm/stat_interval
+show_file_value watchdog /proc/sys/kernel/watchdog
+show_pm_qos_holder
+
+section "CPU frequency"
+show_cpufreq
+
+section "Workqueue affinity"
+global_wq_mask=$(read_file_value /sys/devices/virtual/workqueue/cpumask)
+printf '%-24s %s\n' workqueue_global "${global_wq_mask}"
+show_file_value workqueue_power_efficient /sys/module/workqueue/parameters/power_efficient
+for file in /sys/devices/virtual/workqueue/*/cpumask; do
+	[ -r "${file}" ] || continue
+	value=$(read_file_value "${file}")
+	[ "${value}" = "${global_wq_mask}" ] && continue
+	printf '%-24s %s\n' "${file#/sys/devices/virtual/workqueue/}" "${value}"
+done
+
+section "CPU${CHECK_CPU} current threads"
+show_cpu_tasks "${CHECK_CPU}"
+
+section "Application threads"
+show_process_threads servo_backend
+show_matching_threads_by_pattern "servo_rt" "servo_rt"
+show_process_threads motor_demo
+
+section "EtherCAT"
+for param in thread_cpu idle_thread_rt_prio op_thread_rt_prio main_devices; do
+	file=/sys/module/ec_master/parameters/${param}
+	show_file_value "ec_master.${param}" "${file}"
+done
+show_ethercat_tool_summary
+for file in /etc/ethercat.conf /etc/sysconfig/ethercat; do
+	[ -r "${file}" ] || continue
+	printf '%s:\n' "${file}"
+	grep -E 'MASTER|DEVICE|MODULE|thread_cpu|rt_prio|CPU|PRIO' "${file}" 2>/dev/null || sed -n '1,40p' "${file}"
+done
+printf '\nEtherCAT kernel threads:\n'
+show_matching_threads
+
+section "GMAC0 module binding"
+show_gmac_module_state
+
+section "IRQ threads"
+IFACE=${SERVO_ETHERCAT_IFACE:-$(find_gmac0_iface)}
+if [ -n "${IFACE}" ]; then
+	show_matching_threads_by_pattern "irq/*${IFACE}*" "${IFACE} IRQ threads"
+else
+	show_gmac0_no_iface_reason
+fi
+show_matching_threads_by_pattern "irq/*ff4c8000*" "ff4c8000 IRQ threads"
+show_matching_threads_by_pattern "ksoftirqd/${CHECK_CPU}" "ksoftirqd/${CHECK_CPU}"
+
+section "GMAC0 interface"
+IFACE=${SERVO_ETHERCAT_IFACE:-$(find_gmac0_iface)}
+if [ -n "${IFACE}" ]; then
+	printf '%-24s %s\n' iface "${IFACE}"
+	show_file_value address /sys/class/net/"${IFACE}"/address
+	show_iface_admin "${IFACE}"
+	show_file_value operstate /sys/class/net/"${IFACE}"/operstate
+	show_iface_carrier "${IFACE}"
+	show_file_value dormant /sys/class/net/"${IFACE}"/dormant
+	printf '%-24s %s\n' speed skipped-use-ethtool
+	printf '%-24s %s\n' duplex skipped-use-ethtool
+	show_file_value tx_queue_len /sys/class/net/"${IFACE}"/tx_queue_len
+	printf '%-24s %s\n' queue_rps_xps skipped
+	show_netdev_stats "${IFACE}"
+	show_phy_state "${IFACE}"
+	show_iface_irq_affinity "${IFACE}"
+else
+	show_gmac0_no_iface_reason
+fi
+
+section "GMAC0 ethtool"
+if [ -n "${IFACE}" ]; then
+	show_ethtool_summary "${IFACE}"
+else
+	show_gmac0_no_iface_reason
+fi
+
+section "GMAC0 stmmac debugfs"
+if [ -n "${IFACE}" ]; then
+	show_stmmac_debugfs "${IFACE}"
+else
+	show_gmac0_no_iface_reason
+fi
+
+section "GMAC0 kernel log"
+show_gmac_dmesg
+
+section "Interrupts"
+if [ -r /proc/interrupts ]; then
+	awk 'NR == 1 || /ff4c8000|ff4d0000|ethernet|gmac|stmmac|eth0|ec_|arch_timer|timer|IPI/ {print}' /proc/interrupts
+else
+	printf '/proc/interrupts not readable\n'
+fi
+
+section "Softirqs"
+if [ -r /proc/softirqs ]; then
+	awk 'NR == 1 || /NET_RX|NET_TX|TIMER|RCU|SCHED/ {print}' /proc/softirqs
+else
+	printf '/proc/softirqs not readable\n'
+fi

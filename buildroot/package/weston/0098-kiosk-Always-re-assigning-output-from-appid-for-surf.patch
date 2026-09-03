@@ -1,0 +1,36 @@
+From feccd124b490a79cbf0743d36f2d96534444a4af Mon Sep 17 00:00:00 2001
+From: Jeffy Chen <jeffy.chen@rock-chips.com>
+Date: Mon, 2 Dec 2024 12:06:24 +0800
+Subject: [PATCH 098/100] kiosk: Always re-assigning output from appid for
+ surfaces
+
+Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
+---
+ kiosk-shell/kiosk-shell.c | 4 +++-
+ 1 file changed, 3 insertions(+), 1 deletion(-)
+
+diff --git a/kiosk-shell/kiosk-shell.c b/kiosk-shell/kiosk-shell.c
+index 2a9a765e6..29a52a2ed 100644
+--- a/kiosk-shell/kiosk-shell.c
++++ b/kiosk-shell/kiosk-shell.c
+@@ -169,6 +169,7 @@ kiosk_shell_surface_notify_output_destroy(struct wl_listener *listener, void *da
+ 			     struct kiosk_shell_surface, output_destroy_listener);
+ 
+ 	kiosk_shell_surface_set_output(shsurf, NULL);
++	shsurf->appid_output_assigned = false;
+ }
+ 
+ static struct kiosk_shell_surface *
+@@ -994,7 +995,8 @@ desktop_surface_committed(struct weston_desktop_surface *desktop_surface,
+ 	if (surface->width == 0)
+ 		return;
+ 
+-	if (!shsurf->appid_output_assigned && app_id) {
++	if (!shsurf->appid_output_assigned && app_id &&
++	    !wl_list_empty(&shsurf->shell->output_list)) {
+ 		struct weston_output *output = NULL;
+ 
+ 		/* reset previous output being set in _added() as the output is
+-- 
+2.20.1
+

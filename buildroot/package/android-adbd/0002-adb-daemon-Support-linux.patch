@@ -1,0 +1,886 @@
+From 629cabe1bac0525054b05bfada1c59b81400363d Mon Sep 17 00:00:00 2001
+From: Jeffy Chen <jeffy.chen@rock-chips.com>
+Date: Thu, 28 Sep 2023 15:10:54 +0800
+Subject: [PATCH 2/7] adb: daemon: Support linux
+
+Tested with:
+1/ meson setup build
+2/ ninja -C build
+
+Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
+---
+ adb/adb.cpp                      |   2 +
+ adb/adb_listeners.cpp            |  15 +++--
+ adb/adb_trace.cpp                |   6 ++
+ adb/daemon/auth.cpp              |   3 +-
+ adb/daemon/file_sync_service.cpp |  20 ++++--
+ adb/daemon/main.cpp              |  20 +++++-
+ adb/daemon/reboot_service.cpp    |  16 +++++
+ adb/daemon/reboot_service.h      |   2 -
+ adb/daemon/remount_service.cpp   |   6 ++
+ adb/daemon/remount_service.h     |   2 -
+ adb/daemon/services.cpp          |  21 +++++++
+ adb/daemon/shell_service.cpp     |  11 ++++
+ adb/daemon/usb.cpp               |   9 +++
+ adb/fdevent.cpp                  |   2 +-
+ adb/sockets.cpp                  |   7 +++
+ adb/transport_local.cpp          |   8 ++-
+ base/properties.cpp              |  73 ++++++++++++++++++----
+ meson.build                      | 102 +++++++++++++++++++++++++++++++
+ 18 files changed, 287 insertions(+), 38 deletions(-)
+ create mode 100644 meson.build
+
+diff --git a/adb/adb.cpp b/adb/adb.cpp
+index 420eee7..3dbf70f 100644
+--- a/adb/adb.cpp
++++ b/adb/adb.cpp
+@@ -54,8 +54,10 @@
+ #include "transport.h"
+ 
+ #if !ADB_HOST
++#ifdef __ANDROID__
+ #include <sys/capability.h>
+ #include <sys/mount.h>
++#endif
+ #include <android-base/properties.h>
+ using namespace std::chrono_literals;
+ #endif
+diff --git a/adb/adb_listeners.cpp b/adb/adb_listeners.cpp
+index 29909a5..a2391c6 100644
+--- a/adb/adb_listeners.cpp
++++ b/adb/adb_listeners.cpp
+@@ -109,7 +109,7 @@ static void listener_event_func(int _fd, unsigned ev, void* _l)
+ }
+ 
+ // Called as a transport disconnect function. |arg| is the raw alistener*.
+-static void listener_disconnect(void* arg, atransport*) EXCLUDES(listener_list_mutex) {
++static void EXCLUDES(listener_list_mutex) listener_disconnect(void* arg, atransport*) {
+     std::lock_guard<std::mutex> lock(listener_list_mutex);
+     for (auto iter = listener_list.begin(); iter != listener_list.end(); ++iter) {
+         if (iter->get() == arg) {
+@@ -121,7 +121,7 @@ static void listener_disconnect(void* arg, atransport*) EXCLUDES(listener_list_m
+ }
+ 
+ // Write the list of current listeners (network redirections) into a string.
+-std::string format_listeners() EXCLUDES(listener_list_mutex) {
++std::string EXCLUDES(listener_list_mutex) format_listeners() {
+     std::lock_guard<std::mutex> lock(listener_list_mutex);
+     std::string result;
+     for (auto& l : listener_list) {
+@@ -139,8 +139,7 @@ std::string format_listeners() EXCLUDES(listener_list_mutex) {
+     return result;
+ }
+ 
+-InstallStatus remove_listener(const char* local_name, atransport* transport)
+-    EXCLUDES(listener_list_mutex) {
++InstallStatus EXCLUDES(listener_list_mutex) remove_listener(const char* local_name, atransport* transport) {
+     std::lock_guard<std::mutex> lock(listener_list_mutex);
+     for (auto iter = listener_list.begin(); iter != listener_list.end(); ++iter) {
+         if (local_name == (*iter)->local_name) {
+@@ -151,7 +150,7 @@ InstallStatus remove_listener(const char* local_name, atransport* transport)
+     return INSTALL_STATUS_LISTENER_NOT_FOUND;
+ }
+ 
+-void remove_all_listeners() EXCLUDES(listener_list_mutex) {
++void EXCLUDES(listener_list_mutex) remove_all_listeners() {
+     std::lock_guard<std::mutex> lock(listener_list_mutex);
+     auto iter = listener_list.begin();
+     while (iter != listener_list.end()) {
+@@ -164,7 +163,7 @@ void remove_all_listeners() EXCLUDES(listener_list_mutex) {
+     }
+ }
+ 
+-void close_smartsockets() EXCLUDES(listener_list_mutex) {
++void EXCLUDES(listener_list_mutex) close_smartsockets() {
+     std::lock_guard<std::mutex> lock(listener_list_mutex);
+     auto pred = [](const std::unique_ptr<alistener>& listener) {
+         return listener->local_name == "*smartsocket*";
+@@ -172,9 +171,9 @@ void close_smartsockets() EXCLUDES(listener_list_mutex) {
+     listener_list.remove_if(pred);
+ }
+ 
+-InstallStatus install_listener(const std::string& local_name, const char* connect_to,
++InstallStatus EXCLUDES(listener_list_mutex) install_listener(const std::string& local_name, const char* connect_to,
+                                atransport* transport, int no_rebind, int* resolved_tcp_port,
+-                               std::string* error) EXCLUDES(listener_list_mutex) {
++                               std::string* error) {
+     std::lock_guard<std::mutex> lock(listener_list_mutex);
+     for (auto& l : listener_list) {
+         if (local_name == l->local_name) {
+diff --git a/adb/adb_trace.cpp b/adb/adb_trace.cpp
+index 80f146c..4cc7161 100644
+--- a/adb/adb_trace.cpp
++++ b/adb/adb_trace.cpp
+@@ -39,6 +39,12 @@ static android::base::LogdLogger gLogdLogger;
+ const char* adb_device_banner = "host";
+ #endif
+ 
++#ifndef __ANDROID__
++/* Force using host APIs for non-Android platform */
++#undef ADB_HOST
++#define ADB_HOST 1
++#endif
++
+ void AdbLogger(android::base::LogId id, android::base::LogSeverity severity,
+                const char* tag, const char* file, unsigned int line,
+                const char* message) {
+diff --git a/adb/daemon/auth.cpp b/adb/daemon/auth.cpp
+index a18afa4..553ac59 100644
+--- a/adb/daemon/auth.cpp
++++ b/adb/daemon/auth.cpp
+@@ -98,8 +98,7 @@ bool adbd_auth_verify(const char* token, size_t token_size, const std::string& s
+     return false;
+ }
+ 
+-static bool adbd_send_key_message_locked(std::string_view msg_type, std::string_view key)
+-        REQUIRES(framework_mutex) {
++static bool REQUIRES(framework_mutex) adbd_send_key_message_locked(std::string_view msg_type, std::string_view key) {
+     if (framework_fd < 0) {
+         LOG(ERROR) << "Client not connected to send msg_type " << msg_type;
+         return false;
+diff --git a/adb/daemon/file_sync_service.cpp b/adb/daemon/file_sync_service.cpp
+index e82a51f..48b19ba 100644
+--- a/adb/daemon/file_sync_service.cpp
++++ b/adb/daemon/file_sync_service.cpp
+@@ -41,9 +41,10 @@
+ #include <android-base/strings.h>
+ 
+ #include <private/android_filesystem_config.h>
+-#include <private/android_logger.h>
+ 
+ #if defined(__ANDROID__)
++#include <private/android_logger.h>
++
+ #include <selinux/android.h>
+ #include <sys/xattr.h>
+ #endif
+@@ -59,15 +60,12 @@
+ using android::base::Dirname;
+ using android::base::StringPrintf;
+ 
+-static bool should_use_fs_config(const std::string& path) {
+ #if defined(__ANDROID__)
++static bool should_use_fs_config(const std::string& path) {
+     // TODO: use fs_config to configure permissions on /data too.
+     return !android::base::StartsWith(path, "/data/");
+-#else
+-    UNUSED(path);
+-    return false;
+-#endif
+ }
++#endif
+ 
+ static bool update_capabilities(const char* path, uint64_t capabilities) {
+ #if defined(__ANDROID__)
+@@ -110,9 +108,12 @@ static bool secure_mkdirs(const std::string& path) {
+         }
+         partial_path += path_component;
+ 
++#if defined(__ANDROID__)
+         if (should_use_fs_config(partial_path)) {
+             fs_config(partial_path.c_str(), 1, nullptr, &uid, &gid, &mode, &capabilities);
+         }
++#endif
++
+         if (adb_mkdir(partial_path.c_str(), mode) == -1) {
+             if (errno != EEXIST) {
+                 return false;
+@@ -231,7 +232,9 @@ static bool handle_send_file(int s, const char* path, uint32_t* timestamp, uid_t
+                              bool do_unlink) {
+     syncmsg msg;
+ 
++#ifdef __ANDROID__
+     __android_log_security_bswrite(SEC_TAG_ADB_SEND_FILE, path);
++#endif
+ 
+     unique_fd fd(adb_open_mode(path, O_WRONLY | O_CREAT | O_EXCL | O_CLOEXEC, mode));
+ 
+@@ -432,11 +435,14 @@ static bool do_send(int s, const std::string& spec, std::vector<char>& buffer) {
+         uid_t uid = -1;
+         gid_t gid = -1;
+         uint64_t capabilities = 0;
++
++#if defined(__ANDROID__)
+         if (should_use_fs_config(path)) {
+             unsigned int broken_api_hack = mode;
+             fs_config(path.c_str(), 0, nullptr, &uid, &gid, &broken_api_hack, &capabilities);
+             mode = broken_api_hack;
+         }
++#endif
+ 
+         result = handle_send_file(s, path.c_str(), &timestamp, uid, gid, capabilities, mode, buffer,
+                                   do_unlink);
+@@ -456,7 +462,9 @@ static bool do_send(int s, const std::string& spec, std::vector<char>& buffer) {
+ }
+ 
+ static bool do_recv(int s, const char* path, std::vector<char>& buffer) {
++#ifdef __ANDROID__
+     __android_log_security_bswrite(SEC_TAG_ADB_RECV_FILE, path);
++#endif
+ 
+     unique_fd fd(adb_open(path, O_RDONLY | O_CLOEXEC));
+     if (fd < 0) {
+diff --git a/adb/daemon/main.cpp b/adb/daemon/main.cpp
+index e5a4917..4428832 100644
+--- a/adb/daemon/main.cpp
++++ b/adb/daemon/main.cpp
+@@ -28,8 +28,11 @@
+ #include <signal.h>
+ #include <stdio.h>
+ #include <stdlib.h>
++
++#if defined(__ANDROID__)
+ #include <sys/capability.h>
+ #include <sys/prctl.h>
++#endif
+ 
+ #include <memory>
+ 
+@@ -53,6 +56,7 @@
+ #include "adb_utils.h"
+ #include "transport.h"
+ 
++#ifdef __ANDROID__
+ #include "mdns.h"
+ 
+ #if defined(__ANDROID__)
+@@ -105,8 +109,10 @@ static bool should_drop_privileges() {
+ 
+     return drop;
+ }
++#endif
+ 
+ static void drop_privileges(int server_port) {
++#ifdef __ANDROID__
+     ScopedMinijail jail(minijail_new());
+ 
+     // Add extra groups:
+@@ -176,6 +182,14 @@ static void drop_privileges(int server_port) {
+             LOG(FATAL) << "Could not install *smartsocket* listener: " << error;
+         }
+     }
++#else
++    std::string error;
++    std::string local_name =
++        android::base::StringPrintf("tcp:%d", server_port);
++    if (install_listener(local_name, "*smartsocket*", nullptr, 0, nullptr, &error)) {
++        LOG(FATAL) << "Could not install *smartsocket* listener: " << error;
++    }
++#endif
+ }
+ #endif
+ 
+@@ -232,13 +246,11 @@ int adbd_main(int server_port) {
+ 
+     bool is_usb = false;
+ 
+-#if defined(__ANDROID__)
+     if (access(USB_FFS_ADB_EP0, F_OK) == 0) {
+         // Listen on USB.
+         usb_init();
+         is_usb = true;
+     }
+-#endif
+ 
+     // If one of these properties is set, also listen on that port.
+     // If one of the properties isn't set and we couldn't listen on usb, listen
+@@ -258,9 +270,11 @@ int adbd_main(int server_port) {
+         setup_port(DEFAULT_ADB_LOCAL_TRANSPORT_PORT);
+     }
+ 
++#ifdef __ANDROID__
+     D("adbd_main(): pre init_jdwp()");
+     init_jdwp();
+     D("adbd_main(): post init_jdwp()");
++#endif
+ 
+     D("Event loop starting");
+     fdevent_loop();
+@@ -276,7 +290,9 @@ int main(int argc, char** argv) {
+ 
+     while (true) {
+         static struct option opts[] = {
++#ifdef __ANDROID__
+             {"root_seclabel", required_argument, nullptr, 's'},
++#endif
+             {"device_banner", required_argument, nullptr, 'b'},
+             {"version", no_argument, nullptr, 'v'},
+         };
+diff --git a/adb/daemon/reboot_service.cpp b/adb/daemon/reboot_service.cpp
+index a5a11b8..a689c42 100644
+--- a/adb/daemon/reboot_service.cpp
++++ b/adb/daemon/reboot_service.cpp
+@@ -25,11 +25,17 @@
+ 
+ #include <string>
+ 
++#ifdef __ANDROID__
+ #include <android-base/logging.h>
+ #include <android-base/properties.h>
++#endif
++
+ #include <android-base/stringprintf.h>
++
++#ifdef __ANDROID__
+ #include <bootloader_message/bootloader_message.h>
+ #include <cutils/android_reboot.h>
++#endif
+ 
+ #include "adb_io.h"
+ #include "adb_unique_fd.h"
+@@ -38,6 +44,7 @@ void reboot_service(unique_fd fd, const std::string& arg) {
+     std::string reboot_arg = arg;
+     sync();
+ 
++#ifdef __ANDROID__
+     if (reboot_arg.empty()) reboot_arg = "adb";
+     std::string reboot_string = android::base::StringPrintf("reboot,%s", reboot_arg.c_str());
+ 
+@@ -76,6 +83,15 @@ void reboot_service(unique_fd fd, const std::string& arg) {
+             return;
+         }
+     }
++#else
++    std::string reboot_string = android::base::StringPrintf("/sbin/reboot %s", reboot_arg.c_str());
++
++    if (system(reboot_string.c_str())) {
++        WriteFdFmt(fd.get(), "reboot (%s) failed\n", reboot_string.c_str());
++        return;
++    }
++#endif
++
+     // Don't return early. Give the reboot command time to take effect
+     // to avoid messing up scripts which do "adb reboot && adb wait-for-device"
+     while (true) {
+diff --git a/adb/daemon/reboot_service.h b/adb/daemon/reboot_service.h
+index f68913e..61ee1fd 100644
+--- a/adb/daemon/reboot_service.h
++++ b/adb/daemon/reboot_service.h
+@@ -20,6 +20,4 @@
+ 
+ #include "adb_unique_fd.h"
+ 
+-#if defined(__ANDROID__)
+ void reboot_service(unique_fd fd, const std::string& arg);
+-#endif
+diff --git a/adb/daemon/remount_service.cpp b/adb/daemon/remount_service.cpp
+index ce494ee..1af3f69 100644
+--- a/adb/daemon/remount_service.cpp
++++ b/adb/daemon/remount_service.cpp
+@@ -27,6 +27,7 @@
+ #include "adb_io.h"
+ #include "adb_unique_fd.h"
+ 
++#ifdef __ANDROID__
+ static constexpr char kRemountCmd[] = "/system/bin/remount";
+ 
+ static bool do_remount(int fd, const std::string& cmd) {
+@@ -81,6 +82,11 @@ static bool do_remount(int fd, const std::string& cmd) {
+ 
+     return true;
+ }
++#else
++static bool do_remount(int fd, const std::string& cmd) {
++    return system("/usr/bin/mount -o remount,rw /") == 0;
++}
++#endif
+ 
+ void remount_service(unique_fd fd, const std::string& cmd) {
+     const char* success = do_remount(fd.get(), cmd) ? "succeeded" : "failed";
+diff --git a/adb/daemon/remount_service.h b/adb/daemon/remount_service.h
+index 522a5da..b6cd3c7 100644
+--- a/adb/daemon/remount_service.h
++++ b/adb/daemon/remount_service.h
+@@ -20,6 +20,4 @@
+ 
+ #include "adb_unique_fd.h"
+ 
+-#if defined(__ANDROID__)
+ void remount_service(unique_fd, const std::string&);
+-#endif
+diff --git a/adb/daemon/services.cpp b/adb/daemon/services.cpp
+index b0cc450..d92922e 100644
+--- a/adb/daemon/services.cpp
++++ b/adb/daemon/services.cpp
+@@ -40,7 +40,10 @@
+ #include <android-base/strings.h>
+ #include <android-base/unique_fd.h>
+ #include <cutils/sockets.h>
++
++#ifdef __ANDROID__
+ #include <log/log_properties.h>
++#endif
+ 
+ #include "adb.h"
+ #include "adb_io.h"
+@@ -121,6 +124,7 @@ unique_fd ShellService(std::string_view args, const atransport* transport) {
+     return StartSubprocess(command, terminal_type.c_str(), type, protocol);
+ }
+ 
++#ifdef __ANDROID__
+ static void spin_service(unique_fd fd) {
+     if (!__android_log_is_debuggable()) {
+         WriteFdExactly(fd.get(), "refusing to spin on non-debuggable build\n");
+@@ -142,6 +146,7 @@ static void spin_service(unique_fd fd) {
+ 
+     WriteFdExactly(fd.get(), "spinning\n");
+ }
++#endif
+ 
+ struct ServiceSocket : public asocket {
+     ServiceSocket() {
+@@ -218,6 +223,7 @@ struct SourceSocket : public ServiceSocket {
+     size_t bytes_left_;
+ };
+ 
++#ifdef __ANDROID__
+ asocket* daemon_service_to_socket(std::string_view name) {
+     if (name == "jdwp") {
+         return create_jdwp_service_socket();
+@@ -239,6 +245,7 @@ asocket* daemon_service_to_socket(std::string_view name) {
+ 
+     return nullptr;
+ }
++#endif
+ 
+ unique_fd daemon_service_to_fd(std::string_view name, atransport* transport) {
+ #if defined(__ANDROID__) && !defined(__ANDROID_RECOVERY__)
+@@ -287,16 +294,28 @@ unique_fd daemon_service_to_fd(std::string_view name, atransport* transport) {
+     } else if (name.starts_with("usb:")) {
+         return create_service_thread("usb", restart_usb_service);
+     }
++#else
++    if (ConsumePrefix(&name, "remount:")) {
++        std::string arg(name);
++        return create_service_thread("remount",
++                                     std::bind(remount_service, std::placeholders::_1, arg));
++    } else if (ConsumePrefix(&name, "reboot:")) {
++        std::string arg(name);
++        return create_service_thread("reboot",
++                                     std::bind(reboot_service, std::placeholders::_1, arg));
++    }
+ #endif
+ 
+     if (ConsumePrefix(&name, "dev:")) {
+         return unique_fd{unix_open(name, O_RDWR | O_CLOEXEC)};
++#ifdef __ANDROID__
+     } else if (ConsumePrefix(&name, "jdwp:")) {
+         pid_t pid;
+         if (!ParseUint(&pid, name)) {
+             return unique_fd{};
+         }
+         return create_jdwp_connection_fd(pid);
++#endif
+     } else if (ConsumePrefix(&name, "shell")) {
+         return ShellService(name, transport);
+     } else if (ConsumePrefix(&name, "exec:")) {
+@@ -309,8 +328,10 @@ unique_fd daemon_service_to_fd(std::string_view name, atransport* transport) {
+     } else if (name == "reconnect") {
+         return create_service_thread(
+                 "reconnect", std::bind(reconnect_service, std::placeholders::_1, transport));
++#ifdef __ANDROID__
+     } else if (name == "spin") {
+         return create_service_thread("spin", spin_service);
++#endif
+     }
+ 
+     return unique_fd{};
+diff --git a/adb/daemon/shell_service.cpp b/adb/daemon/shell_service.cpp
+index 3c8f393..a73fe59 100644
+--- a/adb/daemon/shell_service.cpp
++++ b/adb/daemon/shell_service.cpp
+@@ -97,7 +97,10 @@
+ #include <android-base/logging.h>
+ #include <android-base/properties.h>
+ #include <android-base/stringprintf.h>
++
++#ifdef __ANDROID__
+ #include <private/android_logger.h>
++#endif
+ 
+ #if defined(__ANDROID__)
+ #include <selinux/android.h>
+@@ -224,11 +227,13 @@ bool Subprocess::ForkAndExec(std::string* error) {
+     unique_fd parent_error_sfd, child_error_sfd;
+     char pts_name[PATH_MAX];
+ 
++#ifdef __ANDROID__
+     if (command_.empty()) {
+         __android_log_security_bswrite(SEC_TAG_ADB_SHELL_INTERACTIVE, "");
+     } else {
+         __android_log_security_bswrite(SEC_TAG_ADB_SHELL_CMD, command_.c_str());
+     }
++#endif
+ 
+     // Create a socketpair for the fork() child to report any errors back to the parent. Since we
+     // use threads, logging directly from the child might deadlock due to locks held in another
+@@ -261,7 +266,11 @@ bool Subprocess::ForkAndExec(std::string* error) {
+         env["HOSTNAME"] = GetHostName();
+         env["LOGNAME"] = pw->pw_name;
+         env["SHELL"] = pw->pw_shell;
++#ifdef __ANDROID__
+         env["TMPDIR"] = "/data/local/tmp";
++#else
++        env["TMPDIR"] = "/tmp";
++#endif
+         env["USER"] = pw->pw_name;
+     }
+ 
+@@ -399,7 +408,9 @@ bool Subprocess::ExecInProcess(Command command, std::string* _Nonnull error) {
+ 
+     CHECK(type_ == SubprocessType::kRaw);
+ 
++#ifdef __ANDROID__
+     __android_log_security_bswrite(SEC_TAG_ADB_SHELL_CMD, command_.c_str());
++#endif
+ 
+     if (!CreateSocketpair(&stdinout_sfd_, &child_stdinout_sfd)) {
+         *error = android::base::StringPrintf("failed to create socketpair for stdin/out: %s",
+diff --git a/adb/daemon/usb.cpp b/adb/daemon/usb.cpp
+index 1abae87..2b66723 100644
+--- a/adb/daemon/usb.cpp
++++ b/adb/daemon/usb.cpp
+@@ -52,6 +52,10 @@
+ #include "transport.h"
+ #include "types.h"
+ 
++#ifndef PAGE_SIZE
++#define PAGE_SIZE 1 << 12
++#endif
++
+ using android::base::StringPrintf;
+ 
+ // We can't find out whether we have support for AIO on ffs endpoints until we submit a read.
+@@ -451,6 +455,7 @@ struct UsbFfsConnection : public Connection {
+ 
+             std::this_thread::sleep_for(100ms);
+ 
++#ifdef __ANDROID__
+             rc = pthread_kill(worker_thread_handle, 0);
+             if (rc == 0) {
+                 continue;
+@@ -459,6 +464,10 @@ struct UsbFfsConnection : public Connection {
+             } else {
+                 LOG(ERROR) << "failed to send interruption signal to worker: " << strerror(rc);
+             }
++#else
++            /* pthread_kill would not return ESRCH in glibc 2.34+ */
++            break;
++#endif
+         }
+ 
+         worker_thread_.join();
+diff --git a/adb/fdevent.cpp b/adb/fdevent.cpp
+index 32f9086..aebb722 100644
+--- a/adb/fdevent.cpp
++++ b/adb/fdevent.cpp
+@@ -376,7 +376,7 @@ static void fdevent_call_fdfunc(fdevent* fde) {
+             fde->func);
+ }
+ 
+-static void fdevent_run_flush() EXCLUDES(run_queue_mutex) {
++static void EXCLUDES(run_queue_mutex) fdevent_run_flush() {
+     // We need to be careful around reentrancy here, since a function we call can queue up another
+     // function.
+     while (true) {
+diff --git a/adb/sockets.cpp b/adb/sockets.cpp
+index 8a2bf9a..12bed3e 100644
+--- a/adb/sockets.cpp
++++ b/adb/sockets.cpp
+@@ -31,10 +31,12 @@
+ #include <string>
+ #include <vector>
+ 
++#ifdef __ANDROID__
+ #if !ADB_HOST
+ #include <android-base/properties.h>
+ #include <log/log_properties.h>
+ #endif
++#endif
+ 
+ #include "adb.h"
+ #include "adb_io.h"
+@@ -400,10 +402,12 @@ asocket* create_local_socket(unique_fd ufd) {
+ }
+ 
+ asocket* create_local_service_socket(std::string_view name, atransport* transport) {
++#ifdef __ANDROID__
+ #if !ADB_HOST
+     if (asocket* s = daemon_service_to_socket(name); s) {
+         return s;
+     }
++#endif
+ #endif
+     unique_fd fd = service_to_fd(name, transport);
+     if (fd < 0) {
+@@ -415,6 +419,9 @@ asocket* create_local_service_socket(std::string_view name, atransport* transpor
+     LOG(VERBOSE) << "LS(" << s->id << "): bound to '" << name << "' via " << fd_value;
+ 
+ #if !ADB_HOST
++#ifndef __ANDROID__
++#define __android_log_is_debuggable() true
++#endif
+     if ((name.starts_with("root:") && getuid() != 0 && __android_log_is_debuggable()) ||
+         (name.starts_with("unroot:") && getuid() == 0) || name.starts_with("usb:") ||
+         name.starts_with("tcpip:")) {
+diff --git a/adb/transport_local.cpp b/adb/transport_local.cpp
+index b9f738d..8b887df 100644
+--- a/adb/transport_local.cpp
++++ b/adb/transport_local.cpp
+@@ -80,6 +80,7 @@ static auto& local_transports GUARDED_BY(local_transports_lock) =
+     *new std::unordered_map<int, atransport*>();
+ #endif /* ADB_HOST */
+ 
++#if ADB_HOST
+ bool local_connect(int port) {
+     std::string dummy;
+     return local_connect_arbitrary_ports(port - 1, port, &dummy) == 0;
+@@ -179,8 +180,6 @@ int local_connect_arbitrary_ports(int console_port, int adb_port, std::string* e
+     return -1;
+ }
+ 
+-#if ADB_HOST
+-
+ static void PollAllLocalPortsForEmulator() {
+     // Try to connect to any number of running emulator instances.
+     for (int port = DEFAULT_ADB_LOCAL_TRANSPORT_PORT; port <= adb_local_transport_max_port;
+@@ -309,6 +308,8 @@ void local_init(int port) {
+     std::thread(server_socket_thread, vsock_listen, port).detach();
+ #else
+     D("transport: local server init");
++
++#ifdef __ANDROID__
+     // For the adbd daemon in the system image we need to distinguish
+     // between the device, and the emulator.
+     if (use_qemu_goldfish()) {
+@@ -316,6 +317,9 @@ void local_init(int port) {
+     } else {
+         std::thread(server_socket_thread, tcp_listen_inaddr_any, port).detach();
+     }
++#else
++    std::thread(server_socket_thread, tcp_listen_inaddr_any, port).detach();
++#endif
+     std::thread(server_socket_thread, vsock_listen, port).detach();
+ #endif // !ADB_HOST
+ }
+diff --git a/base/properties.cpp b/base/properties.cpp
+index d5a5918..fad2c47 100644
+--- a/base/properties.cpp
++++ b/base/properties.cpp
+@@ -30,6 +30,63 @@
+ 
+ #include <android-base/parseint.h>
+ 
++#ifndef __ANDROID__
++#include <cstring>
++
++#ifndef PROP_VALUE_MAX
++#define PROP_VALUE_MAX 32
++#endif
++
++typedef char prop_info;
++
++static bool __system_property_to_env(const char *name, char *env, size_t size) {
++  size_t i;
++
++  if (strlen(name) >= size) return false;
++
++#define SYSTEM_PROPERTY_NO_PREFIX(name, prefix) \
++  if (!strncmp(name, prefix, strlen(prefix))) name += strlen(prefix);
++
++  SYSTEM_PROPERTY_NO_PREFIX(name, "ro.");
++  SYSTEM_PROPERTY_NO_PREFIX(name, "persist.");
++  SYSTEM_PROPERTY_NO_PREFIX(name, "service.");
++
++  for (i = 0; i < strlen(name); i++) {
++    switch (name[i]) {
++      case '.': env[i] = '_'; break;
++      case 'a' ... 'z': env[i] = 'A' - 'a' + name[i]; break;
++      default: env[i] = name[i]; break;
++    }
++  }
++
++  env[i] = '\0';
++  return true;
++};
++
++static const prop_info *__system_property_find(const char *prop) {
++  char env[1024];
++  if (!__system_property_to_env(prop, env, sizeof(env))) return nullptr;
++  return getenv(env) ? prop : nullptr;
++}
++
++static int __system_property_read(const prop_info *pi, char *name, char *value) {
++  char env[1024], *val;
++  const char *prop = pi;
++  if (!__system_property_to_env(prop, env, sizeof(env))) return -1;
++  val = getenv(env);
++  if (name) strcpy(name, env);
++  if (value) strcpy(value, val);
++  return strlen(val);
++}
++
++static bool __system_property_set(const char *name, const char *value) {
++  char env[1024];
++  if (!__system_property_to_env(name, env, sizeof(env))) return false;
++  setenv(name, value, 1);
++  return true;
++}
++#endif
++
+ namespace android {
+ namespace base {
+ 
+@@ -69,20 +126,12 @@ template uint16_t GetUintProperty(const std::string&, uint16_t, uint16_t);
+ template uint32_t GetUintProperty(const std::string&, uint32_t, uint32_t);
+ template uint64_t GetUintProperty(const std::string&, uint64_t, uint64_t);
+ 
+-#if !defined(__BIONIC__)
+-static std::map<std::string, std::string>& g_properties = *new std::map<std::string, std::string>;
+-static int __system_property_set(const char* key, const char* value) {
+-  g_properties[key] = value;
+-  return 0;
+-}
+-#endif
+-
+ std::string GetProperty(const std::string& key, const std::string& default_value) {
+   std::string property_value;
+-#if defined(__BIONIC__)
+   const prop_info* pi = __system_property_find(key.c_str());
+   if (pi == nullptr) return default_value;
+ 
++#if defined(__BIONIC__)
+   __system_property_read_callback(pi,
+                                   [](void* cookie, const char*, const char* value, unsigned) {
+                                     auto property_value = reinterpret_cast<std::string*>(cookie);
+@@ -90,9 +139,8 @@ std::string GetProperty(const std::string& key, const std::string& default_value
+                                   },
+                                   &property_value);
+ #else
+-  auto it = g_properties.find(key);
+-  if (it == g_properties.end()) return default_value;
+-  property_value = it->second;
++  char buf[PROP_VALUE_MAX];
++  if (__system_property_read(pi, nullptr, buf) > 0) return buf;
+ #endif
+   // If the property exists but is empty, also return the default value.
+   // Since we can't remove system properties, "empty" is traditionally
+@@ -191,7 +239,6 @@ bool WaitForPropertyCreation(const std::string& key,
+   auto start_time = std::chrono::steady_clock::now();
+   return (WaitForPropertyCreation(key, relative_timeout, start_time) != nullptr);
+ }
+-
+ #endif
+ 
+ }  // namespace base
+diff --git a/meson.build b/meson.build
+new file mode 100644
+index 0000000..03c8341
+--- /dev/null
++++ b/meson.build
+@@ -0,0 +1,102 @@
++project(
++  'adbd',
++  ['c', 'cpp'],
++  version : '10.0.0',
++  meson_version : '>=0.50.0',
++)
++
++pkgconfig = import('pkgconfig')
++
++cc = meson.get_compiler('c')
++
++libthreads_dep = dependency('threads')
++libcrypto_dep = dependency('libcrypto')
++
++adbd_deps = [
++  libthreads_dep,
++  libcrypto_dep,
++  cc.find_library('resolv'), # b64_pton
++  cc.find_library('util'), # forkpty
++]
++
++adbd_srcs = [
++  'adb/adb.cpp',
++  'adb/adb_io.cpp',
++  'adb/adb_utils.cpp',
++  'adb/adb_trace.cpp',
++  'adb/adb_listeners.cpp',
++  'adb/fdevent.cpp',
++  'adb/transport.cpp',
++  'adb/transport_usb.cpp',
++  'adb/transport_local.cpp',
++  'adb/sockets.cpp',
++  'adb/socket_spec.cpp',
++  'adb/sysdeps_unix.cpp',
++  'adb/sysdeps/errno.cpp',
++  'adb/sysdeps/posix/network.cpp',
++  'adb/daemon/auth.cpp',
++  'adb/daemon/usb.cpp',
++  'adb/daemon/usb_ffs.cpp',
++  'adb/daemon/usb_legacy.cpp',
++  'adb/daemon/main.cpp',
++  'adb/daemon/services.cpp',
++  'adb/daemon/shell_service.cpp',
++  'adb/daemon/reboot_service.cpp',
++  'adb/daemon/remount_service.cpp',
++  'adb/daemon/file_sync_service.cpp',
++  'adb/services.cpp',
++  'adb/shell_service_protocol.cpp',
++]
++
++adbd_srcs += [
++  'base/file.cpp',
++  'base/logging.cpp',
++  'base/properties.cpp',
++  'base/chrono_utils.cpp',
++  'base/threads.cpp',
++  'base/strings.cpp',
++  'base/stringprintf.cpp',
++  'base/parsenetaddress.cpp',
++  'diagnose_usb/diagnose_usb.cpp',
++  'libasyncio/AsyncIO.cpp',
++  'libcutils/sockets.cpp',
++  'libcutils/sockets_unix.cpp',
++  'libcutils/socket_local_client_unix.cpp',
++  'libcutils/socket_local_server_unix.cpp',
++  'libcutils/socket_network_client_unix.cpp',
++  'libcutils/socket_inaddr_any_server_unix.cpp',
++  'libcutils/android_get_control_file.cpp',
++  'libcrypto_utils/android_pubkey.c',
++]
++
++adbd_inc = [
++  'adb',
++  'adb/daemon/include',
++  'base/include',
++  'diagnose_usb/include',
++  'libutils/include',
++  'libcutils/include',
++  'libasyncio/include',
++  'libcrypto_utils/include',
++]
++
++add_project_arguments(
++  [
++   '-std=gnu++2a',
++   '-DADB_HOST=0',
++   '-DADB_VERSION="' + meson.project_version() + '"',
++   '-DPLATFORM_TOOLS_VERSION="28.0.2"',
++   '-DALLOW_ADBD_NO_AUTH=1',
++   '-Wno-unused-result',
++   '-Wno-attributes',
++   '-Wno-unknown-pragmas',
++  ],
++  language: 'cpp')
++
++executable(
++  'adbd',
++  adbd_srcs,
++  include_directories : adbd_inc,
++  dependencies : adbd_deps,
++  install : true,
++)
+-- 
+2.20.1
+

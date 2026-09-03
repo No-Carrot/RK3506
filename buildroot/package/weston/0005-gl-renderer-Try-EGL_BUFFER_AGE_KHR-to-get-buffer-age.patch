@@ -1,0 +1,46 @@
+From 58012167d82440655c7a19db142512ea351ca33c Mon Sep 17 00:00:00 2001
+From: Jeffy Chen <jeffy.chen@rock-chips.com>
+Date: Tue, 21 Jan 2025 17:04:18 +0800
+Subject: [PATCH 05/98] gl-renderer: Try EGL_BUFFER_AGE_KHR to get buffer age
+
+Signed-off-by: Jeffy Chen <jeffy.chen@rock-chips.com>
+---
+ libweston/renderer-gl/egl-glue.c    | 3 +++
+ libweston/renderer-gl/gl-renderer.c | 4 ++++
+ 2 files changed, 7 insertions(+)
+
+diff --git a/libweston/renderer-gl/egl-glue.c b/libweston/renderer-gl/egl-glue.c
+index f6d7c4870..617a6b3bd 100644
+--- a/libweston/renderer-gl/egl-glue.c
++++ b/libweston/renderer-gl/egl-glue.c
+@@ -668,6 +668,9 @@ gl_renderer_setup_egl_extensions(struct weston_compositor *ec)
+ 	if (weston_check_egl_extension(extensions, "EGL_EXT_buffer_age"))
+ 		gr->has_egl_buffer_age = true;
+ 
++	/* HACK: The GPU might support EGL_BUFFER_AGE_KHR */
++	gr->has_egl_buffer_age = true;
++
+ 	if (weston_check_egl_extension(extensions, "EGL_KHR_partial_update")) {
+ 		assert(gr->set_damage_region);
+ 		gr->has_egl_partial_update = true;
+diff --git a/libweston/renderer-gl/gl-renderer.c b/libweston/renderer-gl/gl-renderer.c
+index 1ad6326c5..4d99e37e5 100644
+--- a/libweston/renderer-gl/gl-renderer.c
++++ b/libweston/renderer-gl/gl-renderer.c
+@@ -2037,9 +2037,13 @@ output_get_buffer_age(struct weston_output *output)
+ 	    go->egl_surface != EGL_NO_SURFACE) {
+ 		ret = eglQuerySurface(gr->egl_display, go->egl_surface,
+ 				      EGL_BUFFER_AGE_EXT, &buffer_age);
++		if (ret == EGL_FALSE)
++			ret = eglQuerySurface(gr->egl_display, go->egl_surface,
++					      EGL_BUFFER_AGE_KHR, &buffer_age);
+ 		if (ret == EGL_FALSE) {
+ 			weston_log("buffer age query failed.\n");
+ 			gl_renderer_print_egl_error_state();
++			gr->has_egl_buffer_age = false;
+ 		}
+ 	}
+ 
+-- 
+2.20.1
+

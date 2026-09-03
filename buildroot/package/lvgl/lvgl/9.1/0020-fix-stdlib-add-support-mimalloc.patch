@@ -1,0 +1,127 @@
+From 555d217b8f8ddb0b72118db60c6b81d6497c7cca Mon Sep 17 00:00:00 2001
+From: Jiajian Wu <jair.wu@rock-chips.com>
+Date: Thu, 2 Jan 2025 17:15:18 +0800
+Subject: [PATCH 20/23] fix(stdlib): add support mimalloc
+
+Signed-off-by: Jiajian Wu <jair.wu@rock-chips.com>
+---
+ src/lv_conf_internal.h                     |  1 +
+ src/stdlib/mimalloc/lv_mem_core_mimalloc.c | 94 ++++++++++++++++++++++
+ 2 files changed, 95 insertions(+)
+ create mode 100644 src/stdlib/mimalloc/lv_mem_core_mimalloc.c
+
+diff --git a/src/lv_conf_internal.h b/src/lv_conf_internal.h
+index d6d7fd0d8..6d068a0cf 100644
+--- a/src/lv_conf_internal.h
++++ b/src/lv_conf_internal.h
+@@ -21,6 +21,7 @@
+ #define LV_STDLIB_CLIB              1
+ #define LV_STDLIB_MICROPYTHON       2
+ #define LV_STDLIB_RTTHREAD          3
++#define LV_STDLIB_MIMALLOC          4
+ #define LV_STDLIB_CUSTOM            255
+ 
+ #define LV_DRAW_SW_ASM_NONE         0
+diff --git a/src/stdlib/mimalloc/lv_mem_core_mimalloc.c b/src/stdlib/mimalloc/lv_mem_core_mimalloc.c
+new file mode 100644
+index 000000000..749c30283
+--- /dev/null
++++ b/src/stdlib/mimalloc/lv_mem_core_mimalloc.c
+@@ -0,0 +1,94 @@
++/**
++ * @file lv_malloc_core.c
++ */
++
++/*********************
++ *      INCLUDES
++ *********************/
++#include "../lv_mem.h"
++#if LV_USE_STDLIB_MALLOC == LV_STDLIB_MIMALLOC
++#include <mimalloc-1.8/mimalloc.h>
++#include <stdlib.h>
++
++/*********************
++ *      DEFINES
++ *********************/
++
++/**********************
++ *      TYPEDEFS
++ **********************/
++
++/**********************
++ *  STATIC PROTOTYPES
++ **********************/
++
++/**********************
++ *  STATIC VARIABLES
++ **********************/
++
++/**********************
++ *      MACROS
++ **********************/
++/**********************
++ *   GLOBAL FUNCTIONS
++ **********************/
++
++void lv_mem_init(void)
++{
++    return; /*Nothing to init*/
++}
++
++void lv_mem_deinit(void)
++{
++    return; /*Nothing to deinit*/
++
++}
++
++lv_mem_pool_t lv_mem_add_pool(void * mem, size_t bytes)
++{
++    /*Not supported*/
++    LV_UNUSED(mem);
++    LV_UNUSED(bytes);
++    return NULL;
++}
++
++void lv_mem_remove_pool(lv_mem_pool_t pool)
++{
++    /*Not supported*/
++    LV_UNUSED(pool);
++    return;
++}
++
++void * lv_malloc_core(size_t size)
++{
++    return mi_malloc(size);
++}
++
++void * lv_realloc_core(void * p, size_t new_size)
++{
++    return mi_realloc(p, new_size);
++}
++
++void lv_free_core(void * p)
++{
++    mi_free(p);
++}
++
++void lv_mem_monitor_core(lv_mem_monitor_t * mon_p)
++{
++    /*Not supported*/
++    LV_UNUSED(mon_p);
++    return;
++}
++
++lv_result_t lv_mem_test_core(void)
++{
++    /*Not supported*/
++    return LV_RESULT_OK;
++}
++
++/**********************
++ *   STATIC FUNCTIONS
++ **********************/
++
++#endif /*LV_STDLIB_CLIB*/
+-- 
+2.25.1
+

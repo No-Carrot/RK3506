@@ -1,0 +1,26 @@
+From dbc50728170c82234164029fb6be807d9c01f703 Mon Sep 17 00:00:00 2001
+From: Jiajian Wu <jair.wu@rock-chips.com>
+Date: Fri, 13 Dec 2024 09:27:12 +0800
+Subject: [PATCH 16/22] fix(display): add animation type zoom in and zoom out
+
+Signed-off-by: Jiajian Wu <jair.wu@rock-chips.com>
+---
+ src/display/lv_display.h | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/src/display/lv_display.h b/src/display/lv_display.h
+index c3ce14775..f01b925a3 100644
+--- a/src/display/lv_display.h
++++ b/src/display/lv_display.h
+@@ -72,6 +72,8 @@ typedef enum {
+     LV_SCR_LOAD_ANIM_FADE_IN,
+     LV_SCR_LOAD_ANIM_FADE_ON = LV_SCR_LOAD_ANIM_FADE_IN, /*For backward compatibility*/
+     LV_SCR_LOAD_ANIM_FADE_OUT,
++    LV_SCR_LOAD_ANIM_ZOOM_IN,
++    LV_SCR_LOAD_ANIM_ZOOM_OUT,
+     LV_SCR_LOAD_ANIM_OUT_LEFT,
+     LV_SCR_LOAD_ANIM_OUT_RIGHT,
+     LV_SCR_LOAD_ANIM_OUT_TOP,
+-- 
+2.25.1
+

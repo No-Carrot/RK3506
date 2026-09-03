@@ -1,0 +1,12 @@
+[Unit]
+Description=Weston Wayland Compositor
+After=local-fs.target
+
+[Service]
+# HACK: Start with common env
+ExecStart=/bin/sh -c 'source /etc/profile; /usr/bin/weston --log=/var/log/weston.log'
+
+Restart=on-failure
+
+[Install]
+WantedBy=sysinit.target

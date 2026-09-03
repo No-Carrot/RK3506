@@ -1,0 +1,3 @@
+#include "chips/rk3588_aarch64.config"
+#include "tee_aarch64_v2.config"
+#include "base/security-ramdisk.config"
